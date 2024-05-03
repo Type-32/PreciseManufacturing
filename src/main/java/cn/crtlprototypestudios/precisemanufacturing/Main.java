@@ -1,8 +1,10 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
+import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
+import com.jozufozu.flywheel.util.NonNullSupplier;
 import com.mojang.logging.LogUtils;
+import com.tterrag.registrate.Registrate;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,13 +20,14 @@ import org.slf4j.Logger;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("prma")
-public class PreciseManufacturingMod {
+@Mod(Reference.MOD_ID)
+public class Main {
 
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static final NonNullSupplier<Registrate> REGISTRATE = () -> Registrate.create(Reference.MOD_ID);
 
-    public PreciseManufacturingMod() {
+    public Main() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -39,7 +42,6 @@ public class PreciseManufacturingMod {
     private void setup(final FMLCommonSetupEvent event) {
         // Some preinit code
         LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
