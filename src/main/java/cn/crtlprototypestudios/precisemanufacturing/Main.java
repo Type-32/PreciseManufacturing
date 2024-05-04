@@ -1,12 +1,14 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
-import com.jozufozu.flywheel.util.NonNullSupplier;
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +30,7 @@ public class Main {
     public static final NonNullSupplier<Registrate> REGISTRATE = () -> Registrate.create(Reference.MOD_ID);
 
     public Main() {
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -37,6 +40,7 @@ public class Main {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        ModItems.register(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
