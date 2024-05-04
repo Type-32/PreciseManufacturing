@@ -9,6 +9,13 @@ _Badges from [Devin's Badges](https://intergrav.github.io/devins-badges-docs/bad
 
 A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's mod items.
 
+> ### Attributions
+> Bullet and Catridge Textures are modified from the Timeless and Classics: Zero Mod **_(CC By-NC-SA 4.0 License)_**.
+> 
+> Help & Support in Modding from the Forge Forums Community.
+> 
+> Partially Referenced code from Create: Railways & Create: Slice and Dice
+
 > ### To anyone who are confused reading this
 > The Timeless and Classics gun mod is being remade by the official TaC development team into Timeless and Classics: Zero,
 > which will overhaul many items and mechanics previously existing in the old TaC mod. Please go to their discord or any

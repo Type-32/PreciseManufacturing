@@ -1,0 +1,23 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "prma:basalt_powder",
+      "count": 3
+    }
+  ],
+  "results": [
+    {
+      "fluid": "prma:molten_copper",
+      "amount": 250
+    }
+  ],
+  "heatRequirement": "heated"
+}

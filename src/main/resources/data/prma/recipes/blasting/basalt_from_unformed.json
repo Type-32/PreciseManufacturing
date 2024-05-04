@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "prma:unformed_basalt"
+  },
+  "result": "minecraft:basalt",
+  "experience": 0,
+  "cookingtime": 400
+}

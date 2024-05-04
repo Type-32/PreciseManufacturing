@@ -1,0 +1,23 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "create:brass_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "prma:basalt_powder",
+      "count": 3
+    }
+  ],
+  "results": [
+    {
+      "fluid": "prma:molten_brass",
+      "amount": 250
+    }
+  ],
+  "heatRequirement": "heated"
+}

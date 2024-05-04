@@ -9,7 +9,7 @@ public class ModCreativeModTabs {
     public static final CreativeModeTab MOD_TAB = new CreativeModeTab("prma_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.MEDIUM_SIZED_ROLLER.get());
+            return new ItemStack(ModItems.CRUSHED_BASALT.get());
         }
     };
 }

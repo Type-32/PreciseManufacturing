@@ -1,3 +1,10 @@
 {
-  "item.prma.medium_sized_roller": "Medium-Sized Roller"
+  "itemGroup.prma_tab": "Precise Manufacturing",
+  "item.prma.medium_sized_roller": "Medium-Sized Roller",
+  "item.prma.raw_copper_powder": "Raw Crushed Copper Powder",
+  "item.prma.raw_zinc_powder": "Raw Crushed Zinc Powder",
+  "item.prma.crushed_basalt": "Crushed Basalt",
+  "item.prma.unformed_basalt": "Unformed Wet Basalt Mixture",
+
+  "fluid.prma.molten_copper": "Molten Copper"
 }

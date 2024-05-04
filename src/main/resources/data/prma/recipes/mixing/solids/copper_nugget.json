@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "prma:raw_copper_powder",
+      "count": 2
+    }
+  ],
+  "results": [
+    {
+      "item": "create:copper_nugget",
+      "count": 3
+    }
+  ],
+  "heatRequirement": "heated"
+}

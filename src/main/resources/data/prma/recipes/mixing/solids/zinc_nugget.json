@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "prma:raw_zinc_powder",
+      "count": 2
+    }
+  ],
+  "results": [
+    {
+      "item": "create:zinc_nugget",
+      "count": 3
+    }
+  ],
+  "heatRequirement": "heated"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:9mm_casing_cast",
+      "count": 4
+    }
+  ],
+  "processingTime": 200
+}

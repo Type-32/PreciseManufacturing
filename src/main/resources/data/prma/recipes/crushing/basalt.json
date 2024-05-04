@@ -1,0 +1,26 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "minecraft:basalt"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:raw_zinc_powder",
+      "chance": 0.1
+    },
+    {
+      "item": "prma:raw_copper_powder",
+      "chance": 0.1
+    },
+    {
+      "item": "prma:basalt_powder",
+      "chance": 0.2
+    },
+    {
+      "item": "prma:crushed_basalt",
+      "chance": 0.6
+    }
+  ]
+}

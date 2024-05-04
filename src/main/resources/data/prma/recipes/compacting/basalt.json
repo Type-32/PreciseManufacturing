@@ -1,0 +1,19 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "fluid": "minecraft:water",
+      "nbt": {},
+      "amount": 150
+    },
+    {
+      "item": "prma:crushed_basalt",
+      "count": 4
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:unformed_basalt"
+    }
+  ]
+}
