@@ -5,7 +5,7 @@
       "item": "prma:9mm_head_cast"
     },
     {
-      "fluid": "create:molten_copper",
+      "fluid": "prma:molten_copper",
       "nbt": {},
       "amount": 25
     }

@@ -1,0 +1,16 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "prma:basalt_powder"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:gunpowder_pellets"
+    }
+  ]
+}

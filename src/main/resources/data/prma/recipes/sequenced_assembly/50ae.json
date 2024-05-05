@@ -1,17 +1,17 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "item": "prma:9mm_casing"
+    "item": "prma:50ae_casing"
   },
   "transitionalItem": {
-    "item": "prma:9mm_unfinished"
+    "item": "prma:50ae_unfinished"
   },
   "sequence": [
     {
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
         },
         {
           "item": "minecraft:iron_nugget"
@@ -19,7 +19,7 @@
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
         }
       ]
     },
@@ -27,7 +27,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
         },
         {
           "item": "minecraft:gunpowder"
@@ -35,7 +35,7 @@
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
         }
       ]
     },
@@ -43,15 +43,31 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
         },
         {
-          "item": "prma:9mm_head"
+          "item": "minecraft:gunpowder"
         }
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:50ae_unfinished"
+        },
+        {
+          "item": "prma:50ae_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:50ae_unfinished"
         }
       ]
     },
@@ -59,12 +75,12 @@
       "type": "create:pressing",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
         }
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:50ae_unfinished"
         }
       ]
     }
@@ -73,12 +89,12 @@
     {
       "item": "tacz:ammo",
       "nbt": {
-        "AmmoId": "tacz:9mm"
+        "AmmoId": "tacz:50ae"
       },
       "chance": 96.0
     },
     {
-      "item": "prma:9mm_casing",
+      "item": "prma:50ae_casing",
       "chance": 4.0
     }
   ],

@@ -6,6 +6,8 @@
   "item.prma.raw_zinc_powder": "Raw Crushed Zinc Powder",
   "item.prma.raw_sulfur_powder": "Raw Sulfur Powder",
   "item.prma.basalt_powder": "Basalt Powder",
+  "item.prma.gunpowder_pellets": "Gunpowder Pellets",
+
 
   "item.prma.crushed_basalt": "Crushed Basalt",
   "item.prma.unformed_basalt": "Unformed Wet Basalt Mixture",
@@ -18,7 +20,23 @@
   "item.prma.9mm_unfinished": "Unfinished 9mm Cartridge",
 
 
-  "fluid.create.molten_copper": "Molten Copper",
-  "fluid.create.molten_brass": "Molten Brass",
-  "fluid.create.molten_basalt_infused_iron": "Molten Basalt-Infused Iron"
+  "item.prma.45acp_casing_cast": ".45 ACP Cartridge Casing Cast",
+  "item.prma.45acp_head_cast": ".45 ACP Cartridge Head Cast",
+
+  "item.prma.45acp_casing": ".45 ACP Cartridge Casing",
+  "item.prma.45acp_head": ".45 ACP Cartridge Head",
+  "item.prma.45acp_unfinished": "Unfinished .45 ACP Cartridge",
+
+
+  "item.prma.50ae_casing_cast": ".50 AE Cartridge Casing Cast",
+  "item.prma.50ae_head_cast": ".50 AE Cartridge Head Cast",
+
+  "item.prma.50ae_casing": ".50 AE Cartridge Casing",
+  "item.prma.50ae_head": ".50 AE Cartridge Head",
+  "item.prma.50ae_unfinished": "Unfinished .50 AE Cartridge",
+
+
+  "fluid.prma.molten_copper": "Molten Copper",
+  "fluid.prma.molten_brass": "Molten Brass",
+  "fluid.prma.molten_basalt_infused_iron": "Molten Basalt-Infused Iron"
 }

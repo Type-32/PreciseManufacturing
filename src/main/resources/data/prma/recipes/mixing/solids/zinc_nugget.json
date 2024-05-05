@@ -5,14 +5,13 @@
       "item": "minecraft:iron_nugget"
     },
     {
-      "item": "prma:raw_zinc_powder",
-      "amount": 2
+      "item": "prma:raw_zinc_powder"
     }
   ],
   "results": [
     {
       "item": "create:zinc_nugget",
-      "count": 3
+      "count": 2
     }
   ],
   "heatRequirement": "heated"

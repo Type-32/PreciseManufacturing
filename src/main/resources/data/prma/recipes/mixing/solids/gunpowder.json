@@ -8,8 +8,7 @@
       "item": "prma:raw_sulfur_powder"
     },
     {
-      "item": "minecraft:sugar",
-      "amount": 2
+      "item": "minecraft:sugar"
     },
     {
       "item": "minecraft:charcoal"
@@ -18,7 +17,7 @@
   "results": [
     {
       "item": "minecraft:gunpowder",
-      "count": 2
+      "count": 3
     }
   ]
 }

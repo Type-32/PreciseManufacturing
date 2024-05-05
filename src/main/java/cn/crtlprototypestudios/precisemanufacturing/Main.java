@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.data.tag.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
@@ -30,7 +31,7 @@ public class Main {
 
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static final Registrate REGISTRATE = Registrate.create(Reference.MOD_ID);
+    public static final PreciseManufacturingRegistrate REGISTRATE = PreciseManufacturingRegistrate.create(Reference.MOD_ID);
 
     public Main() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -1,17 +1,17 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "item": "prma:9mm_casing"
+    "item": "prma:45acp_casing"
   },
   "transitionalItem": {
-    "item": "prma:9mm_unfinished"
+    "item": "prma:45acp_unfinished"
   },
   "sequence": [
     {
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         },
         {
           "item": "minecraft:iron_nugget"
@@ -19,7 +19,7 @@
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         }
       ]
     },
@@ -27,7 +27,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         },
         {
           "item": "minecraft:gunpowder"
@@ -35,7 +35,7 @@
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         }
       ]
     },
@@ -43,15 +43,15 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         },
         {
-          "item": "prma:9mm_head"
+          "item": "prma:45acp_head"
         }
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         }
       ]
     },
@@ -59,12 +59,12 @@
       "type": "create:pressing",
       "ingredients": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         }
       ],
       "results": [
         {
-          "item": "prma:9mm_unfinished"
+          "item": "prma:45acp_unfinished"
         }
       ]
     }
@@ -73,12 +73,12 @@
     {
       "item": "tacz:ammo",
       "nbt": {
-        "AmmoId": "tacz:9mm"
+        "AmmoId": "tacz:45acp"
       },
       "chance": 96.0
     },
     {
-      "item": "prma:9mm_casing",
+      "item": "prma:45acp_casing",
       "chance": 4.0
     }
   ],
