@@ -40,7 +40,7 @@ public class ModItems {
             MOLTEN_COPPER_BUCKET = Main.REGISTRATE.item("molten_copper_bucket", Item::new)
                     .properties(p -> p.stacksTo(1))
                     .register(),
-            MOLTEN_BASALT_INFUSED_IRON_BUCKET = Main.REGISTRATE.item("molten_basalt_infused_bucket", Item::new)
+            MOLTEN_BASALT_INFUSED_IRON_BUCKET = Main.REGISTRATE.item("molten_basalt_infused_iron_bucket", Item::new)
                     .properties(p -> p.stacksTo(1))
                     .register();
 
@@ -54,7 +54,7 @@ public class ModItems {
             FOUR_FIVE_ACP_CASING_CAST = Main.REGISTRATE.item("45acp_casing_cast", Item::new)
                     .properties(p -> p.fireResistant())
                     .register(),
-            FIFTY_AE_CASING_CAST = Main.REGISTRATE.item("50acp_casing_cast", Item::new)
+            FIFTY_AE_CASING_CAST = Main.REGISTRATE.item("50ae_casing_cast", Item::new)
                     .properties(p -> p.fireResistant())
                     .register(),
             MAGNUM_R_CASING_CAST = Main.REGISTRATE.item("magnum_r_casing_cast", Item::new)
