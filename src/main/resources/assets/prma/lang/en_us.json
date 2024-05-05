@@ -1,10 +1,24 @@
 {
   "itemGroup.prma_tab": "Precise Manufacturing",
-  "item.prma.medium_sized_roller": "Medium-Sized Roller",
+
+
   "item.prma.raw_copper_powder": "Raw Crushed Copper Powder",
   "item.prma.raw_zinc_powder": "Raw Crushed Zinc Powder",
+  "item.prma.raw_sulfur_powder": "Raw Sulfur Powder",
+  "item.prma.basalt_powder": "Basalt Powder",
+
   "item.prma.crushed_basalt": "Crushed Basalt",
   "item.prma.unformed_basalt": "Unformed Wet Basalt Mixture",
 
-  "fluid.prma.molten_copper": "Molten Copper"
+  "item.prma.9mm_casing_cast": "9mm Cartridge Casing Cast",
+  "item.prma.9mm_head_cast": "9mm Cartridge Head Cast",
+
+  "item.prma.9mm_casing": "9mm Cartridge Casing",
+  "item.prma.9mm_head": "9mm Cartridge Head",
+  "item.prma.9mm_unfinished": "Unfinished 9mm Cartridge",
+
+
+  "fluid.create.molten_copper": "Molten Copper",
+  "fluid.create.molten_brass": "Molten Brass",
+  "fluid.create.molten_basalt_infused_iron": "Molten Basalt-Infused Iron"
 }

@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item;
 
+import cn.crtlprototypestudios.precisemanufacturing.Main;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,4 +13,8 @@ public class ModCreativeModTabs {
             return new ItemStack(ModItems.CRUSHED_BASALT.get());
         }
     };
+
+    public static void register(){
+        // Do not delete
+    }
 }

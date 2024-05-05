@@ -15,7 +15,7 @@
   ],
   "results": [
     {
-      "fluid": "prma:molten_brass",
+      "fluid": "create:molten_brass",
       "amount": 250
     }
   ],

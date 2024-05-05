@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "prma:basalt_powder"
+    },
+    {
+      "item": "prma:raw_sulfur_powder"
+    },
+    {
+      "item": "minecraft:sugar",
+      "amount": 2
+    },
+    {
+      "item": "minecraft:charcoal"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:gunpowder",
+      "count": 2
+    }
+  ]
+}

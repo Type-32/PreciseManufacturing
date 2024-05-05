@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.tag.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.ModFluids;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.logging.LogUtils;
@@ -29,7 +30,7 @@ public class Main {
 
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static final NonNullSupplier<Registrate> REGISTRATE = () -> Registrate.create(Reference.MOD_ID);
+    public static final Registrate REGISTRATE = Registrate.create(Reference.MOD_ID);
 
     public Main() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -42,6 +43,8 @@ public class Main {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        ModCreativeModTabs.register();
         ModItems.register();
         ModFluids.register();
         ModTags.register();

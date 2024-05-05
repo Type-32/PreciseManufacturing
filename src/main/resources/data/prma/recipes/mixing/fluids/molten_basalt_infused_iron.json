@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "amount": 1
+    },
+    {
+      "item": "prma:basalt_powder",
+      "amount": 2
+    },
+    {
+      "item": "minecraft:charcoal",
+      "amount": 1
+    }
+  ],
+  "results": [
+    {
+      "fluid": "create:molten_basalt_infused_iron",
+      "amount": 200
+    }
+  ],
+  "heatRequirement": "heated"
+}

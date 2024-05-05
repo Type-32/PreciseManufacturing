@@ -1,0 +1,86 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:9mm_casing"
+  },
+  "transitionalItem": {
+    "item": "prma:9mm_unfinished"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:9mm_unfinished"
+        },
+        {
+          "item": "minecraft:iron_nugget"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:9mm_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:9mm_unfinished"
+        },
+        {
+          "item": "minecraft:gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:9mm_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:9mm_unfinished"
+        },
+        {
+          "item": "prma:9mm_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:9mm_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:9mm_unfinished"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:9mm_unfinished"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tac:ammo",
+      "nbt": {
+        "AmmoId": "tac:9mm"
+      },
+      "chance": 96.0
+    },
+    {
+      "item": "prma:9mm_casing",
+      "chance": 4.0
+    }
+  ],
+  "loops": 1
+}

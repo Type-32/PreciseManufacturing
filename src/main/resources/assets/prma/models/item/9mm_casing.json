@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "prma:casts/head/general_head_cast"
+		"layer0": "prma:item/bullets/casing/9mm"
 	}
 }

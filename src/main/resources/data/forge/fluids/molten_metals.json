@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "create:molten_copper",
+    "create:molten_brass",
+    "create:molten_basalt_infused_iron"
+  ]
+}

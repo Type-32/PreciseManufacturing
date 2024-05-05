@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:9mm_head_cast"
+    },
+    {
+      "fluid": "create:molten_copper",
+      "nbt": {},
+      "amount": 25
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:9mm_head"
+    }
+  ]
+}
