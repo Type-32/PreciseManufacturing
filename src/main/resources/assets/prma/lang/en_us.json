@@ -8,35 +8,114 @@
   "item.prma.basalt_powder": "Basalt Powder",
   "item.prma.gunpowder_pellets": "Gunpowder Pellets",
 
+  "item.prma.molten_brass_bucket": "Bucket of Molten Brass",
+  "item.prma.molten_copper_bucket": "Bucket of Molten Copper",
+  "item.prma.molten_basalt_infused_iron_bucket": "Bucket of Basalt-Infused Molten Iron",
 
   "item.prma.crushed_basalt": "Crushed Basalt",
   "item.prma.unformed_basalt": "Unformed Wet Basalt Mixture",
 
+
   "item.prma.9mm_casing_cast": "9mm Cartridge Casing Cast",
   "item.prma.9mm_head_cast": "9mm Cartridge Head Cast",
-
   "item.prma.9mm_casing": "9mm Cartridge Casing",
   "item.prma.9mm_head": "9mm Cartridge Head",
   "item.prma.9mm_unfinished": "Unfinished 9mm Cartridge",
 
-
   "item.prma.45acp_casing_cast": ".45 ACP Cartridge Casing Cast",
   "item.prma.45acp_head_cast": ".45 ACP Cartridge Head Cast",
-
   "item.prma.45acp_casing": ".45 ACP Cartridge Casing",
   "item.prma.45acp_head": ".45 ACP Cartridge Head",
   "item.prma.45acp_unfinished": "Unfinished .45 ACP Cartridge",
 
-
   "item.prma.50ae_casing_cast": ".50 AE Cartridge Casing Cast",
   "item.prma.50ae_head_cast": ".50 AE Cartridge Head Cast",
-
   "item.prma.50ae_casing": ".50 AE Cartridge Casing",
   "item.prma.50ae_head": ".50 AE Cartridge Head",
   "item.prma.50ae_unfinished": "Unfinished .50 AE Cartridge",
 
+  "item.prma.magnum_r_casing_cast": ".357 Magnum Cartridge Casing Cast",
+  "item.prma.magnum_r_head_cast": ".357 Magnum Cartridge Head Cast",
+  "item.prma.magnum_r_casing": ".357 Magnum Cartridge Casing",
+  "item.prma.magnum_r_head": ".357 Magnum Cartridge Head",
+  "item.prma.magnum_r_unfinished": "Unfinished .357 Magnum Cartridge",
+
+  "item.prma.12g_casing_cast": "12 Gauge Shotgun Cartridge Casing Cast",
+  "item.prma.12g_head_cast": "12 Gauge Shotgun Cartridge Head Cast",
+  "item.prma.12g_casing": "12 Gauge Shotgun Cartridge Casing",
+  "item.prma.12g_head": "12 Gauge Shotgun Cartridge Head",
+  "item.prma.12g_unfinished": "Unfinished 12 Gauge Shotgun Cartridge",
+
+  "item.prma.30_06_casing_cast": ".30-06 Springfield Cartridge Casing Cast",
+  "item.prma.30_06_head_cast": ".30-06 Springfield Cartridge Head Cast",
+  "item.prma.30_06_casing": ".30-06 Springfield Cartridge Casing",
+  "item.prma.30_06_head": ".30-06 Springfield Cartridge Head",
+  "item.prma.30_06_unfinished": "Unfinished .30-06 Springfield Cartridge",
+
+  "item.prma.46x30_casing_cast": "4.6mm AP Cartridge Casing Cast",
+  "item.prma.46x30_head_cast": "4.6mm AP Cartridge Head Cast",
+  "item.prma.46x30_casing": "4.6mm AP Cartridge Casing",
+  "item.prma.46x30_head": "4.6mm AP Cartridge Head",
+  "item.prma.46x30_unfinished": "Unfinished 4.6mm AP Cartridge",
+
+  "item.prma.50bmg_casing_cast": ".50 BMG Cartridge Casing Cast",
+  "item.prma.50bmg_head_cast": ".50 BMG Cartridge Head Cast",
+  "item.prma.50bmg_casing": ".50 BMG Cartridge Casing",
+  "item.prma.50bmg_head": ".50 BMG Cartridge Head",
+  "item.prma.50bmg_unfinished": "Unfinished .50 BMG Cartridge",
+
+  "item.prma.58x42_casing_cast": "5.8mm DBP87 Cartridge Casing Cast",
+  "item.prma.58x42_head_cast": "5.8mm DBP87 Cartridge Head Cast",
+  "item.prma.58x42_casing": "5.8mm DBP87 Cartridge Casing",
+  "item.prma.58x42_head": "5.8mm DBP87 Cartridge Head",
+  "item.prma.58x42_unfinished": "Unfinished 5.8mm DBP87 Cartridge",
+
+  "item.prma.68x51fury_casing_cast": "6.8x51mm Fury Cartridge Casing Cast",
+  "item.prma.68x51fury_head_cast": "6.8x51mm Fury Cartridge Head Cast",
+  "item.prma.68x51fury_casing": "6.8x51mm Fury Cartridge Casing",
+  "item.prma.68x51fury_head": "6.8x51mm Fury Cartridge Head",
+  "item.prma.68x51fury_unfinished": "Unfinished 6.8x51mm Fury Cartridge",
+
+  "item.prma.308_casing_cast": ".308 Winchester Cartridge Casing Cast",
+  "item.prma.308_head_cast": ".308 Winchester Cartridge Head Cast",
+  "item.prma.308_casing": ".308 Winchester Cartridge Casing",
+  "item.prma.308_head": ".308 Winchester Cartridge Head",
+  "item.prma.308_unfinished": "Unfinished .308 Winchester Cartridge",
+
+  "item.prma.338_casing_cast": ".338 Lapua Cartridge Casing Cast",
+  "item.prma.338_head_cast": ".338 Lapua Cartridge Head Cast",
+  "item.prma.338_casing": ".338 Lapua Cartridge Casing",
+  "item.prma.338_head": ".338 Lapua Cartridge Head",
+  "item.prma.338_unfinished": "Unfinished .338 Lapua Cartridge",
+
+  "item.prma.556x45_casing_cast": "5.56x45mm Cartridge Casing Cast",
+  "item.prma.556x45_head_cast": "5.56x45mm Cartridge Head Cast",
+  "item.prma.556x45_casing": "5.56x45mm Cartridge Casing",
+  "item.prma.556x45_head": "5.56x45mm Cartridge Head",
+  "item.prma.556x45_unfinished": "Unfinished 5.56x45mm Cartridge",
+
+  "item.prma.762x25_casing_cast": "7.62x25mm Torakev Cartridge Casing Cast",
+  "item.prma.762x25_head_cast": "7.62x25mm Torakev Cartridge Head Cast",
+  "item.prma.762x25_casing": "7.62x25mm Torakev Cartridge Casing",
+  "item.prma.762x25_head": "7.62x25mm Torakev Cartridge Head",
+  "item.prma.762x25_unfinished": "Unfinished 7.62x25mm Torakev Cartridge",
+
+  "item.prma.762x39_casing_cast": "7.62x39mm Cartridge Casing Cast",
+  "item.prma.762x39_head_cast": "7.62x39mm Cartridge Head Cast",
+  "item.prma.762x39_casing": "7.62x39mm Cartridge Casing",
+  "item.prma.762x39_head": "7.62x39mm Cartridge Head",
+  "item.prma.762x39_unfinished": "Unfinished 7.62x39mm Cartridge",
+
+  "item.prma.762x54_casing_cast": "7.62x54mm Cartridge Casing Cast",
+  "item.prma.762x54_head_cast": "7.62x54mm Cartridge Head Cast",
+  "item.prma.762x54_casing": "7.62x54mm Cartridge Casing",
+  "item.prma.762x54_head": "7.62x54mm Cartridge Head",
+  "item.prma.762x54_unfinished": "Unfinished 7.62x54mm Cartridge",
+
+  "item.prma.rpg_rocket_unfinished": "Unfinished RPG Rocket",
+
 
   "fluid.prma.molten_copper": "Molten Copper",
   "fluid.prma.molten_brass": "Molten Brass",
-  "fluid.prma.molten_basalt_infused_iron": "Molten Basalt-Infused Iron"
+  "fluid.prma.molten_basalt_infused_iron": "Basalt-Infused Molten Iron"
 }
