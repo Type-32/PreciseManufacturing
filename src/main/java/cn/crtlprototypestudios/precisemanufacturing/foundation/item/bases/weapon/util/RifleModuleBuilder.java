@@ -3,7 +3,8 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RifleModuleBuilder {
+// TODO Write Documentations
+public class RifleModuleBuilder implements Cloneable{
 
     private ArrayList<RifleModuleType> modules;
 
@@ -25,11 +26,15 @@ public class RifleModuleBuilder {
 
     public RifleModuleBuilder add(RifleModuleType module){
         modules.add(module);
-        return this;
+        return new RifleModuleBuilder(module);
     }
 
     public RifleModuleBuilder remove(RifleModuleType module){
         modules.remove(module);
-        return this;
+        return new RifleModuleBuilder(module);
+    }
+
+    public RifleModuleBuilder(RifleModuleBuilder builder){
+        this(builder.get());
     }
 }

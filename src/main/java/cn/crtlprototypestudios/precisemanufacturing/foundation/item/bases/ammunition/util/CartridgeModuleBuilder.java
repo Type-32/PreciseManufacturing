@@ -1,8 +1,11 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.util;
 
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.util.RifleModuleBuilder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// TODO Write Documentations
 public class CartridgeModuleBuilder {
 
     private ArrayList<CartridgeModuleType> modules;
@@ -31,5 +34,9 @@ public class CartridgeModuleBuilder {
     public CartridgeModuleBuilder remove(CartridgeModuleType module){
         modules.remove(module);
         return this;
+    }
+
+    public CartridgeModuleBuilder(CartridgeModuleBuilder builder){
+        this(builder.get());
     }
 }
