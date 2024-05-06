@@ -40,13 +40,12 @@ public class ModItems {
 
 
     // Cartrige Casts and Components
-    // Standard Rounds
     public static final CartridgeBase
             NINE_MIL = new CartridgeBase("9mm"),
             FOUR_FIVE_ACP = new CartridgeBase("45acp"),
             FIFTY_AE = new CartridgeBase("50ae"),
             MAGNUM_R = new CartridgeBase("magnum_r"),
-            TWELVE_G = new CartridgeBase("12g"),
+            TWELVE_G = new CartridgeBase("12g", CartridgeBase.SHOTGUN_CARTRIDGE),
             THIRTY_ZERO_SIX = new CartridgeBase("30_06"),
             FOUR_SIX_X_THIRTY = new CartridgeBase("46x30"),
             FIFTY_BMG = new CartridgeBase("50bmg"),
@@ -59,8 +58,6 @@ public class ModItems {
             SEVEN_SIX_TWO_X_TWO_FIVE = new CartridgeBase("762x25"),
             SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39"),
             SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54");
-
-    // Shotgun Shells
 
 
     public static void register(){
