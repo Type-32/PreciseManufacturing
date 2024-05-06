@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleBase;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
 
@@ -58,6 +59,11 @@ public class ModItems {
             SEVEN_SIX_TWO_X_TWO_FIVE = new CartridgeBase("762x25"),
             SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39"),
             SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54");
+
+    // Weapons
+    // Guns
+    public static final RifleBase
+        M4A1 = new RifleBase("m4a1", RifleBase.STANDARD_RIFLE_MODULES);
 
 
     public static void register(){
