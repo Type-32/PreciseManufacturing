@@ -2,7 +2,7 @@
         {
             "parent": "item/generated",
             "textures": {
-                "layer0": "prma:item/casts/head/general_head_cast"
+                "layer0": "prma:item/casts/pellet/general_head_cast"
             }
         }
         

@@ -2,7 +2,7 @@
         {
             "parent": "item/generated",
             "textures": {
-                "layer0": "prma:item/bullets/casing/magnum_r"
+                "layer0": "prma:item/cartridges/casing/magnum_r"
             }
         }
         

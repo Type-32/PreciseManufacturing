@@ -2,7 +2,7 @@
         {
             "parent": "item/generated",
             "textures": {
-                "layer0": "prma:item/bullets/casing/762x25"
+                "layer0": "prma:item/cartridges/casing/762x25"
             }
         }
         

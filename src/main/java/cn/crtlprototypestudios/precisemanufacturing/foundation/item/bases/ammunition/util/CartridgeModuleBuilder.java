@@ -5,7 +5,6 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// TODO Write Documentations
 public class CartridgeModuleBuilder {
 
     private ArrayList<CartridgeModuleType> modules;

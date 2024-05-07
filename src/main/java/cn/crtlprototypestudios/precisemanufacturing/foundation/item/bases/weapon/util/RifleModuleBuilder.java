@@ -3,7 +3,6 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// TODO Write Documentations
 public class RifleModuleBuilder implements Cloneable{
 
     private ArrayList<RifleModuleType> modules;

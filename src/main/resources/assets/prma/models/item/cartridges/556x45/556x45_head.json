@@ -2,7 +2,7 @@
         {
             "parent": "item/generated",
             "textures": {
-                "layer0": "prma:item/bullets/head/556x45"
+                "layer0": "prma:item/cartridges/head/556x45"
             }
         }
         

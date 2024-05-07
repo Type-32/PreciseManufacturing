@@ -58,16 +58,18 @@ public class RifleBase extends WeaponBase {
      * @param coreId The main id of the modules' parent gun, i.e. "m4a1"
      * @param moduleBuilder The modules stored in <code>RifleModuleBuilder</code>
      * @implNote The corresponding item, if the <code>coreId = "m4a1"</code> and the <code>moduleBuilder = new RifleModuleBuilder(RifleModuleType.LOWER_RECEIVER)</code>,
-     * two of these item entries will be generated:
+     * three item entries will be generated:
      * <ul>
      *     <li><code>prma:m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:m4a1_lower_receiver</code></li>
+     *     <li><code>prma:m4a1_lower_receiver_cast</code></li>
      * </ul>
      * <br>
      * These item entries will have the item model resource location of:
      * <ul>
      *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver</code></li>
+     *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver_cast</code></li>
      * </ul>
      */
     public RifleBase(String coreId, RifleModuleBuilder moduleBuilder) {
@@ -88,25 +90,36 @@ public class RifleBase extends WeaponBase {
      * @return A registry entry of the module item, not the unfinished module variant's module
      *
      * @implNote The corresponding item, if the <code>id = "m4a1"</code> and <code>moduleId = "lower_receiver"</code>,
-     * two of these item entries will be generated:
+     * three item entries will be generated:
      * <ul>
      *     <li><code>prma:m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:m4a1_lower_receiver</code></li>
+     *     <li><code>prma:m4a1_lower_receiver_cast</code></li>
      * </ul>
      * <br>
      * These item entries will have the item model resource location of:
      * <ul>
      *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver</code></li>
+     *     <li><code>prma:item/casts/weapons/guns/m4a1/m4a1_lower_receiver_cast</code></li>
      * </ul>
      */
-    private RegistryEntry<Item> registerModule(String id, RifleModuleType module, Item.Properties properties) {
+    private RegistryEntry<Item> registerModule(String id, RifleModuleType module, Item.Properties properties, boolean registerUnfinished, boolean registerCast) {
         String name = String.format("%s_%s", id, module.toString());
 
         // Register the unfinished module variant, and make it invisible in the creative tab
-        Main.REGISTRATE.item(name + "_unfinished", Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/weapons/guns/%s/%s", id, name)))).properties(p -> properties.tab(CreativeModeTab.TAB_SEARCH)).register();
+        if(registerUnfinished)
+            Main.REGISTRATE.item(name + "_unfinished", Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/weapons/guns/%s/%s", id, name)))).properties(p -> properties.tab(CreativeModeTab.TAB_SEARCH)).register();
+
+        // Register the module's cast
+        if(registerCast)
+            Main.REGISTRATE.item(name + "_cast", Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/casts/weapons/guns/%s/%s", id, name)))).register();
 
         // Register the module
         return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/weapons/guns/%s/%s", id, name)))).properties(p -> properties).register();
+    }
+
+    private RegistryEntry<Item> registerModule(String id, RifleModuleType module, Item.Properties properties) {
+        return registerModule(id, module, properties, true, true);
     }
 }

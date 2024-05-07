@@ -2,7 +2,7 @@
         {
             "parent": "item/generated",
             "textures": {
-                "layer0": "prma:item/bullets/unprimed/30_06"
+                "layer0": "prma:item/cartridges/unprimed/30_06"
             }
         }
         
