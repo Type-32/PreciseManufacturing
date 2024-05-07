@@ -49,6 +49,7 @@ def generate_files(ids: list[str]):
         """
     }
 
+    os.mkdir("output")
     for cartridgeId in ids:
         for file_type, template in templates.items():
             file_name = f"output/{cartridgeId}_{file_type}.json"

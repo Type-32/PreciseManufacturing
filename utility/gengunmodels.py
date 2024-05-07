@@ -78,6 +78,7 @@ def generate_files(id: str, modules: list[RifleModuleType]):
         """]
     }
 
+    os.mkdir("output")
     for module in modules:
         for file_type, template in templates.items():
             file_name = f"output/{id}_{module}{template[0]}"
