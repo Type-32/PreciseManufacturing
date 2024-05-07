@@ -36,6 +36,31 @@ public class CartridgeBase extends AmmunitionBase {
                     // represent the whole cartridge item during assembly sequences.
             );
 
+
+    /**
+     * The Main Constructor that registers the cartridge module items that are recorded in <code>moduleBuilder</code>.
+     * @param coreId The cartridge id, i.e. "9mm"
+     * @param moduleBuilder The cartridge module builder, a builder utility class that holds a list of modules for initialization.
+     * @implNote When a <code>CartridgeBase</code> object is created, the constructor method registers all the given modules
+     * in the module builder into items. For example, when the constructor is invoked with <code>coreId = "9mm"</code>
+     * and <code>moduleBuilder = CartridgeBase.STANDARD_CARTRIDGE</code>, the following item registry entries are created:
+     * <ul>
+     *     <li><code>prma:9mm_casing</code></li>
+     *     <li><code>prma:9mm_casing_cast</code></li>
+     *     <li><code>prma:9mm_head</code></li>
+     *     <li><code>prma:9mm_head_cast</code></li>
+     *     <li><code>prma:9mm_unfinished</code></li>
+     * </ul>
+     *
+     * The corresponding item model resources generated are these:
+     * <ul>
+     *     <li><code>prma:item/cartridges/9mm/9mm_casing</code></li>
+     *     <li><code>prma:item/cartridges/9mm/9mm_casing_cast</code></li>
+     *     <li><code>prma:item/cartridges/9mm/9mm_head</code></li>
+     *     <li><code>prma:item/cartridges/9mm/9mm_head_cast</code></li>
+     *     <li><code>prma:item/cartridges/9mm/9mm_unfinished</code></li>
+     * </ul>
+     */
     public CartridgeBase(String coreId, CartridgeModuleBuilder moduleBuilder) {
         super(coreId);
         registry = new Hashtable<>();
@@ -49,6 +74,10 @@ public class CartridgeBase extends AmmunitionBase {
         this(coreId, new CartridgeModuleBuilder(modules));
     }
 
+    /**
+     * The Main Constructor that registers the cartridge module items that are recorded in <code>moduleBuilder</code>.
+     * @param coreId The cartridge id, i.e. "9mm"
+     */
     public CartridgeBase(String coreId) {
         this(coreId, STANDARD_CARTRIDGE);
     }

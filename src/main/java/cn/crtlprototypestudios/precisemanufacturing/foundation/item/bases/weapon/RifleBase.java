@@ -52,8 +52,26 @@ public class RifleBase extends WeaponBase {
         }
     }
 
-    public RifleBase(String coreId, RifleModuleBuilder modules) {
-        this(coreId, new Item.Properties(), modules);
+    /**
+     * The <code>RifleBase</code> constructor essentially creates the modules that are included in the <code>RifleModuleBuilder</code>
+     * and their unfinished variants into items.
+     * @param coreId The main id of the modules' parent gun, i.e. "m4a1"
+     * @param moduleBuilder The modules stored in <code>RifleModuleBuilder</code>
+     * @implNote The corresponding item, if the <code>coreId = "m4a1"</code> and the <code>moduleBuilder = new RifleModuleBuilder(RifleModuleType.LOWER_RECEIVER)</code>,
+     * two of these item entries will be generated:
+     * <ul>
+     *     <li><code>prma:m4a1_lower_receiver_unfinished</code></li>
+     *     <li><code>prma:m4a1_lower_receiver</code></li>
+     * </ul>
+     * <br>
+     * These item entries will have the item model resource location of:
+     * <ul>
+     *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver_unfinished</code></li>
+     *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver</code></li>
+     * </ul>
+     */
+    public RifleBase(String coreId, RifleModuleBuilder moduleBuilder) {
+        this(coreId, new Item.Properties(), moduleBuilder);
     }
 
     public RifleBase(String coreId, RifleModuleType... modules) {
