@@ -12,33 +12,44 @@ import java.util.Hashtable;
 // TODO Write Documentations
 public class RifleBase extends WeaponBase {
     public static final RifleModuleBuilder
-            STANDARD_RIFLE_MODULES = new RifleModuleBuilder(
-                    RifleModuleType.GRIP,
-                    RifleModuleType.LOWER_RECEIVER,
-                    RifleModuleType.UPPER_RECEIVER,
-                    RifleModuleType.HANDGUARD,
-                    RifleModuleType.BARREL,
-                    RifleModuleType.MAGAZINE,
-                    RifleModuleType.FIRE_CONTROL_GROUP,
-                    RifleModuleType.FIRE_SELECTOR,
-                    RifleModuleType.TRIGGER,
-                    RifleModuleType.STOCK
-            ),
-            BULLPUP_RIFLE_MODULES = new RifleModuleBuilder(
-                    RifleModuleType.GRIP,
-                    RifleModuleType.BULLPUP_BODY,
-                    RifleModuleType.MAGAZINE,
-                    RifleModuleType.FIRE_CONTROL_GROUP,
-                    RifleModuleType.GRIP,
-                    RifleModuleType.TRIGGER,
-                    RifleModuleType.BULLPUP_BODY
+        STANDARD_RIFLE_MODULES = new RifleModuleBuilder(
+                RifleModuleType.GRIP,
+                RifleModuleType.LOWER_RECEIVER,
+                RifleModuleType.UPPER_RECEIVER,
+                RifleModuleType.HANDGUARD,
+                RifleModuleType.BARREL,
+                RifleModuleType.MAGAZINE,
+                RifleModuleType.FIRE_CONTROL_GROUP,
+                RifleModuleType.FIRE_SELECTOR,
+                RifleModuleType.TRIGGER,
+                RifleModuleType.STOCK
+        ),
+        BULLPUP_RIFLE_MODULES = new RifleModuleBuilder(
+                RifleModuleType.GRIP,
+                RifleModuleType.BULLPUP_BODY,
+                RifleModuleType.MAGAZINE,
+                RifleModuleType.FIRE_CONTROL_GROUP,
+                RifleModuleType.GRIP,
+                RifleModuleType.TRIGGER,
+                RifleModuleType.BULLPUP_BODY,
+                RifleModuleType.FIRE_SELECTOR
 
-                    // To Future me: Do not add an UNFINISHED type in the Rifle Module Types. Autonomous Rifle Module
-                    // registration works differently compared to Cartridge Autonomous registrations, as each Cartridge
-                    // uses only one Unfinished item variant to represent the modules of the Cartridge during the
-                    // sequenced assemblies, while Rifle Modules has an unfinished item variant for each rifle module,
-                    // as each module should only be crafted via a sequenced assembly.
-            );
+                // To Future me: Do not add an UNFINISHED type in the Rifle Module Types. Autonomous Rifle Module
+                // registration works differently compared to Cartridge Autonomous registrations, as each Cartridge
+                // uses only one Unfinished item variant to represent the modules of the Cartridge during the
+                // sequenced assemblies, while Rifle Modules has an unfinished item variant for each rifle module,
+                // as each module should only be crafted via a sequenced assembly.
+        ),
+        SHOTGUN_MODULES = new RifleModuleBuilder(
+                RifleModuleType.RECEIVER,
+                RifleModuleType.SHELL_TUBE,
+                RifleModuleType.BARREL,
+                RifleModuleType.TRIGGER,
+                RifleModuleType.PUMP,
+                RifleModuleType.FIRE_CONTROL_GROUP,
+                RifleModuleType.TRIGGER,
+                RifleModuleType.STOCK
+        );
 
 
     public Hashtable<RifleModuleType, RegistryEntry<Item>> registry = new Hashtable<>();

@@ -38,8 +38,8 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 
 The currently supported versions are:
 
-| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. |
-|----------|----------------------------|---------------------------|
-| 1.18.2   | N/A. TBD                   | 0.1.0-alpha_nightly       |
+| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency         |
+|----------|----------------------------|---------------------------|--------------------|
+| 1.18.2   | N/A. TBD                   | 0.1.0-alpha_nightly       | tacz-1.0.0-hotifx3 |
 
 

@@ -14,7 +14,9 @@ public enum RifleModuleType {
     FIRE_SELECTOR("fire_selector"),
     CARTRIDGE_WELL("cartridge_well"),
     SHELL_TUBE("shell_tube"),
-    BULLPUP_BODY("bullpup_body");
+    BULLPUP_BODY("bullpup_body"),
+    RECEIVER("receiver"),
+    BOLT("bolt");
 
     private final String moduleId;
 

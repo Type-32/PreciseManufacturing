@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prma:item/weapons/guns/m4a1/m4a1_handguard_unfinished"
+    }
+}
