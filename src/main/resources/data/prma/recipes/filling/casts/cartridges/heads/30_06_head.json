@@ -5,9 +5,9 @@
       "item": "prma:30_06_head_cast"
     },
     {
-      "fluid": "prma:molten_copper",
+      "fluid": "prma:molten_brass",
       "nbt": {},
-      "amount": 60
+      "amount": 80
     }
   ],
   "results": [
