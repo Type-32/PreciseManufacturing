@@ -1,0 +1,102 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:762x25_casing"
+  },
+  "transitionalItem": {
+    "item": "prma:762x25_unfinished"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:762x25_unfinished"
+        },
+        {
+          "item": "minecraft:iron_nugget"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:762x25_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:762x25_unfinished"
+        },
+        {
+          "item": "minecraft:gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:762x25_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:762x25_unfinished"
+        },
+        {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:762x25_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:762x25_unfinished"
+        },
+        {
+          "item": "prma:762x25_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:762x25_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:762x25_unfinished"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:762x25_unfinished"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:762x25"
+      },
+      "chance": 96.0
+    },
+    {
+      "item": "prma:762x25_casing",
+      "chance": 4.0
+    }
+  ],
+  "loops": 1
+}

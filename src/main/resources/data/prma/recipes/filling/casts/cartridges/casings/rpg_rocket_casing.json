@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:rpg_rocket_casing_cast"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 180
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:rpg_rocket_casing"
+    }
+  ]
+}

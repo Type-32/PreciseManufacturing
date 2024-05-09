@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:magnum_r_head_cast"
+    },
+    {
+      "fluid": "prma:molten_copper",
+      "nbt": {},
+      "amount": 40
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:magnum_r_head"
+    }
+  ]
+}
