@@ -14,6 +14,35 @@
           "item": "prma:68x51fury_unfinished"
         },
         {
+          "item": "create:iron_sheet"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:68x51fury_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:68x51fury_unfinished"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:68x51fury_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:68x51fury_unfinished"
+        },
+        {
           "item": "minecraft:iron_nugget"
         }
       ],
@@ -30,7 +59,7 @@
           "item": "prma:68x51fury_unfinished"
         },
         {
-          "item": "minecraft:gunpowder"
+          "item": "prma:gunpowder_pellets"
         }
       ],
       "results": [
@@ -75,11 +104,11 @@
       "nbt": {
         "AmmoId": "tacz:68x51fury"
       },
-      "chance": 96.0
+      "chance": 94.0
     },
     {
       "item": "prma:68x51fury_casing",
-      "chance": 4.0
+      "chance": 6.0
     }
   ],
   "loops": 1

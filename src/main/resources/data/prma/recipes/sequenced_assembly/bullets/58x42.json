@@ -46,6 +46,22 @@
           "item": "prma:58x42_unfinished"
         },
         {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:58x42_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:58x42_unfinished"
+        },
+        {
           "item": "prma:58x42_head"
         }
       ],

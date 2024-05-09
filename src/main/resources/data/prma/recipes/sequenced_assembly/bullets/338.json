@@ -30,7 +30,23 @@
           "item": "prma:338_unfinished"
         },
         {
-          "item": "minecraft:gunpowder"
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:338_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:338_unfinished"
+        },
+        {
+          "item": "prma:gunpowder_pellets"
         }
       ],
       "results": [

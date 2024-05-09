@@ -5,9 +5,9 @@
       "item": "prma:rpg_rocket_head_cast"
     },
     {
-      "fluid": "prma:molten_copper",
+      "fluid": "prma:molten_basalt_infused_iron",
       "nbt": {},
-      "amount": 60
+      "amount": 220
     }
   ],
   "results": [

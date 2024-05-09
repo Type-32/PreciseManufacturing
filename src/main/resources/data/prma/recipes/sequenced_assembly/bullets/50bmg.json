@@ -46,6 +46,38 @@
           "item": "prma:50bmg_unfinished"
         },
         {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:50bmg_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:50bmg_unfinished"
+        },
+        {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:50bmg_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:50bmg_unfinished"
+        },
+        {
           "item": "prma:50bmg_head"
         }
       ],
