@@ -1,4 +1,5 @@
 import os
+import shutil
 
 # RifleModuleBuilder.py
 from typing import List
@@ -82,7 +83,7 @@ def parse_input_modules() -> list[RifleModuleType]:
 
 def generate_files(id: str, modules: list[RifleModuleType]):
     templates = {
-        "module": ["",
+        "modules": ["",
                    """{
     "parent": "item/generated",
     "textures": {
@@ -98,7 +99,7 @@ def generate_files(id: str, modules: list[RifleModuleType]):
     }
 }"""],
 
-        "cast": ["_cast",
+        "casts": ["_cast",
                  """{
     "parent": "item/generated",
     "textures": {
@@ -108,16 +109,26 @@ def generate_files(id: str, modules: list[RifleModuleType]):
     }
 
     try:
-        os.mkdir("output")
+        os.makedirs("output", exist_ok=True)
+        os.makedirs("output/models", exist_ok=True)
+        os.makedirs("output/textures", exist_ok=True)
+        os.makedirs("output/models/casts", exist_ok=True)
+        os.makedirs("output/models/modules", exist_ok=True)
+        os.makedirs("output/models/unfinished", exist_ok=True)
+        os.makedirs("output/textures/casts", exist_ok=True)
+        os.makedirs("output/textures/modules", exist_ok=True)
+        os.makedirs("output/textures/unfinished", exist_ok=True)
     except:
         print("Folder Already exists, skipping folder creation")
     finally:
         for module in modules:
             for file_type, template in templates.items():
-                file_name = f"output/{id}_{module}{template[0]}.json"
+                file_name = f"output/models/{file_type}/{id}_{module}{template[0]}.json"
                 content = template[1].replace("{id}", id).replace("{moduleId}", module.__str__())
                 with open(file_name, "w") as file:
                     file.write(content)
+                texture_file = f"sources/textures/guns/{file_type}/general_{module}{template[0]}.json"
+                shutil.copy2(texture_file, f"output/models/{file_type}")
 
 
 if __name__ == "__main__":
