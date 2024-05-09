@@ -127,8 +127,9 @@ def generate_files(id: str, modules: list[RifleModuleType]):
                 content = template[1].replace("{id}", id).replace("{moduleId}", module.__str__())
                 with open(file_name, "w") as file:
                     file.write(content)
-                texture_file = f"sources/textures/guns/{file_type}/general_{module}{template[0]}.json"
-                shutil.copy2(texture_file, f"output/models/{file_type}")
+                texture_file = f"sources/textures/guns/{file_type}/general_{module}{template[0]}.png"
+                shutil.copy2(texture_file, f"output/textures/{file_type}")
+                os.rename(f"output/textures/guns/{file_type}/general_{module}{template[0]}.png", f"output/textures/guns/{file_type}/{id}_{module}{template[0]}.png")
 
 
 if __name__ == "__main__":
