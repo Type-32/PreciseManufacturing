@@ -1,0 +1,76 @@
+{
+  "replace": false,
+  "values": [
+    "prma:9mm_casing",
+    "prma:9mm_head",
+    "prma:9mm_unfinished",
+
+    "prma:45acp_casing",
+    "prma:45acp_head",
+    "prma:45acp_unfinished",
+
+    "prma:50ae_casing",
+    "prma:50ae_head",
+    "prma:50ae_unfinished",
+
+    "prma:magnum_r_casing",
+    "prma:magnum_r_head",
+    "prma:magnum_r_unfinished",
+
+    "prma:12g_casing",
+    "prma:12g_head",
+    "prma:12g_unfinished",
+
+    "prma:30_06_casing",
+    "prma:30_06_head",
+    "prma:30_06_unfinished",
+
+    "prma:46x30_casing",
+    "prma:46x30_head",
+    "prma:46x30_unfinished",
+
+    "prma:50bmg_casing",
+    "prma:50bmg_head",
+    "prma:50bmg_unfinished",
+
+    "prma:58x42_casing",
+    "prma:58x42_head",
+    "prma:58x42_unfinished",
+
+    "prma:68x51fury_casing",
+    "prma:68x51fury_head",
+    "prma:68x51fury_unfinished",
+
+    "prma:308_casing",
+    "prma:308_head",
+    "prma:308_unfinished",
+
+    "prma:338_casing",
+    "prma:338_head",
+    "prma:338_unfinished",
+
+    "prma:556x45_casing",
+    "prma:556x45_head",
+    "prma:556x45_unfinished",
+
+    "prma:762x25_casing",
+    "prma:762x25_head",
+    "prma:762x25_unfinished",
+
+    "prma:762x39_casing",
+    "prma:762x39_head",
+    "prma:762x39_unfinished",
+
+    "prma:762x54_casing",
+    "prma:762x54_head",
+    "prma:762x54_unfinished",
+
+    "prma:rpg_rocket_casing",
+    "prma:rpg_rocket_head",
+    "prma:rpg_rocket_unfinished",
+
+    "prma:molten_brass_bucket",
+    "prma:molten_copper_bucket",
+    "prma:molten_basalt_infused_iron_bucket"
+  ]
+}
