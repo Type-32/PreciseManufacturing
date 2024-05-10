@@ -28,7 +28,10 @@
     }
   },
   "result": {
-    "item": "tacz:m4a1"
+    "item": "tacz:gun",
+    "nbt": {
+      "GunId": "tacz:m4a1"
+    }
   },
   "acceptMirrored": true
 }
