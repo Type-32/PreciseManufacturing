@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:flat_head_screw",
+      "count": 3
+    }
+  ],
+  "processingTime": 240
+}
