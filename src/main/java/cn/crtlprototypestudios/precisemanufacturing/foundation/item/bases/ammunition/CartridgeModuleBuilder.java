@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammun
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.util.ModuleBuilder;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CartridgeModuleBuilder extends ModuleBuilder<CartridgeModuleType> {
@@ -21,4 +22,5 @@ public class CartridgeModuleBuilder extends ModuleBuilder<CartridgeModuleType> {
     public CartridgeModuleBuilder(CartridgeModuleBuilder builder){
         super(builder);
     }
+
 }

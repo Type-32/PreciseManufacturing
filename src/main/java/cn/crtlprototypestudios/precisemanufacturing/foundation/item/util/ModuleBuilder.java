@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.util;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +26,7 @@ public class ModuleBuilder<T> {
     }
 
     public T[] get() {
-        return modules.toArray((T[]) new Object[0]);
+        return modules.toArray((T[]) Array.newInstance(modules.get(0).getClass(), 0));
     }
 
     public ModuleBuilder<T> add(T module) {
