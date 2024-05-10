@@ -43,6 +43,12 @@ The currently supported versions are:
 |----------|----------------------------|---------------------------|---------------------------------------------------|
 | 1.18.2   | N/A. TBD                   | 0.1.0-alpha               | tacz-1.0.0-beta-hotifx4 **OR** tacz-1.0.0-hotfix3 |
 
+## Translations
+
+The currently supported langauge translations are:
+- English (en_US)
+- Chinese Simplified (zh_CN)
+- German (de_DE)
 
 ***
 
