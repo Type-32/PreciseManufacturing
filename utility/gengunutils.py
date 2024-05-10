@@ -158,9 +158,42 @@ def generate_translation_keys(item_id: str, module_types: list[RifleModuleType])
         return translations
 
 
+def generate_cast_cutting_recipes(item_id: str, modules: list[RifleModuleType]):
+    templates = {
+        "cutting": """{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:{id}_{moduleId}_cast",
+      "count": 1
+    }
+  ],
+  "processingTime": 400
+}"""
+    }
+
+    try:
+        os.makedirs(f"output/recipes/cutting/{id}", exist_ok=True)
+    except:
+        print("Folder Already exists, skipping folder creation")
+    finally:
+        for module in modules:
+            for file_type, template in templates.items():
+                file_name = f"output/recipes/{file_type}/{id}/{id}_{module}_cast.json"
+                content = template.replace("{id}", id).replace("{moduleId}", module.__str__())
+                with open(file_name, "w") as file:
+                    file.write(content)
+
+
 if __name__ == "__main__":
     id: str = input("Enter a gun Id: ")
     modules: list[RifleModuleType] = parse_input_modules()
 
     # generate_files(id, modules)
-    generate_translation_keys(id, modules)
+    # generate_translation_keys(id, modules)
+    generate_cast_cutting_recipes(id, modules)

@@ -1,5 +1,7 @@
 {
   "itemGroup.prma_tab": "Precise Manufacturing",
+  "itemGroup.prma_casts_tab": "Precise Manufacturing Casts",
+  "itemGroup.prma_components_tab": "Precise Manufacturing Components",
 
 
   "item.prma.raw_copper_powder": "Raw Crushed Copper Powder",

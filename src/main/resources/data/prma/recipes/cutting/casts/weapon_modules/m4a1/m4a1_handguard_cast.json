@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:m4a1_handguard_cast",
+      "count": 1
+    }
+  ],
+  "processingTime": 400
+}
