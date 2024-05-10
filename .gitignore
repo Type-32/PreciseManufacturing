@@ -1,6 +1,6 @@
 # User-specific stuff
 .idea/
-utility/output
+utility/output/
 
 *.iml
 *.ipr
