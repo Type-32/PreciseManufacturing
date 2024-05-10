@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:thin_small_rod",
+      "count": 8
+    }
+  ],
+  "processingTime": 200
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:locking_return_coil",
+      "count": 3
+    }
+  ],
+  "processingTime": 240
+}

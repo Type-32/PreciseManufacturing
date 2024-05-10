@@ -1,0 +1,85 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:m4a1_fire_control_group_cast"
+  },
+  "transitionalItem": {
+    "item": "prma:m4a1_fire_control_group_unfinished"
+  },
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "prma:m4a1_fire_control_group_cast"
+        },
+        {
+          "fluid": "prma:molten_basalt_infused_iron",
+          "nbt": {},
+          "amount": 160
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:m4a1_fire_control_group_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:sandpaper_polishing",
+      "ingredients": [
+        {
+          "item": "prma:m4a1_fire_control_group_unfinished"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:m4a1_fire_control_group_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:m4a1_fire_control_group_unfinished"
+        },
+        {
+          "item": "prma:m4a1_fire_selector"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:m4a1_fire_control_group_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:m4a1_fire_control_group_unfinished"
+        },
+        {
+          "item": "prma:thin_small_rod"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:m4a1_fire_control_group_unfinished"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:m4a1_fire_control_group",
+      "chance": 96.0
+    },
+    {
+      "item": "minecraft:iron_ingot",
+      "chance": 4.0
+    }
+  ],
+  "loops": 1
+}

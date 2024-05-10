@@ -1,0 +1,34 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "SLUHB",
+    " GM"
+  ],
+  "key": {
+    "L": {
+      "item": "prma:m4a1_lower_receiver"
+    },
+    "G": {
+      "item": "prma:m4a1_grip"
+    },
+    "H": {
+      "item": "prma:m4a1_handguard"
+    },
+    "S": {
+      "item": "prma:m4a1_stock"
+    },
+    "M": {
+      "item": "prma:m4a1_magazine"
+    },
+    "U": {
+      "item": "prma:m4a1_upper_receiver"
+    },
+    "B": {
+      "item": "prma:m4a1_barrel"
+    }
+  },
+  "result": {
+    "item": "tacz:m4a1"
+  },
+  "acceptMirrored": true
+}

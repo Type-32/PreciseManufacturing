@@ -1,9 +1,9 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.util.CartridgeModuleBuilder;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.util.CartridgeModuleType;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
 import java.util.Hashtable;
@@ -102,6 +102,7 @@ public class CartridgeBase extends AmmunitionBase {
      */
     private RegistryEntry<Item> registerModule(String id, CartridgeModuleType module) {
         String name = String.format("%s_%s", id, module.toString());
-        return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/cartridges/%s/%s", id, name)))).register();
+        boolean isCast = module.toString().contains("cast");
+        return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/cartridges/%s/%s", id, name)))).properties(p -> p.tab(isCast ? ModCreativeModTabs.MOD_CASTS_TAB : ModCreativeModTabs.MOD_COMPONENTS_TAB)).register();
     }
 }

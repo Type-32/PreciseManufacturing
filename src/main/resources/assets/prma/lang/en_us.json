@@ -1,5 +1,7 @@
 {
   "itemGroup.prma_tab": "Precise Manufacturing",
+  "itemGroup.prma_casts_tab": "Precise Manufacturing Casts",
+  "itemGroup.prma_components_tab": "Precise Manufacturing Components",
 
 
   "item.prma.raw_copper_powder": "Raw Crushed Copper Powder",
@@ -14,6 +16,14 @@
 
   "item.prma.crushed_basalt": "Crushed Basalt",
   "item.prma.unformed_basalt": "Unformed Wet Basalt Mixture",
+  "item.prma.flat_head_screw": "Head Screw",
+  "item.prma.m_screw": "M Screw",
+  "item.prma.locking_return_coil": "Locking Return Coil",
+  "item.prma.straight_flat_coil": "Straight Flat Coil",
+  "item.prma.straight_large_coil": "Straight Large Coil",
+  "item.prma.straight_small_coil": "Straight Small Coil",
+  "item.prma.thick_small_rod": "Thick Small Rod",
+  "item.prma.thin_small_rod": "Thin Small Rod",
 
 
   "item.prma.9mm_casing_cast": "9mm Cartridge Casing Cast",
@@ -115,6 +125,38 @@
   "item.prma.rpg_rocket_casing": "RPG Rocket Shaft",
   "item.prma.rpg_rocket_head": "RPG Rocket Head",
   "item.prma.rpg_rocket_unfinished": "Unfinished RPG Rocket",
+
+
+  "item.prma.m4a1_grip": "M4A1 Grip",
+  "item.prma.m4a1_grip_unfinished": "M4A1 Grip Unfinished",
+  "item.prma.m4a1_grip_cast": "M4A1 Grip Cast",
+  "item.prma.m4a1_lower_receiver": "M4A1 Lower Receiver",
+  "item.prma.m4a1_lower_receiver_unfinished": "M4A1 Lower Receiver Unfinished",
+  "item.prma.m4a1_lower_receiver_cast": "M4A1 Lower Receiver Cast",
+  "item.prma.m4a1_upper_receiver": "M4A1 Upper Receiver",
+  "item.prma.m4a1_upper_receiver_unfinished": "M4A1 Upper Receiver Unfinished",
+  "item.prma.m4a1_upper_receiver_cast": "M4A1 Upper Receiver Cast",
+  "item.prma.m4a1_handguard": "M4A1 Handguard",
+  "item.prma.m4a1_handguard_unfinished": "M4A1 Handguard Unfinished",
+  "item.prma.m4a1_handguard_cast": "M4A1 Handguard Cast",
+  "item.prma.m4a1_barrel": "M4A1 Barrel",
+  "item.prma.m4a1_barrel_unfinished": "M4A1 Barrel Unfinished",
+  "item.prma.m4a1_barrel_cast": "M4A1 Barrel Cast",
+  "item.prma.m4a1_magazine": "M4A1 Magazine",
+  "item.prma.m4a1_magazine_unfinished": "M4A1 Magazine Unfinished",
+  "item.prma.m4a1_magazine_cast": "M4A1 Magazine Cast",
+  "item.prma.m4a1_fire_control_group": "M4A1 Fire Control Group",
+  "item.prma.m4a1_fire_control_group_unfinished": "M4A1 Fire Control Group Unfinished",
+  "item.prma.m4a1_fire_control_group_cast": "M4A1 Fire Control Group Cast",
+  "item.prma.m4a1_fire_selector": "M4A1 Fire Selector",
+  "item.prma.m4a1_fire_selector_unfinished": "M4A1 Fire Selector Unfinished",
+  "item.prma.m4a1_fire_selector_cast": "M4A1 Fire Selector Cast",
+  "item.prma.m4a1_trigger": "M4A1 Trigger",
+  "item.prma.m4a1_trigger_unfinished": "M4A1 Trigger Unfinished",
+  "item.prma.m4a1_trigger_cast": "M4A1 Trigger Cast",
+  "item.prma.m4a1_stock": "M4A1 Stock",
+  "item.prma.m4a1_stock_unfinished": "M4A1 Stock Unfinished",
+  "item.prma.m4a1_stock_cast": "M4A1 Stock Cast",
 
 
   "fluid.prma.molten_copper": "Molten Copper",

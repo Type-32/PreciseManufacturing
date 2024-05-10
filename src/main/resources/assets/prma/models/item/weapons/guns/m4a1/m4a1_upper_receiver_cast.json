@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "prma:item/casts/weapons/guns/m4a1/m4a1_upper_receiver_cast"
-    }
-}
