@@ -22,9 +22,19 @@ public class ModItems {
             RAW_SULFUR_POWDER = Main.REGISTRATE.item("raw_sulfur_powder",Item::new).register(),
             GUNPOWDER_PELLETS = Main.REGISTRATE.item("gunpowder_pellets",Item::new).register();
 
+    // Misc Items
     public static final RegistryEntry<Item>
             CRUSHED_BASALT = Main.REGISTRATE.item("crushed_basalt", Item::new).register(),
-            UNFORMED_BASALT = Main.REGISTRATE.item("unformed_basalt", Item::new).register();
+            UNFORMED_BASALT = Main.REGISTRATE.item("unformed_basalt", Item::new).register(),
+            STRAIGHT_SMALL_COIL = Main.REGISTRATE.item("straight_small_coil", Item::new).register(),
+            STRAIGHT_LARGE_COIL = Main.REGISTRATE.item("straight_large_coil", Item::new).register(),
+            STRAIGHT_FLAT_COIL = Main.REGISTRATE.item("straight_flat_coil", Item::new).register(),
+            LOCKING_RETURN_COIL = Main.REGISTRATE.item("locking_return_coil", Item::new).register(),
+            FLAT_HEAD_SCREW = Main.REGISTRATE.item("flat_head_screw", Item::new).register(),
+            M_SCREW = Main.REGISTRATE.item("m_screw", Item::new).register(),
+            THIN_SMALL_ROD = Main.REGISTRATE.item("thin_small_rod", Item::new).register(),
+            THICK_SMALL_ROD = Main.REGISTRATE.item("thick_small_rod", Item::new).register();
+
 
 
     // Buckets
