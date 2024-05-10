@@ -1,0 +1,8 @@
+
+        {
+            "parent": "item/generated",
+            "textures": {
+                "layer0": "prma:item/cartridges/unprimed/762x39"
+            }
+        }
+        

@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -119,14 +120,14 @@ public class RifleBase extends WeaponBase {
 
         // Register the unfinished module variant, and make it invisible in the creative tab
         if(registerUnfinished)
-            Main.REGISTRATE.item(name + "_unfinished", Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/weapons/guns/%s/unfinished/%s", id, name + "_unfinished")))).properties(p -> properties.tab(CreativeModeTab.TAB_SEARCH)).register();
+            Main.REGISTRATE.item(name + "_unfinished", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/unfinished/%s", id, name + "_unfinished")))).properties(p -> properties.tab(CreativeModeTab.TAB_SEARCH)).register();
 
         // Register the module's cast
         if(registerCast)
-            Main.REGISTRATE.item(name + "_cast", Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/casts/weapons/guns/%s/casts/%s", id, name + "_cast")))).properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB)).register();
+            Main.REGISTRATE.item(name + "_cast", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/casts/weapons/guns/%s/casts/%s", id, name + "_cast")))).properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB)).register();
 
         // Register the module
-        return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/weapons/guns/%s/modules/%s", id, name)))).properties(p -> properties.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB)).register();
+        return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/modules/%s", id, name)))).properties(p -> properties.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB)).register();
     }
 
     private RegistryEntry<Item> registerModule(String id, RifleModuleType module, Item.Properties properties) {
