@@ -1,8 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.util.RifleModuleBuilder;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.util.RifleModuleType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;

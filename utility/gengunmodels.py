@@ -87,7 +87,7 @@ def generate_files(id: str, modules: list[RifleModuleType]):
                    """{
     "parent": "item/generated",
     "textures": {
-        "layer0": "prma:item/weapons/guns/{id}/{id}_{moduleId}"
+        "layer0": "prma:item/weapons/guns/{id}/modules/{id}_{moduleId}"
     }
 }"""],
 
@@ -95,7 +95,7 @@ def generate_files(id: str, modules: list[RifleModuleType]):
                        """{
     "parent": "item/generated",
     "textures": {
-        "layer0": "prma:item/weapons/guns/{id}/{id}_{moduleId}_unfinished"
+        "layer0": "prma:item/weapons/guns/{id}/unfinished/{id}_{moduleId}_unfinished"
     }
 }"""],
 
@@ -103,7 +103,7 @@ def generate_files(id: str, modules: list[RifleModuleType]):
                  """{
     "parent": "item/generated",
     "textures": {
-        "layer0": "prma:item/casts/weapons/guns/{id}/{id}_{moduleId}_cast"
+        "layer0": "prma:item/weapons/guns/{id}/casts/{id}_{moduleId}_cast"
     }
 }"""]
     }
@@ -129,7 +129,7 @@ def generate_files(id: str, modules: list[RifleModuleType]):
                     file.write(content)
                 texture_file = f"sources/textures/guns/{file_type}/general_{module}{template[0]}.png"
                 shutil.copy2(texture_file, f"output/textures/{file_type}")
-                os.rename(f"output/textures/guns/{file_type}/general_{module}{template[0]}.png", f"output/textures/guns/{file_type}/{id}_{module}{template[0]}.png")
+                os.rename(f"output/textures/{file_type}/general_{module}{template[0]}.png", f"output/textures/{file_type}/{id}_{module}{template[0]}.png")
 
 
 if __name__ == "__main__":

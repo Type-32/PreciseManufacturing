@@ -1,8 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.util.CartridgeModuleBuilder;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.util.CartridgeModuleType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
 
