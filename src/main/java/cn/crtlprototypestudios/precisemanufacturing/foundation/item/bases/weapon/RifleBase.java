@@ -1,10 +1,9 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
 import java.util.Hashtable;

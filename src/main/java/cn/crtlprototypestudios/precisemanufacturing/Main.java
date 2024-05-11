@@ -1,14 +1,16 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.tag.ModTags;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.ModFluids;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.*;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerContainerMenu;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerScreen;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeSerializer;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.logging.LogUtils;
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -16,6 +18,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -49,6 +52,7 @@ public class Main {
         ModItems.register();
         ModFluids.register();
         ModTags.register();
+        ModContainers.register(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -84,5 +88,17 @@ public class Main {
             // Register a new block here
             LOGGER.info("HELLO from Register Block");
         }
+    }
+
+    @SubscribeEvent
+    public static void setupRecipes(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            Registry.register(Registry.RECIPE_SERIALIZER, DecomponentalizingRecipeSerializer.ID, DecomponentalizingRecipeSerializer.INSTANCE);
+            Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(Reference.MOD_ID, DecomponentalizingRecipeType.ID), DecomponentalizingRecipeType.INSTANCE);
+        });
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new);
     }
 }

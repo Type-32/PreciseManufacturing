@@ -161,5 +161,7 @@
 
   "fluid.prma.molten_copper": "Molten Copper",
   "fluid.prma.molten_brass": "Molten Brass",
-  "fluid.prma.molten_basalt_infused_iron": "Basalt-Infused Molten Iron"
+  "fluid.prma.molten_basalt_infused_iron": "Basalt-Infused Molten Iron",
+
+  "block.prma.container.decomponentalizer": "Decomponentalizer"
 }

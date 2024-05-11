@@ -1,9 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.util;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenBrassFluid;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import com.simibubi.create.content.fluids.VirtualFluid;
-import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.VirtualFluidBuilder;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.FluidBuilder;
@@ -11,8 +9,6 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
-import java.util.function.Supplier;
 
 public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseManufacturingRegistrate> {
     /**

@@ -1,12 +1,9 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item;
+package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
-import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModuleType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleModuleType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModCreativeModTabs {
     public static final CreativeModeTab MOD_TAB = new CreativeModeTab("prma_tab") {

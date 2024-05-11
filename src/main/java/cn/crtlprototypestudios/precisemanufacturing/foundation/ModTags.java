@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.data.tag;
+package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;

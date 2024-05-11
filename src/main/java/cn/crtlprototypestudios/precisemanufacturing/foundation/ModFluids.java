@@ -1,10 +1,10 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.fluid;
+package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.tag.ModTags;
-import com.simibubi.create.Create;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenBasaltInfusedIronFluid;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenBrassFluid;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenCopperFluid;
 import com.simibubi.create.content.fluids.VirtualFluid;
-import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.FluidEntry;
 
 public class ModFluids {
