@@ -190,71 +190,36 @@ def generate_cast_cutting_recipes(item_id: str, modules: list[RifleModuleType]):
                     file.write(content)
 
 
-def generate_assembly_recipes(item_id: str, modules: list[RifleModuleType]):
+def generate_filling_recipes(item_id: str, modules: list[RifleModuleType]):
     templates = {
         "barrel": """{
-  "type": "create:sequenced_assembly",
-  "ingredient": {
-    "item": "prma:{id}_{moduleId}_cast"
-  },
-  "transitionalItem": {
-    "item": "prma:{id}_{moduleId}_unfinished"
-  },
-  "sequence": [
+  "type": "create:filling",
+  "ingredients": [
     {
-      "type": "create:filling",
-      "ingredients": [
-        {
-          "item": "prma:{id}_{moduleId}_cast"
-        },
-        {
-          "fluid": "prma:molten_basalt_infused_iron",
-          "nbt": {},
-          "amount": 300
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:{id}_{moduleId}_unfinished"
-        }
-      ]
+      "item": "prma:{id}_{moduleId}_cast"
     },
     {
-      "type": "create:sandpaper_polishing",
-      "ingredients": [
-        {
-          "item": "prma:{id}_{moduleId}_unfinished"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:{id}_{moduleId}_unfinished"
-        }
-      ]
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 250
     }
   ],
   "results": [
     {
-      "item": "prma:{id}_{moduleId}",
-      "chance": 96.0
-    },
-    {
-      "item": "minecraft:iron_ingot",
-      "chance": 4.0
+      "item": "prma:{id}_{moduleId}"
     }
-  ],
-  "loops": 1
+  ]
 }"""
     }
 
     try:
-        os.makedirs(f"output/recipes/sequenced_assembly/{id}", exist_ok=True)
+        os.makedirs(f"output/recipes/filling/{id}", exist_ok=True)
     except:
         print("Folder Already exists, skipping folder creation")
     finally:
         for module in modules:
             for file_type, template in templates.items():
-                file_name = f"output/recipes/sequenced_assembly/{id}/{id}_{module}.json"
+                file_name = f"output/recipes/filling/{id}/{id}_{module}.json"
                 content = template.replace("{id}", id).replace("{moduleId}", module.__str__())
                 with open(file_name, "w") as file:
                     file.write(content)
@@ -267,3 +232,4 @@ if __name__ == "__main__":
     # generate_files(id, modules)
     # generate_translation_keys(id, modules)
     generate_cast_cutting_recipes(id, modules)
+    generate_filling_recipes(id, modules)

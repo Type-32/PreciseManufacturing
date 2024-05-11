@@ -1,6 +1,0 @@
-{
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "prma:item/cartridges/casing/45acp"
-	}
-}

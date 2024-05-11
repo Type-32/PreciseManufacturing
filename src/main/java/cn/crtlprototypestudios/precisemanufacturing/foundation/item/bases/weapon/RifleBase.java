@@ -71,14 +71,12 @@ public class RifleBase extends WeaponBase {
      * @implNote The corresponding item, if the <code>coreId = "m4a1"</code> and the <code>moduleBuilder = new RifleModuleBuilder(RifleModuleType.LOWER_RECEIVER)</code>,
      * three item entries will be generated:
      * <ul>
-     *     <li><code>prma:m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:m4a1_lower_receiver</code></li>
      *     <li><code>prma:m4a1_lower_receiver_cast</code></li>
      * </ul>
      * <br>
      * These item entries will have the item model resource location of:
      * <ul>
-     *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver</code></li>
      *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver_cast</code></li>
      * </ul>
@@ -103,14 +101,12 @@ public class RifleBase extends WeaponBase {
      * @implNote The corresponding item, if the <code>id = "m4a1"</code> and <code>moduleId = "lower_receiver"</code>,
      * three item entries will be generated:
      * <ul>
-     *     <li><code>prma:m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:m4a1_lower_receiver</code></li>
      *     <li><code>prma:m4a1_lower_receiver_cast</code></li>
      * </ul>
      * <br>
      * These item entries will have the item model resource location of:
      * <ul>
-     *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver_unfinished</code></li>
      *     <li><code>prma:item/weapons/guns/m4a1/m4a1_lower_receiver</code></li>
      *     <li><code>prma:item/casts/weapons/guns/m4a1/m4a1_lower_receiver_cast</code></li>
      * </ul>
@@ -119,12 +115,12 @@ public class RifleBase extends WeaponBase {
         String name = String.format("%s_%s", id, module.toString());
 
         // Register the unfinished module variant, and make it invisible in the creative tab
-        if(registerUnfinished)
-            Main.REGISTRATE.item(name + "_unfinished", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/unfinished/%s", id, name + "_unfinished")))).properties(p -> properties.tab(CreativeModeTab.TAB_SEARCH)).register();
+//        if(registerUnfinished)
+//            Main.REGISTRATE.item(name + "_unfinished", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/unfinished/%s", id, name + "_unfinished")))).properties(p -> properties.tab(CreativeModeTab.TAB_SEARCH)).register();
 
         // Register the module's cast
         if(registerCast)
-            Main.REGISTRATE.item(name + "_cast", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/casts/weapons/guns/%s/casts/%s", id, name + "_cast")))).properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB)).register();
+            Main.REGISTRATE.item(name + "_cast", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/casts/%s", id, name + "_cast")))).properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB)).register();
 
         // Register the module
         return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/modules/%s", id, name)))).properties(p -> properties.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB)).register();
