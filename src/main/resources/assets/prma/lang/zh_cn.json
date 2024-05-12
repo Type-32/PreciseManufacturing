@@ -135,5 +135,7 @@
   "item.prma.m4a1_stock_cast": "M4A1枪托铸模",
   "fluid.prma.molten_copper": "熔融铜",
   "fluid.prma.molten_brass": "熔融黄铜",
-  "fluid.prma.molten_basalt_infused_iron": "玄武岩灌注熔铁"
+  "fluid.prma.molten_basalt_infused_iron": "玄武岩灌注熔铁",
+  "advancement.prma.ammo_assembly_line": "花生米生产线",
+  "advancement.prma.ammo_assembly_line.desc": "成功制作一类子弹的生产线"
 }

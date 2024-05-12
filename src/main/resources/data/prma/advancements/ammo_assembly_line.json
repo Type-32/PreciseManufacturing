@@ -1,0 +1,38 @@
+{
+  "parent": "create:deployer",
+  "display": {
+    "icon": {
+      "item": "prma:762x51_unfinished"
+    },
+    "title": {
+      "translate": "advancement.prma.ammo_assembly_line"
+    },
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.prma.ammo_assembly_line.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tacz:ammo"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}
