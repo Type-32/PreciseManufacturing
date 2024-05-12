@@ -10,27 +10,26 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.Nullable;
 
-public class DecomponentalizerBlock extends HorizontalKineticBlock implements IBE<DecomponentalizerBlockEntity> {
+public class DecomponentalizerBlock extends BaseEntityBlock {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
     public DecomponentalizerBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public Class<DecomponentalizerBlockEntity> getBlockEntityClass() {
-        return DecomponentalizerBlockEntity.class;
-    }
-
-    @Override
-    public BlockEntityType<? extends DecomponentalizerBlockEntity> getBlockEntityType() {
-        return ModBlockEntities.DECOMPONENTALIZER.get();
     }
 
     @Override
@@ -39,9 +38,19 @@ public class DecomponentalizerBlock extends HorizontalKineticBlock implements IB
             return InteractionResult.SUCCESS;
         }
 
-        withBlockEntityDo(pLevel, pPos, be -> NetworkHooks.openGui((ServerPlayer) pPlayer, be, pPos));
+        BlockEntity entity = pLevel.getBlockEntity(pPos);
+        if(entity instanceof DecomponentalizerBlockEntity) {
+            NetworkHooks.openGui((ServerPlayer) pPlayer, (DecomponentalizerBlockEntity) entity, pPos);
+        } else {
+            throw new IllegalStateException("Missing Container Provider");
+        }
 
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
 
     @Override
@@ -56,12 +65,35 @@ public class DecomponentalizerBlock extends HorizontalKineticBlock implements IB
     }
 
     @Override
-    public Direction.Axis getRotationAxis(BlockState state) {
-        return state.getValue(HorizontalKineticBlock.HORIZONTAL_FACING).getAxis();
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
-        return face == state.getValue(HORIZONTAL_FACING);
+    public BlockState rotate(BlockState pState, Rotation pRotation) {
+        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(FACING);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new DecomponentalizerBlockEntity(pPos, pState);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.DECOMPONENTALIZER.get(),
+                DecomponentalizerBlockEntity::tick);
     }
 }

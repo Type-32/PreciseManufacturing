@@ -1,8 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.*;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerContainerMenu;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerScreen;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerScreen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeSerializer;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
@@ -18,7 +17,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -48,16 +46,19 @@ public class Main {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        ModBlocks.register();
+        ModBlockEntities.register(eventBus);
+        ModContainers.register(eventBus);
         ModCreativeModTabs.register();
         ModItems.register();
         ModFluids.register();
         ModTags.register();
-        ModContainers.register(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         // Some preinit code
         LOGGER.info("HELLO FROM PREINIT");
+        MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -96,9 +97,5 @@ public class Main {
             Registry.register(Registry.RECIPE_SERIALIZER, DecomponentalizingRecipeSerializer.ID, DecomponentalizingRecipeSerializer.INSTANCE);
             Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(Reference.MOD_ID, DecomponentalizingRecipeType.ID), DecomponentalizingRecipeType.INSTANCE);
         });
-    }
-
-    private void clientSetup(final FMLClientSetupEvent event) {
-        MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new);
     }
 }

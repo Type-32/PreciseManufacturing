@@ -1,12 +1,12 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlockEntities;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerContainerMenu;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Containers;
@@ -18,7 +18,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -28,7 +27,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.Objects;
 
 public class DecomponentalizerBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler;
@@ -37,7 +35,7 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     private int totalProcessingTime;
     private DecomponentalizingRecipe currentRecipe;
 
-    public DecomponentalizerBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
+    public DecomponentalizerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DECOMPONENTALIZER.get(), pos, state);
         itemHandler = createHandler();
         itemHandlerCap = LazyOptional.of(() -> itemHandler);
@@ -87,35 +85,35 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         tag.putInt("TotalProcessingTime", totalProcessingTime);
     }
 
-    public void tick() {
-        if (level == null || level.isClientSide) {
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, DecomponentalizerBlockEntity pBlockEntity) {
+        if (pLevel == null || pLevel.isClientSide) {
             return;
         }
 
-        if (hasRecipe()) {
-            if (processingTime < totalProcessingTime) {
-                processingTime++;
-                setChanged();
+        if (hasRecipe(pBlockEntity)) {
+            if (pBlockEntity.getProcessingTime() < pBlockEntity.getTotalProcessingTime()) {
+                pBlockEntity.setProcessingTime(pBlockEntity.getProcessingTime() + 1);
+                setChanged(pLevel, pPos, pState);
             } else {
-                craftItem();
-                processingTime = 0;
-                setChanged();
+                pBlockEntity.craftItem();
+                pBlockEntity.setProcessingTime(0);
+                setChanged(pLevel, pPos, pState);
             }
         } else {
-            processingTime = 0;
-            setChanged();
+            pBlockEntity.setProcessingTime(0);
+            setChanged(pLevel, pPos, pState);
         }
     }
 
-    private boolean hasRecipe() {
-        if (itemHandler.getStackInSlot(0).isEmpty()) {
+    private static boolean hasRecipe(DecomponentalizerBlockEntity pBlockEntity) {
+        if (pBlockEntity.getItemHandler().getStackInSlot(0).isEmpty()) {
             return false;
         }
 
-        Level level = Objects.requireNonNull(this.level);
-        currentRecipe = level.getRecipeManager().getRecipeFor(DecomponentalizingRecipeType.INSTANCE, new SimpleContainer(itemHandler.getStackInSlot(0)), level).orElse(null);
+        Level level = pBlockEntity.level;
+        pBlockEntity.setCurrentRecipe(level.getRecipeManager().getRecipeFor(DecomponentalizingRecipeType.INSTANCE, new SimpleContainer(pBlockEntity.getItemHandler().getStackInSlot(0)), level).orElse(null));
 
-        return currentRecipe != null && canOutput(currentRecipe.getResultItem());
+        return pBlockEntity.getCurrentRecipe() != null && pBlockEntity.canOutput(pBlockEntity.getCurrentRecipe().getResultItem());
     }
 
     private boolean canOutput(ItemStack output) {
@@ -159,5 +157,13 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
 
     public ItemStackHandler getItemHandler() {
         return itemHandler;
+    }
+
+    public DecomponentalizingRecipe getCurrentRecipe() {
+        return currentRecipe;
+    }
+
+    public void setCurrentRecipe(DecomponentalizingRecipe currentRecipe) {
+        this.currentRecipe = currentRecipe;
     }
 }

@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleBase;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
 public class ModItems {
@@ -34,7 +35,6 @@ public class ModItems {
             M_SCREW = Main.REGISTRATE.item("m_screw", Item::new).register(),
             THIN_SMALL_ROD = Main.REGISTRATE.item("thin_small_rod", Item::new).register(),
             THICK_SMALL_ROD = Main.REGISTRATE.item("thick_small_rod", Item::new).register();
-
 
 
     // Buckets

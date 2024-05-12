@@ -163,5 +163,7 @@
   "fluid.prma.molten_brass": "Molten Brass",
   "fluid.prma.molten_basalt_infused_iron": "Basalt-Infused Molten Iron",
 
-  "block.prma.container.decomponentalizer": "Decomponentalizer"
+  "block.prma.container.decomponentalizer": "Decomponentalizer",
+
+  "gui.prma.decomponentalizer.analyze": "Analyze"
 }

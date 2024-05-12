@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "prma:block/decomponentalizer"},
+    "facing=east": {"model": "prma:block/decomponentalizer", "y":  90},
+    "facing=south": {"model": "prma:block/decomponentalizer", "y":  180},
+    "facing=west": {"model": "prma:block/decomponentalizer", "y":  270}
+  }
+}
