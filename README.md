@@ -39,9 +39,9 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 
 The currently supported versions are:
 
-| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency                                        |
-|----------|----------------------------|---------------------------|---------------------------------------------------|
-| 1.18.2   | N/A. TBD                   | 0.1.0-alpha               | tacz-1.0.0-beta-hotifx4 **OR** tacz-1.0.0-hotfix3 |
+| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency              |
+|----------|----------------------------|---------------------------|-------------------------|
+| 1.18.2   | N/A. TBD                   | 0.1.0 -> 0.1.1 Alpha      | tacz-1.0.0-beta-hotifx4 |
 
 ## Translations
 
@@ -82,6 +82,6 @@ The currently supported langauge translations are:
 
 目前支持的版本有：
 
-| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组                                             |
-|--------|-----------------|----------------|--------------------------------------------------|
-| 1.18.2 | 暂无，待定           | 0.1.0-alpha    | tacz-1.0.0-beta-hotifx4 **或** tacz-1.0.0-hotfix3 |
+| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本       | 前置模组                    |
+|--------|-----------------|----------------------|-------------------------|
+| 1.18.2 | 暂无，待定           | 0.1.0 -> 0.1.1 Alpha | tacz-1.0.0-beta-hotifx4 |
