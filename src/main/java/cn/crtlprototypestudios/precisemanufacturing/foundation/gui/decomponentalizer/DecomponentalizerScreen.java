@@ -19,6 +19,11 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
 
     public DecomponentalizerScreen(DecomponentalizerContainerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+        imageHeight = 226;
+        inventoryLabelY = 132;
+        inventoryLabelX = 8;
+        titleLabelY = 6;
+        titleLabelX = 8;
     }
 
     @Override
@@ -32,7 +37,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 102, y + 41, 176, 0, 8, menu.getScaledProgress());
+            blit(pPoseStack, x + 75, y + 26, 0, 226, menu.getScaledProgress(), 8);
         }
     }
 
@@ -51,11 +56,11 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.topPos = (height - imageHeight) / 2;
 
         this.craftButton = addRenderableWidget(
-                new Button(leftPos + 8, topPos + 8, 20, 20, new TranslatableComponent("gui.prma.decomponentalizer.analyze"), this::onAnalyzeButtonPressed)
+                new Button(leftPos + 91, topPos + 102, 75, 20, new TranslatableComponent("gui.prma.decomponentalizer.analyze"), this::onAnalyzeButtonPressed)
         );
     }
 
     private void onAnalyzeButtonPressed(Button button) {
-
+        getMenu().startRecipeProcess();
     }
 }

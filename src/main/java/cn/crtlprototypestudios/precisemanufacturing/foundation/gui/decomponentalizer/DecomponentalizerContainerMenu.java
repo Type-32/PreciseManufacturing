@@ -3,6 +3,8 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponenta
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModContainers;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.LockableInputSlot;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -20,6 +22,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private final DecomponentalizerBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
+    private boolean isProcessing = false;
 
     public DecomponentalizerContainerMenu(int id, Inventory inventory, FriendlyByteBuf extraData){
         this(id, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()));
@@ -27,7 +30,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
 
     public DecomponentalizerContainerMenu(int id, Inventory playerInventory, BlockEntity blockEntity) {
         super(ModContainers.DECOMPONENTALIZER.get(), id);
-        checkContainerSize(playerInventory, 5);
+        checkContainerSize(playerInventory, 4);
         this.blockEntity = (DecomponentalizerBlockEntity) blockEntity;
         this.level = playerInventory.player.level;
         this.data = new ContainerData() {
@@ -60,19 +63,19 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 144 + i * 18));
             }
         }
 
         for (int k = 0; k < 9; k++) {
-            addSlot(new Slot(playerInventory, k, 8 + k * 18, 142));
+            addSlot(new Slot(playerInventory, k, 8 + k * 18, 202));
         }
 
         blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            addSlot(new SlotItemHandler(handler, 0, 56, 35));
-            addSlot(new SlotItemHandler(handler, 1, 79, 58));
-            addSlot(new SlotItemHandler(handler, 2, 102, 35));
-            addSlot(new SlotItemHandler(handler, 3, 140, 35));
+            addSlot(new LockableInputSlot(handler, 0, 7, 23));
+            addSlot(new LockableInputSlot(handler, 1, 25, 23));
+            addSlot(new LockableInputSlot(handler, 2, 55, 23));
+            addSlot(new ModResultSlot(handler, 3, 153, 23));
 //            addSlot(new ModResultSlot(handler, 4, 200, 35));
         });
 
@@ -82,7 +85,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int progressArrowSize = 26; // This is the height in pixels of your arrow
+        int progressArrowSize = 72; // This is the height in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
@@ -120,7 +123,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -153,5 +156,32 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         }
         sourceSlot.onTake(playerIn, sourceStack);
         return copyOfSourceStack;
+    }
+
+    public void startRecipeProcess() {
+        if (!isProcessing) {
+            isProcessing = true;
+            lockInputSlots();
+        }
+    }
+
+    private void lockInputSlots() {
+        // Assuming the input slots are at indices 0, 1, and 2
+        for (int i = 0; i < 3; i++) {
+            Slot slot = slots.get(i);
+            if (slot instanceof LockableInputSlot) {
+                ((LockableInputSlot) slot).setLocked(true);
+            }
+        }
+    }
+
+    private void unlockInputSlots() {
+        // Assuming the input slots are at indices 0, 1, and 2
+        for (int i = 0; i < 3; i++) {
+            Slot slot = slots.get(i);
+            if (slot instanceof LockableInputSlot) {
+                ((LockableInputSlot) slot).setLocked(false);
+            }
+        }
     }
 }
