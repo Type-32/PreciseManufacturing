@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decompone
 
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.google.gson.JsonObject;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
@@ -27,7 +28,32 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer inventory, Level level) {
-        return ingredient.test(inventory.getItem(0));
+        ItemStack itemStack = inventory.getItem(0);
+
+        // Check if the item matches the ingredient
+        if (ingredient.test(itemStack)) {
+            // Check if the ingredient has NBT data
+            if (ingredient.getItems()[0].hasTag()) {
+                // Compare the NBT data of the ingredient and the item in the inventory
+                CompoundTag ingredientTag = ingredient.getItems()[0].getTag();
+                CompoundTag itemTag = itemStack.getTag();
+
+                if (ingredientTag != null && itemTag != null) {
+                    // Iterate over the keys in the ingredient tag and compare with the item tag
+                    for (String key : ingredientTag.getAllKeys()) {
+                        if (!itemTag.contains(key) || !ingredientTag.get(key).equals(itemTag.get(key))) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            } else {
+                // If the ingredient doesn't have NBT data, only check the item ID
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
