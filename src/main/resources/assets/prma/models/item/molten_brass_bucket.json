@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "prma:item/molten_brass_bucket"
+    "layer0": "prma:item/buckets/molten_brass_bucket"
   }
 }

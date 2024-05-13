@@ -1,65 +1,51 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer;
 
+import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModContainers;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.LockableInputSlot;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.ModResultSlot;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private final DecomponentalizerBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
-    private boolean isProcessing = false;
+    private List<DecomponentalizingRecipe> availableRecipes = new ArrayList<DecomponentalizingRecipe>();
 
-    public DecomponentalizerContainerMenu(int id, Inventory inventory, FriendlyByteBuf extraData){
-        this(id, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()));
+    public boolean isProcessingOrInvalid(){
+        return blockEntity.getCurrentRecipe() != null || (
+                blockEntity.getItemHandler().getStackInSlot(0).isEmpty() ||
+                blockEntity.getItemHandler().getStackInSlot(1).isEmpty() ||
+                blockEntity.getItemHandler().getStackInSlot(2).isEmpty()
+        );
     }
 
-    public DecomponentalizerContainerMenu(int id, Inventory playerInventory, BlockEntity blockEntity) {
+    public DecomponentalizerContainerMenu(int id, Inventory inventory, FriendlyByteBuf extraData){
+        this(id, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+    }
+
+    public DecomponentalizerContainerMenu(int id, Inventory playerInventory, BlockEntity blockEntity, ContainerData data) {
         super(ModContainers.DECOMPONENTALIZER.get(), id);
         checkContainerSize(playerInventory, 4);
         this.blockEntity = (DecomponentalizerBlockEntity) blockEntity;
         this.level = playerInventory.player.level;
-        this.data = new ContainerData() {
-            public int get(int index) {
-                switch (index) {
-                    case 0:
-                        return DecomponentalizerContainerMenu.this.blockEntity.getProcessingTime();
-                    case 1:
-                        return DecomponentalizerContainerMenu.this.blockEntity.getTotalProcessingTime();
-                    default:
-                        return 0;
-                }
-            }
-
-            public void set(int index, int value) {
-                switch (index) {
-                    case 0:
-                        DecomponentalizerContainerMenu.this.blockEntity.setProcessingTime(value);
-                        break;
-                    case 1:
-                        DecomponentalizerContainerMenu.this.blockEntity.setTotalProcessingTime(value);
-                        break;
-                }
-            }
-
-            public int getCount() {
-                return 2;
-            }
-        };
+        this.data = data;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
@@ -78,6 +64,14 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
             addSlot(new ModResultSlot(handler, 3, 153, 23));
 //            addSlot(new ModResultSlot(handler, 4, 200, 35));
         });
+
+        if(blockEntity instanceof DecomponentalizerBlockEntity) {
+            DecomponentalizerBlockEntity decomp = (DecomponentalizerBlockEntity) blockEntity;
+            decomp.getRecipesUpdateConsumer().andThen(handle -> {
+                availableRecipes.clear();
+                availableRecipes.addAll(decomp.getAvailableRecipes());
+            });
+        }
 
         addDataSlots(data);
     }
@@ -102,8 +96,16 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         return data.get(1);
     }
 
+    public void setProcessing(boolean processing) {
+        data.set(2, processing ? 1 : 0);
+    }
+
     @Override
     public boolean stillValid(Player player) {
+        if (!isProcessingOrInvalid()) {
+            unlockInputSlots();
+            unlockAnalyzeButton();
+        }
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.DECOMPONENTALIZER.get());
     }
 
@@ -159,9 +161,13 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     }
 
     public void startRecipeProcess() {
-        if (!isProcessing) {
-            isProcessing = true;
+        Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getSelectedRecipe() != null);
+        if (!isProcessingOrInvalid() && blockEntity.getSelectedRecipe() != null) {
+            blockEntity.setProcessing(1);
+            setCurrentRecipe(blockEntity.getSelectedRecipe());
             lockInputSlots();
+            lockAnalyzeButton();
+            Main.LOGGER.debug("Starting Decomponentalizing Process");
         }
     }
 
@@ -183,5 +189,29 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
                 ((LockableInputSlot) slot).setLocked(false);
             }
         }
+    }
+
+    private void lockAnalyzeButton() {
+        // Disable the analyze button in the GUI
+        // You'll need to implement this based on your GUI setup
+    }
+
+    private void unlockAnalyzeButton() {
+        // Enable the analyze button in the GUI
+        // You'll need to implement this based on your GUI setup
+    }
+
+    public void setSelectedRecipe(DecomponentalizingRecipe recipe) {
+        blockEntity.setSelectedRecipe(recipe);
+        blockEntity.setChanged();
+    }
+
+    public void setCurrentRecipe(DecomponentalizingRecipe recipe) {
+        blockEntity.setCurrentRecipe(recipe);
+        blockEntity.setChanged();
+    }
+
+    public DecomponentalizerBlockEntity getBlockEntity() {
+        return blockEntity;
     }
 }

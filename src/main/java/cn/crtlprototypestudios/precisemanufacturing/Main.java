@@ -2,7 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.*;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerScreen;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeSerializer;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
@@ -53,6 +53,7 @@ public class Main {
         ModItems.register();
         ModFluids.register();
         ModTags.register();
+        ModRecipes.register(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -89,13 +90,5 @@ public class Main {
             // Register a new block here
             LOGGER.info("HELLO from Register Block");
         }
-    }
-
-    @SubscribeEvent
-    public static void setupRecipes(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            Registry.register(Registry.RECIPE_SERIALIZER, DecomponentalizingRecipeSerializer.ID, DecomponentalizingRecipeSerializer.INSTANCE);
-            Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(Reference.MOD_ID, DecomponentalizingRecipeType.ID), DecomponentalizingRecipeType.INSTANCE);
-        });
     }
 }

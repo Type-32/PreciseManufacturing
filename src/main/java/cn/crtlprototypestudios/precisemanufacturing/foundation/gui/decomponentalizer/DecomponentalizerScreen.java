@@ -1,21 +1,29 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer;
 
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.widgets.RecipeListWidget;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.ObjectSelectionList;
+import net.minecraft.client.gui.components.OptionsList;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.client.gui.ScrollPanel;
 
 public class DecomponentalizerScreen extends AbstractContainerScreen<DecomponentalizerContainerMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(Reference.MOD_ID, "textures/gui/decomponentalizer_gui.png");
     private int leftPos, topPos;
     private Button craftButton;
+    private RecipeListWidget recipesPanel;
 
     public DecomponentalizerScreen(DecomponentalizerContainerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -45,6 +53,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
     public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(stack);
         super.render(stack, mouseX, mouseY, partialTicks);
+        this.recipesPanel.render(stack, mouseX, mouseY, partialTicks);
         this.renderTooltip(stack, mouseX, mouseY);
     }
 
@@ -56,7 +65,11 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.topPos = (height - imageHeight) / 2;
 
         this.craftButton = addRenderableWidget(
-                new Button(leftPos + 91, topPos + 102, 75, 20, new TranslatableComponent("gui.prma.decomponentalizer.analyze"), this::onAnalyzeButtonPressed)
+                new Button(leftPos + 91, topPos + 102, 76, 20, new TranslatableComponent("gui.prma.decomponentalizer.analyze"), this::onAnalyzeButtonPressed)
+        );
+
+        this.recipesPanel = addRenderableWidget(
+                new RecipeListWidget(this.getMenu(), leftPos + 9, topPos + 50, 75, 72, 20)
         );
     }
 
