@@ -58,6 +58,12 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
     }
 
     @Override
+    protected void containerTick() {
+        super.containerTick();
+        this.recipesPanel.setRecipes(this.getMenu().getBlockEntity().getAvailableRecipes());
+    }
+
+    @Override
     protected void init() {
         super.init();
 
@@ -69,7 +75,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         );
 
         this.recipesPanel = addRenderableWidget(
-                new RecipeListWidget(this.getMenu(), leftPos + 9, topPos + 50, 75, 72, 20)
+                new RecipeListWidget(this.getMenu(), leftPos + 10, topPos + 50, 75, 72, 20)
         );
     }
 

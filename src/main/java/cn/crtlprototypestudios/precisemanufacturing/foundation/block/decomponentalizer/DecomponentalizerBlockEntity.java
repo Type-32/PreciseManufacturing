@@ -43,7 +43,6 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     private int isProcessing = 0;
     private DecomponentalizingRecipe currentRecipe, selectedRecipe;
     private ContainerData data;
-    private Consumer<List<DecomponentalizingRecipe>> recipesUpdateConsumer;
 
     public DecomponentalizerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DECOMPONENTALIZER.get(), pos, state);
@@ -97,10 +96,8 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
 
     private void updateAvailableRecipes() {
         if (this.level != null && !this.level.isClientSide) {
-            List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
 //            // Notify the container menu about the updated recipes
 //            ContainerHelper.updateAvailableRecipes(this, availableRecipes);
-            recipesUpdateConsumer.accept(availableRecipes);
         }
     }
 
@@ -254,9 +251,5 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
 
     public DecomponentalizingRecipe getSelectedRecipe() {
         return selectedRecipe;
-    }
-
-    public Consumer<List<DecomponentalizingRecipe>> getRecipesUpdateConsumer(){
-        return recipesUpdateConsumer;
     }
 }

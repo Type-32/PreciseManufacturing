@@ -23,7 +23,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
             new ResourceLocation(Reference.MOD_ID, "textures/gui/decomponentalizer_gui.png");
     private final DecomponentalizerBlockEntity blockEntity;
     private final DecomponentalizerContainerMenu containerMenu;
-    private final List<DecomponentalizingRecipe> recipes;
+    private List<DecomponentalizingRecipe> recipes;
     private final int listWidth;
     private final int listHeight;
     private final int entryHeight;
@@ -34,7 +34,6 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         super(x, y, width, height, TextComponent.EMPTY);
         this.blockEntity = containerMenu.getBlockEntity();
         this.containerMenu = containerMenu;
-        this.recipes = blockEntity.getAvailableRecipes();
         this.listWidth = width;
         this.listHeight = height;
         this.entryHeight = entryHeight;
@@ -53,7 +52,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
 
         // Render the recipe entries
         if(this.recipes != null && !recipes.isEmpty()) {
-            int y = this.y + 4 - scrollOffset;
+            int y = this.y + 1 - scrollOffset;
             for (int i = 0; i < recipes.size(); i++) {
                 if (y >= this.y && y + entryHeight <= this.y + listHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
@@ -61,9 +60,9 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
                     if(containerMenu.getBlockEntity().getCurrentRecipe() != null && containerMenu.getBlockEntity().getCurrentRecipe().equals(recipe))
                         selectedIndex = i;
 
-                    renderRecipeEntry(poseStack, recipe, x + 2, y, listWidth - 4, entryHeight, mouseX, mouseY, i == selectedIndex);
+                    renderRecipeEntry(poseStack, recipe, x, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex);
                 }
-                y += entryHeight;
+                y += entryHeight + 1;
             }
         }
     }
@@ -86,7 +85,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (isMouseOver(mouseX, mouseY)) {
             int index = (int) ((mouseY - y - 4 + scrollOffset) / entryHeight);
-            if (index >= 0 && index < recipes.size()) {
+            if (recipes != null && index >= 0 && index < recipes.size()) {
                 selectedIndex = index;
                 containerMenu.setSelectedRecipe(recipes.get(index));
                 return true;
@@ -123,5 +122,9 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
 
     public int clamp(int value, int min, int max) {
         return Math.max(min, Math.min(value, max));
+    }
+
+    public void setRecipes(List<DecomponentalizingRecipe> recipes) {
+        this.recipes = recipes;
     }
 }

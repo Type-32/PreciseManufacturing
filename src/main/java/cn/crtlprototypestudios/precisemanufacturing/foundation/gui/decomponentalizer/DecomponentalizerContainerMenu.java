@@ -65,14 +65,6 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
 //            addSlot(new ModResultSlot(handler, 4, 200, 35));
         });
 
-        if(blockEntity instanceof DecomponentalizerBlockEntity) {
-            DecomponentalizerBlockEntity decomp = (DecomponentalizerBlockEntity) blockEntity;
-            decomp.getRecipesUpdateConsumer().andThen(handle -> {
-                availableRecipes.clear();
-                availableRecipes.addAll(decomp.getAvailableRecipes());
-            });
-        }
-
         addDataSlots(data);
     }
 
