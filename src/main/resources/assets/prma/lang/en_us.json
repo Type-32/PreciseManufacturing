@@ -9,6 +9,7 @@
   "item.prma.raw_sulfur_powder": "Raw Sulfur Powder",
   "item.prma.basalt_powder": "Basalt Powder",
   "item.prma.gunpowder_pellets": "Gunpowder Pellets",
+  "item.prma.decomponentalizer": "Decomponentalizer",
 
   "item.prma.molten_brass_bucket": "Bucket of Molten Brass",
   "item.prma.molten_copper_bucket": "Bucket of Molten Copper",
@@ -165,5 +166,8 @@
 
   "block.prma.container.decomponentalizer": "Decomponentalizer",
 
-  "gui.prma.decomponentalizer.analyze": "Analyze"
+  "gui.prma.decomponentalizer.analyze": "Analyze",
+  "gui.prma.decomponentalizer.idle": "> Insert Item...",
+  "gui.prma.decomponentalizer.processing": "> Processing... %s%s",
+  "gui.prma.decomponentalizer.time_estimate": "> Process Time: %ss"
 }

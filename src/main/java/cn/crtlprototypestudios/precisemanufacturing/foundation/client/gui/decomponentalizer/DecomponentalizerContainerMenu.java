@@ -41,19 +41,19 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 144 + i * 18));
+                addSlot(new Slot(playerInventory, j + i * 9 + 9, 34 + j * 18, 172 + i * 18));
             }
         }
 
         for (int k = 0; k < 9; k++) {
-            addSlot(new Slot(playerInventory, k, 8 + k * 18, 202));
+            addSlot(new Slot(playerInventory, k, 34 + k * 18, 230));
         }
 
         blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             addSlot(new LockableInputSlot(handler, 0, 7, 23));
             addSlot(new LockableInputSlot(handler, 1, 25, 23));
             addSlot(new LockableInputSlot(handler, 2, 55, 23));
-            addSlot(new ModResultSlot(handler, 3, 153, 23));
+            addSlot(new ModResultSlot(handler, 3, 205, 23));
 //            addSlot(new ModResultSlot(handler, 4, 200, 35));
         });
 
@@ -63,7 +63,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
-        int progressArrowSize = 72; // This is the height in pixels of your arrow
+        int progressArrowSize = 99; // This is the height in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }

@@ -87,19 +87,9 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         return new ItemStackHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
-                if (slot == 2){
-                    updateAvailableRecipes();
-                }
                 setChanged();
             }
         };
-    }
-
-    private void updateAvailableRecipes() {
-        if (this.level != null && !this.level.isClientSide) {
-//            // Notify the container menu about the updated recipes
-//            ContainerHelper.updateAvailableRecipes(this, availableRecipes);
-        }
     }
 
     public void drops() {

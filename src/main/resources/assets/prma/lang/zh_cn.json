@@ -135,5 +135,11 @@
   "item.prma.m4a1_stock_cast": "M4A1枪托铸模",
   "fluid.prma.molten_copper": "熔融铜",
   "fluid.prma.molten_brass": "熔融黄铜",
-  "fluid.prma.molten_basalt_infused_iron": "玄武岩灌注熔铁"
+  "fluid.prma.molten_basalt_infused_iron": "玄武岩灌注熔铁",
+  "item.prma.decomponentalizer": "解析机",
+  "block.prma.container.decomponentalizer": "解析机",
+  "gui.prma.decomponentalizer.analyze": "开始解析",
+  "gui.prma.decomponentalizer.idle": "> 输入物品...",
+  "gui.prma.decomponentalizer.processing": "> 解析中... %s%s",
+  "gui.prma.decomponentalizer.time_estimate": "> 预计解析时间: %s秒"
 }

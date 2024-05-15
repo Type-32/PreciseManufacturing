@@ -6,6 +6,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomp
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -21,8 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 public class RecipeListWidget extends AbstractWidget implements Widget {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(Reference.MOD_ID, "textures/gui/decomponentalizer_gui.png");
+    private static final ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui_widgets.png");
     private final DecomponentalizerBlockEntity blockEntity;
     private final DecomponentalizerContainerMenu containerMenu;
     private List<DecomponentalizingRecipe> recipes;
@@ -50,7 +50,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         RenderSystem.setShaderTexture(0, TEXTURE);
 
         // Render the list background
-        blit(poseStack, x, y, 176, 0, listWidth, listHeight);
+        blit(poseStack, x, y, 0, 0, listWidth, listHeight);
 
         // Render the recipe entries
         if(this.recipes != null && !recipes.isEmpty()) {
@@ -59,7 +59,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
                 if (y >= this.y && y + entryHeight <= this.y + listHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 
-                    if(containerMenu.getBlockEntity().getCurrentRecipeIndex() == i)
+                    if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
                         selectedIndex = i;
 
                     renderRecipeEntry(poseStack, recipe, x, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex);
@@ -72,7 +72,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
     private void renderRecipeEntry(PoseStack poseStack, DecomponentalizingRecipe recipe, int x, int y, int width, int height, int mouseX, int mouseY, boolean selected) {
         // Render the recipe entry background
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(poseStack, x , y, 176, selected ? 92 : 72, width, height);
+        blit(poseStack, x , y, 0, selected ? 120 : 100, width, height);
 
         // Render the recipe item
         ItemStack resultStack = recipe.getResultItem();
@@ -82,20 +82,20 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         TextComponent textComponent = new TextComponent(resultStack.getDisplayName()
                 .getString()
                 .substring(1, resultStack.getDisplayName().getString().length() - 1)
-                .substring(0, 10) + "...");
+                .substring(0, 20) + "...");
         Minecraft.getInstance().font.draw(poseStack, textComponent, x + 22, y + 6, 0xFFFFFF);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (isMouseOver(mouseX, mouseY)) {
+        if (isMouseOver(mouseX, mouseY) && !containerMenu.isCrafting()) {
             int index = (int) ((mouseY - y - 4 + scrollOffset) / entryHeight);
 //            Main.LOGGER.debug("selected widget recipe index: {}", index);
             if (recipes != null && index >= 0 && index < recipes.size()) {
                 selectedIndex = index;
-//                containerMenu.setSelectedRecipe(recipes.get(index));
-                if(containerMenu.getBlockEntity().getCurrentRecipeIndex() != selectedIndex)
-                    PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) index));
+//                if(containerMenu.getBlockEntity().getSelectedRecipeIndex() != selectedIndex)
+//                    PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) index));
+                containerMenu.getBlockEntity().setSelectedRecipeIndex(index);
                 return true;
             }
         }
@@ -134,5 +134,9 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
 
     public void setRecipes(List<DecomponentalizingRecipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public int getSelectedIndex(){
+        return selectedIndex;
     }
 }
