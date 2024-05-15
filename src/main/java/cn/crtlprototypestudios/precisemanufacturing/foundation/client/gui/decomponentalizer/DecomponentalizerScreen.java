@@ -27,10 +27,10 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         super(pMenu, pPlayerInventory, pTitle);
         imageHeight = 254;
         imageWidth = 228;
-        inventoryLabelY = 132;
-        inventoryLabelX = 8;
-        titleLabelY = 160;
-        titleLabelX = 33;
+        inventoryLabelY = 160;
+        inventoryLabelX = 33;
+        titleLabelY = 5;
+        titleLabelX = 8;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         TranslatableComponent terminalText = new TranslatableComponent("gui.prma.decomponentalizer.idle");
-        RenderSystem.setShaderTexture(1, WIDGET_TEXTURE);
+        RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
         if(menu.isCrafting()) {
             blit(pPoseStack, x + 76, y + 27, 0, 140, menu.getScaledProgress(), 9);
             terminalText = new TranslatableComponent("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
@@ -55,7 +55,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
             }
         }
 
-        Minecraft.getInstance().font.draw(pPoseStack, terminalText, x + 119, y + 54, 0x00FF00);
+        Minecraft.getInstance().font.draw(pPoseStack, terminalText, x + 120, y + 54, 0x00FF00);
     }
 
     @Override
@@ -87,11 +87,11 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.topPos = (height - imageHeight) / 2;
 
         this.craftButton = addRenderableWidget(
-                new Button(leftPos + 117, topPos + 130, 102, 20, new TranslatableComponent("gui.prma.decomponentalizer.analyze"), this::onAnalyzeButtonPressed)
+                new Button(leftPos + 116, topPos + 130, 102, 20, new TranslatableComponent("gui.prma.decomponentalizer.analyze"), this::onAnalyzeButtonPressed)
         );
 
         this.recipesPanel = addRenderableWidget(
-                new RecipeListWidget(this.getMenu(), leftPos + 10, topPos + 50, 102, 100, 20)
+                new RecipeListWidget(this.getMenu(), leftPos + 9, topPos + 50, 102, 100, 20)
         );
     }
 

@@ -62,7 +62,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
                     if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
                         selectedIndex = i;
 
-                    renderRecipeEntry(poseStack, recipe, x, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex);
+                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex);
                 }
                 y += entryHeight + 1;
             }
@@ -81,8 +81,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         // Render the recipe duration
         TextComponent textComponent = new TextComponent(resultStack.getDisplayName()
                 .getString()
-                .substring(1, resultStack.getDisplayName().getString().length() - 1)
-                .substring(0, 20) + "...");
+                .substring(1, resultStack.getDisplayName().getString().length() - 1));
         Minecraft.getInstance().font.draw(poseStack, textComponent, x + 22, y + 6, 0xFFFFFF);
     }
 

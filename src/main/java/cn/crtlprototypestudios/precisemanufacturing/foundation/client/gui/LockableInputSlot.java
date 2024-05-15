@@ -20,13 +20,6 @@ public class LockableInputSlot extends SlotItemHandler {
     }
 
     @Override
-    public boolean mayPlace(ItemStack stack) {
-        if(!locked)
-            return super.mayPlace(stack);
-        return false; // If it is locked, then cannot place
-    }
-
-    @Override
     public boolean mayPickup(Player playerIn) {
         if(!locked)
             return super.mayPickup(playerIn);
