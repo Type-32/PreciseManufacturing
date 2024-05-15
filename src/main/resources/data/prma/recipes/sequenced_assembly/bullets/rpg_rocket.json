@@ -101,19 +101,6 @@
       ]
     },
     {
-      "type": "create:sandpaper_polishing",
-      "ingredients": [
-        {
-          "item": "prma:rpg_rocket_unfinished"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:rpg_rocket_unfinished"
-        }
-      ]
-    },
-    {
       "type": "create:deploying",
       "ingredients": [
         {

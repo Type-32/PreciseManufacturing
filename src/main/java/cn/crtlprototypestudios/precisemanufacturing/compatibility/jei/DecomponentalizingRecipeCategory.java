@@ -17,6 +17,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import javax.annotation.Nonnull;
+
 public class DecomponentalizingRecipeCategory implements IRecipeCategory<DecomponentalizingRecipe> {
     public final static ResourceLocation UID = ResourceHelper.find("decomponentalizing");
     public final static ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui.png");
@@ -58,8 +60,8 @@ public class DecomponentalizingRecipeCategory implements IRecipeCategory<Decompo
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, DecomponentalizingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 54, 22).addIngredients(recipe.getIngredients().get(0));
+    public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull DecomponentalizingRecipe recipe, @Nonnull IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.INPUT, 54, 22).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.OUTPUT, 204, 22).addItemStack(recipe.getResultItem());
     }
 }
