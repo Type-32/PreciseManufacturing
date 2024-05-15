@@ -1,7 +1,7 @@
 {
   "type": "prma:decomponentalizing",
   "ingredient": {
-    "item": "tacz:gun",
+    "item": "tacz:modern_kinetic_gun",
     "nbt": {
       "GunId": "tacz:m4a1"
     }

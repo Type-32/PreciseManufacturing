@@ -1,22 +1,16 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.widgets.RecipeListWidget;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.widgets.RecipeListWidget;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.ObjectSelectionList;
-import net.minecraft.client.gui.components.OptionsList;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.client.gui.ScrollPanel;
 
 public class DecomponentalizerScreen extends AbstractContainerScreen<DecomponentalizerContainerMenu> {
     private static final ResourceLocation TEXTURE =
@@ -45,7 +39,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 75, y + 26, 0, 226, menu.getScaledProgress(), 8);
+            blit(pPoseStack, x + 76, y + 27, 0, 226, menu.getScaledProgress(), 9);
         }
     }
 
@@ -61,6 +55,13 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
     protected void containerTick() {
         super.containerTick();
         this.recipesPanel.setRecipes(this.getMenu().getBlockEntity().getAvailableRecipes());
+        if(menu.isCrafting()) {
+            craftButton.active = false;
+            getMenu().lockInputSlots();
+        } else {
+            craftButton.active = true;
+            getMenu().unlockInputSlots();
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing;
 
+import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.google.gson.JsonObject;
 import net.minecraft.nbt.CompoundTag;
@@ -9,17 +10,18 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.crafting.PartialNBTIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
 public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
-    private final Ingredient ingredient;
+    private final PartialNBTIngredient ingredient;
     private final ItemStack result;
     private final int processingTime;
 
-    public DecomponentalizingRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result, int processingTime) {
+    public DecomponentalizingRecipe(ResourceLocation id, PartialNBTIngredient ingredient, ItemStack result, int processingTime) {
         this.id = id;
         this.ingredient = ingredient;
         this.result = result;
@@ -29,31 +31,10 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
     @Override
     public boolean matches(SimpleContainer inventory, Level level) {
         ItemStack itemStack = inventory.getItem(0);
+//        Main.LOGGER.debug("detecting recipe.... for item with nbt {}", itemStack.getTag());
+//        Main.LOGGER.debug("detecting recipe.... for ingredient with nbt {}", ingredient.getItems()[0].getTag());
 
-        // Check if the item matches the ingredient
-        if (ingredient.test(itemStack)) {
-            // Check if the ingredient has NBT data
-            if (ingredient.getItems()[0].hasTag()) {
-                // Compare the NBT data of the ingredient and the item in the inventory
-                CompoundTag ingredientTag = ingredient.getItems()[0].getTag();
-                CompoundTag itemTag = itemStack.getTag();
-
-                if (ingredientTag != null && itemTag != null) {
-                    // Iterate over the keys in the ingredient tag and compare with the item tag
-                    for (String key : ingredientTag.getAllKeys()) {
-                        if (!itemTag.contains(key) || !ingredientTag.get(key).equals(itemTag.get(key))) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-            } else {
-                // If the ingredient doesn't have NBT data, only check the item ID
-                return true;
-            }
-        }
-
-        return false;
+        return ingredient.test(itemStack);
     }
 
     @Override
@@ -108,7 +89,8 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public DecomponentalizingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
+//            Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
+            PartialNBTIngredient ingredient = PartialNBTIngredient.Serializer.INSTANCE.parse(json.get("ingredient").getAsJsonObject());
             ItemStack result = ShapedRecipe.itemStackFromJson(json.getAsJsonObject("result"));
             int processingTime = json.get("processingTime").getAsInt();
 
@@ -118,7 +100,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         @Nullable
         @Override
         public DecomponentalizingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
-            Ingredient ingredient = Ingredient.fromNetwork(buffer);
+            PartialNBTIngredient ingredient = PartialNBTIngredient.Serializer.INSTANCE.parse(buffer);
             ItemStack result = buffer.readItem();
             int processingTime = buffer.readInt();
 

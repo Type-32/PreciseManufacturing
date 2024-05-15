@@ -1,15 +1,12 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.*;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerScreen;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerScreen;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -60,6 +57,7 @@ public class Main {
         // Some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new);
+        event.enqueueWork(PacketHandler::register);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

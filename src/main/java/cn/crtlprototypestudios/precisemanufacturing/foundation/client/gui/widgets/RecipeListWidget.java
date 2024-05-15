@@ -1,14 +1,16 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.widgets;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.widgets;
 
+import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerContainerMenu;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerContainerMenu;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.ComponentRenderUtils;
 import net.minecraft.client.gui.components.Widget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.renderer.GameRenderer;
@@ -57,7 +59,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
                 if (y >= this.y && y + entryHeight <= this.y + listHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 
-                    if(containerMenu.getBlockEntity().getCurrentRecipe() != null && containerMenu.getBlockEntity().getCurrentRecipe().equals(recipe))
+                    if(containerMenu.getBlockEntity().getCurrentRecipeIndex() == i)
                         selectedIndex = i;
 
                     renderRecipeEntry(poseStack, recipe, x, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex);
@@ -70,24 +72,30 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
     private void renderRecipeEntry(PoseStack poseStack, DecomponentalizingRecipe recipe, int x, int y, int width, int height, int mouseX, int mouseY, boolean selected) {
         // Render the recipe entry background
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(poseStack, x, y, 176, selected ? 92 : 72, width, height);
+        blit(poseStack, x , y, 176, selected ? 92 : 72, width, height);
 
         // Render the recipe item
         ItemStack resultStack = recipe.getResultItem();
         Minecraft.getInstance().getItemRenderer().renderGuiItem(resultStack, x + 2, y + 2);
 
         // Render the recipe duration
-        String itemNameText = resultStack.getDisplayName().getString();
-        Minecraft.getInstance().font.draw(poseStack, itemNameText, x + 22, y + 6, 0xFFFFFF);
+        TextComponent textComponent = new TextComponent(resultStack.getDisplayName()
+                .getString()
+                .substring(1, resultStack.getDisplayName().getString().length() - 1)
+                .substring(0, 10) + "...");
+        Minecraft.getInstance().font.draw(poseStack, textComponent, x + 22, y + 6, 0xFFFFFF);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (isMouseOver(mouseX, mouseY)) {
             int index = (int) ((mouseY - y - 4 + scrollOffset) / entryHeight);
+//            Main.LOGGER.debug("selected widget recipe index: {}", index);
             if (recipes != null && index >= 0 && index < recipes.size()) {
                 selectedIndex = index;
-                containerMenu.setSelectedRecipe(recipes.get(index));
+//                containerMenu.setSelectedRecipe(recipes.get(index));
+                if(containerMenu.getBlockEntity().getCurrentRecipeIndex() != selectedIndex)
+                    PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) index));
                 return true;
             }
         }

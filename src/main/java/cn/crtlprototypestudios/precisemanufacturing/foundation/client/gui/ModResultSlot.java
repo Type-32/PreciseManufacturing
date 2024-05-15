@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;

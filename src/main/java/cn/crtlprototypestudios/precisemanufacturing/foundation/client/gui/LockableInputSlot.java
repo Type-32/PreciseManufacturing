@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -10,6 +10,13 @@ public class LockableInputSlot extends SlotItemHandler {
 
     public LockableInputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
         super(itemHandler, index, xPosition, yPosition);
+    }
+
+    @Override
+    public boolean allowModification(Player pPlayer) {
+        if(!locked)
+            return super.allowModification(pPlayer);
+        return false;
     }
 
     @Override
