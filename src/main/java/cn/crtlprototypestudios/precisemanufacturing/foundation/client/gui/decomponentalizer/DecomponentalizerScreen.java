@@ -46,7 +46,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         TranslatableComponent terminalText = new TranslatableComponent("gui.prma.decomponentalizer.idle");
         RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 76, y + 27, 0, 140, menu.getScaledProgress(), 9);
+            blit(pPoseStack, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
             terminalText = new TranslatableComponent("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
         } else {
             List<DecomponentalizingRecipe> recipes = this.getMenu().getBlockEntity().getAvailableRecipes();

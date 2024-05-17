@@ -141,5 +141,8 @@
   "gui.prma.decomponentalizer.analyze": "开始解析",
   "gui.prma.decomponentalizer.idle": "> 输入物品...",
   "gui.prma.decomponentalizer.processing": "> 解析中... %s%s",
-  "gui.prma.decomponentalizer.time_estimate": "> 预计解析时间: %s秒"
+  "gui.prma.decomponentalizer.time_estimate": "> 预计解析时间: %s秒",
+
+  "itemGroup.prma_blueprints_tab": "精制工艺 蓝图",
+  "recipe_category.prma.decomponentalizing": "解析部件"
 }

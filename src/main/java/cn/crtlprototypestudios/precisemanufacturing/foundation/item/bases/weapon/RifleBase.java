@@ -2,8 +2,12 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.world.item.Item;
 
 import java.util.Hashtable;
@@ -52,9 +56,13 @@ public class RifleBase extends WeaponBase {
 
 
     public Hashtable<RifleModuleType, RegistryEntry<Item>> registry = new Hashtable<>();
+    public Hashtable<RifleModuleType, RegistryEntry<Item>> castsRegistry = new Hashtable<>();
+    public Hashtable<RifleModuleType, RegistryEntry<Item>> blueprintsRegistry = new Hashtable<>();
+    public RifleModuleBuilder givenModuleBuilder;
 
     public RifleBase(String coreId, Item.Properties properties, RifleModuleBuilder moduleBuilder) {
         super(coreId, properties.stacksTo(1));
+        givenModuleBuilder = moduleBuilder;
 
         // Put all the registered modules in the Hashtable for later use
         for (RifleModuleType i : moduleBuilder.get()) {
@@ -110,22 +118,40 @@ public class RifleBase extends WeaponBase {
      *     <li><code>prma:item/casts/weapons/guns/m4a1/m4a1_lower_receiver_cast</code></li>
      * </ul>
      */
-    private RegistryEntry<Item> registerModule(String id, RifleModuleType module, Item.Properties properties, boolean registerUnfinished, boolean registerCast) {
+    private RegistryEntry<Item> registerModule(String id, RifleModuleType module, Item.Properties properties, boolean registerBlueprint, boolean registerCast) {
         String name = String.format("%s_%s", id, module.toString());
 
         // Register the unfinished module variant, and make it invisible in the creative tab
-//        if(registerUnfinished)
-//            Main.REGISTRATE.item(name + "_unfinished", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/unfinished/%s", id, name + "_unfinished")))).properties(p -> properties.tab(CreativeModeTab.TAB_SEARCH)).register();
+        if(registerBlueprint)
+            blueprintsRegistry.put(
+                    module,
+                    Main.REGISTRATE.item(name + "_blueprint", Item::new)
+                            .model(ModItemModelProvider.genericItemModel("weapons","guns", id, "blueprints", name + "_blueprint"))
+                            .properties(p -> properties.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
+                            .register()
+            );
 
         // Register the module's cast
         if(registerCast)
-            Main.REGISTRATE.item(name + "_cast", Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/casts/%s", id, name + "_cast")))).properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB)).register();
+            castsRegistry.put(
+                    module,
+                    Main.REGISTRATE.item(name + "_cast", Item::new)
+                            .model(ModItemModelProvider.genericItemModel("weapons","guns", id, "casts", name + "_cast"))
+                            .properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB))
+                            .register()
+            );
 
         // Register the module
-        return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(ResourceHelper.find(String.format("item/weapons/guns/%s/modules/%s", id, name)))).properties(p -> properties.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB)).register();
+        return Main.REGISTRATE.item(name, Item::new)
+                .model(ModItemModelProvider.genericItemModel("weapons","guns", id, "modules", name))
+                .properties(p -> properties.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                .register();
     }
 
     private RegistryEntry<Item> registerModule(String id, RifleModuleType module, Item.Properties properties) {
+
         return registerModule(id, module, properties, true, true);
     }
+
+
 }

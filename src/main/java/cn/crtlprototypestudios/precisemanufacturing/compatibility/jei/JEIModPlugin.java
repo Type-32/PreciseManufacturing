@@ -29,9 +29,11 @@ public class JEIModPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
+        assert Minecraft.getInstance().level != null;
+        RecipeManager rm = Minecraft.getInstance().level.getRecipeManager();
 
         List<DecomponentalizingRecipe> recipes = rm.getAllRecipesFor(DecomponentalizingRecipe.Type.INSTANCE);
+        assert !recipes.isEmpty();
         Main.LOGGER.debug("Registered {} custom recipes in JEI", recipes.size());
         registration.addRecipes(new RecipeType<DecomponentalizingRecipe>(DecomponentalizingRecipeCategory.UID, DecomponentalizingRecipe.class), recipes);
     }

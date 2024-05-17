@@ -21,14 +21,13 @@ import javax.annotation.Nonnull;
 
 public class DecomponentalizingRecipeCategory implements IRecipeCategory<DecomponentalizingRecipe> {
     public final static ResourceLocation UID = ResourceHelper.find("decomponentalizing");
-    public final static ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui.png");
-    public final static ResourceLocation WIDGET_TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui_widgets.png");
+    public final static ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_recipe_jei_compat.png");
 
     private final IDrawable background;
     private final IDrawable icon;
 
     public DecomponentalizingRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createDrawable(TEXTURE, 0, 16, 228, 30);
+        this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 30);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.DECOMPONENTALIZER.get()));
     }
 
@@ -61,7 +60,7 @@ public class DecomponentalizingRecipeCategory implements IRecipeCategory<Decompo
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull DecomponentalizingRecipe recipe, @Nonnull IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 54, 22).addIngredients(recipe.getIngredient());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 204, 22).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.INPUT, 6, 6).addIngredients(recipe.getIngredient());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 152, 6).addItemStack(recipe.getResultItem());
     }
 }

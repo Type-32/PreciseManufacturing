@@ -94,11 +94,11 @@ def generate_files(id: str, modules: list[RifleModuleType]):
     }
 }"""],
 
-        "unfinished": ["_unfinished",
+        "blueprints": ["_blueprint",
                        """{
     "parent": "item/generated",
     "textures": {
-        "layer0": "prma:item/weapons/guns/{id}/unfinished/{id}_{moduleId}_unfinished"
+        "layer0": "prma:item/weapons/guns/{id}/blueprints/{id}_{moduleId}_blueprint"
     }
 }"""],
 
@@ -117,10 +117,10 @@ def generate_files(id: str, modules: list[RifleModuleType]):
         os.makedirs("output/textures", exist_ok=True)
         os.makedirs("output/models/casts", exist_ok=True)
         os.makedirs("output/models/modules", exist_ok=True)
-        os.makedirs("output/models/unfinished", exist_ok=True)
+        os.makedirs("output/models/blueprints", exist_ok=True)
         os.makedirs("output/textures/casts", exist_ok=True)
         os.makedirs("output/textures/modules", exist_ok=True)
-        os.makedirs("output/textures/unfinished", exist_ok=True)
+        os.makedirs("output/textures/blueprints", exist_ok=True)
     except:
         print("Folder Already exists, skipping folder creation")
     finally:
@@ -149,7 +149,7 @@ def generate_translation_keys(item_id: str, module_types: list[RifleModuleType])
             value_base = f"{item_id.upper()} {module_type.value.replace('_', ' ').title()}"
 
             translations[key_base] = value_base
-            translations[f"{key_base}_unfinished"] = f"{value_base} Unfinished"
+            translations[f"{key_base}_blueprint"] = f"{value_base} Blueprint"
             translations[f"{key_base}_cast"] = f"{value_base} Cast"
 
         with open(f"output/lang/{item_id.upper()} Translations.json", "w") as file:
@@ -229,7 +229,7 @@ if __name__ == "__main__":
     id: str = input("Enter a gun Id: ")
     modules: list[RifleModuleType] = parse_input_modules()
 
-    # generate_files(id, modules)
+    generate_files(id, modules)
     # generate_translation_keys(id, modules)
-    generate_cast_cutting_recipes(id, modules)
-    generate_filling_recipes(id, modules)
+    # generate_cast_cutting_recipes(id, modules)
+    # generate_filling_recipes(id, modules)
