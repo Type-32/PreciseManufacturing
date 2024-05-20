@@ -104,7 +104,7 @@ public class CartridgeBase extends AmmunitionBase {
         String name = String.format("%s_%s", id, module.toString());
         boolean isCast = module.toString().contains("cast");
         return Main.REGISTRATE.item(name, Item::new)
-                .model(ModItemModelProvider.genericItemModel("item", "cartridge", id, name))
+                .model(ModItemModelProvider.genericItemModel("cartridges", id, name))
                 .properties(p -> p.tab(isCast ? ModCreativeModTabs.MOD_CASTS_TAB : ModCreativeModTabs.MOD_COMPONENTS_TAB))
                 .register();
     }
