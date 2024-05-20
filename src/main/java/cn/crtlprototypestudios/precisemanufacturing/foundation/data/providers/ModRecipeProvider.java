@@ -2,8 +2,6 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe.DecomponentalizingRecipeBuilder;
-import com.tacz.guns.init.ModItems;
-import com.tacz.guns.item.ModernKineticGunItem;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;

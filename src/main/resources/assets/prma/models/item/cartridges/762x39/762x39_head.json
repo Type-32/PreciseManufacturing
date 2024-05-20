@@ -1,8 +1,8 @@
 
-        {
-            "parent": "item/generated",
-            "textures": {
-                "layer0": "prma:item/cartridges/head/762x39"
-            }
-        }
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prma:item/cartridges/762x39/762x39_head"
+    }
+}
         

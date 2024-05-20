@@ -1,8 +1,8 @@
 
-        {
-            "parent": "item/generated",
-            "textures": {
-                "layer0": "prma:item/cartridges/casing/46x30"
-            }
-        }
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prma:item/cartridges/46x30/46x30_casing"
+    }
+}
         

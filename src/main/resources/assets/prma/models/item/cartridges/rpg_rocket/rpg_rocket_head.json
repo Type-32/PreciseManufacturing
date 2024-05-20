@@ -1,8 +1,8 @@
 
-        {
-            "parent": "item/generated",
-            "textures": {
-                "layer0": "prma:item/cartridges/head/rpg_rocket"
-            }
-        }
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "prma:item/cartridges/rpg_rocket/rpg_rocket_head"
+    }
+}
         

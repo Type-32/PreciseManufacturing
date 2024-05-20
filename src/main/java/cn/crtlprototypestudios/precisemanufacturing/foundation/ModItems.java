@@ -41,15 +41,15 @@ public class ModItems {
     // Buckets
     public static final RegistryEntry<Item>
             MOLTEN_BRASS_BUCKET = Main.REGISTRATE.item("molten_brass_bucket", Item::new)
-                    .model(ModItemModelProvider.genericItemModel("buckets", "_"))
+                    .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register(),
             MOLTEN_COPPER_BUCKET = Main.REGISTRATE.item("molten_copper_bucket", Item::new)
-                    .model(ModItemModelProvider.genericItemModel("buckets", "_"))
+                    .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register(),
             MOLTEN_BASALT_INFUSED_IRON_BUCKET = Main.REGISTRATE.item("molten_basalt_infused_iron_bucket", Item::new)
-                    .model(ModItemModelProvider.genericItemModel("buckets", "_"))
+                    .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register();
 
