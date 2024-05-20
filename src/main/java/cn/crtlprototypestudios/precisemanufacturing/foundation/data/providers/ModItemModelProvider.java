@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModItemModelProvider extends ItemModelProvider {
@@ -40,7 +41,29 @@ public class ModItemModelProvider extends ItemModelProvider {
                 ResourceHelper.find("item/" + item.getRegistryName().getPath()));
     }
 
+    private ItemModelBuilder modelBuilder(String path, Item item){
+        return withExistingParent(item.getRegistryName().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                ResourceHelper.find(path));
+    }
+
+    private ItemModelBuilder modelBuilder(ResourceLocation path, Item item){
+        return withExistingParent(item.getRegistryName().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                path);
+    }
+
     public static <I extends Item> NonNullBiConsumer<DataGenContext<Item, I>, RegistrateItemModelProvider> genericItemModel(String... folders) {
+        return (c, p) -> {
+            String path = "item";
+            for (String string : folders)
+                path += "/" + ("_".equals(string) ? c.getName() : string);
+            p.withExistingParent(c.getName(), new ResourceLocation("item/generated")).texture("layer0",
+                    path);
+        };
+    }
+
+    public static <I extends Item> NonNullBiConsumer<DataGenContext<Item, I>, RegistrateItemModelProvider> genericItemModel(Item item, String... folders) {
         return (c, p) -> {
             String path = "item";
             for (String string : folders)

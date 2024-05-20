@@ -16,4 +16,10 @@ public class ResourceHelper {
         table.put(filePath, loc);
         return loc;
     }
+
+    public static ResourceLocation findAndRegisterItemModel(String filePath){
+        ResourceLocation result = find(filePath);
+
+        return result;
+    }
 }

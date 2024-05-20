@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammun
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
 
@@ -102,6 +103,9 @@ public class CartridgeBase extends AmmunitionBase {
     private RegistryEntry<Item> registerModule(String id, CartridgeModuleType module) {
         String name = String.format("%s_%s", id, module.toString());
         boolean isCast = module.toString().contains("cast");
-        return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/cartridges/%s/%s", id, name)))).properties(p -> p.tab(isCast ? ModCreativeModTabs.MOD_CASTS_TAB : ModCreativeModTabs.MOD_COMPONENTS_TAB)).register();
+        return Main.REGISTRATE.item(name, Item::new)
+                .model(ModItemModelProvider.genericItemModel("item", "cartridge", id, name))
+                .properties(p -> p.tab(isCast ? ModCreativeModTabs.MOD_CASTS_TAB : ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                .register();
     }
 }
