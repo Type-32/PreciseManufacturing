@@ -11,6 +11,7 @@ from enum import Enum
 class RifleModuleType(Enum):
     LOWER_RECEIVER = "lower_receiver"
     UPPER_RECEIVER = "upper_receiver"
+    LONG_BODY = "long_body"
     HANDGUARD = "handguard"
     STOCK = "stock"
     MAGAZINE = "magazine"
@@ -67,9 +68,9 @@ def parse_input_modules() -> list[RifleModuleType]:
             RifleModuleType.FIRE_CONTROL_GROUP,
             RifleModuleType.GRIP,
             RifleModuleType.TRIGGER,
-            RifleModuleType.BULLPUP_BODY
+            RifleModuleType.FIRE_SELECTOR
         ]
-    elif inp.__contains__("/shotgun"):
+    elif inp.__contains__("/pump_action"):
         result = [
             RifleModuleType.RECEIVER,
             RifleModuleType.SHELL_TUBE,
@@ -80,6 +81,16 @@ def parse_input_modules() -> list[RifleModuleType]:
             RifleModuleType.TRIGGER,
             RifleModuleType.STOCK
         ]
+    elif inp.__contains("/bolt_action"):
+        result = [
+            RifleModuleType.BOLT,
+            RifleModuleType.BARREL,
+            RifleModuleType.LONG_BODY,
+            RifleModuleType.TRIGGER,
+            RifleModuleType.STOCK,
+            RifleModuleType.CARTRIDGE_WELL,
+            RifleModuleType.GRIP
+        ]
 
     return result
 
@@ -87,7 +98,7 @@ def parse_input_modules() -> list[RifleModuleType]:
 def generate_files(id: str, modules: list[RifleModuleType]):
     templates = {
         "modules": ["",
-                   """{
+                    """{
     "parent": "item/generated",
     "textures": {
         "layer0": "prma:item/weapons/guns/{id}/modules/{id}_{moduleId}"
@@ -103,7 +114,7 @@ def generate_files(id: str, modules: list[RifleModuleType]):
 }"""],
 
         "casts": ["_cast",
-                 """{
+                  """{
     "parent": "item/generated",
     "textures": {
         "layer0": "prma:item/weapons/guns/{id}/casts/{id}_{moduleId}_cast"
@@ -132,7 +143,8 @@ def generate_files(id: str, modules: list[RifleModuleType]):
                     file.write(content)
                 texture_file = f"sources/textures/guns/{file_type}/general_{module}{template[0]}.png"
                 shutil.copy2(texture_file, f"output/textures/{file_type}")
-                os.rename(f"output/textures/{file_type}/general_{module}{template[0]}.png", f"output/textures/{file_type}/{id}_{module}{template[0]}.png")
+                os.rename(f"output/textures/{file_type}/general_{module}{template[0]}.png",
+                          f"output/textures/{file_type}/{id}_{module}{template[0]}.png")
 
 
 def generate_translation_keys(item_id: str, module_types: list[RifleModuleType]):
@@ -164,7 +176,7 @@ def generate_cast_cutting_recipes(item_id: str, modules: list[RifleModuleType]):
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "minecraft:iron_ingot"
+      "item": "create:iron_sheet"
     }
   ],
   "results": [
@@ -186,6 +198,36 @@ def generate_cast_cutting_recipes(item_id: str, modules: list[RifleModuleType]):
             for file_type, template in templates.items():
                 file_name = f"output/recipes/{file_type}/{id}/{id}_{module}_cast.json"
                 content = template.replace("{id}", id).replace("{moduleId}", module.__str__())
+                with open(file_name, "w") as file:
+                    file.write(content)
+
+
+def generate_decomponentalizing_recipes(item_id: str, modules: list[RifleModuleType]):
+    templates = {
+        "decomponentalizing": """{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt":{
+      "GunId": "tacz:{id}"
+    }
+  },
+  "results": {
+    "item": "prma:{id}_{moduleId}_blueprint"
+  },
+  "processingTime": 1500
+}"""
+    }
+
+    try:
+        os.makedirs(f"output/recipes/decomponentalizing/{item_id}", exist_ok=True)
+    except:
+        print("Folder Already exists, skipping folder creation")
+    finally:
+        for module in modules:
+            for file_type, template in templates.items():
+                file_name = f"output/recipes/{file_type}/{item_id}/{item_id}_{module}_blueprint.json"
+                content = template.replace("{id}", item_id).replace("{moduleId}", module.__str__())
                 with open(file_name, "w") as file:
                     file.write(content)
 
@@ -213,14 +255,14 @@ def generate_filling_recipes(item_id: str, modules: list[RifleModuleType]):
     }
 
     try:
-        os.makedirs(f"output/recipes/filling/{id}", exist_ok=True)
+        os.makedirs(f"output/recipes/filling/{item_id}", exist_ok=True)
     except:
         print("Folder Already exists, skipping folder creation")
     finally:
         for module in modules:
             for file_type, template in templates.items():
-                file_name = f"output/recipes/filling/{id}/{id}_{module}.json"
-                content = template.replace("{id}", id).replace("{moduleId}", module.__str__())
+                file_name = f"output/recipes/filling/{item_id}/{item_id}_{module}.json"
+                content = template.replace("{id}", item_id).replace("{moduleId}", module.__str__())
                 with open(file_name, "w") as file:
                     file.write(content)
 

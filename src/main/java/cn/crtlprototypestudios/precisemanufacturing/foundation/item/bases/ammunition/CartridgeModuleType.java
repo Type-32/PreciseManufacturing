@@ -1,5 +1,8 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
 
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
+import com.simibubi.create.content.fluids.VirtualFluid;
+
 public enum CartridgeModuleType {
     CASING("casing"),
     CASING_CAST("casing_cast"),

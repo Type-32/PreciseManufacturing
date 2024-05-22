@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 public enum RifleModuleType {
     LOWER_RECEIVER("lower_receiver"),
     UPPER_RECEIVER("upper_receiver"),
+    LONG_BODY("long_body"),
     HANDGUARD("handguard"),
     STOCK("stock"),
     MAGAZINE("magazine"),
