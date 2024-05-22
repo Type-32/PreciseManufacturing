@@ -18,6 +18,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
@@ -83,7 +84,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
             pJson.addProperty("processingTime", this.processingTime);
 
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("item", this.result.getRegistryName().toString());
+            jsonObj.addProperty("item", Objects.requireNonNull(this.result.getRegistryName()).toString());
             pJson.add("result", jsonObj);
         }
 
@@ -91,7 +92,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
          * Gets the ID for the recipe.
          */
         public ResourceLocation getId() {
-            return ResourceHelper.find(this.result.getRegistryName().getPath() + "_from_decomponentalizing");
+            return ResourceHelper.find(Objects.requireNonNull(this.result.getRegistryName()).getPath() + "_from_decomponentalizing");
         }
 
         public RecipeSerializer<?> getType() {

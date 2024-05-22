@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "prma:item/cartridges/30_06/30_06_casing_cast"
-  }
-}

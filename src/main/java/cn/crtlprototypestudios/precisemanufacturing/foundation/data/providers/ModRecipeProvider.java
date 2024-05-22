@@ -3,6 +3,8 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe.DecomponentalizingRecipeBuilder;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.create_compat.ModMechanicalCraftingRecipeGen;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
@@ -27,6 +29,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         recipeBuilders.forEach(i -> i.save(pFinishedRecipeConsumer));
         createCompatRecipeBuilders.forEach(i -> i.build(pFinishedRecipeConsumer));
+
+        ModMechanicalCraftingRecipeGen.register(pFinishedRecipeConsumer);
+        ModDecomponentalizingRecipesGen.register(pFinishedRecipeConsumer);
     }
 
     public static void add(RecipeBuilder builder){

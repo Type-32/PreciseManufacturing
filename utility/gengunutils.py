@@ -215,7 +215,7 @@ def generate_decomponentalizing_recipes(item_id: str, modules: list[RifleModuleT
   "results": {
     "item": "prma:{id}_{moduleId}_blueprint"
   },
-  "processingTime": 1500
+  "processingTime": 2500
 }"""
     }
 
@@ -271,7 +271,8 @@ if __name__ == "__main__":
     id: str = input("Enter a gun Id: ")
     modules: list[RifleModuleType] = parse_input_modules()
 
-    generate_files(id, modules)
+    # generate_files(id, modules)
     # generate_translation_keys(id, modules)
     # generate_cast_cutting_recipes(id, modules)
     # generate_filling_recipes(id, modules)
+    generate_decomponentalizing_recipes(id, modules)

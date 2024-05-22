@@ -2,12 +2,12 @@
   "type": "prma:decomponentalizing",
   "ingredient": {
     "item": "tacz:modern_kinetic_gun",
-    "nbt": {
+    "nbt":{
       "GunId": "tacz:m4a1"
     }
   },
-  "processingTime": 2000,
-  "result": {
+  "results": {
     "item": "prma:m4a1_lower_receiver_blueprint"
-  }
+  },
+  "processingTime": 2500
 }

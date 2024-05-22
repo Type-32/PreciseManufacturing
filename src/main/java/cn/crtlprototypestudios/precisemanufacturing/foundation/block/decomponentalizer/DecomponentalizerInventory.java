@@ -28,7 +28,7 @@ public class DecomponentalizerInventory extends ItemStackHandler {
             case 1 -> // Ink Slot
                     stack.sameItem(new ItemStack(Items.INK_SAC));
             case 2 -> // Gun Slot
-                    stack.getItem().getRegistryName().toString().equals("tacz:gun");
+                    stack.getItem().getRegistryName().toString().equals("tacz:modern_kinetic_gun");
             case 3 -> false;
             default -> super.isItemValid(slot, stack);
         };

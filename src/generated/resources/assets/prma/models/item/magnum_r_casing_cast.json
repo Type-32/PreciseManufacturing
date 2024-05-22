@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "prma:item/cartridges/magnum_r/magnum_r_casing_cast"
-  }
-}

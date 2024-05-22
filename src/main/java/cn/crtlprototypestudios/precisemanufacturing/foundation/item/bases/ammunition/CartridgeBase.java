@@ -7,10 +7,12 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
 
 import java.util.Hashtable;
+import java.util.List;
 
 // TODO Write Documentations
 public class CartridgeBase extends AmmunitionBase {
-    public Hashtable<CartridgeModuleType, RegistryEntry<Item>> registry;
+    public Hashtable<CartridgeModuleType, RegistryEntry<Item>> registry = new Hashtable<>();
+    public Hashtable<CartridgeModuleType, RegistryEntry<Item>> blueprintsRegistry = new Hashtable<>();
 
     public final static CartridgeModuleBuilder
             STANDARD_CARTRIDGE = new CartridgeModuleBuilder(
@@ -63,7 +65,6 @@ public class CartridgeBase extends AmmunitionBase {
      */
     public CartridgeBase(String coreId, CartridgeModuleBuilder moduleBuilder) {
         super(coreId);
-        registry = new Hashtable<>();
 
         for (CartridgeModuleType type : moduleBuilder.get()) {
             registry.put(type, registerModule(coreId, type));
@@ -103,6 +104,18 @@ public class CartridgeBase extends AmmunitionBase {
     private RegistryEntry<Item> registerModule(String id, CartridgeModuleType module) {
         String name = String.format("%s_%s", id, module.toString());
         boolean isCast = module.toString().contains("cast");
+
+        // TODO Decomp recipe Impl.
+
+        // Add Blueprints to the game
+        if(!module.toString().contains("cast") && !module.toString().contains("unfinished"))
+            blueprintsRegistry.put(module,
+                    Main.REGISTRATE.item(name + "_blueprint", Item::new)
+                            .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
+                            .properties(p -> p.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
+                            .register()
+            );
+
         return Main.REGISTRATE.item(name, Item::new)
                 .model(ModItemModelProvider.genericItemModel("cartridges", id, name))
                 .properties(p -> p.tab(isCast ? ModCreativeModTabs.MOD_CASTS_TAB : ModCreativeModTabs.MOD_COMPONENTS_TAB))

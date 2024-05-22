@@ -6,7 +6,10 @@ import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeGen;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.function.Consumer;
 
 public class ModMechanicalCraftingRecipeGen {
     public static final MechanicalCraftingRecipeBuilder
@@ -24,7 +27,7 @@ public class ModMechanicalCraftingRecipeGen {
             .patternLine("PMGP")
             .patternLine("SIIS");
 
-    public static void register(){
-//        ModMechanicalCraftingRecipeGen.DECOMPONENTALIZER_BLOCK.r
+    public static void register(Consumer<FinishedRecipe> pFinishedRecipeConsumer){
+        DECOMPONENTALIZER_BLOCK.build(pFinishedRecipeConsumer);
     }
 }
