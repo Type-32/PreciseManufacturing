@@ -2,7 +2,9 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeAssemblySequence;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModuleBuilder;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleBase;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.BlockItem;
@@ -56,23 +58,87 @@ public class ModItems {
 
     // Cartrige Casts and Components
     public static final CartridgeBase
-            NINE_MIL = new CartridgeBase("9mm"),
-            FOUR_FIVE_ACP = new CartridgeBase("45acp"),
-            FIFTY_AE = new CartridgeBase("50ae"),
-            MAGNUM_R = new CartridgeBase("magnum_r"),
-            TWELVE_G = new CartridgeBase("12g", CartridgeBase.SHOTGUN_CARTRIDGE),
-            THIRTY_ZERO_SIX = new CartridgeBase("30_06"),
-            FOUR_SIX_X_THIRTY = new CartridgeBase("46x30"),
-            FIFTY_BMG = new CartridgeBase("50bmg"),
-            FIVE_EIGHT_X_FOUR_TWO = new CartridgeBase("58x42"),
-            SIX_EIGHT_X_FIVE_ONE_FURY = new CartridgeBase("68x51fury"),
-            RPG_ROCKET = new CartridgeBase("rpg_rocket"),
-            THREE_ZERO_EIGHT = new CartridgeBase("308"),
-            THREE_THREE_EIGHT = new CartridgeBase("338"),
-            FIVE_FIVE_SIX_X_FOUR_FIVE = new CartridgeBase("556x45"),
-            SEVEN_SIX_TWO_X_TWO_FIVE = new CartridgeBase("762x25"),
-            SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39"),
-            SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54");
+            NINE_MIL = new CartridgeBase("9mm", CartridgeBase.STANDARD_CARTRIDGE)
+                    .setModuleData(0, d -> d.setFillingAmount(50))
+                    .setModuleData(1, d -> d.setFillingAmount(25)),
+
+            FOUR_FIVE_ACP = new CartridgeBase("45acp", CartridgeBase.STANDARD_CARTRIDGE)
+                    .setModuleData(0, d -> d.setFillingAmount(50))
+                    .setModuleData(1, d -> d.setFillingAmount(30)),
+
+            FIFTY_AE = new CartridgeBase("50ae", CartridgeBase.STANDARD_CARTRIDGE
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
+                    .setModuleData(0, d -> d.setFillingAmount(80))
+                    .setModuleData(1, d -> d.setFillingAmount(40)),
+
+            MAGNUM_R = new CartridgeBase("magnum_r", CartridgeBase.STANDARD_CARTRIDGE
+                    .insertAssemblySequence(0, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(75)),
+
+            TWELVE_G = new CartridgeBase("12g", CartridgeBase.SHOTGUN_CARTRIDGE)
+                    .setModuleData(0, d -> d.setFillingAmount(75))
+                    .setModuleData(1, d -> d.setFillingAmount(40)),
+
+            THIRTY_ZERO_SIX = new CartridgeBase("30_06", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
+                    .setModuleData(0, d -> d.setFillingAmount(100)),
+
+            FOUR_SIX_X_THIRTY = new CartridgeBase("46x30", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(75)),
+
+            FIFTY_BMG = new CartridgeBase("50bmg", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(120).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)),
+
+            FIVE_EIGHT_X_FOUR_TWO = new CartridgeBase("58x42", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)),
+
+            SIX_EIGHT_X_FIVE_ONE_FURY = new CartridgeBase("68x51fury", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(90).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)),
+
+            RPG_ROCKET = new CartridgeBase("rpg_rocket", CartridgeBase.ROCKET_CARTRIDGE),
+
+            THREE_ZERO_EIGHT = new CartridgeBase("308", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
+                    .setModuleData(0, d -> d.setFillingAmount(100)),
+
+            THREE_THREE_EIGHT = new CartridgeBase("338", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
+                    .setModuleData(0, d -> d.setFillingAmount(100)),
+
+            FIVE_FIVE_SIX_X_FOUR_FIVE = new CartridgeBase("556x45", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(90)),
+
+            SEVEN_SIX_TWO_X_TWO_FIVE = new CartridgeBase("762x25", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(100)),
+
+            SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)),
+
+            SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54", CartridgeBase.STANDARD_CARTRIDGE
+                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
+                    .setModuleData(0, d -> d.setFillingAmount(100));
 
     // Weapons
     // Guns

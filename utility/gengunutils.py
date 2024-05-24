@@ -226,7 +226,7 @@ def generate_decomponentalizing_recipes(item_id: str, modules: list[RifleModuleT
     finally:
         for module in modules:
             for file_type, template in templates.items():
-                file_name = f"output/recipes/{file_type}/{item_id}/{item_id}_{module}_blueprint.json"
+                file_name = f"output/recipes/{file_type}/{item_id}/{item_id}_{module}_blueprint_decomp.json"
                 content = template.replace("{id}", item_id).replace("{moduleId}", module.__str__())
                 with open(file_name, "w") as file:
                     file.write(content)

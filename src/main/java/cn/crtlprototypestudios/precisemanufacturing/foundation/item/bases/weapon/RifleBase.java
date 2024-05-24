@@ -7,6 +7,8 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModule;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllRecipeTypes;
@@ -31,11 +33,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.function.Consumer;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.inventoryTrigger;
 
-// TODO Write Documentations
 public class RifleBase extends WeaponBase {
     public static final RifleModuleBuilder
         STANDARD_RIFLE_MODULES = new RifleModuleBuilder(
@@ -55,7 +59,6 @@ public class RifleBase extends WeaponBase {
                 RifleModule.BULLPUP_BODY_MODULE,
                 RifleModule.MAGAZINE_MODULE,
                 RifleModule.FIRE_CONTROL_GROUP_MODULE,
-                RifleModule.GRIP_MODULE,
                 RifleModule.TRIGGER_MODULE,
                 RifleModule.FIRE_SELECTOR_MODULE
 
@@ -99,6 +102,8 @@ public class RifleBase extends WeaponBase {
         for (RifleModule i : moduleBuilder.get()) {
             registry.put(i, registerModule(coreId, i, properties));
         }
+
+        ModRecipeProvider.addRifleBase(this);
     }
 
     /**
@@ -149,7 +154,7 @@ public class RifleBase extends WeaponBase {
      *     <li><code>prma:item/casts/weapons/guns/m4a1/m4a1_lower_receiver_cast</code></li>
      * </ul>
      */
-    private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties, boolean registerBlueprint, boolean registerCast) {
+    private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties) {
         String name = String.format("%s_%s", id, module.getType().toString());
 
         // Register the module
@@ -169,15 +174,8 @@ public class RifleBase extends WeaponBase {
                 .register();
 
         // Register the unfinished module
-        // dule variant, and make it invisible in the creative tab
+        // module variant, and make it invisible in the creative tab
         blueprintsRegistry.put(module, blueprintModule);
-        ModRecipeProvider.add(ShapelessRecipeBuilder
-                .shapeless(blueprintModule.get(), 2)
-                .requires(Items.PAPER)
-                .requires(Items.INK_SAC)
-                .requires(Items.WHITE_DYE)
-                .requires(blueprintModule.get())
-                .group("prma:blueprint_regen"));
 
 //            Do not delete these comments, these will be implemented later
 //            For now, the gun module decomp recipes will be data-driven instead of code-driven
@@ -193,34 +191,50 @@ public class RifleBase extends WeaponBase {
 //            ModDecomponentalizingRecipesGen.add(, mainModule.get(), module.getData().getDecompTime());
 
         // Register the module's cast
-        castsRegistry.put(module, blueprintModule);
+        castsRegistry.put(module, castModule);
+        return mainModule;
+    }
 
-        if(registerBlueprint && registerCast) {
+    public void registerRecipes(){
+        for(RifleModule m : givenModuleBuilder.get()){
+            RegistryEntry<Item> mainModule = registry.get(m);
+            RegistryEntry<Item> castModule = castsRegistry.get(m);
+            RegistryEntry<Item> blueprintModule = blueprintsRegistry.get(m);
+            String name = String.format("%s_%s", getCoreId(), m.getType().toString());
 
-//            TODO Delayed Recipe Provider Register Impl.
             ModRecipeProvider.add(ShapedRecipeBuilder
-                    .shaped(castsRegistry.get(module).get())
-                    .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintsRegistry.get(module).get()).build()))
+                    .shaped(castModule.get())
+                    .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
                     .pattern("PIP")
                     .pattern("IBI")
                     .pattern("PIP")
                     .define('P', AllItems.IRON_SHEET.get())
                     .define('I', Items.IRON_INGOT)
-                    .define('B', blueprintsRegistry.get(module).get()));
-            ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("filling/weapons/guns/%s/%s", id, name + "_castmaking")))
-                    .output(castsRegistry.get(module).get())
+                    .define('B', blueprintModule.get()));
+            ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("weapons/guns/%s/%s", getCoreId(), name + "_castmaking")))
+                    .output(castModule.get())
                     .require(mainModule.get())
-                    .require(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 500));
+                    .require(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), m.getData().getCastFillingAmount()));
+            ModRecipeProvider.add(ShapelessRecipeBuilder
+                    .shapeless(blueprintModule.get(), 2)
+                    .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
+                    .requires(Items.PAPER)
+                    .requires(Items.INK_SAC)
+                    .requires(Items.WHITE_DYE)
+                    .requires(blueprintModule.get())
+                    .group("prma:blueprint_regen"));
+        }
+    }
+
+    public RifleBase setModuleData(int index, Consumer<RifleModule.Data> dataConsumer) {
+        List<RifleModule> modules = new ArrayList<>(registry.keySet());
+        RifleModule module = modules.get(index);
+
+        if (module != null) {
+            RifleModule updatedModule = module.setData(dataConsumer);
+            registry.put(updatedModule, registry.get(module));
         }
 
-
-        return mainModule;
+        return this;
     }
-
-    private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties) {
-
-        return registerModule(id, module, properties, true, true);
-    }
-
-
 }

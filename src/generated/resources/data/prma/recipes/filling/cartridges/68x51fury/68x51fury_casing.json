@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:68x51fury_casing_cast"
+    },
+    {
+      "fluid": "prma:molten_brass",
+      "nbt": {},
+      "amount": 100
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:68x51fury_casing"
+    }
+  ]
+}

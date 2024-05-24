@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:m4a1_upper_receiver"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 580
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:m4a1_upper_receiver_cast"
+    }
+  ]
+}

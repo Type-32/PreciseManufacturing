@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "prma:blueprint_regen",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:ink_sac"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "prma:m4a1_barrel_blueprint"
+    }
+  ],
+  "result": {
+    "item": "prma:m4a1_barrel_blueprint",
+    "count": 2
+  }
+}

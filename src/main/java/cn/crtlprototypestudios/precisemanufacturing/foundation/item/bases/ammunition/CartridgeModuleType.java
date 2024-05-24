@@ -5,11 +5,8 @@ import com.simibubi.create.content.fluids.VirtualFluid;
 
 public enum CartridgeModuleType {
     CASING("casing"),
-    CASING_CAST("casing_cast"),
     HEAD("head"),
-    HEAD_CAST("head_cast"),
     PELLET("pellet"),
-    PELLET_CAST("pellet_cast"),
     UNFINISHED("unfinished");
 
     private final String moduleId;

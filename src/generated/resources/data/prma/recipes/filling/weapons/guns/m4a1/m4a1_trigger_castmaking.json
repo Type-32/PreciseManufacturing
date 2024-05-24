@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:m4a1_trigger"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 120
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:m4a1_trigger_cast"
+    }
+  ]
+}

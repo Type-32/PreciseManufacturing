@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/cartridges/556x45/556x45_unfinished"
+  }
+}

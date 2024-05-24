@@ -1,27 +1,21 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
 
-public class RifleModule {
-    private RifleModuleType type;
-    private Data data;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ModuleBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModule;
+
+import java.util.function.Consumer;
+
+public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
+
     public RifleModule(RifleModuleType type, Data data){
-        this.type = type;
-        this.data = data;
+        super(type, data);
     }
 
-    public RifleModuleType getType() {
-        return type;
-    }
-
-    public RifleModule setType(RifleModuleType type) {
-        return new RifleModule(type, data);
-    }
-
-    public Data getData() {
-        return data;
-    }
-
-    public RifleModule setData(Data data) {
-        return new RifleModule(type, data);
+    @Override
+    public RifleModule setData(Consumer<RifleModule.Data> dataConsumer) {
+        Data newData = getData();
+        dataConsumer.accept(newData);
+        return new RifleModule(getType(), newData);
     }
 
     public static class Data {
