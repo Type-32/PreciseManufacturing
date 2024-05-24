@@ -2,6 +2,9 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe.DecomponentalizingRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
@@ -16,8 +19,15 @@ public class ModDecomponentalizingRecipesGen {
         return builder;
     }
 
-    public static DecomponentalizingRecipeBuilder add(ItemLike ingredient, ItemLike result, int processingTime){
-        DecomponentalizingRecipeBuilder builder = new DecomponentalizingRecipeBuilder(ingredient, result, processingTime);
+    public static DecomponentalizingRecipeBuilder add(TagKey<Item> tag, ItemLike result, int processingTime){
+//        ItemStack stack = new ItemStack();
+        DecomponentalizingRecipeBuilder builder = new DecomponentalizingRecipeBuilder(tag, result, processingTime);
+        decomponentalizingRecipeBuilders.add(builder);
+        return builder;
+    }
+
+    public static DecomponentalizingRecipeBuilder add(ItemStack itemStack, ItemLike result, int processingTime){
+        DecomponentalizingRecipeBuilder builder = new DecomponentalizingRecipeBuilder(itemStack, result, processingTime);
         decomponentalizingRecipeBuilders.add(builder);
         return builder;
     }

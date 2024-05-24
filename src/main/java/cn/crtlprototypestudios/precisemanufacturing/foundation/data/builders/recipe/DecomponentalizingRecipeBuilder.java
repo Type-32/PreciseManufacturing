@@ -12,10 +12,13 @@ import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.common.crafting.NBTIngredient;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -27,8 +30,14 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
     private final int processingTime;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public DecomponentalizingRecipeBuilder(ItemLike ingredient, ItemLike result, int processingTime) {
-        this.ingredient = Ingredient.of(ingredient);
+    public DecomponentalizingRecipeBuilder(ItemStack ingredient, ItemLike result, int processingTime) {
+        this.ingredient = NBTIngredient.of(ingredient);
+        this.result = result.asItem();
+        this.processingTime = processingTime;
+    }
+
+    public DecomponentalizingRecipeBuilder(TagKey<Item> tag, ItemLike result, int processingTime) {
+        this.ingredient = Ingredient.of(tag);
         this.result = result.asItem();
         this.processingTime = processingTime;
     }
@@ -58,7 +67,12 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
 
         pFinishedRecipeConsumer.accept(new DecomponentalizingRecipeBuilder.Result(pRecipeId, this.ingredient, this.result, this.processingTime,
                 this.advancement, new ResourceLocation(pRecipeId.getNamespace(), "recipes/" +
-                this.result.getItemCategory().getRecipeFolderName() + "/" + pRecipeId.getPath())));
+                "decomponentalizing" + "/" + pRecipeId.getPath())));
+    }
+
+    @Override
+    public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        this.save(pFinishedRecipeConsumer, ResourceHelper.find("decomponentalizing"));
     }
 
     public static class Result implements FinishedRecipe {

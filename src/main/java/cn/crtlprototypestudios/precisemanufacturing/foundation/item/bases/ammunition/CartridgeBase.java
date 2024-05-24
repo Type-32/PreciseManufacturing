@@ -213,6 +213,7 @@ public class CartridgeBase extends AmmunitionBase {
         CompoundTag itemTag = new CompoundTag();
         itemTag.putString("AmmoId", getCoreId());
         ammoItem.setTag(itemTag);
+        // TODO Add proper impl. here after TacZ Lib is published or sth
 
         ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ammoItem, 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
     }
@@ -220,7 +221,7 @@ public class CartridgeBase extends AmmunitionBase {
     @Nullable
     private CartridgeModule getModuleByType(CartridgeModuleType type){
         for(CartridgeModule m : givenModuleBuilder.get()){
-            if(m.getType().equals(type))
+            if(m.getType() == type)
                 return m;
         }
         return null;

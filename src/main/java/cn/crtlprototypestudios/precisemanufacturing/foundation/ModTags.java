@@ -34,6 +34,10 @@ public class ModTags {
         return forgeTag(ForgeRegistries.FLUIDS, path);
     }
 
+    public static final TagKey<Item>
+            TACZ_GUN_TAG = forgeItemTag("tacz_gun_compat"),
+            TACZ_AMMO_TAG = forgeItemTag("tacz_ammo_compat"); // TODO Add proper impl. after TacZ official dev lib comes out
+
     public static void register(){
         // Do not delete; for loading the class
     }

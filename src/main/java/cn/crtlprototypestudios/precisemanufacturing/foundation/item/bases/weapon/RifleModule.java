@@ -1,7 +1,10 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
 
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ModuleBase;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModule;
+import com.simibubi.create.content.fluids.VirtualFluid;
+import com.tterrag.registrate.util.entry.FluidEntry;
 
 import java.util.function.Consumer;
 
@@ -20,10 +23,19 @@ public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
 
     public static class Data {
         private int decompTime, castFillingAmount, castCuttingTime;
+        private FluidEntry<? extends VirtualFluid> fillCastFluid;
+        public Data(int decompTime, int castFillingAmount, int castCuttingTime, FluidEntry<? extends VirtualFluid> fillCastFluid){
+            this.decompTime = decompTime;
+            this.castFillingAmount = castFillingAmount;
+            this.castCuttingTime = castCuttingTime;
+            this.fillCastFluid = fillCastFluid;
+        }
+
         public Data(int decompTime, int castFillingAmount, int castCuttingTime){
             this.decompTime = decompTime;
             this.castFillingAmount = castFillingAmount;
             this.castCuttingTime = castCuttingTime;
+            this.fillCastFluid = ModFluids.MOLTEN_BASALT_INFUSED_IRON;
         }
 
         public int getDecompTime() {
@@ -31,7 +43,7 @@ public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
         }
 
         public Data setDecompTime(int decompTime) {
-            return new Data(decompTime, castFillingAmount, castCuttingTime);
+            return new Data(decompTime, castFillingAmount, castCuttingTime, fillCastFluid);
         }
 
         public int getCastFillingAmount() {
@@ -39,7 +51,7 @@ public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
         }
 
         public Data setCastFillingAmount(int castFillingAmount) {
-            return new Data(decompTime, castFillingAmount, castCuttingTime);
+            return new Data(decompTime, castFillingAmount, castCuttingTime, fillCastFluid);
         }
 
         public int getCastCuttingTime() {
@@ -47,7 +59,15 @@ public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
         }
 
         public Data setCastCuttingTime(int castCuttingTime) {
-            return new Data(decompTime, castFillingAmount, castCuttingTime);
+            return new Data(decompTime, castFillingAmount, castCuttingTime, fillCastFluid);
+        }
+
+        public FluidEntry<? extends VirtualFluid> getFillCastFluid() {
+            return fillCastFluid;
+        }
+
+        public Data setFillCastFluid(FluidEntry<? extends VirtualFluid> fillCastFluid) {
+            return new Data(decompTime, castFillingAmount, castCuttingTime, fillCastFluid);
         }
     }
 

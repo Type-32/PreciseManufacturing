@@ -112,7 +112,7 @@ dependencies {
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-//    implementation files(new String("libs/tacz-1.0.0-hotfix6-1.18.2.jar"))
+//    implementation files(new String("libs/${tacz_dependency}.jar"))
 
     // [MC<minecraft_version>,MC<next_minecraft_version>)
     jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.18.2,MC1.19)")

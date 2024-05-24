@@ -3,12 +3,14 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModule;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModuleType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllRecipeTypes;
@@ -33,6 +35,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -177,25 +180,18 @@ public class RifleBase extends WeaponBase {
         // module variant, and make it invisible in the creative tab
         blueprintsRegistry.put(module, blueprintModule);
 
-//            Do not delete these comments, these will be implemented later
-//            For now, the gun module decomp recipes will be data-driven instead of code-driven
-
-//            CompoundTag gunNbt = new CompoundTag();
-//            gunNbt.putString("GunId", id);
-//            CompoundTag itemNbt = new CompoundTag();
-//            itemNbt.putString("item", "tacz:modern_kinetic_gun");
-//            itemNbt.put("nbt", gunNbt);
-//
-//            ItemStack gunItem = new ItemStack(new Holder<Item>());
-//            gunItem.setTag(itemNbt);
-//            ModDecomponentalizingRecipesGen.add(, mainModule.get(), module.getData().getDecompTime());
-
         // Register the module's cast
         castsRegistry.put(module, castModule);
+
         return mainModule;
     }
 
     public void registerRecipes(){
+        ItemStack gunItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","modern_kinetic_gun"));
+        CompoundTag itemTag = new CompoundTag();
+        itemTag.putString("GunId", getCoreId());
+        gunItem.setTag(itemTag);
+
         for(RifleModule m : givenModuleBuilder.get()){
             RegistryEntry<Item> mainModule = registry.get(m);
             RegistryEntry<Item> castModule = castsRegistry.get(m);
@@ -214,7 +210,11 @@ public class RifleBase extends WeaponBase {
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("weapons/guns/%s/%s", getCoreId(), name + "_castmaking")))
                     .output(castModule.get())
                     .require(mainModule.get())
-                    .require(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), m.getData().getCastFillingAmount()));
+                    .require(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 1000));
+            ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("weapons/guns/%s/%s", getCoreId(), name)))
+                    .output(mainModule.get())
+                    .require(castModule.get())
+                    .require(m.getData().getFillCastFluid().get(), m.getData().getCastFillingAmount()));
             ModRecipeProvider.add(ShapelessRecipeBuilder
                     .shapeless(blueprintModule.get(), 2)
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
@@ -223,7 +223,20 @@ public class RifleBase extends WeaponBase {
                     .requires(Items.WHITE_DYE)
                     .requires(blueprintModule.get())
                     .group("prma:blueprint_regen"));
+
+//            ItemStack gunItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","modern_kinetic_gun"));
+
+            ModDecomponentalizingRecipesGen.add(gunItem, blueprintModule.get(), m.getData().getDecompTime());
         }
+    }
+
+    @Nullable
+    private RifleModule getModuleByType(RifleModuleType type){
+        for(RifleModule m : givenModuleBuilder.get()){
+            if(m.getType() == type)
+                return m;
+        }
+        return null;
     }
 
     public RifleBase setModuleData(int index, Consumer<RifleModule.Data> dataConsumer) {

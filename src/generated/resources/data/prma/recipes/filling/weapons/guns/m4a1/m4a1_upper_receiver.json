@@ -2,17 +2,17 @@
   "type": "create:filling",
   "ingredients": [
     {
-      "item": "prma:m4a1_handguard"
+      "item": "prma:m4a1_upper_receiver_cast"
     },
     {
       "fluid": "prma:molten_basalt_infused_iron",
       "nbt": {},
-      "amount": 1000
+      "amount": 580
     }
   ],
   "results": [
     {
-      "item": "prma:m4a1_handguard_cast"
+      "item": "prma:m4a1_upper_receiver"
     }
   ]
 }
