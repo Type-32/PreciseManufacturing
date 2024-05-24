@@ -162,6 +162,7 @@ def generate_files(ids: list[str]):
   "loops": 1
 }"""
     }
+
     for cartridgeId in ids:
         for file_type, template in templates.items():
             file_name = f"output/{cartridgeId}{file_type}.json"
@@ -170,6 +171,45 @@ def generate_files(ids: list[str]):
                 file.write(content)
 
 
+def generate_decomponentalizing_recipes(ids: list[str]):
+    templates = {
+        "head": """{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:ammo",
+    "nbt":{
+      "GunId": "tacz:{id}"
+    }
+  },
+  "results": {
+    "item": "prma:{id}_{moduleId}_blueprint"
+  },
+  "processingTime": 1500
+}""",
+        "casing": """{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:ammo",
+    "nbt":{
+      "GunId": "tacz:{id}"
+    }
+  },
+  "results": {
+    "item": "prma:{id}_{moduleId}_blueprint"
+  },
+  "processingTime": 2300
+}"""
+    }
+    os.makedirs("output/decomponentalizing/cartridges", exist_ok=True)
+    for id in ids:
+        for file_type, template in templates.items():
+            file_name = f"output/decomponentalizing/cartridges/{id}_{file_type}_blueprint.json"
+            content = template.replace("{id}", id).replace("{moduleId}", file_type)
+            with open(file_name, "w") as file:
+                file.write(content)
+
+
 if __name__ == "__main__":
     ids = input("Enter a list of IDs separated by spaces: ").split()
-    generate_files(ids)
+    # generate_files(ids)
+    generate_decomponentalizing_recipes(ids)

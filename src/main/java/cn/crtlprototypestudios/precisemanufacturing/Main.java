@@ -1,14 +1,14 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.tag.ModTags;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.ModFluids;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.*;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerScreen;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.logging.LogUtils;
-import com.tterrag.registrate.Registrate;
-import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -35,6 +36,16 @@ public class Main {
 
     public Main() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModBlocks.register();
+        ModBlockEntities.register(eventBus);
+        ModContainers.register(eventBus);
+        ModCreativeModTabs.register();
+        ModItems.register();
+        ModFluids.register();
+        ModTags.register();
+        ModRecipes.register(eventBus);
+
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -44,16 +55,13 @@ public class Main {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-        ModCreativeModTabs.register();
-        ModItems.register();
-        ModFluids.register();
-        ModTags.register();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         // Some preinit code
         LOGGER.info("HELLO FROM PREINIT");
+        MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new);
+        event.enqueueWork(PacketHandler::register);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -66,6 +74,10 @@ public class Main {
         LOGGER.info("Got IMC {}", event.getIMCStream().
                 map(m->m.messageSupplier().get()).
                 collect(Collectors.toList()));
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

@@ -1,39 +1,84 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.simibubi.create.content.fluids.transfer.FillingRecipe;
+import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
+import com.simibubi.create.foundation.data.recipe.SequencedAssemblyRecipeGen;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.function.Consumer;
 
-// TODO Write Documentations
 public class CartridgeBase extends AmmunitionBase {
-    public Hashtable<CartridgeModuleType, RegistryEntry<Item>> registry;
+    public Hashtable<CartridgeModule, RegistryEntry<Item>> registry = new Hashtable<>();
+    public Hashtable<CartridgeModule, RegistryEntry<Item>> blueprintsRegistry = new Hashtable<>();
+    public Hashtable<CartridgeModule, RegistryEntry<Item>> castsRegistry = new Hashtable<>();
+    public CartridgeModuleBuilder givenModuleBuilder;
 
+    // To future me: Do not delete, nor add the UNFINISHED module. Cartridge Autonomous Registrations
+    // works differently than Rifle Registrations. Rifle Modules has unfinished item variants for each module,
+    // while Cartridge Modules doesn't and only requires one unfinished item variant to represent the whole
+    // cartridge item during assembly sequences.
     public final static CartridgeModuleBuilder
             STANDARD_CARTRIDGE = new CartridgeModuleBuilder(
-                    CartridgeModuleType.CASING,
-                    CartridgeModuleType.CASING_CAST,
-                    CartridgeModuleType.HEAD,
-                    CartridgeModuleType.HEAD_CAST,
-                    CartridgeModuleType.UNFINISHED
-                    // To future me: Do not delete the UNFINISHED type. Cartridge Autonomous Registrations
-                    // works differently than Rifle Registrations. Rifle Modules has unfinished item variants for each module,
-                    // while Cartridge Modules doesn't and only requires one unfinished item variant to represent the whole
-                    // cartridge item during assembly sequences.
+                    new CartridgeModule[]{
+                            CartridgeModule.CASING_MODULE,
+                            CartridgeModule.HEAD_MODULE
+                    },
+                    new CartridgeAssemblySequence[]{
+                            CartridgeAssemblySequence.NUGGET,
+                            CartridgeAssemblySequence.GUNPOWDER,
+                            CartridgeAssemblySequence.HEAD,
+                            CartridgeAssemblySequence.PRESSING
+                    }
             ),
             SHOTGUN_CARTRIDGE = new CartridgeModuleBuilder(
-                    CartridgeModuleType.CASING,
-                    CartridgeModuleType.CASING_CAST,
-                    CartridgeModuleType.PELLET,
-                    CartridgeModuleType.PELLET_CAST,
-                    CartridgeModuleType.UNFINISHED
-                    // To future me: Do not delete the UNFINISHED type. Cartridge Autonomous Registrations
-                    // works differently than Rifle Registrations. Rifle Modules has unfinished item variants for each
-                    // module, while Cartridge Modules doesn't and only requires one unfinished item variant to
-                    // represent the whole cartridge item during assembly sequences.
+                    new CartridgeModule[]{
+                            CartridgeModule.CASING_MODULE,
+                            CartridgeModule.PELLET_MODULE
+                    },
+                    new CartridgeAssemblySequence[]{
+                            CartridgeAssemblySequence.NUGGET,
+                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
+                            CartridgeAssemblySequence.GUNPOWDER,
+                            CartridgeAssemblySequence.SHOTGUN_PELLETS,
+                            CartridgeAssemblySequence.PRESSING
+                    }
+            ),
+            ROCKET_CARTRIDGE = new CartridgeModuleBuilder(
+                    new CartridgeModule[]{
+                            CartridgeModule.CASING_MODULE.setData(d -> d
+                                    .setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)
+                                    .setFillingAmount(150)),
+                            CartridgeModule.HEAD_MODULE.setData(d -> d
+                                    .setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)
+                                    .setFillingAmount(100))
+                    },
+                    new CartridgeAssemblySequence[]{
+                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
+                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
+                            CartridgeAssemblySequence.PRESSING,
+                            CartridgeAssemblySequence.HEAD,
+                            CartridgeAssemblySequence.GUNPOWDER,
+                            CartridgeAssemblySequence.GUNPOWDER,
+                            CartridgeAssemblySequence.PRESSING
+                    }
             );
 
 
@@ -63,15 +108,20 @@ public class CartridgeBase extends AmmunitionBase {
      */
     public CartridgeBase(String coreId, CartridgeModuleBuilder moduleBuilder) {
         super(coreId);
-        registry = new Hashtable<>();
+        givenModuleBuilder = moduleBuilder;
 
-        for (CartridgeModuleType type : moduleBuilder.get()) {
+        for (CartridgeModule type : moduleBuilder.get()) {
             registry.put(type, registerModule(coreId, type));
         }
-    }
 
-    public CartridgeBase(String coreId, CartridgeModuleType... modules){
-        this(coreId, new CartridgeModuleBuilder(modules));
+        registry.put(CartridgeModule.UNFINISHED_MODULE,
+                Main.REGISTRATE.item(coreId + "_unfinished", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_unfinished"))
+                        .properties(p -> p.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                        .register()
+        );
+
+        ModRecipeProvider.addCartridgeBase(this);
     }
 
     /**
@@ -100,9 +150,91 @@ public class CartridgeBase extends AmmunitionBase {
      *     <li><code>prma:item/cartridges/9mm/9mm_casing_cast</code></li>
      * </ul>
      */
-    private RegistryEntry<Item> registerModule(String id, CartridgeModuleType module) {
+    private RegistryEntry<Item> registerModule(String id, CartridgeModule module) {
         String name = String.format("%s_%s", id, module.toString());
-        boolean isCast = module.toString().contains("cast");
-        return Main.REGISTRATE.item(name, Item::new).model((c, p) -> p.getExistingFile(p.modLoc(String.format("item/cartridges/%s/%s", id, name)))).properties(p -> p.tab(isCast ? ModCreativeModTabs.MOD_CASTS_TAB : ModCreativeModTabs.MOD_COMPONENTS_TAB)).register();
+
+        blueprintsRegistry.put(module,
+                Main.REGISTRATE.item(name + "_blueprint", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
+                        .properties(p -> p.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
+                        .register()
+        );
+
+        castsRegistry.put(module,
+                Main.REGISTRATE.item(name + "_cast", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_cast", module)))
+                        .properties(p -> p.tab(ModCreativeModTabs.MOD_CASTS_TAB))
+                        .register()
+        );
+
+        return Main.REGISTRATE.item(name, Item::new)
+                .model(ModItemModelProvider.genericItemModel("cartridges", id, name))
+                .properties(p -> p.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                .register();
+    }
+
+    public void registerRecipes(){
+        for(CartridgeModule m : givenModuleBuilder.get()){
+            String name = String.format("%s_%s", getCoreId(), m.toString());
+
+            RegistryEntry<Item>
+                    castModule = castsRegistry.get(m),
+                    mainModule = registry.get(m),
+                    blueprintModule = blueprintsRegistry.get(m);
+
+            ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
+                    .require(castModule.get())
+                    .require(m.getData().getFillingFluid().get(), m.getData().getFillingAmount())
+                    .output(mainModule.get()));
+        }
+
+        RegistryEntry<Item> unfinishedModule = registry.get(CartridgeModule.UNFINISHED_MODULE);
+        SequencedAssemblyRecipeBuilder builder = new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("cartridges/%s", getCoreId())))
+                .require(registry.get(getModuleByType(CartridgeModuleType.CASING)).get())
+                .transitionTo(unfinishedModule.get())
+                .loops(1);
+
+        for(CartridgeAssemblySequence seq : givenModuleBuilder.getAssemblySequence()){
+            if(seq == CartridgeAssemblySequence.NUGGET)
+                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(Items.IRON_NUGGET));
+            else if(seq == CartridgeAssemblySequence.HEAD)
+                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.HEAD)).get()));
+            else if(seq == CartridgeAssemblySequence.PRESSING)
+                builder.addStep(PressingRecipe::new, b -> b);
+            else if(seq == CartridgeAssemblySequence.GUNPOWDER)
+                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(Items.GUNPOWDER));
+            else if(seq == CartridgeAssemblySequence.GUNPOWDER_PELLET)
+                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(ModItems.GUNPOWDER_PELLETS.get()));
+            else if(seq == CartridgeAssemblySequence.SHOTGUN_PELLETS)
+                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.PELLET)).get()));
+        }
+
+        ItemStack ammoItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","ammo"));
+        CompoundTag itemTag = new CompoundTag();
+        itemTag.putString("AmmoId", getCoreId());
+        ammoItem.setTag(itemTag);
+
+        ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ammoItem, 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
+    }
+
+    @Nullable
+    private CartridgeModule getModuleByType(CartridgeModuleType type){
+        for(CartridgeModule m : givenModuleBuilder.get()){
+            if(m.getType().equals(type))
+                return m;
+        }
+        return null;
+    }
+
+    public CartridgeBase setModuleData(int index, Consumer<CartridgeModule.Data> dataConsumer) {
+        List<CartridgeModule> modules = new ArrayList<>(registry.keySet());
+        CartridgeModule module = modules.get(index);
+
+        if (module != null) {
+            CartridgeModule updatedModule = module.setData(dataConsumer);
+            registry.put(updatedModule, registry.get(module));
+        }
+
+        return this;
     }
 }

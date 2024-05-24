@@ -2,6 +2,7 @@
   "itemGroup.prma_tab": "Precise Manufacturing",
   "itemGroup.prma_casts_tab": "Precise Manufacturing Casts",
   "itemGroup.prma_components_tab": "Precise Manufacturing Components",
+  "itemGroup.prma_blueprints_tab": "Precise Manufacturing Blueprints",
 
 
   "item.prma.raw_copper_powder": "Raw Crushed Copper Powder",
@@ -163,6 +164,13 @@
   "fluid.prma.molten_brass": "Molten Brass",
   "fluid.prma.molten_basalt_infused_iron": "Basalt-Infused Molten Iron",
 
-  "advancement.prma.ammo_assembly_line": "Your local friendly supply of Ammunition",
-  "advancement.prma.ammo_assembly_line.desc": "Make your first cartridge ammo assembly line"
+  "block.prma.container.decomponentalizer": "Decomponentalizer",
+  "block.prma.decomponentalizer": "Decomponentalizer",
+
+  "gui.prma.decomponentalizer.analyze": "Analyze",
+  "gui.prma.decomponentalizer.idle": "> Insert Item...",
+  "gui.prma.decomponentalizer.processing": "> Processing... %s%s",
+  "gui.prma.decomponentalizer.time_estimate": "> Process Time: %ss",
+
+  "recipe_category.prma.decomponentalizing": "Decomponentalizing"
 }

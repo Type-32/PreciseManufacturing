@@ -1,8 +1,6 @@
-
-        {
-            "parent": "item/generated",
-            "textures": {
-                "layer0": "prma:item/cartridges/head/50bmg"
-            }
-        }
-        
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/cartridges/50bmg/50bmg_head"
+  }
+}

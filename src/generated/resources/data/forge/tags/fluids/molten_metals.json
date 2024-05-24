@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "prma:flowing_molten_copper",
+    "prma:molten_copper",
+    "prma:flowing_molten_brass",
+    "prma:molten_brass",
+    "prma:flowing_molten_basalt_infused_iron",
+    "prma:molten_basalt_infused_iron"
+  ]
+}

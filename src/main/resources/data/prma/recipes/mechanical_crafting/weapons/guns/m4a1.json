@@ -2,7 +2,7 @@
   "type": "create:mechanical_crafting",
   "pattern": [
     "SLUHB",
-    " GM"
+    " GM  "
   ],
   "key": {
     "L": {
@@ -28,7 +28,7 @@
     }
   },
   "result": {
-    "item": "tacz:gun",
+    "item": "tacz:modern_kinetic_gun",
     "nbt": {
       "GunId": "tacz:m4a1"
     }

@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "prma:item/cartridges/unprimed/45acp"
-	}
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/cartridges/45acp/45acp_unfinished"
+  }
 }

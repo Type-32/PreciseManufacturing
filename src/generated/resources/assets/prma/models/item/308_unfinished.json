@@ -1,8 +1,6 @@
-
-        {
-            "parent": "item/generated",
-            "textures": {
-                "layer0": "prma:item/cartridges/unprimed/308"
-            }
-        }
-        
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/cartridges/308/308_unfinished"
+  }
+}

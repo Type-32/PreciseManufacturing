@@ -33,15 +33,15 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 
 ## Features
 - [X] Automatable recipes for Timeless and Classics: Zero's Ammunition (Finished)
-- [ ] Automatable recipes for Timeless and Classics: Zero's Weapons
+- [ ] Automatable recipes for Timeless and Classics: Zero's Weapons (Under Development)
 
 ## Versions
 
 The currently supported versions are:
 
-| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency              |
-|----------|----------------------------|---------------------------|-------------------------|
-| 1.18.2   | N/A. TBD                   | 0.1.0 -> 0.1.1 Alpha      | tacz-1.0.0-beta-hotifx4 |
+| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency         |
+|----------|----------------------------|---------------------------|--------------------|
+| 1.18.2   | N/A. TBD                   | 0.1.0 -> 0.1.1-alpha      | tacz-1.0.0-hotifx6 |
 
 ## Translations
 
@@ -76,12 +76,12 @@ The currently supported langauge translations are:
 
 ## 内容
 - [X] TaC: Zero的弹药的自动化配方（已完成）
-- [ ] TaC: Zero的武器的自动化配方
+- [ ] TaC: Zero的武器的自动化配方（正在开发中）
 
 ## 版本
 
 目前支持的版本有：
 
-| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本       | 前置模组                    |
-|--------|-----------------|----------------------|-------------------------|
-| 1.18.2 | 暂无，待定           | 0.1.0 -> 0.1.1 Alpha | tacz-1.0.0-beta-hotifx4 |
+| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本       | 前置模组               |
+|--------|-----------------|----------------------|--------------------|
+| 1.18.2 | 暂无，待定           | 0.1.0 -> 0.1.1-alpha | tacz-1.0.0-hotifx6 |

@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.fluid;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import net.minecraft.world.item.Item;
 

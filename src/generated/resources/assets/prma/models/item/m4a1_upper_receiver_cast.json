@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "prma:item/weapons/guns/m4a1/casts/m4a1_upper_receiver_cast"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/weapons/guns/m4a1/casts/m4a1_upper_receiver_cast"
+  }
 }

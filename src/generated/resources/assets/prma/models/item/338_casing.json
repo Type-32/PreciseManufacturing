@@ -1,8 +1,6 @@
-
-        {
-            "parent": "item/generated",
-            "textures": {
-                "layer0": "prma:item/cartridges/casing/338"
-            }
-        }
-        
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/cartridges/338/338_casing"
+  }
+}

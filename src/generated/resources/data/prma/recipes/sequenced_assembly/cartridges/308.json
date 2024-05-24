@@ -1,0 +1,118 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:308_casing"
+  },
+  "transitionalItem": {
+    "item": "prma:308_unfinished"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "minecraft:iron_nugget"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "minecraft:gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "prma:308_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "308"
+      },
+      "chance": 94.0
+    },
+    {
+      "item": "prma:308_casing",
+      "chance": 6.0
+    }
+  ],
+  "loops": 1
+}

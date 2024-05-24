@@ -11,6 +11,7 @@ from enum import Enum
 class RifleModuleType(Enum):
     LOWER_RECEIVER = "lower_receiver"
     UPPER_RECEIVER = "upper_receiver"
+    LONG_BODY = "long_body"
     HANDGUARD = "handguard"
     STOCK = "stock"
     MAGAZINE = "magazine"
@@ -67,9 +68,9 @@ def parse_input_modules() -> list[RifleModuleType]:
             RifleModuleType.FIRE_CONTROL_GROUP,
             RifleModuleType.GRIP,
             RifleModuleType.TRIGGER,
-            RifleModuleType.BULLPUP_BODY
+            RifleModuleType.FIRE_SELECTOR
         ]
-    elif inp.__contains__("/shotgun"):
+    elif inp.__contains__("/pump_action"):
         result = [
             RifleModuleType.RECEIVER,
             RifleModuleType.SHELL_TUBE,
@@ -80,6 +81,16 @@ def parse_input_modules() -> list[RifleModuleType]:
             RifleModuleType.TRIGGER,
             RifleModuleType.STOCK
         ]
+    elif inp.__contains("/bolt_action"):
+        result = [
+            RifleModuleType.BOLT,
+            RifleModuleType.BARREL,
+            RifleModuleType.LONG_BODY,
+            RifleModuleType.TRIGGER,
+            RifleModuleType.STOCK,
+            RifleModuleType.CARTRIDGE_WELL,
+            RifleModuleType.GRIP
+        ]
 
     return result
 
@@ -87,23 +98,23 @@ def parse_input_modules() -> list[RifleModuleType]:
 def generate_files(id: str, modules: list[RifleModuleType]):
     templates = {
         "modules": ["",
-                   """{
+                    """{
     "parent": "item/generated",
     "textures": {
         "layer0": "prma:item/weapons/guns/{id}/modules/{id}_{moduleId}"
     }
 }"""],
 
-        "unfinished": ["_unfinished",
+        "blueprints": ["_blueprint",
                        """{
     "parent": "item/generated",
     "textures": {
-        "layer0": "prma:item/weapons/guns/{id}/unfinished/{id}_{moduleId}_unfinished"
+        "layer0": "prma:item/weapons/guns/{id}/blueprints/{id}_{moduleId}_blueprint"
     }
 }"""],
 
         "casts": ["_cast",
-                 """{
+                  """{
     "parent": "item/generated",
     "textures": {
         "layer0": "prma:item/weapons/guns/{id}/casts/{id}_{moduleId}_cast"
@@ -117,10 +128,10 @@ def generate_files(id: str, modules: list[RifleModuleType]):
         os.makedirs("output/textures", exist_ok=True)
         os.makedirs("output/models/casts", exist_ok=True)
         os.makedirs("output/models/modules", exist_ok=True)
-        os.makedirs("output/models/unfinished", exist_ok=True)
+        os.makedirs("output/models/blueprints", exist_ok=True)
         os.makedirs("output/textures/casts", exist_ok=True)
         os.makedirs("output/textures/modules", exist_ok=True)
-        os.makedirs("output/textures/unfinished", exist_ok=True)
+        os.makedirs("output/textures/blueprints", exist_ok=True)
     except:
         print("Folder Already exists, skipping folder creation")
     finally:
@@ -132,7 +143,8 @@ def generate_files(id: str, modules: list[RifleModuleType]):
                     file.write(content)
                 texture_file = f"sources/textures/guns/{file_type}/general_{module}{template[0]}.png"
                 shutil.copy2(texture_file, f"output/textures/{file_type}")
-                os.rename(f"output/textures/{file_type}/general_{module}{template[0]}.png", f"output/textures/{file_type}/{id}_{module}{template[0]}.png")
+                os.rename(f"output/textures/{file_type}/general_{module}{template[0]}.png",
+                          f"output/textures/{file_type}/{id}_{module}{template[0]}.png")
 
 
 def generate_translation_keys(item_id: str, module_types: list[RifleModuleType]):
@@ -149,7 +161,7 @@ def generate_translation_keys(item_id: str, module_types: list[RifleModuleType])
             value_base = f"{item_id.upper()} {module_type.value.replace('_', ' ').title()}"
 
             translations[key_base] = value_base
-            translations[f"{key_base}_unfinished"] = f"{value_base} Unfinished"
+            translations[f"{key_base}_blueprint"] = f"{value_base} Blueprint"
             translations[f"{key_base}_cast"] = f"{value_base} Cast"
 
         with open(f"output/lang/{item_id.upper()} Translations.json", "w") as file:
@@ -164,7 +176,7 @@ def generate_cast_cutting_recipes(item_id: str, modules: list[RifleModuleType]):
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "minecraft:iron_ingot"
+      "item": "create:iron_sheet"
     }
   ],
   "results": [
@@ -190,72 +202,67 @@ def generate_cast_cutting_recipes(item_id: str, modules: list[RifleModuleType]):
                     file.write(content)
 
 
-def generate_assembly_recipes(item_id: str, modules: list[RifleModuleType]):
+def generate_decomponentalizing_recipes(item_id: str, modules: list[RifleModuleType]):
     templates = {
-        "barrel": """{
-  "type": "create:sequenced_assembly",
+        "decomponentalizing": """{
+  "type": "prma:decomponentalizing",
   "ingredient": {
-    "item": "prma:{id}_{moduleId}_cast"
-  },
-  "transitionalItem": {
-    "item": "prma:{id}_{moduleId}_unfinished"
-  },
-  "sequence": [
-    {
-      "type": "create:filling",
-      "ingredients": [
-        {
-          "item": "prma:{id}_{moduleId}_cast"
-        },
-        {
-          "fluid": "prma:molten_basalt_infused_iron",
-          "nbt": {},
-          "amount": 300
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:{id}_{moduleId}_unfinished"
-        }
-      ]
-    },
-    {
-      "type": "create:sandpaper_polishing",
-      "ingredients": [
-        {
-          "item": "prma:{id}_{moduleId}_unfinished"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:{id}_{moduleId}_unfinished"
-        }
-      ]
+    "item": "tacz:modern_kinetic_gun",
+    "nbt":{
+      "GunId": "tacz:{id}"
     }
-  ],
-  "results": [
-    {
-      "item": "prma:{id}_{moduleId}",
-      "chance": 96.0
-    },
-    {
-      "item": "minecraft:iron_ingot",
-      "chance": 4.0
-    }
-  ],
-  "loops": 1
+  },
+  "results": {
+    "item": "prma:{id}_{moduleId}_blueprint"
+  },
+  "processingTime": 2500
 }"""
     }
 
     try:
-        os.makedirs(f"output/recipes/sequenced_assembly/{id}", exist_ok=True)
+        os.makedirs(f"output/recipes/decomponentalizing/{item_id}", exist_ok=True)
     except:
         print("Folder Already exists, skipping folder creation")
     finally:
         for module in modules:
             for file_type, template in templates.items():
-                file_name = f"output/recipes/sequenced_assembly/{id}/{id}_{module}.json"
-                content = template.replace("{id}", id).replace("{moduleId}", module.__str__())
+                file_name = f"output/recipes/{file_type}/{item_id}/{item_id}_{module}_blueprint_decomp.json"
+                content = template.replace("{id}", item_id).replace("{moduleId}", module.__str__())
+                with open(file_name, "w") as file:
+                    file.write(content)
+
+
+def generate_filling_recipes(item_id: str, modules: list[RifleModuleType]):
+    templates = {
+        "barrel": """{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:{id}_{moduleId}_cast"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:{id}_{moduleId}"
+    }
+  ]
+}"""
+    }
+
+    try:
+        os.makedirs(f"output/recipes/filling/{item_id}", exist_ok=True)
+    except:
+        print("Folder Already exists, skipping folder creation")
+    finally:
+        for module in modules:
+            for file_type, template in templates.items():
+                file_name = f"output/recipes/filling/{item_id}/{item_id}_{module}.json"
+                content = template.replace("{id}", item_id).replace("{moduleId}", module.__str__())
                 with open(file_name, "w") as file:
                     file.write(content)
 
@@ -266,4 +273,6 @@ if __name__ == "__main__":
 
     # generate_files(id, modules)
     # generate_translation_keys(id, modules)
-    generate_cast_cutting_recipes(id, modules)
+    # generate_cast_cutting_recipes(id, modules)
+    # generate_filling_recipes(id, modules)
+    generate_decomponentalizing_recipes(id, modules)

@@ -4,17 +4,17 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.item.util.ModuleB
 
 import java.util.ArrayList;
 
-public class RifleModuleBuilder extends ModuleBuilder<RifleModuleType> {
+public class RifleModuleBuilder extends ModuleBuilder<RifleModule> {
 
     public RifleModuleBuilder(){
         super();
     }
 
-    public RifleModuleBuilder(RifleModuleType... modules) {
+    public RifleModuleBuilder(RifleModule... modules) {
         super(modules);
     }
 
-    public RifleModuleBuilder(ArrayList<RifleModuleType> modules) {
+    public RifleModuleBuilder(ArrayList<RifleModule> modules) {
         super(modules);
     }
 
