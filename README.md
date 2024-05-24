@@ -41,7 +41,7 @@ The currently supported versions are:
 
 | Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency         |
 |----------|----------------------------|---------------------------|--------------------|
-| 1.18.2   | N/A. TBD                   | 0.1.0 -> 0.1.1-alpha      | tacz-1.0.0-hotifx5 |
+| 1.18.2   | N/A. TBD                   | 0.1.0 -> 0.1.1-alpha      | tacz-1.0.0-hotifx6 |
 
 ## Translations
 
@@ -84,4 +84,4 @@ The currently supported langauge translations are:
 
 | 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本       | 前置模组               |
 |--------|-----------------|----------------------|--------------------|
-| 1.18.2 | 暂无，待定           | 0.1.0 -> 0.1.1-alpha | tacz-1.0.0-hotifx5 |
+| 1.18.2 | 暂无，待定           | 0.1.0 -> 0.1.1-alpha | tacz-1.0.0-hotifx6 |
