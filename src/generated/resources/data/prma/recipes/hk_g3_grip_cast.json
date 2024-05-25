@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PIP",
+    "IBI",
+    "PIP"
+  ],
+  "key": {
+    "P": {
+      "item": "create:iron_sheet"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "prma:hk_g3_grip_blueprint"
+    }
+  },
+  "result": {
+    "item": "prma:hk_g3_grip_cast"
+  }
+}

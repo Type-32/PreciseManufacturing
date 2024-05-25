@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "count": 1,
+    "nbt": "{GunId:\"tacz:ak47\"}"
+  },
+  "result": {
+    "item": "prma:ak47_magazine_blueprint"
+  },
+  "processingTime": 3200
+}

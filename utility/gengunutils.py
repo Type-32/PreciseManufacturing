@@ -272,7 +272,7 @@ if __name__ == "__main__":
     modules: list[RifleModuleType] = parse_input_modules()
 
     # generate_files(id, modules)
-    # generate_translation_keys(id, modules)
+    generate_translation_keys(id, modules)
     # generate_cast_cutting_recipes(id, modules)
     # generate_filling_recipes(id, modules)
-    generate_decomponentalizing_recipes(id, modules)
+    # generate_decomponentalizing_recipes(id, modules)

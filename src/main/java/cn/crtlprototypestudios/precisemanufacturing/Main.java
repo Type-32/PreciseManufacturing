@@ -9,6 +9,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -40,7 +41,6 @@ public class Main {
         ModBlocks.register();
         ModBlockEntities.register(eventBus);
         ModContainers.register(eventBus);
-        ModCreativeModTabs.register();
         ModItems.register();
         ModFluids.register();
         ModTags.register();
@@ -95,6 +95,11 @@ public class Main {
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
             // Register a new block here
             LOGGER.info("HELLO from Register Block");
+        }
+
+        @SubscribeEvent
+        public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
+            LOGGER.info("M4A1 registry size {}; cast {}; blueprint {}", ModItems.M4A1.registry.size(), ModItems.M4A1.castsRegistry.size(), ModItems.M4A1.blueprintsRegistry.size());
         }
     }
 }

@@ -21,4 +21,11 @@ public class RifleModuleBuilder extends ModuleBuilder<RifleModule> {
     public RifleModuleBuilder(RifleModuleBuilder module) {
         super(module);
     }
+
+    @Override
+    public RifleModuleBuilder remove(RifleModule module) {
+        ArrayList<RifleModule> newModules = new ArrayList<RifleModule>(modules);
+        newModules.remove(module);
+        return new RifleModuleBuilder(newModules);
+    }
 }

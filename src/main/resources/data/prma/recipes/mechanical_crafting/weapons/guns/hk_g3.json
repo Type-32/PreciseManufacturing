@@ -1,0 +1,34 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BHUL",
+    "  MG"
+  ],
+  "key": {
+    "L": {
+      "item": "prma:hk_g3_lower_receiver"
+    },
+    "G": {
+      "item": "prma:hk_g3_grip"
+    },
+    "H": {
+      "item": "prma:hk_g3_handguard"
+    },
+    "M": {
+      "item": "prma:hk_g3_magazine"
+    },
+    "U": {
+      "item": "prma:hk_g3_upper_receiver"
+    },
+    "B": {
+      "item": "prma:hk_g3_barrel"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:hk_g3"
+    }
+  },
+  "acceptMirrored": true
+}

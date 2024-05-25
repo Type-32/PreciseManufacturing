@@ -3,27 +3,14 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModule;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModuleType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.fluids.spout.FillingBySpout;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.simibubi.create.foundation.data.recipe.CrushingRecipeGen;
-import com.simibubi.create.foundation.data.recipe.FillingRecipeGen;
-import com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen;
-import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -32,11 +19,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.function.Consumer;
@@ -92,9 +77,9 @@ public class RifleBase extends WeaponBase {
         );
 
 
-    public Hashtable<RifleModule, RegistryEntry<Item>> registry = new Hashtable<>();
-    public Hashtable<RifleModule, RegistryEntry<Item>> castsRegistry = new Hashtable<>();
-    public Hashtable<RifleModule, RegistryEntry<Item>> blueprintsRegistry = new Hashtable<>();
+    public Hashtable<RifleModuleType, RegistryEntry<Item>> registry = new Hashtable<>();
+    public Hashtable<RifleModuleType, RegistryEntry<Item>> castsRegistry = new Hashtable<>();
+    public Hashtable<RifleModuleType, RegistryEntry<Item>> blueprintsRegistry = new Hashtable<>();
     public RifleModuleBuilder givenModuleBuilder;
 
     public RifleBase(String coreId, Item.Properties properties, RifleModuleBuilder moduleBuilder) {
@@ -103,7 +88,7 @@ public class RifleBase extends WeaponBase {
 
         // Put all the registered modules in the Hashtable for later use
         for (RifleModule i : moduleBuilder.get()) {
-            registry.put(i, registerModule(coreId, i, properties));
+            registry.put(i.getType(), registerModule(coreId, i, properties));
         }
 
         ModRecipeProvider.addRifleBase(this);
@@ -158,30 +143,27 @@ public class RifleBase extends WeaponBase {
      * </ul>
      */
     private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties) {
-        String name = String.format("%s_%s", id, module.getType().toString());
+        String name = String.format("%s_%s", id, module.toString());
 
         // Register the module
         RegistryEntry<Item> mainModule = Main.REGISTRATE.item(name, Item::new)
-                .model(ModItemModelProvider.genericItemModel("weapons","guns", id, "modules", name))
+                .model(ModItemModelProvider.genericItemModel(true, "weapons", "general","guns", "modules", "general_" + module))
                 .properties(p -> properties.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
                 .register();
 
-        RegistryEntry<Item> blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
-                .model(ModItemModelProvider.genericItemModel("weapons", "guns", id, "blueprints", name + "_blueprint"))
-                .properties(p -> properties.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
-                .register();
-
-        RegistryEntry<Item> castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
-                .model(ModItemModelProvider.genericItemModel("weapons","guns", id, "casts", name + "_cast"))
-                .properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB))
-                .register();
-
+        registry.put(module.getType(), mainModule);
         // Register the unfinished module
         // module variant, and make it invisible in the creative tab
-        blueprintsRegistry.put(module, blueprintModule);
+        blueprintsRegistry.put(module.getType(), Main.REGISTRATE.item(name + "_blueprint", Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "blueprints", "general_" + module + "_blueprint"))
+                .properties(p -> properties.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
+                .register());
 
         // Register the module's cast
-        castsRegistry.put(module, castModule);
+        castsRegistry.put(module.getType(), Main.REGISTRATE.item(name + "_cast", Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "casts", "general_" + module + "_cast"))
+                .properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB))
+                .register());
 
         return mainModule;
     }
@@ -189,13 +171,14 @@ public class RifleBase extends WeaponBase {
     public void registerRecipes(){
         ItemStack gunItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","modern_kinetic_gun"));
         CompoundTag itemTag = new CompoundTag();
-        itemTag.putString("GunId", getCoreId());
+        itemTag.putString("GunId", "tacz:" + getCoreId());
         gunItem.setTag(itemTag);
 
+        Main.LOGGER.debug("givenModuleBuilder: {}", givenModuleBuilder.get().length);
         for(RifleModule m : givenModuleBuilder.get()){
-            RegistryEntry<Item> mainModule = registry.get(m);
-            RegistryEntry<Item> castModule = castsRegistry.get(m);
-            RegistryEntry<Item> blueprintModule = blueprintsRegistry.get(m);
+            RegistryEntry<Item> mainModule = registry.get(m.getType());
+            RegistryEntry<Item> castModule = castsRegistry.get(m.getType());
+            RegistryEntry<Item> blueprintModule = blueprintsRegistry.get(m.getType());
             String name = String.format("%s_%s", getCoreId(), m.getType().toString());
 
             ModRecipeProvider.add(ShapedRecipeBuilder
@@ -239,14 +222,32 @@ public class RifleBase extends WeaponBase {
         return null;
     }
 
-    public RifleBase setModuleData(int index, Consumer<RifleModule.Data> dataConsumer) {
-        List<RifleModule> modules = new ArrayList<>(registry.keySet());
-        RifleModule module = modules.get(index);
+    public RegistryEntry<Item> getModuleFromBlueprintRegistryByType(RifleModuleType type){
+        return blueprintsRegistry.getOrDefault(type, null);
+    }
 
-        if (module != null) {
-            RifleModule updatedModule = module.setData(dataConsumer);
-            registry.put(updatedModule, registry.get(module));
-        }
+    public RegistryEntry<Item> getModuleFromCastRegistryByType(RifleModuleType type){
+        return castsRegistry.getOrDefault(type, null);
+    }
+
+    public RegistryEntry<Item> getModuleFromBlueprintRegistryByType(RifleModule module){
+        return blueprintsRegistry.getOrDefault(module, null);
+    }
+
+    public RegistryEntry<Item> getModuleFromCastRegistryByType(RifleModule module){
+        return castsRegistry.getOrDefault(module, null);
+    }
+
+    public RifleBase setModuleData(int index, Consumer<RifleModule.Data> dataConsumer) {
+        List<RifleModule> modules = Arrays.asList(givenModuleBuilder.get());
+
+        RifleModule module = modules.get(index);
+        assert module != null;
+
+        RifleModule updatedModule = module.setData(dataConsumer);
+        int ind = modules.indexOf(module);
+        modules.set(ind, updatedModule);
+        givenModuleBuilder = new RifleModuleBuilder(modules.toArray(new RifleModule[0]));
 
         return this;
     }

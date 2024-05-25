@@ -118,7 +118,7 @@
     {
       "item": "tacz:ammo",
       "nbt": {
-        "AmmoId": "rpg_rocket"
+        "AmmoId": "tacz:rpg_rocket"
       },
       "chance": 94.0
     },

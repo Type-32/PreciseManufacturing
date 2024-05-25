@@ -111,6 +111,16 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         return false;
     }
 
+    @Override
+    public boolean mouseScrolled(double pMouseX, double pMouseY, double pDelta) {
+        if (isMouseOver(pMouseX, pMouseY)) {
+            scrollOffset = (int) (scrollOffset - pDelta);
+            scrollOffset = clamp(scrollOffset, 0, getMaxScroll());
+            return true;
+        }
+        return false;
+    }
+
     private int getMaxScroll() {
         return Math.max(0, (recipes.size() * entryHeight) - listHeight + 8);
     }

@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "count": 1,
+    "nbt": "{GunId:\"tacz:hk_g3\"}"
+  },
+  "result": {
+    "item": "prma:hk_g3_trigger_blueprint"
+  },
+  "processingTime": 2000
+}

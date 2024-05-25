@@ -36,13 +36,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         rifleBases.forEach(RifleBase::registerRecipes);
         cartridgeBases.forEach(CartridgeBase::registerRecipes);
-        ModDecomponentalizingRecipesGen.register(pFinishedRecipeConsumer);
 
         recipeBuilders.forEach(i -> i.save(pFinishedRecipeConsumer));
         createCompatRecipeBuilders.forEach(i -> i.build(pFinishedRecipeConsumer));
         sequencedAssemblyRecipeBuilders.forEach(i -> i.build(pFinishedRecipeConsumer));
 
         ModMechanicalCraftingRecipeGen.register(pFinishedRecipeConsumer);
+        ModDecomponentalizingRecipesGen.register(pFinishedRecipeConsumer);
     }
 
     public static void add(RecipeBuilder builder){

@@ -40,4 +40,13 @@ public class ModuleBuilder<T> {
         newModules.remove(module);
         return new ModuleBuilder<>(newModules);
     }
+
+    public ModuleBuilder<T> replace(T module, T module2) {
+        ArrayList<T> newModules = new ArrayList<>(modules);
+        int ind = newModules.indexOf(module);
+        newModules.remove(module);
+        newModules.add(ind, module2);
+
+        return new ModuleBuilder<>(newModules);
+    }
 }

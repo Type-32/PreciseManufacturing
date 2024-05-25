@@ -71,6 +71,22 @@ public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof RifleModule) {
+            RifleModule r = (RifleModule) obj;
+            if(r.getType() == getType()){
+                return true;
+            }
+        } else if (obj instanceof RifleModuleType) {
+            RifleModuleType r = (RifleModuleType) obj;
+            if(r == getType()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static final RifleModule
             // decompTime: 1000~6000 Ticks; castFillingAmount: 100~1000mb; castCuttingTime: 600~3500 Time Notches;
             LOWER_RECEIVER_MODULE = new RifleModule(RifleModuleType.LOWER_RECEIVER, new Data(6000, 600, 1000)),

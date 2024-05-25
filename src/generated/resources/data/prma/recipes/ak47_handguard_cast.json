@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PIP",
+    "IBI",
+    "PIP"
+  ],
+  "key": {
+    "P": {
+      "item": "create:iron_sheet"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "prma:ak47_handguard_blueprint"
+    }
+  },
+  "result": {
+    "item": "prma:ak47_handguard_cast"
+  }
+}

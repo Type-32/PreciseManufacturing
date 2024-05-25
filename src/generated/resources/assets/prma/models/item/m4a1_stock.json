@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "prma:item/weapons/guns/m4a1/modules/m4a1_stock"
+    "layer0": "prma:item/weapons/general/guns/modules/general_stock"
   }
 }

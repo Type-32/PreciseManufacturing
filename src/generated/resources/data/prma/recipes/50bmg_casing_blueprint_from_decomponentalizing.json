@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:ammo",
+    "count": 1,
+    "nbt": "{AmmoId:\"tacz:50bmg\"}"
+  },
+  "result": {
+    "item": "prma:50bmg_casing_blueprint"
+  },
+  "processingTime": 1000
+}

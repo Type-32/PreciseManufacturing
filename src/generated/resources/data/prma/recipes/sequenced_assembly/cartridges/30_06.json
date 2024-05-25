@@ -105,7 +105,7 @@
     {
       "item": "tacz:ammo",
       "nbt": {
-        "AmmoId": "30_06"
+        "AmmoId": "tacz:30_06"
       },
       "chance": 94.0
     },

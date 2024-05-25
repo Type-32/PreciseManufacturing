@@ -1,0 +1,34 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BHUL",
+    " M G"
+  ],
+  "key": {
+    "L": {
+      "item": "prma:ak47_lower_receiver"
+    },
+    "G": {
+      "item": "prma:ak47_grip"
+    },
+    "H": {
+      "item": "prma:ak47_handguard"
+    },
+    "M": {
+      "item": "prma:ak47_magazine"
+    },
+    "U": {
+      "item": "prma:ak47_upper_receiver"
+    },
+    "B": {
+      "item": "prma:ak47_barrel"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:ak47"
+    }
+  },
+  "acceptMirrored": true
+}

@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
@@ -153,27 +154,35 @@ public class CartridgeBase extends AmmunitionBase {
     private RegistryEntry<Item> registerModule(String id, CartridgeModule module) {
         String name = String.format("%s_%s", id, module.toString());
 
-        blueprintsRegistry.put(module,
-                Main.REGISTRATE.item(name + "_blueprint", Item::new)
+        RegistryEntry<Item>
+                blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
                         .properties(p -> p.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
-                        .register()
-        );
-
-        castsRegistry.put(module,
-                Main.REGISTRATE.item(name + "_cast", Item::new)
+                        .register(),
+                castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_cast", module)))
                         .properties(p -> p.tab(ModCreativeModTabs.MOD_CASTS_TAB))
-                        .register()
-        );
+                        .register(),
+                mainModule = Main.REGISTRATE.item(name, Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "cartridges", id, name))
+                        .properties(p -> p.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                        .register();
 
-        return Main.REGISTRATE.item(name, Item::new)
-                .model(ModItemModelProvider.genericItemModel("cartridges", id, name))
-                .properties(p -> p.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
-                .register();
+        blueprintsRegistry.put(module, blueprintModule);
+
+        castsRegistry.put(module, castModule);
+
+        return mainModule;
     }
 
     public void registerRecipes(){
+
+        // TODO Add proper impl. here after TacZ Lib is published or sth
+        ItemStack ammoItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","ammo"));
+        CompoundTag itemTag = new CompoundTag();
+        itemTag.putString("AmmoId", "tacz:" + getCoreId());
+        ammoItem.setTag(itemTag);
+
         for(CartridgeModule m : givenModuleBuilder.get()){
             String name = String.format("%s_%s", getCoreId(), m.toString());
 
@@ -186,6 +195,8 @@ public class CartridgeBase extends AmmunitionBase {
                     .require(castModule.get())
                     .require(m.getData().getFillingFluid().get(), m.getData().getFillingAmount())
                     .output(mainModule.get()));
+
+            ModDecomponentalizingRecipesGen.add(ammoItem, blueprintModule.get(), 1000);
         }
 
         RegistryEntry<Item> unfinishedModule = registry.get(CartridgeModule.UNFINISHED_MODULE);
@@ -208,12 +219,6 @@ public class CartridgeBase extends AmmunitionBase {
             else if(seq == CartridgeAssemblySequence.SHOTGUN_PELLETS)
                 builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.PELLET)).get()));
         }
-
-        ItemStack ammoItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","ammo"));
-        CompoundTag itemTag = new CompoundTag();
-        itemTag.putString("AmmoId", getCoreId());
-        ammoItem.setTag(itemTag);
-        // TODO Add proper impl. here after TacZ Lib is published or sth
 
         ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ammoItem, 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
     }

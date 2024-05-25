@@ -37,4 +37,14 @@ public class ModuleBase<T, D> {
     public String toString() {
         return String.valueOf(type);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ModuleBase) {
+            ModuleBase<?, ?> module = (ModuleBase<?, ?>) obj;
+            return module.getType().equals(type);
+        }
+
+        return false;
+    }
 }

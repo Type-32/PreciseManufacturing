@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:ammo",
+    "count": 1,
+    "nbt": "{AmmoId:\"tacz:58x42\"}"
+  },
+  "result": {
+    "item": "prma:58x42_head_blueprint"
+  },
+  "processingTime": 1000
+}

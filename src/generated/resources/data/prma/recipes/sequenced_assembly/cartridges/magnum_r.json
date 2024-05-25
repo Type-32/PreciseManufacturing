@@ -14,7 +14,7 @@
           "item": "prma:magnum_r_unfinished"
         },
         {
-          "item": "prma:gunpowder_pellets"
+          "item": "minecraft:iron_nugget"
         }
       ],
       "results": [
@@ -30,7 +30,7 @@
           "item": "prma:magnum_r_unfinished"
         },
         {
-          "item": "minecraft:iron_nugget"
+          "item": "prma:gunpowder_pellets"
         }
       ],
       "results": [
@@ -89,7 +89,7 @@
     {
       "item": "tacz:ammo",
       "nbt": {
-        "AmmoId": "magnum_r"
+        "AmmoId": "tacz:magnum_r"
       },
       "chance": 94.0
     },
