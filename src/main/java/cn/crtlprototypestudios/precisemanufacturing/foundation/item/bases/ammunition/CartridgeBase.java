@@ -206,7 +206,7 @@ public class CartridgeBase extends AmmunitionBase {
                     .define('I', Items.IRON_INGOT)
                     .define('B', blueprintModule.get()));
 
-            ModDecomponentalizingRecipesGen.add(ammoItem, blueprintModule.get(), 1000);
+            ModDecomponentalizingRecipesGen.add(ammoItem, blueprintModule.get(), 400);
 
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
                     .require(castModule.get())
