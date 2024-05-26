@@ -30,7 +30,9 @@
   "result": {
     "item": "tacz:modern_kinetic_gun",
     "nbt": {
-      "GunId": "tacz:m4a1"
+      "GunId": "tacz:m4a1",
+      "GunFireMode": "AUTO",
+      "GunCurrentAmmoCount": 0
     }
   },
   "acceptMirrored": true

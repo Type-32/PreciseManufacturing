@@ -12,9 +12,6 @@
     "G": {
       "item": "prma:hk_mp5a5_grip"
     },
-    "H": {
-      "item": "prma:hk_mp5a5_handguard"
-    },
     "M": {
       "item": "prma:hk_mp5a5_magazine"
     },
@@ -37,7 +34,9 @@
   "result": {
     "item": "tacz:modern_kinetic_gun",
     "nbt": {
-      "GunId": "tacz:hk_mp5a5"
+      "GunId": "tacz:hk_mp5a5",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
     }
   },
   "acceptMirrored": true

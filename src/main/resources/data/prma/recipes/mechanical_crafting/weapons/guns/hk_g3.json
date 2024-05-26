@@ -27,7 +27,9 @@
   "result": {
     "item": "tacz:modern_kinetic_gun",
     "nbt": {
-      "GunId": "tacz:hk_g3"
+      "GunId": "tacz:hk_g3",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
     }
   },
   "acceptMirrored": true

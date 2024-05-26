@@ -27,7 +27,9 @@
   "result": {
     "item": "tacz:modern_kinetic_gun",
     "nbt": {
-      "GunId": "tacz:ak47"
+      "GunId": "tacz:ak47",
+      "GunFireMode": "AUTO",
+      "GunCurrentAmmoCount": 0
     }
   },
   "acceptMirrored": true

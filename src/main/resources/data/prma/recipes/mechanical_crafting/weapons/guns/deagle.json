@@ -32,7 +32,9 @@
   "result": {
     "item": "tacz:modern_kinetic_gun",
     "nbt": {
-      "GunId": "tacz:deagle"
+      "GunId": "tacz:deagle",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
     }
   },
   "acceptMirrored": true

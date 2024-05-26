@@ -32,7 +32,9 @@
   "result": {
     "item": "tacz:modern_kinetic_gun",
     "nbt": {
-      "GunId": "tacz:glock_17"
+      "GunId": "tacz:glock_17",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
     }
   },
   "acceptMirrored": true
