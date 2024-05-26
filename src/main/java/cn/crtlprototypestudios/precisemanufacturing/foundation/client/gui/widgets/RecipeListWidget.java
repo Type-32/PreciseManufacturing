@@ -53,7 +53,7 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         blit(poseStack, x, y, 0, 0, listWidth, listHeight);
 
         // Apply the mask
-        RenderSystem.enableScissor((int) (x * Minecraft.getInstance().getWindow().getGuiScale()), (int) ((Minecraft.getInstance().getWindow().getHeight() - (y + listHeight)) * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listWidth * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listHeight * Minecraft.getInstance().getWindow().getGuiScale()));
+//        RenderSystem.enableScissor((int) (x * Minecraft.getInstance().getWindow().getGuiScale()), (int) ((Minecraft.getInstance().getWindow().getHeight() - (y + listHeight)) * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listWidth * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listHeight * Minecraft.getInstance().getWindow().getGuiScale()));
 
         // Render the recipe entries
         if(this.recipes != null && !recipes.isEmpty()) {
@@ -77,20 +77,20 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
 
                     if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
                         selectedIndex = i;
-                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight - ((y + entryHeight) - (this.y)), mouseX, mouseY, i == selectedIndex, true);
+                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, (this.y - y), mouseX, mouseY, i == selectedIndex, true);
                 }
                 y += entryHeight + 1;
             }
         }
 
         // Disable the mask
-        RenderSystem.disableScissor();
+//        RenderSystem.disableScissor();
     }
 
     private void renderRecipeEntry(PoseStack poseStack, DecomponentalizingRecipe recipe, int x, int y, int width, int height, int mouseX, int mouseY, boolean selected, boolean upperOverflow) {
         // Render the recipe entry background
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(poseStack, x , y, 0, upperOverflow ? (selected ? 120 + (entryHeight - height) : 100 + (entryHeight - height)) : (selected ? 120 : 100), width, height);
+        blit(poseStack, x , y, 0, upperOverflow ? (selected ? 120 + Math.abs(height) : 100 + Math.abs(height)) : (selected ? 120 : 100), width, upperOverflow ? (entryHeight - Math.abs(height)) : height);
 
         // Render the recipe item
         ItemStack resultStack = recipe.getResultItem();
