@@ -150,6 +150,10 @@
 
   "item.prma.rpg_rocket_casing": "RPG火箭筒身",
   "item.prma.rpg_rocket_head": "RPG火箭弹头",
+  "item.prma.rpg_rocket_casing_cast": "RPG火箭筒身铸件",
+  "item.prma.rpg_rocket_head_cast": "RPG火箭弹头铸件",
+  "item.prma.rpg_rocket_casing_blueprint": "RPG火箭筒身蓝图",
+  "item.prma.rpg_rocket_head_blueprint": "RPG火箭弹头蓝图",
   "item.prma.rpg_rocket_unfinished": "未完成的RPG火箭弹",
 
   "item.prma.m4a1_grip": "M4A1握把",

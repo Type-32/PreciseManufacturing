@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:50ae_head_cast"
+    ]
+  },
+  "criteria": {
+    "has_50ae_head_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:50ae_head_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:50ae_head_cast"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_50ae_head_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -63,6 +63,12 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
                         selectedIndex = i;
 
                     renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex);
+                } else if (y >= this.y && y + entryHeight > this.y + listHeight && (y + entryHeight) - (this.y + listHeight) <= entryHeight) {
+                    DecomponentalizingRecipe recipe = recipes.get(i);
+
+                    if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
+                        selectedIndex = i;
+                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight - ((y + entryHeight) - (this.y + listHeight)), mouseX, mouseY, i == selectedIndex);
                 }
                 y += entryHeight + 1;
             }

@@ -157,6 +157,10 @@
 
   "item.prma.rpg_rocket_casing": "RPG Rocket Shaft",
   "item.prma.rpg_rocket_head": "RPG Rocket Head",
+  "item.prma.rpg_rocket_casing_cast": "RPG Rocket Shaft Cast",
+  "item.prma.rpg_rocket_head_cast": "RPG Rocket Head Cast",
+  "item.prma.rpg_rocket_casing_blueprint": "RPG Rocket Shaft Blueprint",
+  "item.prma.rpg_rocket_head_blueprint": "RPG Rocket Head Blueprint",
   "item.prma.rpg_rocket_unfinished": "Unfinished RPG Rocket",
 
 

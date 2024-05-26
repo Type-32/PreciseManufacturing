@@ -8,6 +8,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.r
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
@@ -15,6 +16,8 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.SequencedAssemblyRecipeGen;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.function.Consumer;
+
+import static com.tterrag.registrate.providers.RegistrateRecipeProvider.inventoryTrigger;
 
 public class CartridgeBase extends AmmunitionBase {
     public Hashtable<CartridgeModule, RegistryEntry<Item>> registry = new Hashtable<>();
@@ -191,12 +196,22 @@ public class CartridgeBase extends AmmunitionBase {
                     mainModule = registry.get(m),
                     blueprintModule = blueprintsRegistry.get(m);
 
+            ModRecipeProvider.add(ShapedRecipeBuilder
+                    .shaped(castModule.get())
+                    .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
+                    .pattern("PIP")
+                    .pattern("IBI")
+                    .pattern("PIP")
+                    .define('P', AllItems.IRON_SHEET.get())
+                    .define('I', Items.IRON_INGOT)
+                    .define('B', blueprintModule.get()));
+
+            ModDecomponentalizingRecipesGen.add(ammoItem, blueprintModule.get(), 1000);
+
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
                     .require(castModule.get())
                     .require(m.getData().getFillingFluid().get(), m.getData().getFillingAmount())
                     .output(mainModule.get()));
-
-            ModDecomponentalizingRecipesGen.add(ammoItem, blueprintModule.get(), 1000);
         }
 
         RegistryEntry<Item> unfinishedModule = registry.get(CartridgeModule.UNFINISHED_MODULE);

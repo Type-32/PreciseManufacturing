@@ -34,6 +34,18 @@ public class CartridgeModule extends ModuleBase<CartridgeModuleType, CartridgeMo
         return new CartridgeModule(getType(), newData);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CartridgeModule) {
+            CartridgeModule other = (CartridgeModule) obj;
+            return getType().equals(other.getType());
+        } else if (obj instanceof CartridgeModuleType) {
+            CartridgeModuleType other = (CartridgeModuleType) obj;
+            return getType().equals(other);
+        }
+        return false;
+    }
+
     public static class Data {
         private int fillingAmount;
         private @NotNull FluidEntry<? extends VirtualFluid> fillingFluid;
