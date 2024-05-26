@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:ai_awp_long_body_blueprint"
+    ]
+  },
+  "criteria": {
+    "has_ai_awp_long_body_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:ai_awp_long_body_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:ai_awp_long_body_blueprint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ai_awp_long_body_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}

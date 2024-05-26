@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:ai_awp_bolt_cast"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 110
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:ai_awp_bolt"
+    }
+  ]
+}

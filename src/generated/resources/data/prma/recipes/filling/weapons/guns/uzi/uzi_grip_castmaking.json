@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:uzi_grip"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:uzi_grip_cast"
+    }
+  ]
+}

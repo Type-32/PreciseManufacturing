@@ -1,0 +1,38 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BRFS",
+    " TG ",
+    "  M "
+  ],
+  "key": {
+    "R": {
+      "item": "prma:hk_mp5a5_receiver"
+    },
+    "G": {
+      "item": "prma:hk_mp5a5_grip"
+    },
+    "T": {
+      "item": "prma:hk_mp5a5_trigger"
+    },
+    "M": {
+      "item": "prma:hk_mp5a5_magazine"
+    },
+    "B": {
+      "item": "prma:hk_mp5a5_barrel"
+    },
+    "F": {
+      "item": "prma:hk_mp5a5_fire_control_group"
+    },
+    "S": {
+      "item": "prma:hk_mp5a5_fire_selector"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:hk_mp5a5"
+    }
+  },
+  "acceptMirrored": true
+}

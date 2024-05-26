@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "count": 1,
+    "nbt": "{GunId:\"tacz:uzi\"}"
+  },
+  "result": {
+    "item": "prma:uzi_receiver_blueprint"
+  },
+  "processingTime": 4800
+}

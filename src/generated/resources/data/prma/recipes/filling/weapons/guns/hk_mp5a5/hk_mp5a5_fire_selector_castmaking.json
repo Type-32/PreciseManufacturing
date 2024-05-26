@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:hk_mp5a5_fire_selector"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:hk_mp5a5_fire_selector_cast"
+    }
+  ]
+}

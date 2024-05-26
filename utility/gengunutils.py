@@ -46,6 +46,7 @@ def parse_input_modules() -> list[RifleModuleType]:
             for index in indexes:
                 if int(index) == seq and not result.__contains__(modules):
                     result.append(modules)
+            seq += 1
 
     if inp.__contains__("/standard_rifle"):
         result = [
@@ -81,7 +82,7 @@ def parse_input_modules() -> list[RifleModuleType]:
             RifleModuleType.TRIGGER,
             RifleModuleType.STOCK
         ]
-    elif inp.__contains("/bolt_action"):
+    elif inp.__contains__("/bolt_action"):
         result = [
             RifleModuleType.BOLT,
             RifleModuleType.BARREL,
@@ -158,7 +159,7 @@ def generate_translation_keys(item_id: str, module_types: list[RifleModuleType])
 
         for module_type in module_types:
             key_base = f"item.prma.{item_id}_{module_type.value}"
-            value_base = f"{item_id.upper()} {module_type.value.replace('_', ' ').title()}"
+            value_base = f"{item_id.upper()} {str(module_type.value).replace('_', ' ').title()}"
 
             translations[key_base] = value_base
             translations[f"{key_base}_blueprint"] = f"{value_base} Blueprint"

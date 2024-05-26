@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:uzi_fire_control_group_cast"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 480
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:uzi_fire_control_group"
+    }
+  ]
+}

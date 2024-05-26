@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:deagle_trigger_blueprint"
+    ]
+  },
+  "criteria": {
+    "has_deagle_trigger_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:deagle_trigger_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:deagle_trigger_blueprint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_deagle_trigger_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}

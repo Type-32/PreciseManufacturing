@@ -28,53 +28,69 @@ import java.util.function.Consumer;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.inventoryTrigger;
 
+
+// To Future me: Do not add an UNFINISHED type in the Rifle Module Types. Autonomous Rifle Module
+// registration works differently compared to Cartridge Autonomous registrations, as each Cartridge
+// uses only one Unfinished item variant to represent the modules of the Cartridge during the
+// sequenced assemblies, while Rifle Modules has an unfinished item variant for each rifle module,
+// as each module should only be crafted via a sequenced assembly.
+
 public class RifleBase extends WeaponBase {
     public static final RifleModuleBuilder
-        STANDARD_RIFLE_MODULES = new RifleModuleBuilder(
-                RifleModule.GRIP_MODULE,
-                RifleModule.LOWER_RECEIVER_MODULE,
-                RifleModule.UPPER_RECEIVER_MODULE,
-                RifleModule.HANDGUARD_MODULE,
-                RifleModule.BARREL_MODULE,
-                RifleModule.MAGAZINE_MODULE,
-                RifleModule.FIRE_CONTROL_GROUP_MODULE,
-                RifleModule.FIRE_SELECTOR_MODULE,
-                RifleModule.TRIGGER_MODULE,
-                RifleModule.STOCK_MODULE
-        ),
-        BULLPUP_RIFLE_MODULES = new RifleModuleBuilder(
-                RifleModule.GRIP_MODULE,
-                RifleModule.BULLPUP_BODY_MODULE,
-                RifleModule.MAGAZINE_MODULE,
-                RifleModule.FIRE_CONTROL_GROUP_MODULE,
-                RifleModule.TRIGGER_MODULE,
-                RifleModule.FIRE_SELECTOR_MODULE
-
-                // To Future me: Do not add an UNFINISHED type in the Rifle Module Types. Autonomous Rifle Module
-                // registration works differently compared to Cartridge Autonomous registrations, as each Cartridge
-                // uses only one Unfinished item variant to represent the modules of the Cartridge during the
-                // sequenced assemblies, while Rifle Modules has an unfinished item variant for each rifle module,
-                // as each module should only be crafted via a sequenced assembly.
-        ),
-        PUMP_ACTION_MODULES = new RifleModuleBuilder(
-                RifleModule.RECEIVER_MODULE,
-                RifleModule.SHELL_TUBE_MODULE,
-                RifleModule.BARREL_MODULE,
-                RifleModule.TRIGGER_MODULE,
-                RifleModule.PUMP_MODULE,
-                RifleModule.FIRE_CONTROL_GROUP_MODULE,
-                RifleModule.TRIGGER_MODULE,
-                RifleModule.STOCK_MODULE
-        ),
-        BOLT_ACTION_MODULES = new RifleModuleBuilder(
-                RifleModule.BOLT_MODULE,
-                RifleModule.BARREL_MODULE,
-                RifleModule.LONG_BODY_MODULE,
-                RifleModule.TRIGGER_MODULE,
-                RifleModule.STOCK_MODULE,
-                RifleModule.CARTRIDGE_WELL_MODULE,
-                RifleModule.GRIP_MODULE
-        );
+            STANDARD_RIFLE_MODULES = new RifleModuleBuilder(
+                    RifleModule.GRIP_MODULE,
+                    RifleModule.LOWER_RECEIVER_MODULE,
+                    RifleModule.UPPER_RECEIVER_MODULE,
+                    RifleModule.HANDGUARD_MODULE,
+                    RifleModule.BARREL_MODULE,
+                    RifleModule.MAGAZINE_MODULE,
+                    RifleModule.FIRE_CONTROL_GROUP_MODULE,
+                    RifleModule.FIRE_SELECTOR_MODULE,
+                    RifleModule.TRIGGER_MODULE,
+                    RifleModule.STOCK_MODULE
+            ),
+            BULLPUP_RIFLE_MODULES = new RifleModuleBuilder(
+                    RifleModule.GRIP_MODULE,
+                    RifleModule.BULLPUP_BODY_MODULE,
+                    RifleModule.MAGAZINE_MODULE,
+                    RifleModule.FIRE_CONTROL_GROUP_MODULE,
+                    RifleModule.TRIGGER_MODULE,
+                    RifleModule.FIRE_SELECTOR_MODULE
+            ),
+            STANDARD_PISTOL_MODULES = new RifleModuleBuilder(
+                    RifleModule.RECEIVER_MODULE,
+                    RifleModule.UPPER_RECEIVER_MODULE,
+                    RifleModule.MAGAZINE_MODULE,
+                    RifleModule.TRIGGER_MODULE,
+                    RifleModule.FIRE_SELECTOR_MODULE,
+                    RifleModule.BARREL_MODULE,
+                    RifleModule.GRIP_MODULE
+            ),
+            STANDARD_REVOLVER_MODULES = new RifleModuleBuilder(
+                    RifleModule.RECEIVER_MODULE,
+                    RifleModule.TRIGGER_MODULE,
+                    RifleModule.BARREL_MODULE,
+                    RifleModule.GRIP_MODULE
+            ),
+            PUMP_ACTION_MODULES = new RifleModuleBuilder(
+                    RifleModule.RECEIVER_MODULE,
+                    RifleModule.SHELL_TUBE_MODULE,
+                    RifleModule.BARREL_MODULE,
+                    RifleModule.TRIGGER_MODULE,
+                    RifleModule.PUMP_MODULE,
+                    RifleModule.FIRE_CONTROL_GROUP_MODULE,
+                    RifleModule.TRIGGER_MODULE,
+                    RifleModule.STOCK_MODULE
+            ),
+            BOLT_ACTION_MODULES = new RifleModuleBuilder(
+                    RifleModule.BOLT_MODULE,
+                    RifleModule.BARREL_MODULE,
+                    RifleModule.LONG_BODY_MODULE,
+                    RifleModule.TRIGGER_MODULE,
+                    RifleModule.STOCK_MODULE,
+                    RifleModule.CARTRIDGE_WELL_MODULE,
+                    RifleModule.GRIP_MODULE
+            );
 
 
     public Hashtable<RifleModuleType, RegistryEntry<Item>> registry = new Hashtable<>();

@@ -162,7 +162,7 @@ public class ModItems {
     // Guns
     public static final RifleBase
         M4A1 = new RifleBase("m4a1", RifleBase.STANDARD_RIFLE_MODULES)
-                .setModuleData(0, d -> d.setCastFillingAmount(250)) // Grip
+                .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
                 .setModuleData(1, d -> d.setCastFillingAmount(500)) // Lower Receiver
                 .setModuleData(2, d -> d.setCastFillingAmount(550)) // Upper Receiver
                 .setModuleData(3, d -> d.setCastFillingAmount(300)) // Handguard
@@ -173,27 +173,83 @@ public class ModItems {
                 .setModuleData(8, d -> d.setCastFillingAmount(80)) // Trigger
                 .setModuleData(9, d -> d.setCastFillingAmount(300)), // Stock
 
-            HK_G3 = new RifleBase("hk_g3", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE))
-                    .setModuleData(0, d -> d.setCastFillingAmount(300)) // Grip
-                    .setModuleData(1, d -> d.setCastFillingAmount(600)) // Lower Receiver
-                    .setModuleData(2, d -> d.setCastFillingAmount(650)) // Upper Receiver
-                    .setModuleData(3, d -> d.setCastFillingAmount(350)) // Handguard
-                    .setModuleData(4, d -> d.setCastFillingAmount(320)) // Barrel
-                    .setModuleData(5, d -> d.setCastFillingAmount(180)) // Magazine
-                    .setModuleData(6, d -> d.setCastFillingAmount(350)) // Fire Control Group
-                    .setModuleData(7, d -> d.setCastFillingAmount(100)) // Fire Selector
-                    .setModuleData(8, d -> d.setCastFillingAmount(70)), // Trigger
+        HK_G3 = new RifleBase("hk_g3", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE))
+                .setModuleData(0, d -> d.setCastFillingAmount(300)) // Grip
+                .setModuleData(1, d -> d.setCastFillingAmount(600)) // Lower Receiver
+                .setModuleData(2, d -> d.setCastFillingAmount(650)) // Upper Receiver
+                .setModuleData(3, d -> d.setCastFillingAmount(350)) // Handguard
+                .setModuleData(4, d -> d.setCastFillingAmount(320)) // Barrel
+                .setModuleData(5, d -> d.setCastFillingAmount(180)) // Magazine
+                .setModuleData(6, d -> d.setCastFillingAmount(350)) // Fire Control Group
+                .setModuleData(7, d -> d.setCastFillingAmount(100)) // Fire Selector
+                .setModuleData(8, d -> d.setCastFillingAmount(70)), // Trigger
 
-            AK47 = new RifleBase("ak47", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE))
-                    .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
-                    .setModuleData(1, d -> d.setCastFillingAmount(350)) // Lower Receiver
-                    .setModuleData(2, d -> d.setCastFillingAmount(450)) // Upper Receiver
-                    .setModuleData(3, d -> d.setCastFillingAmount(200)) // Handguard
-                    .setModuleData(4, d -> d.setCastFillingAmount(200)) // Barrel
-                    .setModuleData(5, d -> d.setCastFillingAmount(100)) // Magazine
-                    .setModuleData(6, d -> d.setCastFillingAmount(300)) // Fire Control Group
-                    .setModuleData(7, d -> d.setCastFillingAmount(110)) // Fire Selector
-                    .setModuleData(8, d -> d.setCastFillingAmount(70)); // Trigger
+        AK47 = new RifleBase("ak47", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE))
+                .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
+                .setModuleData(1, d -> d.setCastFillingAmount(350)) // Lower Receiver
+                .setModuleData(2, d -> d.setCastFillingAmount(450)) // Upper Receiver
+                .setModuleData(3, d -> d.setCastFillingAmount(200)) // Handguard
+                .setModuleData(4, d -> d.setCastFillingAmount(200)) // Barrel
+                .setModuleData(5, d -> d.setCastFillingAmount(100)) // Magazine
+                .setModuleData(6, d -> d.setCastFillingAmount(300)) // Fire Control Group
+                .setModuleData(7, d -> d.setCastFillingAmount(110)) // Fire Selector
+                .setModuleData(8, d -> d.setCastFillingAmount(70)), // Trigger
+
+        GLOCK_17 = new RifleBase("glock_17", RifleBase.STANDARD_PISTOL_MODULES)
+                .setModuleData(0, d -> d.setCastFillingAmount(280)) // Receiver
+                .setModuleData(1, d -> d.setCastFillingAmount(260)) // Upper Receiver
+                .setModuleData(2, d -> d.setCastFillingAmount(180)) // Magazine
+                .setModuleData(3, d -> d.setCastFillingAmount(100)) // Trigger
+                .setModuleData(4, d -> d.setCastFillingAmount(80)) // Fire Selector
+                .setModuleData(5, d -> d.setCastFillingAmount(220)) // Barrel
+                .setModuleData(6, d -> d.setCastFillingAmount(180)), // Grip
+
+        DEAGLE = new RifleBase("deagle", RifleBase.STANDARD_PISTOL_MODULES)
+                .setModuleData(0, d -> d.setCastFillingAmount(320)) // Receiver
+                .setModuleData(1, d -> d.setCastFillingAmount(300)) // Upper Receiver
+                .setModuleData(2, d -> d.setCastFillingAmount(220)) // Magazine
+                .setModuleData(3, d -> d.setCastFillingAmount(120)) // Trigger
+                .setModuleData(4, d -> d.setCastFillingAmount(80)) // Fire Selector
+                .setModuleData(5, d -> d.setCastFillingAmount(260)) // Barrel
+                .setModuleData(6, d -> d.setCastFillingAmount(240)), // Grip
+
+        HK_MP5A5 = new RifleBase("hk_mp5a5", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE).remove(RifleModule.HANDGUARD_MODULE))
+                .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
+                .setModuleData(1, d -> d.setCastFillingAmount(300)) // Lower Receiver
+                .setModuleData(2, d -> d.setCastFillingAmount(400)) // Upper Receiver
+                .setModuleData(3, d -> d.setCastFillingAmount(180)) // Barrel
+                .setModuleData(4, d -> d.setCastFillingAmount(110)) // Magazine
+                .setModuleData(5, d -> d.setCastFillingAmount(250)) // Fire Control Group
+                .setModuleData(6, d -> d.setCastFillingAmount(100)) // Fire Selector
+                .setModuleData(7, d -> d.setCastFillingAmount(70)), // Trigger
+
+        UZI = new RifleBase("uzi", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE).remove(RifleModule.HANDGUARD_MODULE).remove(RifleModule.LOWER_RECEIVER_MODULE).remove(RifleModule.UPPER_RECEIVER_MODULE).add(RifleModule.RECEIVER_MODULE))
+                .setModuleData(0, d -> d.setCastFillingAmount(160)) // Grip
+                .setModuleData(1, d -> d.setCastFillingAmount(150)) // Barrel
+                .setModuleData(2, d -> d.setCastFillingAmount(100)) // Magazine
+                .setModuleData(3, d -> d.setCastFillingAmount(250)) // Fire Control Group
+                .setModuleData(4, d -> d.setCastFillingAmount(100)) // Fire Selector
+                .setModuleData(5, d -> d.setCastFillingAmount(80)) // Trigger
+                .setModuleData(6, d -> d.setCastFillingAmount(300)), // Receiver
+
+        AWP = new RifleBase("ai_awp", RifleBase.BOLT_ACTION_MODULES.remove(RifleModule.CARTRIDGE_WELL_MODULE).remove(RifleModule.GRIP_MODULE).add(RifleModule.MAGAZINE_MODULE))
+                .setModuleData(0, d -> d.setCastFillingAmount(160)) // Bolt
+                .setModuleData(1, d -> d.setCastFillingAmount(340)) // Barrel
+                .setModuleData(2, d -> d.setCastFillingAmount(780)) // Long Body
+                .setModuleData(3, d -> d.setCastFillingAmount(100)) // Trigger
+                .setModuleData(4, d -> d.setCastFillingAmount(300)) // Stock
+                .setModuleData(5, d -> d.setCastFillingAmount(240)), // Magazine
+
+        M249 = new RifleBase("m249", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.FIRE_SELECTOR_MODULE).remove(RifleModule.FIRE_CONTROL_GROUP_MODULE))
+                .setModuleData(0, d -> d.setCastFillingAmount(250)) // Grip
+                .setModuleData(1, d -> d.setCastFillingAmount(600)) // Lower Receiver
+                .setModuleData(2, d -> d.setCastFillingAmount(600)) // Upper Receiver
+                .setModuleData(3, d -> d.setCastFillingAmount(400)) // Handguard
+                .setModuleData(4, d -> d.setCastFillingAmount(340)) // Barrel
+                .setModuleData(5, d -> d.setCastFillingAmount(380)) // Magazine
+                .setModuleData(6, d -> d.setCastFillingAmount(100)) // Trigger
+                .setModuleData(7, d -> d.setCastFillingAmount(400)) // Stock
+        ;
 
 
     public static void register(){

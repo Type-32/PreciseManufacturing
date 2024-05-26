@@ -1,0 +1,37 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BHULS",
+    "  MG "
+  ],
+  "key": {
+    "L": {
+      "item": "prma:m249_lower_receiver"
+    },
+    "G": {
+      "item": "prma:m249_grip"
+    },
+    "H": {
+      "item": "prma:m249_handguard"
+    },
+    "S": {
+      "item": "prma:m249_stock"
+    },
+    "M": {
+      "item": "prma:m249_magazine"
+    },
+    "U": {
+      "item": "prma:m249_upper_receiver"
+    },
+    "B": {
+      "item": "prma:m249_barrel"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:m249"
+    }
+  },
+  "acceptMirrored": true
+}

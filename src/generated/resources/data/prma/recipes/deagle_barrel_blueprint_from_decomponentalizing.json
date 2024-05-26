@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "count": 1,
+    "nbt": "{GunId:\"tacz:deagle\"}"
+  },
+  "result": {
+    "item": "prma:deagle_barrel_blueprint"
+  },
+  "processingTime": 1000
+}

@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "count": 1,
+    "nbt": "{GunId:\"tacz:glock_17\"}"
+  },
+  "result": {
+    "item": "prma:glock_17_upper_receiver_blueprint"
+  },
+  "processingTime": 5500
+}

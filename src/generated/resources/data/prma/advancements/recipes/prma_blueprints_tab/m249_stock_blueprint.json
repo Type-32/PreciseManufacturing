@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:m249_stock_blueprint"
+    ]
+  },
+  "criteria": {
+    "has_m249_stock_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:m249_stock_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:m249_stock_blueprint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_m249_stock_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BLOS",
+    " MT "
+  ],
+  "key": {
+    "L": {
+      "item": "prma:ai_awp_long_body"
+    },
+    "B": {
+      "item": "prma:ai_awp_barrel"
+    },
+    "O": {
+      "item": "prma:ai_awp_bolt"
+    },
+    "M": {
+      "item": "prma:ai_awp_magazine"
+    },
+    "T": {
+      "item": "prma:ai_awp_trigger"
+    },
+    "S": {
+      "item": "prma:ai_awp_stock"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:ai_awp"
+    }
+  },
+  "acceptMirrored": true
+}

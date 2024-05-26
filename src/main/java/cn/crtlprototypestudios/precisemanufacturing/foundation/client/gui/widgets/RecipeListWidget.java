@@ -52,6 +52,9 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         // Render the list background
         blit(poseStack, x, y, 0, 0, listWidth, listHeight);
 
+        // Apply the mask
+        RenderSystem.enableScissor((int) (x * Minecraft.getInstance().getWindow().getGuiScale()), (int) ((Minecraft.getInstance().getWindow().getHeight() - (y + listHeight)) * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listWidth * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listHeight * Minecraft.getInstance().getWindow().getGuiScale()));
+
         // Render the recipe entries
         if(this.recipes != null && !recipes.isEmpty()) {
             int y = this.y + 1 - scrollOffset;
@@ -62,23 +65,32 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
                     if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
                         selectedIndex = i;
 
-                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex);
+                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight, mouseX, mouseY, i == selectedIndex, false);
                 } else if (y >= this.y && y + entryHeight > this.y + listHeight && (y + entryHeight) - (this.y + listHeight) <= entryHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 
                     if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
                         selectedIndex = i;
-                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight - ((y + entryHeight) - (this.y + listHeight)), mouseX, mouseY, i == selectedIndex);
+                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight - ((y + entryHeight) - (this.y + listHeight)), mouseX, mouseY, i == selectedIndex, false);
+                } else if (y < this.y && y + entryHeight > this.y && (y + entryHeight) - (this.y) <= entryHeight) {
+                    DecomponentalizingRecipe recipe = recipes.get(i);
+
+                    if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
+                        selectedIndex = i;
+                    renderRecipeEntry(poseStack, recipe, x + 1, y, listWidth, entryHeight - ((y + entryHeight) - (this.y)), mouseX, mouseY, i == selectedIndex, true);
                 }
                 y += entryHeight + 1;
             }
         }
+
+        // Disable the mask
+        RenderSystem.disableScissor();
     }
 
-    private void renderRecipeEntry(PoseStack poseStack, DecomponentalizingRecipe recipe, int x, int y, int width, int height, int mouseX, int mouseY, boolean selected) {
+    private void renderRecipeEntry(PoseStack poseStack, DecomponentalizingRecipe recipe, int x, int y, int width, int height, int mouseX, int mouseY, boolean selected, boolean upperOverflow) {
         // Render the recipe entry background
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(poseStack, x , y, 0, selected ? 120 : 100, width, height);
+        blit(poseStack, x , y, 0, upperOverflow ? (selected ? 120 + (entryHeight - height) : 100 + (entryHeight - height)) : (selected ? 120 : 100), width, height);
 
         // Render the recipe item
         ItemStack resultStack = recipe.getResultItem();
@@ -88,7 +100,8 @@ public class RecipeListWidget extends AbstractWidget implements Widget {
         TextComponent textComponent = new TextComponent(resultStack.getDisplayName()
                 .getString()
                 .substring(1, resultStack.getDisplayName().getString().length() - 1));
-        Minecraft.getInstance().font.draw(poseStack, textComponent, x + 22, y + 6, 0xFFFFFF);
+        String truncatedText = Minecraft.getInstance().font.plainSubstrByWidth(textComponent.getString(), width - 24);
+        Minecraft.getInstance().font.draw(poseStack, truncatedText, x + 22, y + 6, 0xFFFFFF);
     }
 
     @Override
