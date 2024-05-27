@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decompone
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +15,7 @@ import net.minecraftforge.common.crafting.PartialNBTIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
@@ -30,15 +32,15 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer inventory, Level level) {
+        if(level.isClientSide()){
+            return false;
+        }
         ItemStack itemStack = inventory.getItem(0);
-//        Main.LOGGER.debug("detecting recipe.... for item with nbt {}", itemStack.getTag());
-//        Main.LOGGER.debug("detecting recipe.... for ingredient with nbt {}", ingredient.getItems()[0].getTag());
-
         return ingredient.test(itemStack);
     }
 
     @Override
-    public @NotNull ItemStack assemble(SimpleContainer inventory) {
+    public @NotNull ItemStack assemble(SimpleContainer simpleContainer, RegistryAccess registryAccess) {
         return result.copy();
     }
 
@@ -48,8 +50,12 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem() {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         return result;
+    }
+
+    public @Nullable ItemStack getResultItem(){
+        return getResultItem(null);
     }
 
     @Override
@@ -88,7 +94,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         public static final ResourceLocation ID = new ResourceLocation(Reference.MOD_ID, "decomponentalizing");
 
         @Override
-        public DecomponentalizingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public @NotNull DecomponentalizingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 //            Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
             PartialNBTIngredient ingredient = PartialNBTIngredient.Serializer.INSTANCE.parse(json.get("ingredient").getAsJsonObject());
             ItemStack result = ShapedRecipe.itemStackFromJson(json.getAsJsonObject("result"));
@@ -110,28 +116,8 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         @Override
         public void toNetwork(FriendlyByteBuf buffer, DecomponentalizingRecipe recipe) {
             recipe.getIngredient().toNetwork(buffer);
-            buffer.writeItem(recipe.getResultItem());
+            buffer.writeItem(Objects.requireNonNull(recipe.getResultItem()));
             buffer.writeInt(recipe.getProcessingTime());
-        }
-
-        @Override
-        public RecipeSerializer<?> setRegistryName(ResourceLocation resourceLocation) {
-            return INSTANCE;
-        }
-
-        @org.jetbrains.annotations.Nullable
-        @Override
-        public ResourceLocation getRegistryName() {
-            return ID;
-        }
-
-        @Override
-        public Class<RecipeSerializer<?>> getRegistryType() {
-            return Serializer.castClass(RecipeSerializer.class);
-        }
-
-        private static <G> Class<G> castClass(Class<?> cls){
-            return (Class<G>)cls;
         }
     }
 }

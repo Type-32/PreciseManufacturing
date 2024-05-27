@@ -10,9 +10,9 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -29,6 +29,11 @@ public class DecomponentalizingRecipeCategory implements IRecipeCategory<Decompo
     public DecomponentalizingRecipeCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 30);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.DECOMPONENTALIZER.get()));
+    }
+
+    @Override
+    public RecipeType<DecomponentalizingRecipe> getRecipeType() {
+        return DecomponentalizingRecipe.Type.INSTANCE;
     }
 
     @Override

@@ -4,9 +4,9 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.Mo
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModDataGenerators {
@@ -15,7 +15,7 @@ public class ModDataGenerators {
         DataGenerator gen = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        gen.addProvider(new ModRecipeProvider(gen));
+        gen.addProvider(true, new ModRecipeProvider(gen));
 
     }
 }

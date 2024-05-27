@@ -29,11 +29,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private static List<CartridgeBase> cartridgeBases = new ArrayList<>();
 
     public ModRecipeProvider(DataGenerator pGenerator) {
-        super(pGenerator);
+        super(pGenerator.getPackOutput());
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+    protected void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         rifleBases.forEach(RifleBase::registerRecipes);
         cartridgeBases.forEach(CartridgeBase::registerRecipes);
 

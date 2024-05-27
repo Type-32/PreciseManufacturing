@@ -5,14 +5,15 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponen
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -34,36 +35,36 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
     }
 
     @Override
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        TranslatableComponent terminalText = new TranslatableComponent("gui.prma.decomponentalizer.idle");
+        MutableComponent terminalText = Component.translatable("gui.prma.decomponentalizer.idle");
         RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
-            terminalText = new TranslatableComponent("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
+            guiGraphics.blit(TEXTURE, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
+            terminalText = Component.translatable("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
         } else {
             List<DecomponentalizingRecipe> recipes = this.getMenu().getBlockEntity().getAvailableRecipes();
             if (recipes != null && !recipes.isEmpty() && this.recipesPanel != null && this.recipesPanel.getSelectedIndex() != -1) {
-                terminalText = new TranslatableComponent("gui.prma.decomponentalizer.time_estimate", recipes.get(this.recipesPanel.getSelectedIndex()).getProcessingTime() / 20);
+                terminalText = Component.translatable("gui.prma.decomponentalizer.time_estimate", recipes.get(this.recipesPanel.getSelectedIndex()).getProcessingTime() / 20);
             }
         }
 
-        Minecraft.getInstance().font.draw(pPoseStack, terminalText, x + 120, y + 54, 0x00FF00);
+        guiGraphics.drawString(Minecraft.getInstance().font, terminalText, x + 120, y + 54, 0x00FF00);
     }
 
     @Override
-    public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(stack);
-        super.render(stack, mouseX, mouseY, partialTicks);
-        this.recipesPanel.render(stack, mouseX, mouseY, partialTicks);
-        this.renderTooltip(stack, mouseX, mouseY);
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+        this.recipesPanel.render(guiGraphics, mouseX, mouseY, partialTicks);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
@@ -87,7 +88,12 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.topPos = (height - imageHeight) / 2;
 
         this.craftButton = addRenderableWidget(
-                new Button(leftPos + 116, topPos + 130, 102, 20, new TranslatableComponent("gui.prma.decomponentalizer.analyze"), this::onAnalyzeButtonPressed)
+                Button.builder(
+                        Component.translatable(Reference.morphString("gui.%s.decomponentalizer.analyze")),
+                        this::onAnalyzeButtonPressed
+                )
+                .bounds(leftPos + 116, topPos + 130, 102, 20)
+                .build()
         );
 
         this.recipesPanel = addRenderableWidget(

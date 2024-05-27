@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.crafting.NBTIngredient;
+import net.minecraftforge.common.crafting.PartialNBTIngredient;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -31,7 +31,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public DecomponentalizingRecipeBuilder(ItemStack ingredient, ItemLike result, int processingTime) {
-        this.ingredient = NBTIngredient.of(ingredient);
+        this.ingredient = PartialNBTIngredient.of(ingredient);
         this.result = result.asItem();
         this.processingTime = processingTime;
     }

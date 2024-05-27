@@ -17,26 +17,23 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import org.jetbrains.annotations.NotNull;
 
 public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private final DecomponentalizerBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
-    private List<DecomponentalizingRecipe> availableRecipes = new ArrayList<DecomponentalizingRecipe>();
 
     public DecomponentalizerContainerMenu(int id, Inventory inventory, FriendlyByteBuf extraData){
-        this(id, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(id, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
     }
 
     public DecomponentalizerContainerMenu(int id, Inventory playerInventory, BlockEntity blockEntity, ContainerData data) {
         super(ModContainers.DECOMPONENTALIZER.get(), id);
         checkContainerSize(playerInventory, 4);
         this.blockEntity = (DecomponentalizerBlockEntity) blockEntity;
-        this.level = playerInventory.player.level;
+        this.level = playerInventory.player.level();
         this.data = data;
 
         for (int i = 0; i < 3; i++) {
@@ -49,7 +46,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
             addSlot(new Slot(playerInventory, k, 34 + k * 18, 230));
         }
 
-        blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+        blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             addSlot(new LockableInputSlot(handler, 0, 7, 23));
             addSlot(new LockableInputSlot(handler, 1, 25, 23));
             addSlot(new LockableInputSlot(handler, 2, 55, 23));
@@ -115,7 +112,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
 
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
