@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.re
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.google.gson.JsonObject;
+import com.simibubi.create.foundation.utility.RegisteredObjects;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -94,11 +95,11 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
 
         public void serializeRecipeData(JsonObject pJson) {
             pJson.add("ingredient", this.ingredient.toJson());
-            pJson.addProperty("result", Registry.ITEM.getKey(this.result).toString());
+            pJson.addProperty("result", RegisteredObjects.getKeyOrThrow(this.result).toString());
             pJson.addProperty("processingTime", this.processingTime);
 
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("item", Objects.requireNonNull(this.result.getRegistryName()).toString());
+            jsonObj.addProperty("item", this.result.toString());
             pJson.add("result", jsonObj);
         }
 
@@ -106,7 +107,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
          * Gets the ID for the recipe.
          */
         public ResourceLocation getId() {
-            return ResourceHelper.find(Objects.requireNonNull(this.result.getRegistryName()).getPath() + "_from_decomponentalizing");
+            return ResourceHelper.find(this.result.toString() + "_from_decomponentalizing");
         }
 
         public RecipeSerializer<?> getType() {

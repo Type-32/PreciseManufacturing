@@ -17,7 +17,7 @@ public class ModItems {
 
     static {
         // Set that all registered Items and Blocks defaults under this Mod's creative tabs
-        Main.REGISTRATE.creativeModeTab(() -> ModCreativeModTabs.MOD_TAB);
+        Main.REGISTRATE.defaultCreativeTab(ModCreativeModTabs.MOD_TAB);
     }
 
 //    public static final ItemStack TACZ_AMMO_ITEM_TEMPLATE = new ItemStack(ModCompatItems.AMMO);

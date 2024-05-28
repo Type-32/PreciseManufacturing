@@ -16,14 +16,13 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public static List<String> storedItemResourceLocations = new ArrayList<>();
     public static List<Item> storedItemLocations = new ArrayList<>();
 
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Reference.MOD_ID, existingFileHelper);
+        super(generator.getPackOutput(), Reference.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -51,34 +50,34 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ItemModelBuilder simpleItem(Item item) {
-        return withExistingParent(item.getRegistryName().getPath(),
+        return withExistingParent(item.toString(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                ResourceHelper.find("item/" + item.getRegistryName().getPath()));
+                ResourceHelper.find("item/" + item.toString()));
     }
 
     private ItemModelBuilder handheldItem(Item item) {
-        return withExistingParent(item.getRegistryName().getPath(),
+        return withExistingParent(item.toString(),
                 new ResourceLocation("item/handheld")).texture("layer0",
-                ResourceHelper.find("item/" + item.getRegistryName().getPath()));
+                ResourceHelper.find("item/" + item.toString()));
     }
 
     private ItemModelBuilder customSimpleItem(Item item, String... folders) {
-        String path = "item";
+        StringBuilder path = new StringBuilder("item");
         for (String string : folders)
-            path += "/" + ("_".equals(string) ? Objects.requireNonNull(item.getRegistryName()).getPath() : string);
-        return withExistingParent(item.getRegistryName().getPath(),
+            path.append("/").append("_".equals(string) ? item.toString() : string);
+        return withExistingParent(item.toString(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                ResourceHelper.find(path));
+                ResourceHelper.find(path.toString()));
     }
 
     private ItemModelBuilder modelBuilder(String path, Item item){
-        return withExistingParent(item.getRegistryName().getPath(),
+        return withExistingParent(item.toString(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 ResourceHelper.find(path));
     }
 
     private ItemModelBuilder modelBuilder(ResourceLocation path, Item item){
-        return withExistingParent(item.getRegistryName().getPath(),
+        return withExistingParent(item.toString(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 path);
     }

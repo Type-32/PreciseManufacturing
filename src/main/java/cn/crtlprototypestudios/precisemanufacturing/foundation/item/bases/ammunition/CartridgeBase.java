@@ -15,13 +15,19 @@ import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.SequencedAssemblyRecipeGen;
+import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.Registry;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -120,10 +126,11 @@ public class CartridgeBase extends AmmunitionBase {
             registry.put(type, registerModule(coreId, type));
         }
 
+        assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
         registry.put(CartridgeModule.UNFINISHED_MODULE,
                 Main.REGISTRATE.item(coreId + "_unfinished", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_unfinished"))
-                        .properties(p -> p.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                        .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
                         .register()
         );
 
@@ -159,18 +166,20 @@ public class CartridgeBase extends AmmunitionBase {
     private RegistryEntry<Item> registerModule(String id, CartridgeModule module) {
         String name = String.format("%s_%s", id, module.toString());
 
+        assert ModCreativeModTabs.MOD_CASTS_TAB.getKey() != null;
+        assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
         RegistryEntry<Item>
                 blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
-                        .properties(p -> p.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
+                        .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
                         .register(),
                 castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_cast", module)))
-                        .properties(p -> p.tab(ModCreativeModTabs.MOD_CASTS_TAB))
+                        .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
                         .register(),
                 mainModule = Main.REGISTRATE.item(name, Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", id, name))
-                        .properties(p -> p.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                        .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
                         .register();
 
         blueprintsRegistry.put(module, blueprintModule);
@@ -183,10 +192,14 @@ public class CartridgeBase extends AmmunitionBase {
     public void registerRecipes(){
 
         // TODO Add proper impl. here after TacZ Lib is published or sth
-        ItemStack ammoItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","ammo"));
+        Item ammoItem = new Item(new Item.Properties());
+        ResourceLocation registryName = new ResourceLocation("tacz", "ammo");
+        ammoItem = Registry.register(ForgeRegistries.ITEMS., registryName, ammoItem);
+
+        ItemStack ammoStack = new ItemStack(ammoItem);
         CompoundTag itemTag = new CompoundTag();
         itemTag.putString("AmmoId", "tacz:" + getCoreId());
-        ammoItem.setTag(itemTag);
+        ammoStack.setTag(itemTag);
 
         for(CartridgeModule m : givenModuleBuilder.get()){
             String name = String.format("%s_%s", getCoreId(), m.toString());
@@ -197,7 +210,7 @@ public class CartridgeBase extends AmmunitionBase {
                     blueprintModule = blueprintsRegistry.get(m);
 
             ModRecipeProvider.add(ShapedRecipeBuilder
-                    .shaped(castModule.get())
+                    .shaped(RecipeCategory.MISC, castModule.get())
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
                     .pattern("PIP")
                     .pattern("IBI")
@@ -206,7 +219,7 @@ public class CartridgeBase extends AmmunitionBase {
                     .define('I', Items.IRON_INGOT)
                     .define('B', blueprintModule.get()));
 
-            ModDecomponentalizingRecipesGen.add(ammoItem, blueprintModule.get(), 400);
+            ModDecomponentalizingRecipesGen.add(ammoItem.getDefaultInstance(), blueprintModule.get(), 400);
 
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
                     .require(castModule.get())

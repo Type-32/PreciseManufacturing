@@ -44,7 +44,7 @@ public class C2SSetDecomponentalizerSelectedRecipePacket {
     public static void handleOnServer(C2SSetDecomponentalizerSelectedRecipePacket msg, Supplier<NetworkEvent.Context> ctx){
         ServerPlayer player = ctx.get().getSender();
         assert player != null;
-        ServerLevel world = player.getLevel();
+        ServerLevel world = player.serverLevel();
         assert world.hasChunkAt(msg.position);
         world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).get().setSelectedRecipeIndex(msg.recipeIndex);
     }
