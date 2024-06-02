@@ -168,24 +168,25 @@ public class RifleBase extends WeaponBase {
         assert ModCreativeModTabs.MOD_CASTS_TAB.getKey() != null;
 
         // Register the module
-        RegistryEntry<Item> mainModule = Main.REGISTRATE.item(name, Item::new)
-                .model(ModItemModelProvider.genericItemModel(true, "weapons", "general","guns", "modules", "general_" + module))
-                .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
-                .register();
+        RegistryEntry<Item>
+                mainModule = Main.REGISTRATE.item(name, Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "weapons", "general","guns", "modules", "general_" + module))
+                        .register(),
+                castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "casts", "general_" + module + "_cast"))
+                        .register(),
+                blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "blueprints", "general_" + module + "_blueprint"))
+                        .register();
+
 
         registry.put(module.getType(), mainModule);
-        // Register the unfinished module
-        // module variant, and make it invisible in the creative tab
-        blueprintsRegistry.put(module.getType(), Main.REGISTRATE.item(name + "_blueprint", Item::new)
-                .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "blueprints", "general_" + module + "_blueprint"))
-                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
-                .register());
+        blueprintsRegistry.put(module.getType(), blueprintModule);
+        castsRegistry.put(module.getType(), castModule);
 
-        // Register the module's cast
-        castsRegistry.put(module.getType(), Main.REGISTRATE.item(name + "_cast", Item::new)
-                .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "casts", "general_" + module + "_cast"))
-                .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
-                .register());
+        ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
+        ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
+        ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
 
         return mainModule;
     }
@@ -202,10 +203,6 @@ public class RifleBase extends WeaponBase {
             RegistryEntry<Item> castModule = castsRegistry.get(m.getType());
             RegistryEntry<Item> blueprintModule = blueprintsRegistry.get(m.getType());
             String name = String.format("%s_%s", getCoreId(), m.getType().toString());
-
-            ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
-            ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
-            ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
 
             ModRecipeProvider.add(ShapedRecipeBuilder
                     .shaped(RecipeCategory.MISC, castModule.get())

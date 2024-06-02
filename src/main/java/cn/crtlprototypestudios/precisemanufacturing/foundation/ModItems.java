@@ -21,7 +21,7 @@ public class ModItems {
 
     static {
         // Set that all registered Items and Blocks defaults under this Mod's creative tabs
-        Main.REGISTRATE.defaultCreativeTab(ModCreativeModTabs.MOD_TAB.getKey());
+//        Main.REGISTRATE.defaultCreativeTab(ModCreativeModTabs.MOD_TAB.getKey());
     }
 
     public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry, ModCreativeModTabs.Tabs tabs) {

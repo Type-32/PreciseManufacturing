@@ -127,12 +127,13 @@ public class CartridgeBase extends AmmunitionBase {
         }
 
         assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
-        registry.put(CartridgeModule.UNFINISHED_MODULE,
-                Main.REGISTRATE.item(coreId + "_unfinished", Item::new)
-                        .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_unfinished"))
-                        .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
-                        .register()
-        );
+
+        RegistryEntry<Item> unfinishedModule = Main.REGISTRATE.item(coreId + "_unfinished", Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_unfinished"))
+                .register();
+        registry.put(CartridgeModule.UNFINISHED_MODULE, unfinishedModule);
+
+        ModItems.addToList(unfinishedModule, ModCreativeModTabs.Tabs.Components);
 
         ModRecipeProvider.addCartridgeBase(this);
     }
@@ -145,6 +146,7 @@ public class CartridgeBase extends AmmunitionBase {
         this(coreId, STANDARD_CARTRIDGE);
     }
 
+    //TODO Update Documentation
     /**
      * The <code>registerModule()</code> function registers the Cartridge Assembly Module Items.
      *
@@ -172,15 +174,12 @@ public class CartridgeBase extends AmmunitionBase {
         RegistryEntry<Item>
                 blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
-                        .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
                         .register(),
                 castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_cast", module)))
-                        .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
                         .register(),
                 mainModule = Main.REGISTRATE.item(name, Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", id, name))
-                        .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
                         .register();
 
         blueprintsRegistry.put(module, blueprintModule);

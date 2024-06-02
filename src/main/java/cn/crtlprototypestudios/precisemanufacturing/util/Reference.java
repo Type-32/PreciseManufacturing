@@ -12,6 +12,6 @@ public class Reference {
     }
 
     public static String morphString(String s){
-        return String.format(s, MOD_ID);
+        return String.format("%s:%s", MOD_ID, s);
     }
 }

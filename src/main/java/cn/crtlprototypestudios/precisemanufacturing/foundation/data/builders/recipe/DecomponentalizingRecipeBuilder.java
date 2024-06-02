@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.re
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.google.gson.JsonObject;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import net.minecraft.advancements.Advancement;
@@ -95,11 +96,11 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
 
         public void serializeRecipeData(JsonObject pJson) {
             pJson.add("ingredient", this.ingredient.toJson());
-            pJson.addProperty("result", RegisteredObjects.getKeyOrThrow(this.result).toString());
+//            pJson.addProperty("result", Reference.morphString(RegisteredObjects.getKeyOrThrow(this.result).toString()));
             pJson.addProperty("processingTime", this.processingTime);
 
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("item", this.result.toString());
+            jsonObj.addProperty("item", Reference.morphString(this.result.toString()));
             pJson.add("result", jsonObj);
         }
 
