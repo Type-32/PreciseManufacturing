@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.widgets;
 
+import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerContainerMenu;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
@@ -15,6 +16,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class RecipeListWidget extends AbstractWidget {
@@ -57,6 +59,7 @@ public class RecipeListWidget extends AbstractWidget {
             for (int i = 0; i < recipes.size(); i++) {
                 if (y >= getY() && y + entryHeight <= getY() + listHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
+                    Main.LOGGER.info("Recipe: {}, {}", recipe.toString(), Arrays.stream(recipe.getIngredient().getItems()).toArray()[0].toString());
 
                     if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
                         selectedIndex = i;
@@ -90,6 +93,7 @@ public class RecipeListWidget extends AbstractWidget {
 
         // Render the recipe item
         ItemStack resultStack = recipe.getResultItem();
+        assert resultStack != null;
         guiGraphics.renderItem(resultStack, x + 2, y + 2);
 
         // Render the recipe duration

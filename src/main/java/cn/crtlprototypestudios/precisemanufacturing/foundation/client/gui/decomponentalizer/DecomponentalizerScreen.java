@@ -1,5 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer;
 
+import cn.crtlprototypestudios.precisemanufacturing.Main;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.widgets.RecipeListWidget;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
@@ -10,6 +12,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -50,27 +53,40 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
             guiGraphics.blit(TEXTURE, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
             terminalText = Component.translatable("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
         } else {
-            List<DecomponentalizingRecipe> recipes = this.getMenu().getBlockEntity().getAvailableRecipes();
+            BlockPos pos = this.getMenu().getBlockEntity().getBlockPos();
+            List<DecomponentalizingRecipe>
+                    recipes = this.getMenu().getBlockEntity().getAvailableRecipes();
+//                    recipes = recipesPanel
+
+            assert recipes != null;
+//            Main.LOGGER.info("Is Recipes not null from Screen? {}, {}", recipes != null, !recipes.isEmpty());
             if (recipes != null && !recipes.isEmpty() && this.recipesPanel != null && this.recipesPanel.getSelectedIndex() != -1) {
                 terminalText = Component.translatable("gui.prma.decomponentalizer.time_estimate", recipes.get(this.recipesPanel.getSelectedIndex()).getProcessingTime() / 20);
             }
         }
 
         guiGraphics.drawString(Minecraft.getInstance().font, terminalText, x + 120, y + 54, 0x00FF00);
+
+//        this.recipesPanel.renderWidget(guiGraphics, pMouseX, pMouseY, pPartialTick);
     }
+
+
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        this.recipesPanel.render(guiGraphics, mouseX, mouseY, partialTicks);
+        this.recipesPanel.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
     protected void containerTick() {
         super.containerTick();
-        this.recipesPanel.setRecipes(this.getMenu().getBlockEntity().getAvailableRecipes());
+        List<DecomponentalizingRecipe>
+                recipes = this.getMenu().getBlockEntity().getAvailableRecipes();
+        this.recipesPanel.setRecipes(recipes);
+        Main.LOGGER.info("Is Recipes not null from Screen? {}, {}", recipes != null, !recipes.isEmpty());
         if(menu.isCrafting()) {
             craftButton.active = false;
             getMenu().lockInputSlots();
@@ -89,7 +105,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
 
         this.craftButton = addRenderableWidget(
                 Button.builder(
-                        Component.translatable(Reference.morphString("gui.%s.decomponentalizer.analyze")),
+                        Component.translatable("gui.prma.decomponentalizer.analyze"),
                         this::onAnalyzeButtonPressed
                 )
                 .bounds(leftPos + 116, topPos + 130, 102, 20)

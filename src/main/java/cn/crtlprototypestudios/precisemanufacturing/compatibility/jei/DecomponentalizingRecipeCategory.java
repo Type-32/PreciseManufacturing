@@ -34,7 +34,7 @@ public class DecomponentalizingRecipeCategory implements IRecipeCategory<Decompo
 
     @Override
     public RecipeType<DecomponentalizingRecipe> getRecipeType() {
-        return new RecipeType<>(ResourceHelper.find(DecomponentalizingRecipe.Type.ID), DecomponentalizingRecipe.class);
+        return new RecipeType<>(ResourceHelper.find(DecomponentalizingRecipeType.ID), DecomponentalizingRecipe.class);
     }
 
     @Override

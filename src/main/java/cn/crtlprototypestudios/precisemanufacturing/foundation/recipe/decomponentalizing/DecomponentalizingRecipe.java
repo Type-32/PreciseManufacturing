@@ -15,6 +15,8 @@ import net.minecraftforge.common.crafting.PartialNBTIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
@@ -73,7 +75,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         return DecomponentalizingRecipeType.INSTANCE;
     }
 
-    public Ingredient getIngredient() {
+    public PartialNBTIngredient getIngredient() {
         return ingredient;
     }
 
@@ -89,14 +91,16 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         public static final String ID = "decomponentalizing";
     }
 
+
+
     public static class Serializer implements RecipeSerializer<DecomponentalizingRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(Reference.MOD_ID, "decomponentalizing");
 
         @Override
         public @NotNull DecomponentalizingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-//            Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
             PartialNBTIngredient ingredient = PartialNBTIngredient.Serializer.INSTANCE.parse(json.get("ingredient").getAsJsonObject());
+            Main.LOGGER.debug("Ingredient {}, {}", ingredient.toString(), Arrays.toString(ingredient.getItems()));
             ItemStack result = ShapedRecipe.itemStackFromJson(json.getAsJsonObject("result"));
             int processingTime = json.get("processingTime").getAsInt();
 
@@ -107,6 +111,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         @Override
         public DecomponentalizingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             PartialNBTIngredient ingredient = PartialNBTIngredient.Serializer.INSTANCE.parse(buffer);
+            Main.LOGGER.debug("Ingredient {}, {}", ingredient.toString(), Arrays.toString(ingredient.getItems()));
             ItemStack result = buffer.readItem();
             int processingTime = buffer.readInt();
 

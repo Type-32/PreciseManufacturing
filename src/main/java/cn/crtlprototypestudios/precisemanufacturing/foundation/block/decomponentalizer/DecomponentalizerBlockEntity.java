@@ -267,9 +267,14 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         if (componentStack.isEmpty()) {
             Main.LOGGER.info("componentStack is Empty");
             return Collections.emptyList();
+        } else {
+            Main.LOGGER.info("componentStack is NOT EMPTY");
         }
 
-        return level.getRecipeManager().getRecipesFor(DecomponentalizingRecipeType.INSTANCE, new SimpleContainer(componentStack), level);
+        List<DecomponentalizingRecipe> recipes = level.getRecipeManager().getRecipesFor(DecomponentalizingRecipeType.INSTANCE, new SimpleContainer(componentStack), level);
+
+        Main.LOGGER.info("Recognized Recipes: {}", recipes);
+        return recipes;
     }
 
     public void setSelectedRecipeIndex(int availableRecipeIndex) {
