@@ -39,13 +39,22 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+    }
+
+
+
+    @Override
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+//        this.renderBackground(guiGraphics);
+//        this.renderBg(guiGraphics, partialTicks, mouseX, mouseY);
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
 
         MutableComponent terminalText = Component.translatable("gui.prma.decomponentalizer.idle");
         RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
@@ -67,15 +76,6 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
 
         guiGraphics.drawString(Minecraft.getInstance().font, terminalText, x + 120, y + 54, 0x00FF00);
 
-//        this.recipesPanel.renderWidget(guiGraphics, pMouseX, pMouseY, pPartialTick);
-    }
-
-
-
-    @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.recipesPanel.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
     }

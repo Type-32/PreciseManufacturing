@@ -67,9 +67,9 @@ description='''${mod_description}'''
    versionRange="[0.5.1.f,)"
    ordering="NONE"
    side="BOTH"
-#[[dependencies."${mod_id}"]]
-#   modId="tacz"
-#   mandatory=true
-#   versionRange="*"
-#   ordering="AFTER"
-#   side="BOTH"
+[[dependencies."${mod_id}"]]
+   modId="tacz"
+   mandatory=true
+   versionRange="[1.0.0-hotfix2,)"
+   ordering="AFTER"
+   side="BOTH"

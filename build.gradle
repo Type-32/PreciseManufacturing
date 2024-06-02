@@ -103,15 +103,21 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven {
+        // Add jitpack to repositories
+        url 'https://jitpack.io'
+    }
     mavenLocal()
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    minecraftLibrary 'org.apache.commons:commons-math3:3.6.1'
 
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+//    implementation 'com.github.MCModderAnchor:TACZ:${tacz_version}'
 //    implementation files(new String("libs/${tacz_dependency}.jar"))
 
     // [MC<minecraft_version>,MC<next_minecraft_version>)
