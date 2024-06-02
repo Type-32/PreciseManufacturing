@@ -1,0 +1,12 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:partial_nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": "{GunId:\"tacz:m95\"}"
+  },
+  "processingTime": 2000,
+  "result": {
+    "item": "m95_trigger_blueprint"
+  }
+}

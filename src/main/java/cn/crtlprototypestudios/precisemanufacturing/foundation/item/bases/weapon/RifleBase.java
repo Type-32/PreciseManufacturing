@@ -203,6 +203,10 @@ public class RifleBase extends WeaponBase {
             RegistryEntry<Item> blueprintModule = blueprintsRegistry.get(m.getType());
             String name = String.format("%s_%s", getCoreId(), m.getType().toString());
 
+            ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
+            ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
+            ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
+
             ModRecipeProvider.add(ShapedRecipeBuilder
                     .shaped(RecipeCategory.MISC, castModule.get())
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))

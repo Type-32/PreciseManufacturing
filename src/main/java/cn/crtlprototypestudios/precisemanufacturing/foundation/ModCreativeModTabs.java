@@ -4,9 +4,11 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammuni
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleModule;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleModuleType;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,21 +29,33 @@ public class ModCreativeModTabs {
 
     public static final RegistryObject<CreativeModeTab> MOD_TAB = CREATIVE_MODE_TABS.register("prma_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CRUSHED_BASALT.get()))
+                    .displayItems(((itemDisplayParameters, output) -> {
+                        ModItems.ALL_ITEMS.forEach(i -> output.accept(i.get()));
+                    }))
                     .title(Component.translatable("itemGroup.prma_tab"))
                     .build());
 
     public static final RegistryObject<CreativeModeTab> MOD_CASTS_TAB = CREATIVE_MODE_TABS.register("prma_casts_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BLANK_CAST.get()))
+                    .displayItems(((itemDisplayParameters, output) -> {
+                        ModItems.ALL_CASTS.forEach(i -> output.accept(i.get()));
+                    }))
                     .title(Component.translatable("itemGroup.prma_casts_tab"))
                     .build());
 
     public static final RegistryObject<CreativeModeTab> MOD_COMPONENTS_TAB = CREATIVE_MODE_TABS.register("prma_components_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.M_SCREW.get()))
+                    .displayItems(((itemDisplayParameters, output) -> {
+                        ModItems.ALL_MODULES.forEach(i -> output.accept(i.get()));
+                    }))
                     .title(Component.translatable("itemGroup.prma_components_tab"))
                     .build());
 
     public static final RegistryObject<CreativeModeTab> MOD_BLUEPRINTS_TAB = CREATIVE_MODE_TABS.register("prma_blueprints_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BLANK_BLUEPRINT.get()))
+                    .displayItems(((itemDisplayParameters, output) -> {
+                        ModItems.ALL_BLUEPRINTS.forEach(i -> output.accept(i.get()));
+                    }))
                     .title(Component.translatable("itemGroup.prma_blueprints_tab"))
                     .build());
 
@@ -52,5 +66,12 @@ public class ModCreativeModTabs {
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
+    }
+
+    public static enum Tabs {
+        Main,
+        Casts,
+        Components,
+        Blueprints
     }
 }

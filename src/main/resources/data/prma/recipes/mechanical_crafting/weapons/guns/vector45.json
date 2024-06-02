@@ -1,0 +1,43 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BUF",
+    "LST",
+    " MG"
+  ],
+  "key": {
+    "L": {
+      "item": "prma:vector45_lower_receiver"
+    },
+    "G": {
+      "item": "prma:vector45_grip"
+    },
+    "M": {
+      "item": "prma:vector45_magazine"
+    },
+    "U": {
+      "item": "prma:vector45_upper_receiver"
+    },
+    "B": {
+      "item": "prma:vector45_barrel"
+    },
+    "F": {
+      "item": "prma:vector45_fire_control_group"
+    },
+    "S": {
+      "item": "prma:vector45_fire_selector"
+    },
+    "T": {
+      "item": "prma:vector45_trigger"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:vector45",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
+    }
+  },
+  "acceptMirrored": true
+}

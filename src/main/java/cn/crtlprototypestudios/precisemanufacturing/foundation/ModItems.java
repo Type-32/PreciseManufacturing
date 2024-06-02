@@ -14,6 +14,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModItems {
 
@@ -22,53 +24,71 @@ public class ModItems {
         Main.REGISTRATE.defaultCreativeTab(ModCreativeModTabs.MOD_TAB.getKey());
     }
 
+    public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry, ModCreativeModTabs.Tabs tabs) {
+        switch (tabs) {
+            case Main -> ALL_ITEMS.add(entry);
+            case Casts -> ALL_CASTS.add(entry);
+            case Blueprints -> ALL_BLUEPRINTS.add(entry);
+            case Components -> ALL_MODULES.add(entry);
+            default -> ALL_ITEMS.add(entry);
+        }
+        return entry;
+    }
+    public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry) {return addToList(entry, ModCreativeModTabs.Tabs.Main);}
+
+    public static List<RegistryEntry<Item>>
+            ALL_ITEMS = new ArrayList<RegistryEntry<Item>>(),
+            ALL_CASTS = new ArrayList<RegistryEntry<Item>>(),
+            ALL_MODULES = new ArrayList<RegistryEntry<Item>>(),
+            ALL_BLUEPRINTS = new ArrayList<RegistryEntry<Item>>();
+
 //    public static final ItemStack TACZ_AMMO_ITEM_TEMPLATE = new ItemStack(ModCompatItems.AMMO);
 //    public static final ItemStack TACZ_GUN_ITEM_TEMPLATE = new ItemStack(ModCompatItems.MODERN_KINETIC_GUN);
 
     // Placeholders
     public static final RegistryEntry<Item>
             // This placeholder, "prma:ammo_placeholder", is used to substitute "tacz:ammo" and then be replaced later
-            AMMO_PLACEHOLDER = Main.REGISTRATE.item("ammo_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register(),
-            MODERN_KINETIC_GUN_PLACEHOLDER = Main.REGISTRATE.item("modern_kinetic_gun_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register();
+            AMMO_PLACEHOLDER = addToList(Main.REGISTRATE.item("ammo_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register()),
+            MODERN_KINETIC_GUN_PLACEHOLDER = addToList(Main.REGISTRATE.item("modern_kinetic_gun_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register());
 
     // Powders
     public static final RegistryEntry<Item>
-            RAW_ZINC_POWDER = Main.REGISTRATE.item("raw_zinc_powder", Item::new).register(),
-            RAW_COPPER_POWDER = Main.REGISTRATE.item("raw_copper_powder", Item::new).register(),
-            BASALT_POWDER = Main.REGISTRATE.item("basalt_powder",Item::new).register(),
-            RAW_SULFUR_POWDER = Main.REGISTRATE.item("raw_sulfur_powder",Item::new).register(),
-            GUNPOWDER_PELLETS = Main.REGISTRATE.item("gunpowder_pellets",Item::new).register();
+            RAW_ZINC_POWDER = addToList(Main.REGISTRATE.item("raw_zinc_powder", Item::new).register()),
+            RAW_COPPER_POWDER = addToList(Main.REGISTRATE.item("raw_copper_powder", Item::new).register()),
+            BASALT_POWDER = addToList(Main.REGISTRATE.item("basalt_powder",Item::new).register()),
+            RAW_SULFUR_POWDER = addToList(Main.REGISTRATE.item("raw_sulfur_powder",Item::new).register()),
+            GUNPOWDER_PELLETS = addToList(Main.REGISTRATE.item("gunpowder_pellets",Item::new).register());
 
     // Misc Items
     public static final RegistryEntry<Item>
-            CRUSHED_BASALT = Main.REGISTRATE.item("crushed_basalt", Item::new).register(),
-            UNFORMED_BASALT = Main.REGISTRATE.item("unformed_basalt", Item::new).register(),
-            STRAIGHT_SMALL_COIL = Main.REGISTRATE.item("straight_small_coil", Item::new).register(),
-            STRAIGHT_LARGE_COIL = Main.REGISTRATE.item("straight_large_coil", Item::new).register(),
-            STRAIGHT_FLAT_COIL = Main.REGISTRATE.item("straight_flat_coil", Item::new).register(),
-            LOCKING_RETURN_COIL = Main.REGISTRATE.item("locking_return_coil", Item::new).register(),
-            FLAT_HEAD_SCREW = Main.REGISTRATE.item("flat_head_screw", Item::new).register(),
-            M_SCREW = Main.REGISTRATE.item("m_screw", Item::new).register(),
-            THIN_SMALL_ROD = Main.REGISTRATE.item("thin_small_rod", Item::new).register(),
-            THICK_SMALL_ROD = Main.REGISTRATE.item("thick_small_rod", Item::new).register(),
-            BLANK_BLUEPRINT = Main.REGISTRATE.item("blank_blueprint", Item::new).register(),
-            BLANK_CAST = Main.REGISTRATE.item("blank_cast", Item::new).register();
+            CRUSHED_BASALT = addToList(Main.REGISTRATE.item("crushed_basalt", Item::new).register()),
+            UNFORMED_BASALT = addToList(Main.REGISTRATE.item("unformed_basalt", Item::new).register()),
+            STRAIGHT_SMALL_COIL = addToList(Main.REGISTRATE.item("straight_small_coil", Item::new).register()),
+            STRAIGHT_LARGE_COIL = addToList(Main.REGISTRATE.item("straight_large_coil", Item::new).register()),
+            STRAIGHT_FLAT_COIL = addToList(Main.REGISTRATE.item("straight_flat_coil", Item::new).register()),
+            LOCKING_RETURN_COIL = addToList(Main.REGISTRATE.item("locking_return_coil", Item::new).register()),
+            FLAT_HEAD_SCREW = addToList(Main.REGISTRATE.item("flat_head_screw", Item::new).register()),
+            M_SCREW = addToList(Main.REGISTRATE.item("m_screw", Item::new).register()),
+            THIN_SMALL_ROD = addToList(Main.REGISTRATE.item("thin_small_rod", Item::new).register()),
+            THICK_SMALL_ROD = addToList(Main.REGISTRATE.item("thick_small_rod", Item::new).register()),
+            BLANK_BLUEPRINT = addToList(Main.REGISTRATE.item("blank_blueprint", Item::new).register()),
+            BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register());
 
 
     // Buckets
     public static final RegistryEntry<Item>
-            MOLTEN_BRASS_BUCKET = Main.REGISTRATE.item("molten_brass_bucket", Item::new)
+            MOLTEN_BRASS_BUCKET = addToList(Main.REGISTRATE.item("molten_brass_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
-                    .register(),
-            MOLTEN_COPPER_BUCKET = Main.REGISTRATE.item("molten_copper_bucket", Item::new)
+                    .register()),
+            MOLTEN_COPPER_BUCKET = addToList(Main.REGISTRATE.item("molten_copper_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
-                    .register(),
-            MOLTEN_BASALT_INFUSED_IRON_BUCKET = Main.REGISTRATE.item("molten_basalt_infused_iron_bucket", Item::new)
+                    .register()),
+            MOLTEN_BASALT_INFUSED_IRON_BUCKET = addToList(Main.REGISTRATE.item("molten_basalt_infused_iron_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
-                    .register();
+                    .register());
 
 
     // Cartrige Casts and Components
@@ -221,17 +241,27 @@ public class ModItems {
                 .setModuleData(5, d -> d.setCastFillingAmount(260)) // Barrel
                 .setModuleData(6, d -> d.setCastFillingAmount(240)), // Grip
 
-        HK_MP5A5 = new RifleBase("hk_mp5a5", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE).remove(RifleModule.HANDGUARD_MODULE))
-                .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
-                .setModuleData(1, d -> d.setCastFillingAmount(300)) // Lower Receiver
-                .setModuleData(2, d -> d.setCastFillingAmount(400)) // Upper Receiver
-                .setModuleData(3, d -> d.setCastFillingAmount(180)) // Barrel
-                .setModuleData(4, d -> d.setCastFillingAmount(110)) // Magazine
-                .setModuleData(5, d -> d.setCastFillingAmount(250)) // Fire Control Group
-                .setModuleData(6, d -> d.setCastFillingAmount(100)) // Fire Selector
-                .setModuleData(7, d -> d.setCastFillingAmount(70)), // Trigger
+    HK_MP5A5 = new RifleBase("hk_mp5a5", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE).remove(RifleModule.HANDGUARD_MODULE))
+            .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
+            .setModuleData(1, d -> d.setCastFillingAmount(300)) // Lower Receiver
+            .setModuleData(2, d -> d.setCastFillingAmount(400)) // Upper Receiver
+            .setModuleData(3, d -> d.setCastFillingAmount(180)) // Barrel
+            .setModuleData(4, d -> d.setCastFillingAmount(110)) // Magazine
+            .setModuleData(5, d -> d.setCastFillingAmount(250)) // Fire Control Group
+            .setModuleData(6, d -> d.setCastFillingAmount(100)) // Fire Selector
+            .setModuleData(7, d -> d.setCastFillingAmount(70)), // Trigger
 
-        UZI = new RifleBase("uzi", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE).remove(RifleModule.HANDGUARD_MODULE).remove(RifleModule.LOWER_RECEIVER_MODULE).remove(RifleModule.UPPER_RECEIVER_MODULE).add(RifleModule.RECEIVER_MODULE))
+    VECTOR_45 = new RifleBase("vector45", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE).remove(RifleModule.HANDGUARD_MODULE))
+            .setModuleData(0, d -> d.setCastFillingAmount(160)) // Grip
+            .setModuleData(1, d -> d.setCastFillingAmount(420)) // Lower Receiver
+            .setModuleData(2, d ->   d.setCastFillingAmount(200)) // Upper Receiver
+            .setModuleData(3, d -> d.setCastFillingAmount(160)) // Barrel
+            .setModuleData(4, d -> d.setCastFillingAmount(150)) // Magazine
+            .setModuleData(5, d -> d.setCastFillingAmount(220)) // Fire Control Group
+            .setModuleData(6, d -> d.setCastFillingAmount(80)) // Fire Selector
+            .setModuleData(7, d -> d.setCastFillingAmount(100)), // Trigger
+
+    UZI = new RifleBase("uzi", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.STOCK_MODULE).remove(RifleModule.HANDGUARD_MODULE).remove(RifleModule.LOWER_RECEIVER_MODULE).remove(RifleModule.UPPER_RECEIVER_MODULE).add(RifleModule.RECEIVER_MODULE))
                 .setModuleData(0, d -> d.setCastFillingAmount(160)) // Grip
                 .setModuleData(1, d -> d.setCastFillingAmount(150)) // Barrel
                 .setModuleData(2, d -> d.setCastFillingAmount(100)) // Magazine
@@ -240,15 +270,23 @@ public class ModItems {
                 .setModuleData(5, d -> d.setCastFillingAmount(80)) // Trigger
                 .setModuleData(6, d -> d.setCastFillingAmount(300)), // Receiver
 
-        AWP = new RifleBase("ai_awp", RifleBase.BOLT_ACTION_MODULES.remove(RifleModule.CARTRIDGE_WELL_MODULE).remove(RifleModule.GRIP_MODULE).add(RifleModule.MAGAZINE_MODULE))
-                .setModuleData(0, d -> d.setCastFillingAmount(160)) // Bolt
-                .setModuleData(1, d -> d.setCastFillingAmount(340)) // Barrel
-                .setModuleData(2, d -> d.setCastFillingAmount(780)) // Long Body
-                .setModuleData(3, d -> d.setCastFillingAmount(100)) // Trigger
-                .setModuleData(4, d -> d.setCastFillingAmount(300)) // Stock
-                .setModuleData(5, d -> d.setCastFillingAmount(240)), // Magazine
+    AWP = new RifleBase("ai_awp", RifleBase.BOLT_ACTION_MODULES.remove(RifleModule.CARTRIDGE_WELL_MODULE).remove(RifleModule.GRIP_MODULE).add(RifleModule.MAGAZINE_MODULE))
+            .setModuleData(0, d -> d.setCastFillingAmount(160)) // Bolt
+            .setModuleData(1, d -> d.setCastFillingAmount(340)) // Barrel
+            .setModuleData(2, d -> d.setCastFillingAmount(780)) // Long Body
+            .setModuleData(3, d -> d.setCastFillingAmount(100)) // Trigger
+            .setModuleData(4, d -> d.setCastFillingAmount(300)) // Stock
+            .setModuleData(5, d -> d.setCastFillingAmount(240)), // Magazine
 
-        M249 = new RifleBase("m249", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.FIRE_SELECTOR_MODULE).remove(RifleModule.FIRE_CONTROL_GROUP_MODULE))
+    M95 = new RifleBase("m95", RifleBase.BOLT_ACTION_MODULES.remove(RifleModule.CARTRIDGE_WELL_MODULE).remove(RifleModule.GRIP_MODULE).add(RifleModule.MAGAZINE_MODULE))
+            .setModuleData(0, d -> d.setCastFillingAmount(2000)) // Bolt
+            .setModuleData(1, d -> d.setCastFillingAmount(420)) // Barrel
+            .setModuleData(2, d -> d.setCastFillingAmount(880)) // Long Body
+            .setModuleData(3, d -> d.setCastFillingAmount(120)) // Trigger
+            .setModuleData(4, d -> d.setCastFillingAmount(400)) // Stock
+            .setModuleData(5, d -> d.setCastFillingAmount(240)), // Magazine
+
+    M249 = new RifleBase("m249", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.FIRE_SELECTOR_MODULE).remove(RifleModule.FIRE_CONTROL_GROUP_MODULE))
                 .setModuleData(0, d -> d.setCastFillingAmount(250)) // Grip
                 .setModuleData(1, d -> d.setCastFillingAmount(600)) // Lower Receiver
                 .setModuleData(2, d -> d.setCastFillingAmount(600)) // Upper Receiver

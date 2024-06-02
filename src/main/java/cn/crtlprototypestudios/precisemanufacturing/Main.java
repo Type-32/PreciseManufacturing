@@ -44,6 +44,7 @@ public class Main {
         ModFluids.register();
         ModTags.register();
         ModRecipes.register(eventBus);
+        ModCreativeModTabs.register(eventBus);
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

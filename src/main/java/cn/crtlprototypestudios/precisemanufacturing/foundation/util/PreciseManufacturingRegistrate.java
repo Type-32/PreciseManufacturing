@@ -1,14 +1,18 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.util;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
+import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.VirtualFluidBuilder;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.BlockEntityBuilder;
 import com.tterrag.registrate.builders.FluidBuilder;
+import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidType;
@@ -34,8 +38,8 @@ public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseMa
 
     public FluidBuilder<VirtualFluid, PreciseManufacturingRegistrate> virtualFluid(String name) {
         return entry(name,
-                c -> new VirtualFluidBuilder<VirtualFluid, PreciseManufacturingRegistrate>(self(), self(), name, c, new ResourceLocation(getModid(), "fluid/" + name + "_still"),
-                        new ResourceLocation(getModid(), "fluid/" + name + "_flow"), null, VirtualFluid::new));
+                c -> new VirtualFluidBuilder<VirtualFluid, PreciseManufacturingRegistrate>(self(), self(), name, c, ResourceHelper.find("fluid/" + name + "_still"),
+                        ResourceHelper.find("fluid/" + name + "_flow"), CreateRegistrate::defaultFluidType, VirtualFluid::new));
     }
 
     public <T extends VirtualFluid> FluidBuilder<T, PreciseManufacturingRegistrate> extendedVirtualFluid(
@@ -43,8 +47,9 @@ public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseMa
             NonNullFunction<ForgeFlowingFluid.Properties, T> fluidFactory
     ) {
         return entry(name,
-                c -> new VirtualFluidBuilder<>(self(), self(), name, c, new ResourceLocation(getModid(), "fluid/" + name + "_still"),
-                        new ResourceLocation(getModid(), "fluid/" + name + "_flow"), PreciseManufacturingRegistrate::defaultFluidType, fluidFactory));
+                c -> new VirtualFluidBuilder<>(self(), self(), name, c,
+                        ResourceHelper.find("fluid/" + name + "_still"),
+                        ResourceHelper.find("fluid/" + name + "_flow"), CreateRegistrate::defaultFluidType, fluidFactory));
     }
 
     public static FluidType defaultFluidType(FluidType.Properties properties, ResourceLocation stillTexture,

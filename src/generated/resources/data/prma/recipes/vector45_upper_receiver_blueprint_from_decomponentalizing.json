@@ -1,0 +1,12 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:partial_nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": "{GunId:\"tacz:vector45\"}"
+  },
+  "processingTime": 5500,
+  "result": {
+    "item": "vector45_upper_receiver_blueprint"
+  }
+}

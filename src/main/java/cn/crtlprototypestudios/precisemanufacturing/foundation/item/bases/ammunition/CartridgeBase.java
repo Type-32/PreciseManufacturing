@@ -186,6 +186,10 @@ public class CartridgeBase extends AmmunitionBase {
 
         castsRegistry.put(module, castModule);
 
+        ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
+        ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
+        ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
+
         return mainModule;
     }
 

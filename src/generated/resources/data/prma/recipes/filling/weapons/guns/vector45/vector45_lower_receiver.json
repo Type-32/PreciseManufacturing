@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:vector45_lower_receiver_cast"
+    },
+    {
+      "amount": 600,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:vector45_lower_receiver"
+    }
+  ]
+}
