@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:modern_kinetic_gun"
+  },
+  "processingTime": 5300,
+  "result": {
+    "item": "ak47_fire_control_group_blueprint"
+  }
+}

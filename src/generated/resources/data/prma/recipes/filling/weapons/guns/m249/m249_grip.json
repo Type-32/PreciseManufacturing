@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:m249_grip_cast"
+    },
+    {
+      "amount": 200,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:m249_grip"
+    }
+  ]
+}

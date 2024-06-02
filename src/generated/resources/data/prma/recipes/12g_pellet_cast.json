@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "prma:12g_pellet_blueprint"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "create:iron_sheet"
+    }
+  },
+  "pattern": [
+    "PIP",
+    "IBI",
+    "PIP"
+  ],
+  "result": {
+    "item": "prma:12g_pellet_cast"
+  },
+  "show_notification": true
+}

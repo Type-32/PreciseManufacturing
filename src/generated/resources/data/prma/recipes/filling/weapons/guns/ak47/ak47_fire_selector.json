@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:ak47_fire_selector_cast"
+    },
+    {
+      "amount": 100,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:ak47_fire_selector"
+    }
+  ]
+}

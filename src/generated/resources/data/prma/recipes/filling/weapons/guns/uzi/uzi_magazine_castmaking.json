@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:uzi_magazine"
+    },
+    {
+      "amount": 1000,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:uzi_magazine_cast"
+    }
+  ]
+}

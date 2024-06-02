@@ -32,7 +32,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
     public DecomponentalizingRecipeBuilder(ItemStack ingredient, ItemLike result, int processingTime) {
-        this.ingredient = PartialNBTIngredient.of(ingredient);
+        this.ingredient = Ingredient.of(ingredient);
         this.result = result.asItem();
         this.processingTime = processingTime;
     }

@@ -10,8 +10,12 @@ import com.tterrag.registrate.builders.FluidBuilder;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.function.Consumer;
 
 public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseManufacturingRegistrate> {
     /**
@@ -21,7 +25,7 @@ public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseMa
      */
     protected PreciseManufacturingRegistrate(String modid) {
         super(modid);
-        defaultCreativeTab(ModCreativeModTabs.MOD_TAB.get());
+//        set(ModCreativeModTabs.MOD_TAB.get());
     }
 
     public static PreciseManufacturingRegistrate create(String modid) {
@@ -30,7 +34,7 @@ public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseMa
 
     public FluidBuilder<VirtualFluid, PreciseManufacturingRegistrate> virtualFluid(String name) {
         return entry(name,
-                c -> new VirtualFluidBuilder<>(self(), self(), name, c, new ResourceLocation(getModid(), "fluid/" + name + "_still"),
+                c -> new VirtualFluidBuilder<VirtualFluid, PreciseManufacturingRegistrate>(self(), self(), name, c, new ResourceLocation(getModid(), "fluid/" + name + "_still"),
                         new ResourceLocation(getModid(), "fluid/" + name + "_flow"), null, VirtualFluid::new));
     }
 
@@ -40,7 +44,26 @@ public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseMa
     ) {
         return entry(name,
                 c -> new VirtualFluidBuilder<>(self(), self(), name, c, new ResourceLocation(getModid(), "fluid/" + name + "_still"),
-                        new ResourceLocation(getModid(), "fluid/" + name + "_flow"), null, fluidFactory));
+                        new ResourceLocation(getModid(), "fluid/" + name + "_flow"), PreciseManufacturingRegistrate::defaultFluidType, fluidFactory));
     }
 
+    public static FluidType defaultFluidType(FluidType.Properties properties, ResourceLocation stillTexture,
+                                             ResourceLocation flowingTexture) {
+        return new FluidType(properties) {
+            @Override
+            public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                consumer.accept(new IClientFluidTypeExtensions() {
+                    @Override
+                    public ResourceLocation getStillTexture() {
+                        return stillTexture;
+                    }
+
+                    @Override
+                    public ResourceLocation getFlowingTexture() {
+                        return flowingTexture;
+                    }
+                });
+            }
+        };
+    }
 }

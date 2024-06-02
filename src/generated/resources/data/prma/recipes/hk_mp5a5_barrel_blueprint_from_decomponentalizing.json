@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:modern_kinetic_gun"
+  },
+  "processingTime": 1000,
+  "result": {
+    "item": "hk_mp5a5_barrel_blueprint"
+  }
+}

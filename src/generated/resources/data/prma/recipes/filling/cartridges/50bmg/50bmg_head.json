@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:50bmg_head_cast"
+    },
+    {
+      "amount": 80,
+      "fluid": "prma:molten_copper",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:50bmg_head"
+    }
+  ]
+}

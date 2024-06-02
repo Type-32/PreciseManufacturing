@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:ak47_upper_receiver_cast"
+    },
+    {
+      "amount": 580,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:ak47_upper_receiver"
+    }
+  ]
+}

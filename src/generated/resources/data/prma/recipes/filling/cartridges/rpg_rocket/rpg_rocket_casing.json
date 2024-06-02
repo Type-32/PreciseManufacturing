@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:rpg_rocket_casing_cast"
+    },
+    {
+      "amount": 100,
+      "fluid": "prma:molten_brass",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:rpg_rocket_casing"
+    }
+  ]
+}

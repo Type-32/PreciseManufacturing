@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_762x54_casing_blueprint": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:762x54_casing_blueprint"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "prma:762x54_casing_cast"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_762x54_casing_blueprint",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "prma:762x54_casing_cast"
+    ]
+  },
+  "sends_telemetry_event": false
+}

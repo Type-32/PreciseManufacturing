@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:modern_kinetic_gun"
+  },
+  "processingTime": 1600,
+  "result": {
+    "item": "hk_g3_fire_selector_blueprint"
+  }
+}

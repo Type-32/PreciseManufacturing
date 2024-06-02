@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:50bmg_casing_cast"
+    },
+    {
+      "amount": 100,
+      "fluid": "prma:molten_brass",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:50bmg_casing"
+    }
+  ]
+}

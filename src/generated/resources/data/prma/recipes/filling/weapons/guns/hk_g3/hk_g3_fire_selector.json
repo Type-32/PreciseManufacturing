@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:hk_g3_fire_selector_cast"
+    },
+    {
+      "amount": 100,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:hk_g3_fire_selector"
+    }
+  ]
+}

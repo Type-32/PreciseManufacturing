@@ -1,0 +1,115 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:308_casing"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "chance": 94.0,
+      "item": "tacz:ammo"
+    },
+    {
+      "chance": 6.0,
+      "item": "prma:308_casing"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "minecraft:iron_nugget"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "minecraft:gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "prma:gunpowder_pellets"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        },
+        {
+          "item": "prma:308_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:308_unfinished"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "prma:308_unfinished"
+  }
+}

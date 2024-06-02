@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:modern_kinetic_gun"
+  },
+  "processingTime": 5500,
+  "result": {
+    "item": "ak47_upper_receiver_blueprint"
+  }
+}

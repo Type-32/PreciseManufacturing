@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "prma:hk_g3_upper_receiver_blueprint"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "create:iron_sheet"
+    }
+  },
+  "pattern": [
+    "PIP",
+    "IBI",
+    "PIP"
+  ],
+  "result": {
+    "item": "prma:hk_g3_upper_receiver_cast"
+  },
+  "show_notification": true
+}

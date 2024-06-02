@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:hk_mp5a5_lower_receiver"
+    },
+    {
+      "amount": 1000,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:hk_mp5a5_lower_receiver_cast"
+    }
+  ]
+}

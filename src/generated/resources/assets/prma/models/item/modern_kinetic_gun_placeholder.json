@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/modern_kinetic_gun_placeholder"
+  }
+}

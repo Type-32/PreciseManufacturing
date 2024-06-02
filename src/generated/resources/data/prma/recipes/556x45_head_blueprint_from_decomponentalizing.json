@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:ammo"
+  },
+  "processingTime": 400,
+  "result": {
+    "item": "556x45_head_blueprint"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:m249_upper_receiver"
+    },
+    {
+      "amount": 1000,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:m249_upper_receiver_cast"
+    }
+  ]
+}

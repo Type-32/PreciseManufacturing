@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "prma:modern_kinetic_gun_placeholder"
+  },
+  "processingTime": 4000,
+  "result": {
+    "item": "ak47_handguard_blueprint"
+  }
+}

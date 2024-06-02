@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:modern_kinetic_gun"
+  },
+  "processingTime": 4800,
+  "result": {
+    "item": "glock_17_receiver_blueprint"
+  }
+}

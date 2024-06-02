@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "prma:ak47_barrel_blueprint"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "create:iron_sheet"
+    }
+  },
+  "pattern": [
+    "PIP",
+    "IBI",
+    "PIP"
+  ],
+  "result": {
+    "item": "prma:ak47_barrel_cast"
+  },
+  "show_notification": true
+}

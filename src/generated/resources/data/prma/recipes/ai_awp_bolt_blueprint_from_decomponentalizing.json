@@ -1,0 +1,10 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "item": "tacz:modern_kinetic_gun"
+  },
+  "processingTime": 1200,
+  "result": {
+    "item": "ai_awp_bolt_blueprint"
+  }
+}
