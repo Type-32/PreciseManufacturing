@@ -14,14 +14,14 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 
 > ### Attributions
 > Bullet and Catridge Textures are modified from the Timeless and Classics: Zero Mod **_(CC By-NC-SA 4.0 License)_**.
-> 
+>
 > Help & Support in Modding from the Forge Forums Community.
 
 > ### To anyone who are confused reading this
 > The Timeless and Classics gun mod is being remade by the official TaC development team into Timeless and Classics: Zero,
 > which will overhaul many items and mechanics previously existing in the old TaC mod. Please go to their Discord or any
-> of their official donation platforms for more info. 
-> 
+> of their official donation platforms for more info.
+>
 > **This Create Addon mod is made for people that currently has access to the TaC: Zero Beta. To anyone that has the access,
 > please follow the Beta Tester Rules and Guidelines before using the TaC: Zero Beta mod. This mod is not restricted by the
 > Beta Tester Rules and Guidelines but the TaC: Zero Main mod is. Use at your own discretion.**
@@ -33,15 +33,16 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 
 ## Features
 - [X] Automatable recipes for Timeless and Classics: Zero's Ammunition (Finished)
-- [ ] Automatable recipes for Timeless and Classics: Zero's Weapons (Under Development)
+- [X] Automatable recipes for Timeless and Classics: Zero's Weapons (Finished)
+- [ ] Automatable recipes for Timeless and Classics: Zero's Attachments (Under Development)
 
 ## Versions
 
 The currently supported versions are:
 
-| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency         |
-|----------|----------------------------|---------------------------|--------------------|
-| 1.18.2   | N/A. TBD                   | 0.1.0 -> 0.1.1-alpha      | tacz-1.0.0-hotifx6 |
+| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency                |
+|----------|----------------------------|---------------------------|---------------------------|
+| 1.18.2   | N/A. TBD                   | 0.2.0-alpha               | tacz-1.0.0-hotifx6-1.18.2 |
 
 ## Translations
 
@@ -76,12 +77,13 @@ The currently supported langauge translations are:
 
 ## 内容
 - [X] TaC: Zero的弹药的自动化配方（已完成）
-- [ ] TaC: Zero的武器的自动化配方（正在开发中）
+- [X] TaC: Zero的武器的自动化配方（已完成）
+- [ ] TaC: Zero的配件的自动化配方（正在开发中）
 
 ## 版本
 
 目前支持的版本有：
 
-| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本       | 前置模组               |
-|--------|-----------------|----------------------|--------------------|
-| 1.18.2 | 暂无，待定           | 0.1.0 -> 0.1.1-alpha | tacz-1.0.0-hotifx6 |
+| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组                      |
+|--------|-----------------|----------------|---------------------------|
+| 1.18.2 | 暂无，待定           | 0.2.0-alpha    | tacz-1.0.0-hotifx6-1.18.2 |
