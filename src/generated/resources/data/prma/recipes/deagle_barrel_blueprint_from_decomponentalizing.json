@@ -1,7 +1,9 @@
 {
   "type": "prma:decomponentalizing",
   "ingredient": {
-    "item": "prma:modern_kinetic_gun_placeholder"
+    "type": "forge:partial_nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": "{GunId:\"tacz:deagle\"}"
   },
   "processingTime": 1000,
   "result": {

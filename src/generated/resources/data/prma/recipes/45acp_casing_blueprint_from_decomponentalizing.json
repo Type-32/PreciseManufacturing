@@ -1,7 +1,9 @@
 {
   "type": "prma:decomponentalizing",
   "ingredient": {
-    "item": "prma:ammo_placeholder"
+    "type": "forge:partial_nbt",
+    "item": "tacz:ammo",
+    "nbt": "{AmmoId:\"tacz:45acp\"}"
   },
   "processingTime": 400,
   "result": {
