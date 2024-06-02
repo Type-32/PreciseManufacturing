@@ -168,10 +168,11 @@ public class CartridgeBase extends AmmunitionBase {
 
         assert ModCreativeModTabs.MOD_CASTS_TAB.getKey() != null;
         assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
+        assert ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey() != null;
         RegistryEntry<Item>
                 blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
-                        .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
+                        .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
                         .register(),
                 castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_cast", module)))
