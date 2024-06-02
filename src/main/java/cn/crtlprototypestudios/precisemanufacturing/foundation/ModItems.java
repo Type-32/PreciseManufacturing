@@ -13,6 +13,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.rmi.registry.Registry;
+
 public class ModItems {
 
     static {
@@ -22,6 +24,12 @@ public class ModItems {
 
 //    public static final ItemStack TACZ_AMMO_ITEM_TEMPLATE = new ItemStack(ModCompatItems.AMMO);
 //    public static final ItemStack TACZ_GUN_ITEM_TEMPLATE = new ItemStack(ModCompatItems.MODERN_KINETIC_GUN);
+
+    // Placeholders
+    public static final RegistryEntry<Item>
+            // This placeholder, "prma:ammo_placeholder", is used to substitute "tacz:ammo" and then be replaced later
+            AMMO_PLACEHOLDER = Main.REGISTRATE.item("ammo_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register(),
+            MODERN_KINETIC_GUN_PLACEHOLDER = Main.REGISTRATE.item("modern_kinetic_gun_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register();
 
     // Powders
     public static final RegistryEntry<Item>

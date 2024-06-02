@@ -21,7 +21,7 @@ public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseMa
      */
     protected PreciseManufacturingRegistrate(String modid) {
         super(modid);
-        creativeModeTab(() -> ModCreativeModTabs.MOD_TAB);
+        defaultCreativeTab(ModCreativeModTabs.MOD_TAB.get());
     }
 
     public static PreciseManufacturingRegistrate create(String modid) {

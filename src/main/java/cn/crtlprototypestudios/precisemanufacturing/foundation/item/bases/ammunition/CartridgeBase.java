@@ -192,14 +192,11 @@ public class CartridgeBase extends AmmunitionBase {
     public void registerRecipes(){
 
         // TODO Add proper impl. here after TacZ Lib is published or sth
-        Item ammoItem = new Item(new Item.Properties());
-        ResourceLocation registryName = new ResourceLocation("tacz", "ammo");
-        ammoItem = Registry.register(ForgeRegistries.ITEMS., registryName, ammoItem);
-
-        ItemStack ammoStack = new ItemStack(ammoItem);
+        ItemStack ammoStack = new ItemStack(ModItems.AMMO_PLACEHOLDER.get());
         CompoundTag itemTag = new CompoundTag();
         itemTag.putString("AmmoId", "tacz:" + getCoreId());
         ammoStack.setTag(itemTag);
+
 
         for(CartridgeModule m : givenModuleBuilder.get()){
             String name = String.format("%s_%s", getCoreId(), m.toString());
@@ -219,7 +216,7 @@ public class CartridgeBase extends AmmunitionBase {
                     .define('I', Items.IRON_INGOT)
                     .define('B', blueprintModule.get()));
 
-            ModDecomponentalizingRecipesGen.add(ammoItem.getDefaultInstance(), blueprintModule.get(), 400);
+            ModDecomponentalizingRecipesGen.add(ModItems.AMMO_PLACEHOLDER.get().getDefaultInstance(), blueprintModule.get(), 400);
 
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
                     .require(castModule.get())
@@ -248,7 +245,7 @@ public class CartridgeBase extends AmmunitionBase {
                 builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.PELLET)).get()));
         }
 
-        ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ammoItem, 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
+        ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ModItems.AMMO_PLACEHOLDER.get(), 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
     }
 
     @Nullable

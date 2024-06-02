@@ -44,7 +44,7 @@ public class DecomponentalizerBlock extends BaseEntityBlock {
 
         BlockEntity entity = pLevel.getBlockEntity(pPos);
         if(entity instanceof DecomponentalizerBlockEntity) {
-            NetworkHooks.openGui((ServerPlayer) pPlayer, (DecomponentalizerBlockEntity) entity, pPos);
+            NetworkHooks.openScreen((ServerPlayer) pPlayer, (DecomponentalizerBlockEntity) entity, pPos);
         } else {
             throw new IllegalStateException("Missing Container Provider");
         }

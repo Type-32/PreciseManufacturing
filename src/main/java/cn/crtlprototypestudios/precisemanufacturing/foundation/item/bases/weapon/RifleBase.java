@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
@@ -13,6 +14,7 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Holder;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
@@ -161,10 +163,14 @@ public class RifleBase extends WeaponBase {
     private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties) {
         String name = String.format("%s_%s", id, module.toString());
 
+        assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
+        assert ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey() != null;
+        assert ModCreativeModTabs.MOD_CASTS_TAB.getKey() != null;
+
         // Register the module
         RegistryEntry<Item> mainModule = Main.REGISTRATE.item(name, Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "weapons", "general","guns", "modules", "general_" + module))
-                .properties(p -> properties.tab(ModCreativeModTabs.MOD_COMPONENTS_TAB))
+                .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
                 .register();
 
         registry.put(module.getType(), mainModule);
@@ -172,20 +178,20 @@ public class RifleBase extends WeaponBase {
         // module variant, and make it invisible in the creative tab
         blueprintsRegistry.put(module.getType(), Main.REGISTRATE.item(name + "_blueprint", Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "blueprints", "general_" + module + "_blueprint"))
-                .properties(p -> properties.tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB))
+                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
                 .register());
 
         // Register the module's cast
         castsRegistry.put(module.getType(), Main.REGISTRATE.item(name + "_cast", Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "casts", "general_" + module + "_cast"))
-                .properties(p -> properties.tab(ModCreativeModTabs.MOD_CASTS_TAB))
+                .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
                 .register());
 
         return mainModule;
     }
 
     public void registerRecipes(){
-        ItemStack gunItem = new ItemStack(new Item(new Item.Properties()).setRegistryName("tacz","modern_kinetic_gun"));
+        ItemStack gunItem = new ItemStack(ModItems.MODERN_KINETIC_GUN_PLACEHOLDER.get());
         CompoundTag itemTag = new CompoundTag();
         itemTag.putString("GunId", "tacz:" + getCoreId());
         gunItem.setTag(itemTag);
@@ -198,7 +204,7 @@ public class RifleBase extends WeaponBase {
             String name = String.format("%s_%s", getCoreId(), m.getType().toString());
 
             ModRecipeProvider.add(ShapedRecipeBuilder
-                    .shaped(castModule.get())
+                    .shaped(RecipeCategory.MISC, castModule.get())
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
                     .pattern("PIP")
                     .pattern("IBI")
@@ -215,7 +221,7 @@ public class RifleBase extends WeaponBase {
                     .require(castModule.get())
                     .require(m.getData().getFillCastFluid().get(), m.getData().getCastFillingAmount()));
             ModRecipeProvider.add(ShapelessRecipeBuilder
-                    .shapeless(blueprintModule.get(), 2)
+                    .shapeless(RecipeCategory.MISC, blueprintModule.get(), 2)
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
                     .requires(Items.PAPER)
                     .requires(Items.INK_SAC)

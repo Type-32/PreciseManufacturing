@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.precisemanufacturing.compatibility.jei;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -33,12 +34,12 @@ public class DecomponentalizingRecipeCategory implements IRecipeCategory<Decompo
 
     @Override
     public RecipeType<DecomponentalizingRecipe> getRecipeType() {
-        return DecomponentalizingRecipe.Type.INSTANCE;
+        return new RecipeType<>(ResourceHelper.find(DecomponentalizingRecipe.Type.ID), DecomponentalizingRecipe.class);
     }
 
     @Override
     public Component getTitle() {
-        return new TranslatableComponent("recipe_category.prma.decomponentalizing");
+        return Component.translatable("recipe_category.prma.decomponentalizing");
     }
 
     @Override
@@ -51,17 +52,17 @@ public class DecomponentalizingRecipeCategory implements IRecipeCategory<Decompo
         return this.icon;
     }
 
-    @SuppressWarnings("removal")
-    @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends DecomponentalizingRecipe> getRecipeClass() {
-        return DecomponentalizingRecipe.class;
-    }
+//    @SuppressWarnings("removal")
+//    @Override
+//    public ResourceLocation getUid() {
+//        return UID;
+//    }
+//
+//    @SuppressWarnings("removal")
+//    @Override
+//    public Class<? extends DecomponentalizingRecipe> getRecipeClass() {
+//        return DecomponentalizingRecipe.class;
+//    }
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull DecomponentalizingRecipe recipe, @Nonnull IFocusGroup focuses) {

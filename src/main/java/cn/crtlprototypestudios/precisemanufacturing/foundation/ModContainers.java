@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModContainers {
-    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.CONTAINERS, Reference.MOD_ID);
+    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Reference.MOD_ID);
 
     public static final RegistryObject<MenuType<DecomponentalizerContainerMenu>> DECOMPONENTALIZER = registerMenuType(DecomponentalizerContainerMenu::new, "decomponentalizer_container");
 

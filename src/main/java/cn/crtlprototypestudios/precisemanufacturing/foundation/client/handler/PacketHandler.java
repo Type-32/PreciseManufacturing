@@ -28,13 +28,13 @@ public class PacketHandler {
         INSTANCE.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
                 .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
-                .consumer(C2SSetDecomponentalizerCurrentRecipePacket::handle)
+                .consumerNetworkThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
                 .add();
 
         INSTANCE.messageBuilder(C2SSetDecomponentalizerSelectedRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .encoder(C2SSetDecomponentalizerSelectedRecipePacket::encode)
                 .decoder(C2SSetDecomponentalizerSelectedRecipePacket::new)
-                .consumer(C2SSetDecomponentalizerSelectedRecipePacket::handle)
+                .consumerNetworkThread(C2SSetDecomponentalizerSelectedRecipePacket::handle)
                 .add();
     }
     

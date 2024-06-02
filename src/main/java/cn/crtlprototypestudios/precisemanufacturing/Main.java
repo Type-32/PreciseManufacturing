@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -91,15 +90,15 @@ public class Main {
     // Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // Register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
-
-        @SubscribeEvent
-        public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
-            LOGGER.info("M4A1 registry size {}; cast {}; blueprint {}", ModItems.M4A1.registry.size(), ModItems.M4A1.castsRegistry.size(), ModItems.M4A1.blueprintsRegistry.size());
-        }
+//        @SubscribeEvent
+//        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
+//            // Register a new block here
+//            LOGGER.info("HELLO from Register Block");
+//        }
+//
+//        @SubscribeEvent
+//        public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
+//            LOGGER.info("M4A1 registry size {}; cast {}; blueprint {}", ModItems.M4A1.registry.size(), ModItems.M4A1.castsRegistry.size(), ModItems.M4A1.blueprintsRegistry.size());
+//        }
     }
 }

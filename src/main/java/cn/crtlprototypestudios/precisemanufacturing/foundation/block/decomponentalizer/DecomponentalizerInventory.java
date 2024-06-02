@@ -24,11 +24,11 @@ public class DecomponentalizerInventory extends ItemStackHandler {
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
         return switch (slot) {
             case 0 -> // Paper slot
-                    stack.sameItem(new ItemStack(Items.PAPER));
+                    stack.is(Items.PAPER);
             case 1 -> // Ink Slot
-                    stack.sameItem(new ItemStack(Items.INK_SAC));
+                    stack.is(Items.INK_SAC);
             case 2 -> // Gun Slot
-                    stack.getItem().getRegistryName().toString().equals("tacz:modern_kinetic_gun");
+                    stack.getItem().toString().equals("tacz:modern_kinetic_gun");
             case 3 -> false;
             default -> super.isItemValid(slot, stack);
         };
