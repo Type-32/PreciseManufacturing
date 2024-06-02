@@ -216,7 +216,7 @@ public class CartridgeBase extends AmmunitionBase {
                     .define('I', Items.IRON_INGOT)
                     .define('B', blueprintModule.get()));
 
-            ModDecomponentalizingRecipesGen.add(ModItems.AMMO_PLACEHOLDER.get().getDefaultInstance(), blueprintModule.get(), 400);
+            ModDecomponentalizingRecipesGen.add(ammoStack, blueprintModule.get(), 400);
 
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
                     .require(castModule.get())
@@ -245,7 +245,7 @@ public class CartridgeBase extends AmmunitionBase {
                 builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.PELLET)).get()));
         }
 
-        ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ModItems.AMMO_PLACEHOLDER.get(), 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
+        ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ammoStack, 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
     }
 
     @Nullable

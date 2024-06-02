@@ -1,7 +1,7 @@
 {
   "type": "prma:decomponentalizing",
   "ingredient": {
-    "item": "tacz:ammo"
+    "item": "prma:ammo_placeholder"
   },
   "processingTime": 400,
   "result": {

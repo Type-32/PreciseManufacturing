@@ -1,7 +1,7 @@
 {
   "type": "prma:decomponentalizing",
   "ingredient": {
-    "item": "tacz:modern_kinetic_gun"
+    "item": "prma:modern_kinetic_gun_placeholder"
   },
   "processingTime": 6000,
   "result": {

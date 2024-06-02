@@ -7,7 +7,10 @@
   "results": [
     {
       "chance": 94.0,
-      "item": "tacz:ammo"
+      "item": "prma:ammo_placeholder",
+      "nbt": {
+        "AmmoId": "tacz:556x45"
+      }
     },
     {
       "chance": 6.0,
