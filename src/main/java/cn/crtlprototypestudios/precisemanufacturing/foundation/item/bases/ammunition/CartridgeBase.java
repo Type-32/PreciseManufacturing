@@ -151,18 +151,22 @@ public class CartridgeBase extends AmmunitionBase {
      * The <code>registerModule()</code> function registers the Cartridge Assembly Module Items.
      *
      * @param id The id of the cartridge module's assembled cartridge, i.e. "9mm"
-     * @param module The module id of the cartridge's module, i.e. "casing_cast"
+     * @param module The module id of the cartridge's module, i.e. "casing"
      * @return A registry entry of the cartridge module item.
      *
-     * @implNote The corresponding item, if the <code>id = "9mm"</code> and <code>moduleId = "casing_cast"</code>,
+     * @implNote The corresponding item, if the <code>id = "9mm"</code> and <code>moduleId = "casing"</code>,
      * this item entry will be generated:
      * <ul>
+     *     <li><code>prma:9mm_casing</code></li>
      *     <li><code>prma:9mm_casing_cast</code></li>
+     *     <li><code>prma:9mm_casing_blueprint</code></li>
      * </ul>
      * <br>
      * The item entry will have the item model resource location of:
      * <ul>
+     *     <li><code>prma:item/cartridges/9mm/9mm_casing</code></li>
      *     <li><code>prma:item/cartridges/9mm/9mm_casing_cast</code></li>
+     *     <li><code>prma:item/cartridges/9mm/9mm_casing_blueprint</code></li>
      * </ul>
      */
     private RegistryEntry<Item> registerModule(String id, CartridgeModule module) {

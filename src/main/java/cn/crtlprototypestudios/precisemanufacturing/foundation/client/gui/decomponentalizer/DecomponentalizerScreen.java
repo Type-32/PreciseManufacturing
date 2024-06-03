@@ -116,6 +116,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
 
     private void onAnalyzeButtonPressed(Button button) {
         getMenu().startRecipeProcess(this.recipesPanel.getSelectedIndex());
+        // many thanks to @xjqsh for helping me fix this
     }
 
     private int getProcessPercentage(){
