@@ -56,6 +56,8 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
+        Main.LOGGER.info("BlockEntityContainer Slot: {}", this.getMenu().getBlockEntity().getItemHandler().getStackInSlot(2).getItem());
+
         MutableComponent terminalText = Component.translatable("gui.prma.decomponentalizer.idle");
         RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
         if(menu.isCrafting()) {

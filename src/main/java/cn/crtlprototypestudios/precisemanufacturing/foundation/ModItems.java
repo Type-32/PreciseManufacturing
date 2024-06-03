@@ -48,8 +48,8 @@ public class ModItems {
     // Placeholders
     public static final RegistryEntry<Item>
             // This placeholder, "prma:ammo_placeholder", is used to substitute "tacz:ammo" and then be replaced later
-            AMMO_PLACEHOLDER = addToList(Main.REGISTRATE.item("ammo_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register()),
-            MODERN_KINETIC_GUN_PLACEHOLDER = addToList(Main.REGISTRATE.item("modern_kinetic_gun_placeholder", Item::new).tab(ModCreativeModTabs.MOD_HIDDEN_TAB.getKey()).register());
+            AMMO_PLACEHOLDER = Main.REGISTRATE.item("ammo_placeholder", Item::new).register(),
+            MODERN_KINETIC_GUN_PLACEHOLDER = Main.REGISTRATE.item("modern_kinetic_gun_placeholder", Item::new).register();
 
     // Powders
     public static final RegistryEntry<Item>

@@ -60,7 +60,6 @@ public class Main {
     private void setup(final FMLCommonSetupEvent event) {
         // Some preinit code
         LOGGER.info("HELLO FROM PREINIT");
-        MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new);
         event.enqueueWork(PacketHandler::register);
     }
 
@@ -77,6 +76,7 @@ public class Main {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        event.enqueueWork(() -> MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new));
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
     }
 
