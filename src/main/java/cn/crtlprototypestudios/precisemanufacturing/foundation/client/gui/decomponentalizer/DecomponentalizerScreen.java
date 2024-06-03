@@ -43,21 +43,6 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
-    }
-
-
-
-    @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-//        this.renderBackground(guiGraphics);
-//        this.renderBg(guiGraphics, partialTicks, mouseX, mouseY);
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
-
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-
-        Main.LOGGER.info("BlockEntityContainer Slot: {}", this.getMenu().getBlockEntity().getItemHandler().getStackInSlot(2).getItem());
-
         MutableComponent terminalText = Component.translatable("gui.prma.decomponentalizer.idle");
         RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
         if(menu.isCrafting()) {
@@ -66,18 +51,22 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         } else {
             List<DecomponentalizingRecipe>
                     recipes = this.getMenu().getBlockEntity().getAvailableRecipes();
-//                    recipes = recipesPanel
 
-            assert recipes != null;
-//            Main.LOGGER.info("Is Recipes not null from Screen? {}, {}", recipes != null, !recipes.isEmpty());
             if (recipes != null && !recipes.isEmpty() && this.recipesPanel != null && this.recipesPanel.getSelectedIndex() != -1) {
                 terminalText = Component.translatable("gui.prma.decomponentalizer.time_estimate", recipes.get(this.recipesPanel.getSelectedIndex()).getProcessingTime() / 20);
             }
         }
 
         guiGraphics.drawString(Minecraft.getInstance().font, terminalText, x + 120, y + 54, 0x00FF00);
+    }
 
-        this.recipesPanel.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
+
+
+    @Override
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+        this.recipesPanel.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
@@ -86,11 +75,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         super.containerTick();
         this.recipesPanel.setRecipes(this.getMenu().getBlockEntity().getAvailableRecipes());
 //        Main.LOGGER.info("Is Recipes not null from Screen? {}, {}", recipes != null, !recipes.isEmpty());
-        if (menu.isCrafting()) {
-            craftButton.active = false;
-        } else {
-            craftButton.active = true;
-        }
+        craftButton.active = !menu.isCrafting();
     }
 
     @Override

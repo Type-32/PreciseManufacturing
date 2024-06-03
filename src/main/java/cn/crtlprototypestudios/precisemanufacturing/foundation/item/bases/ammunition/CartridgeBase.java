@@ -16,6 +16,7 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.SequencedAssemblyRecipeGen;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
+import com.tacz.guns.api.TimelessAPI;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Registry;
@@ -204,6 +205,8 @@ public class CartridgeBase extends AmmunitionBase {
         CompoundTag itemTag = new CompoundTag();
         itemTag.putString("AmmoId", "tacz:" + getCoreId());
         ammoStack.setTag(itemTag);
+
+//        TimelessAPI.getCommonAmmoIndex(new ResourceLocation("tacz", getCoreId())).get();
 
 
         for(CartridgeModule m : givenModuleBuilder.get()){

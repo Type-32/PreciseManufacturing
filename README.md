@@ -12,23 +12,13 @@ _Badges from [Devin's Badges](https://intergrav.github.io/devins-badges-docs/bad
 
 A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's mod items.
 
-> ### Attributions
+> [!]
 > Bullet and Catridge Textures are modified from the Timeless and Classics: Zero Mod **_(CC By-NC-SA 4.0 License)_**.
 > 
 > Help & Support in Modding from the Forge Forums Community.
 
-> ### To anyone who are confused reading this
-> The Timeless and Classics gun mod is being remade by the official TaC development team into Timeless and Classics: Zero,
-> which will overhaul many items and mechanics previously existing in the old TaC mod. Please go to their Discord or any
-> of their official donation platforms for more info. 
-> 
-> **This Create Addon mod is made for people that currently has access to the TaC: Zero Beta. To anyone that has the access,
-> please follow the Beta Tester Rules and Guidelines before using the TaC: Zero Beta mod. This mod is not restricted by the
-> Beta Tester Rules and Guidelines but the TaC: Zero Main mod is. Use at your own discretion.**
-
-
 ## Dependencies
-- [Timeless and Classics: Zero (Beta version not yet publicly released, wait for official release from TaC)](undefined)
+- [Timeless and Classics: Zero](https://modrinth.com/mod/timeless-and-classics-zero)
 - [Create Mod for Forge](https://modrinth.com/mod/create)
 
 ## Features
@@ -40,10 +30,10 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 
 The currently supported versions are:
 
-| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency                |
-|----------|----------------------------|---------------------------|---------------------------|
-| 1.18.2   | N/A. TBD                   | 0.2.0-alpha               | tacz-1.0.0-hotifx6-1.18.2 |
-| 1.20.1   | N/A. TBD                   | 0.2.0-alpha               | tacz-1.0.0-hotifx2-1.20.1 |
+| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency                         |
+|----------|----------------------------|---------------------------|------------------------------------|
+| 1.18.2   | N/A. TBD                   | 0.2.0-alpha               | tacz-1.0.0-hotifx6-1.18.2          |
+| 1.20.1   | N/A. TBD                   | 0.2.1-alpha               | tacz-1.0.0-hotifx2-1.20.1, hotfix3 |
 
 ## Translations
 
@@ -73,7 +63,7 @@ The currently supported langauge translations are:
 
 
 ## 依赖关系
-- [Timeless and Classics 永恒枪械工坊：Zero（内测版本尚未公开，请等待TaC: Zero正式版发布）](undefined)
+- [Timeless and Classics 永恒枪械工坊：Zero](https://modrinth.com/mod/timeless-and-classics-zero)
 - [Forge版本 的 机械动力模组](https://modrinth.com/mod/create)
 
 ## 内容
@@ -85,7 +75,7 @@ The currently supported langauge translations are:
 
 目前支持的版本有：
 
-| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组                      |
-|--------|-----------------|----------------|---------------------------|
-| 1.18.2 | 暂无，待定           | 0.2.0-alpha    | tacz-1.0.0-hotifx6-1.18.2 |
-| 1.20.1 | 暂无，待定           | 0.2.0-alpha    | tacz-1.0.0-hotifx2-1.20.1 |
+| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组                               |
+|--------|-----------------|----------------|------------------------------------|
+| 1.18.2 | 暂无，待定           | 0.2.0-alpha    | tacz-1.0.0-hotifx6-1.18.2          |
+| 1.20.1 | 暂无，待定           | 0.2.1-alpha    | tacz-1.0.0-hotifx2-1.20.1, hotfix3 |
