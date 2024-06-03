@@ -64,7 +64,6 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
             guiGraphics.blit(TEXTURE, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
             terminalText = Component.translatable("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
         } else {
-            BlockPos pos = this.getMenu().getBlockEntity().getBlockPos();
             List<DecomponentalizingRecipe>
                     recipes = this.getMenu().getBlockEntity().getAvailableRecipes();
 //                    recipes = recipesPanel
@@ -85,16 +84,12 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
     @Override
     protected void containerTick() {
         super.containerTick();
-        List<DecomponentalizingRecipe>
-                recipes = this.getMenu().getBlockEntity().getAvailableRecipes();
-        this.recipesPanel.setRecipes(recipes);
-        Main.LOGGER.info("Is Recipes not null from Screen? {}, {}", recipes != null, !recipes.isEmpty());
-        if(menu.isCrafting()) {
+        this.recipesPanel.setRecipes(this.getMenu().getBlockEntity().getAvailableRecipes());
+//        Main.LOGGER.info("Is Recipes not null from Screen? {}, {}", recipes != null, !recipes.isEmpty());
+        if (menu.isCrafting()) {
             craftButton.active = false;
-            getMenu().lockInputSlots();
         } else {
             craftButton.active = true;
-            getMenu().unlockInputSlots();
         }
     }
 
@@ -120,7 +115,7 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
     }
 
     private void onAnalyzeButtonPressed(Button button) {
-        getMenu().startRecipeProcess();
+        getMenu().startRecipeProcess(this.recipesPanel.getSelectedIndex());
     }
 
     private int getProcessPercentage(){

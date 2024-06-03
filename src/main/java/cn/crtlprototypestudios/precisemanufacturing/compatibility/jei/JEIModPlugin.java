@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.compatibility.jei;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -32,7 +33,7 @@ public class JEIModPlugin implements IModPlugin {
         assert Minecraft.getInstance().level != null;
         RecipeManager rm = Minecraft.getInstance().level.getRecipeManager();
 
-        List<DecomponentalizingRecipe> recipes = rm.getAllRecipesFor(DecomponentalizingRecipe.Type.INSTANCE);
+        List<DecomponentalizingRecipe> recipes = rm.getAllRecipesFor(DecomponentalizingRecipeType.INSTANCE);
         assert !recipes.isEmpty();
         Main.LOGGER.debug("Registered {} custom recipes in JEI", recipes.size());
         registration.addRecipes(new RecipeType<DecomponentalizingRecipe>(DecomponentalizingRecipeCategory.UID, DecomponentalizingRecipe.class), recipes);

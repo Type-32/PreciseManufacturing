@@ -8,8 +8,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.Lockab
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.ModResultSlot;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -68,7 +67,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
-    @ClientSide
+    @ClientServerSide
     public boolean isCrafting() {
         return data.get(0) > 0;
     }
@@ -85,13 +84,6 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        if (!isCrafting()) {
-            unlockInputSlots();
-            unlockAnalyzeButton();
-        } else {
-            lockInputSlots();
-            lockAnalyzeButton();
-        }
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.DECOMPONENTALIZER.get());
     }
 
@@ -148,56 +140,15 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     }
 
     @ClientSide
-    public void startRecipeProcess() {
+    public void startRecipeProcess(int selectedIndex) {
         Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getSelectedRecipe() == null);
-        if (!isCrafting() && blockEntity.getSelectedRecipe() != null) {
-//            blockEntity.setProcessing(1);
-//            this.data.set(0, 0);
-//            this.data.set(1, blockEntity.getCurrentRecipe().getProcessingTime());
-//            lockInputSlots();
-//            lockAnalyzeButton();
-//            blockEntity.setChanged();
-            // TODO These Logic should be handled via server side; many thanks to @xjqsh
+        if (!isCrafting()) {
+            // These Logics are handled on server side; many thanks to @xjqsh for helping me fix this
 
-            lockInputSlots(); // TODO Handle on data sent back from server
-            lockAnalyzeButton();
-            PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getSelectedRecipeIndex()));
-            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getCurrentRecipeIndex()));
+            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (byte) selectedIndex));
 
             Main.LOGGER.debug("Starting Decomponentalizing Process");
         }
-    }
-
-    @ClientSide
-    public void lockInputSlots() {
-        // TODO Send packet to server or handle from received data
-        // Assuming the input slots are at indices 0, 1, and 2
-        for (int i = 0; i < 3; i++) {
-            Slot slot = slots.get(i);
-            if (slot instanceof LockableInputSlot) {
-                ((LockableInputSlot) slot).setLocked(true);
-            }
-        }
-    }
-
-    @ClientSide
-    public void unlockInputSlots() {
-        // TODO Send packet to server or handle from received data
-        // Assuming the input slots are at indices 0, 1, and 2
-        for (int i = 0; i < 3; i++) {
-            Slot slot = slots.get(i);
-            if (slot instanceof LockableInputSlot) {
-                ((LockableInputSlot) slot).setLocked(false);
-            }
-        }
-    }
-
-    private void lockAnalyzeButton() {
-        // Send Packet
-    }
-
-    private void unlockAnalyzeButton() {
-        // Send Packet
     }
 
     public DecomponentalizerBlockEntity getBlockEntity() {

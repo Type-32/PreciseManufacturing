@@ -110,7 +110,7 @@ public class RecipeListWidget extends AbstractWidget {
             int index = (int) ((mouseY - getY() - 4 + scrollOffset) / entryHeight);
             if (recipes != null && index >= 0 && index < recipes.size()) {
                 selectedIndex = index;
-                containerMenu.getBlockEntity().setSelectedRecipeIndex(index);
+//                containerMenu.getBlockEntity().setSelectedRecipeIndex(index);
                 return true;
             }
         }

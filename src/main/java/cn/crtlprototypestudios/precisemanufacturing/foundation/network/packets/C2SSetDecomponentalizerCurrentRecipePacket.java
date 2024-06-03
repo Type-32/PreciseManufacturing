@@ -51,7 +51,7 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
         assert player != null;
         ServerLevel world = player.serverLevel();
         assert world.hasChunkAt(msg.position);
-        world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).get().setCurrentRecipeIndex(msg.recipeIndex, true);
+        world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).get().startDecomponentalizationProcess(msg.recipeIndex);
     }
 
 
