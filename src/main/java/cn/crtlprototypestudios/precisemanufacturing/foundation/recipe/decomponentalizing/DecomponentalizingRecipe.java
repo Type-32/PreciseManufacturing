@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decompone
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
+import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
@@ -32,11 +33,12 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         this.processingTime = processingTime;
     }
 
+    @ClientServerSide
     @Override
     public boolean matches(SimpleContainer inventory, Level level) {
-        if(level.isClientSide()){
-            return false;
-        }
+//        if(level.isClientSide()){
+//            return false;
+//        }
         ItemStack itemStack = inventory.getItem(0);
         return ingredient.test(itemStack);
     }

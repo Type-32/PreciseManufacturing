@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
+import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -37,15 +38,18 @@ public class PacketHandler {
                 .consumerNetworkThread(C2SSetDecomponentalizerSelectedRecipePacket::handle)
                 .add();
     }
-    
+
+    @ClientSide
     public static <MSG> void sendToServer(final MSG message) {
         INSTANCE.sendToServer(message);
     }
 
+    @ClientSide
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
         INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
     }
 
+    @ClientSide
     public static <MSG> void sendToAllAround(final MSG message) {
         INSTANCE.send(PacketDistributor.ALL.noArg(), message);
     }

@@ -10,6 +10,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.Pa
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.NotNull;
 
+@ClientSide
 public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private final DecomponentalizerBlockEntity blockEntity;
     private final ContainerData data;
@@ -57,6 +59,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         addDataSlots(data);
     }
 
+    @ClientSide
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);  // Max Progress
@@ -65,20 +68,19 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
+    @ClientSide
     public boolean isCrafting() {
         return data.get(0) > 0;
     }
 
+    @ClientSide
     public int getProcessingTime() {
         return data.get(0);
     }
 
+    @ClientSide
     public int getTotalProcessingTime() {
         return data.get(1);
-    }
-
-    public void setProcessing(boolean processing) {
-        data.set(2, processing ? 1 : 0);
     }
 
     @Override
@@ -111,6 +113,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
 
+    @ClientSide
     @Override
     public @NotNull ItemStack quickMoveStack(Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
@@ -144,17 +147,20 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         return copyOfSourceStack;
     }
 
+    @ClientSide
     public void startRecipeProcess() {
         Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getSelectedRecipe() == null);
         if (!isCrafting() && blockEntity.getSelectedRecipe() != null) {
-            blockEntity.setProcessing(1);
-            setCurrentRecipe(blockEntity.getSelectedRecipe());
-            this.data.set(0, 0);
-            this.data.set(1, blockEntity.getCurrentRecipe().getProcessingTime());
-            lockInputSlots();
-            lockAnalyzeButton();
-            blockEntity.setChanged();
+//            blockEntity.setProcessing(1);
+//            this.data.set(0, 0);
+//            this.data.set(1, blockEntity.getCurrentRecipe().getProcessingTime());
+//            lockInputSlots();
+//            lockAnalyzeButton();
+//            blockEntity.setChanged();
+            // TODO These Logic should be handled via server side; many thanks to @xjqsh
 
+            lockInputSlots(); // TODO Handle on data sent back from server
+            lockAnalyzeButton();
             PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getSelectedRecipeIndex()));
             PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getCurrentRecipeIndex()));
 
@@ -162,7 +168,9 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         }
     }
 
+    @ClientSide
     public void lockInputSlots() {
+        // TODO Send packet to server or handle from received data
         // Assuming the input slots are at indices 0, 1, and 2
         for (int i = 0; i < 3; i++) {
             Slot slot = slots.get(i);
@@ -172,7 +180,9 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         }
     }
 
+    @ClientSide
     public void unlockInputSlots() {
+        // TODO Send packet to server or handle from received data
         // Assuming the input slots are at indices 0, 1, and 2
         for (int i = 0; i < 3; i++) {
             Slot slot = slots.get(i);
@@ -183,23 +193,11 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     }
 
     private void lockAnalyzeButton() {
-        // Disable the analyze button in the GUI
-        // You'll need to implement this based on your GUI setup
+        // Send Packet
     }
 
     private void unlockAnalyzeButton() {
-        // Enable the analyze button in the GUI
-        // You'll need to implement this based on your GUI setup
-    }
-
-    public void setSelectedRecipe(DecomponentalizingRecipe recipe) {
-        blockEntity.setSelectedRecipe(recipe);
-//        blockEntity.setChanged();
-    }
-
-    public void setCurrentRecipe(DecomponentalizingRecipe recipe) {
-        blockEntity.setCurrentRecipe(recipe);
-        blockEntity.setChanged();
+        // Send Packet
     }
 
     public DecomponentalizerBlockEntity getBlockEntity() {

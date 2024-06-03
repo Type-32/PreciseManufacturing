@@ -5,6 +5,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlockEntities;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerContainerMenu;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
+import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -33,6 +34,7 @@ import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.List;
 
+@ClientServerSide
 public class DecomponentalizerBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler;
     private final LazyOptional<IItemHandler> itemHandlerCap;
