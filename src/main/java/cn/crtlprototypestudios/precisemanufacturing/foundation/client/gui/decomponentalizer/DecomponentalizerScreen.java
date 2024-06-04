@@ -22,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
 public class DecomponentalizerScreen extends AbstractContainerScreen<DecomponentalizerContainerMenu> {
     private static final ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui.png"),
             WIDGET_TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui_widgets.png");
