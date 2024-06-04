@@ -16,10 +16,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+@OnlyIn(Dist.CLIENT)
 public class DecomponentalizerScreen extends AbstractContainerScreen<DecomponentalizerContainerMenu> {
     private static final ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui.png"),
             WIDGET_TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui_widgets.png");
@@ -44,9 +47,9 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
 
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
         MutableComponent terminalText = Component.translatable("gui.prma.decomponentalizer.idle");
-        RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
+//        RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
         if(menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
+            guiGraphics.blit(WIDGET_TEXTURE, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
             terminalText = Component.translatable("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
         } else {
             List<DecomponentalizingRecipe>

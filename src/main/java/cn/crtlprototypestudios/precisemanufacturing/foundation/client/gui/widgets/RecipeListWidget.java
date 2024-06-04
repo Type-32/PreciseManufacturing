@@ -15,10 +15,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
 import java.util.List;
 
+@OnlyIn(Dist.CLIENT)
 public class RecipeListWidget extends AbstractWidget {
     private static final ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui_widgets.png");
     private final DecomponentalizerBlockEntity blockEntity;

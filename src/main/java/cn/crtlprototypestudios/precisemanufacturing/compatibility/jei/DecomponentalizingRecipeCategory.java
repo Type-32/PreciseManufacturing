@@ -34,7 +34,7 @@ public class DecomponentalizingRecipeCategory implements IRecipeCategory<Decompo
     private final IDrawable icon;
 
     public DecomponentalizingRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 30);
+        this.background = guiHelper.createBlankDrawable(176, 30);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.DECOMPONENTALIZER.get()));
         this.slot = guiHelper.getSlotDrawable();
     }
