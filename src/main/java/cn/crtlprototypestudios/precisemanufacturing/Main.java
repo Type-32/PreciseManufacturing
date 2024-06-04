@@ -77,7 +77,6 @@ public class Main {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 //        event.enqueueWork(() -> );
-        MenuScreens.register(ModContainers.DECOMPONENTALIZER.get(), DecomponentalizerScreen::new);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
     }
 
@@ -86,21 +85,5 @@ public class Main {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-//        @SubscribeEvent
-//        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-//            // Register a new block here
-//            LOGGER.info("HELLO from Register Block");
-//        }
-//
-//        @SubscribeEvent
-//        public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
-//            LOGGER.info("M4A1 registry size {}; cast {}; blueprint {}", ModItems.M4A1.registry.size(), ModItems.M4A1.castsRegistry.size(), ModItems.M4A1.blueprintsRegistry.size());
-//        }
     }
 }
