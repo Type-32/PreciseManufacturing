@@ -1,7 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -29,12 +28,6 @@ public class PacketHandler {
                 .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
                 .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
                 .consumer(C2SSetDecomponentalizerCurrentRecipePacket::handle)
-                .add();
-
-        INSTANCE.messageBuilder(C2SSetDecomponentalizerSelectedRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .encoder(C2SSetDecomponentalizerSelectedRecipePacket::encode)
-                .decoder(C2SSetDecomponentalizerSelectedRecipePacket::new)
-                .consumer(C2SSetDecomponentalizerSelectedRecipePacket::handle)
                 .add();
     }
     

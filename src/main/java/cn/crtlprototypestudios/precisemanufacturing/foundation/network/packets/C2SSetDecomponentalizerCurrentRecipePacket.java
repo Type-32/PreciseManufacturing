@@ -1,15 +1,10 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlockEntities;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -51,7 +46,7 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
         assert player != null;
         ServerLevel world = player.getLevel();
         assert world.hasChunkAt(msg.position);
-        world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).get().setCurrentRecipeIndex(msg.recipeIndex, true);
+        world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).get().startDecomponentalizationProcess(msg.recipeIndex);
     }
 
 

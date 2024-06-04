@@ -8,7 +8,6 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.Lockab
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.ModResultSlot;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -150,15 +149,15 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     public void startRecipeProcess() {
         Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getSelectedRecipe() == null);
         if (!isCrafting() && blockEntity.getSelectedRecipe() != null) {
-            blockEntity.setProcessing(1);
-            setCurrentRecipe(blockEntity.getSelectedRecipe());
-            this.data.set(0, 0);
-            this.data.set(1, blockEntity.getCurrentRecipe().getProcessingTime());
-            lockInputSlots();
-            lockAnalyzeButton();
-            blockEntity.setChanged();
+//            blockEntity.setProcessing(1);
+//            setCurrentRecipe(blockEntity.getSelectedRecipe());
+//            this.data.set(0, 0);
+//            this.data.set(1, blockEntity.getCurrentRecipe().getProcessingTime());
+//            lockInputSlots();
+//            lockAnalyzeButton();
+//            blockEntity.setChanged();
 
-            PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getSelectedRecipeIndex()));
+//            PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getSelectedRecipeIndex()));
             PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getCurrentRecipeIndex()));
 
             Main.LOGGER.debug("Starting Decomponentalizing Process");

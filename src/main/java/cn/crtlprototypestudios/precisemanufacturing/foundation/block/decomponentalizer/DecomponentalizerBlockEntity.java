@@ -152,13 +152,13 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
                 pBlockEntity.craftItem(pBlockEntity);
                 pBlockEntity.setProcessingTime(0);
                 pBlockEntity.setSelectedRecipeIndex(-1);
-                pBlockEntity.setCurrentRecipeIndex(-1);
+                pBlockEntity.startDecomponentalizationProcess(-1);
                 setChanged(pLevel, pPos, pState);
             }
         } else {
             pBlockEntity.setProcessingTime(0);
             pBlockEntity.setSelectedRecipeIndex(-1);
-            pBlockEntity.setCurrentRecipeIndex(-1);
+            pBlockEntity.startDecomponentalizationProcess(-1);
             setChanged(pLevel, pPos, pState);
         }
     }
@@ -241,11 +241,13 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         this.currentRecipeIndex = availableRecipeIndex >= availableRecipes.size() || availableRecipeIndex < 0 ? -1 : availableRecipeIndex;
     }
 
-    public void setCurrentRecipeIndex(int availableRecipeIndex, boolean setDurationTime) {
+    public void startDecomponentalizationProcess(int availableRecipeIndex) {
         List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
         setCurrentRecipeIndex(availableRecipeIndex, availableRecipes);
-        if(!(availableRecipeIndex >= availableRecipes.size() || availableRecipeIndex < 0) && setDurationTime) {
+        if(availableRecipeIndex != -1 && availableRecipeIndex < availableRecipes.size() && getCurrentRecipeIndex() > -1) {
             setTotalProcessingTime(availableRecipes.get(availableRecipeIndex).getProcessingTime());
+            setProcessing(1);
+            setProcessingTime(0);
         }
     }
 

@@ -1,13 +1,9 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.widgets;
 
-import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerContainerMenu;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerSelectedRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
-import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
