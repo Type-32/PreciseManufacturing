@@ -15,8 +15,9 @@ public class PacketHandler {
     private static int id(){
         return packetId++;
     }
+    private static final String VERSION = "1.0.0";
 
-    private static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder
+    private static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder
             .named(new ResourceLocation(Reference.MOD_ID, Reference.Network.NETWORK_RL))
             .serverAcceptedVersions((status) -> true)
             .clientAcceptedVersions((status) -> true)
@@ -25,7 +26,7 @@ public class PacketHandler {
 
     public static void register() {
         // NetworkDirection.PLAY_TO_SERVER
-        INSTANCE.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+        CHANNEL.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
                 .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
                 .consumerNetworkThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
@@ -34,16 +35,16 @@ public class PacketHandler {
 
     @ClientSide
     public static <MSG> void sendToServer(final MSG message) {
-        INSTANCE.sendToServer(message);
+        CHANNEL.sendToServer(message);
     }
 
     @ClientSide
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
-        INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
+        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), message);
     }
 
     @ClientSide
     public static <MSG> void sendToAllAround(final MSG message) {
-        INSTANCE.send(PacketDistributor.ALL.noArg(), message);
+        CHANNEL.send(PacketDistributor.ALL.noArg(), message);
     }
 }
