@@ -1,12 +1,12 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModContainers;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.LockableInputSlot;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.ModResultSlot;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.LockableInputSlot;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.ModResultSlot;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
@@ -31,7 +31,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     }
 
     public DecomponentalizerContainerMenu(int id, Inventory playerInventory, BlockEntity blockEntity, ContainerData data) {
-        super(ModContainers.DECOMPONENTALIZER.get(), id);
+        super(ModContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), id);
         checkContainerSize(playerInventory, 4);
         this.blockEntity = (DecomponentalizerBlockEntity) blockEntity;
         this.level = playerInventory.player.level();

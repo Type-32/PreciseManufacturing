@@ -1,8 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer;
 
-import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlockEntities;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerContainerMenu;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerContainerMenu;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ServerSide;
@@ -41,13 +40,12 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     private int processingTime;
     private int totalProcessingTime;
     private int isProcessing = 0;
-    private int currentRecipeIndex, selectedRecipeIndex;
+    private int currentRecipeIndex;
     private ContainerData data;
 
     public DecomponentalizerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DECOMPONENTALIZER.get(), pos, state);
         currentRecipeIndex = -1;
-        selectedRecipeIndex = -1;
         itemHandler = createHandler();
         itemHandlerCap = LazyOptional.of(() -> itemHandler);
         this.data = new ContainerData() {
@@ -155,13 +153,11 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
             } else {
                 pBlockEntity.craftItem(pBlockEntity);
                 pBlockEntity.setProcessingTime(0);
-                pBlockEntity.setSelectedRecipeIndex(-1);
                 pBlockEntity.setCurrentRecipeIndex(-1);
                 setChanged(pLevel, pPos, pState);
             }
         } else {
             pBlockEntity.setProcessingTime(0);
-            pBlockEntity.setSelectedRecipeIndex(-1);
             pBlockEntity.setCurrentRecipeIndex(-1);
             setChanged(pLevel, pPos, pState);
         }
@@ -170,14 +166,14 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
 
     @ServerSide
     private static boolean hasRecipe(DecomponentalizerBlockEntity pBlockEntity) {
-        if (pBlockEntity.getItemHandler().getStackInSlot(2).isEmpty() || pBlockEntity.getCurrentRecipeIndex() == -1) {
+        if (pBlockEntity.getItemHandler().getStackInSlot(2).isEmpty() || pBlockEntity.getCurrentRecipeIndex() <= -1) {
             return false;
         }
 
-        return pBlockEntity.getCurrentRecipe() != null && pBlockEntity.canOutput(pBlockEntity.getCurrentRecipe().getResultItem());
+        return pBlockEntity.getCurrentRecipeIndex() != -1 && pBlockEntity.getCurrentRecipe() != null && pBlockEntity.canOutput();
     }
 
-    private boolean canOutput(ItemStack output) {
+    private boolean canOutput() {
         boolean paperInSlot = !itemHandler.getStackInSlot(0).isEmpty() && itemHandler.getStackInSlot(0).getItem().equals(Items.PAPER),
         inkInSlot = !itemHandler.getStackInSlot(1).isEmpty() && itemHandler.getStackInSlot(1).getItem().equals(Items.INK_SAC),
         outputSlotEmpty = itemHandler.getStackInSlot(3).isEmpty();
@@ -187,10 +183,9 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     private void craftItem(DecomponentalizerBlockEntity pBlockEntity) {
-        if (pBlockEntity.getCurrentRecipeIndex() != -1 && canOutput(pBlockEntity.getCurrentRecipe().getResultItem())) {
+        if (pBlockEntity.getCurrentRecipeIndex() != -1 && canOutput()) {
             itemHandler.extractItem(0, 1, false);
             itemHandler.extractItem(1, 1, false);
-//            itemHandler.extractItem(2, 1, false);
             itemHandler.setStackInSlot(3, new ItemStack(getCurrentRecipe().getResultItem().getItem(), itemHandler.getStackInSlot(3).getCount() + 1));
         }
     }
@@ -250,7 +245,7 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     public void startDecomponentalizationProcess(int currentRecipeIndex){
         List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
         setCurrentRecipeIndex(currentRecipeIndex, availableRecipes);
-        if(availableRecipes != null && !availableRecipes.isEmpty() && currentRecipeIndex > -1 && this.currentRecipeIndex > -1){
+        if(!availableRecipes.isEmpty() && currentRecipeIndex > -1 && this.currentRecipeIndex > -1){
             setTotalProcessingTime(availableRecipes.get(currentRecipeIndex).getProcessingTime());
             setProcessingTime(0);
             setProcessing(1);
@@ -268,29 +263,16 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     public List<DecomponentalizingRecipe> getAvailableRecipes() {
         Level level = this.level;
         if (level == null) {
-//            Main.LOGGER.info("level is Empty");
             return Collections.emptyList();
         }
 
         ItemStack componentStack = itemHandler.getStackInSlot(2);
         if (componentStack.isEmpty()) {
-//            Main.LOGGER.info("componentStack is Empty");
             return Collections.emptyList();
-        } else {
-//            Main.LOGGER.info("componentStack is NOT EMPTY");
         }
 
         //        Main.LOGGER.info("Recognized Recipes: {}", recipes);
         return level.getRecipeManager().getRecipesFor(DecomponentalizingRecipe.Type.INSTANCE, new SimpleContainer(componentStack), level);
-    }
-
-    public void setSelectedRecipeIndex(int availableRecipeIndex) {
-        List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
-        this.selectedRecipeIndex = availableRecipeIndex >= availableRecipes.size() || availableRecipeIndex < 0 ? -1 : availableRecipeIndex;
-    }
-
-    public int getSelectedRecipeIndex() {
-        return selectedRecipeIndex;
     }
 
     public DecomponentalizingRecipe getAvailableRecipeFromIndex(int index){
@@ -302,10 +284,6 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
 
     public DecomponentalizingRecipe getCurrentRecipe(){
         return getAvailableRecipeFromIndex(currentRecipeIndex);
-    }
-
-    public DecomponentalizingRecipe getSelectedRecipe(){
-        return getAvailableRecipeFromIndex(selectedRecipeIndex);
     }
 
     /**
@@ -321,23 +299,6 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
             return true;
         }else{
             currentRecipeIndex = -1;
-            return false;
-        }
-    }
-
-    /**
-     * Sets the selected recipe
-     * @param recipe The recipe in the list of available recipes
-     * @return Returns true if success and that the given recipe is in the list of available recipes, false if otherwise
-     */
-    public boolean setSelectedRecipe(DecomponentalizingRecipe recipe) {
-        List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
-
-        if(availableRecipes.contains(recipe)){
-            selectedRecipeIndex = availableRecipes.indexOf(recipe);
-            return true;
-        }else{
-            selectedRecipeIndex = -1;
             return false;
         }
     }

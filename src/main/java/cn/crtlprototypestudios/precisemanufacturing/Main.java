@@ -1,16 +1,15 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.*;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerScreen;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler.PacketHandler;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerScreen;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -75,15 +74,19 @@ public class Main {
                 collect(Collectors.toList()));
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-//        event.enqueueWork(() -> );
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
-    }
-
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Reference.MOD_ID, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(final FMLClientSetupEvent event) {
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
+            event.enqueueWork(() -> MenuScreens.register(ModContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), DecomponentalizerScreen::new));
+        }
     }
 }

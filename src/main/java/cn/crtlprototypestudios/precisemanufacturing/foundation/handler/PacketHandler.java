@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.handler;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;

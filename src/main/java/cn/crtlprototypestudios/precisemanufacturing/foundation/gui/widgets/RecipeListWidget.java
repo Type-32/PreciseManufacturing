@@ -1,8 +1,8 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.widgets;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.widgets;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerContainerMenu;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerContainerMenu;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -21,7 +21,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Arrays;
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
 public class RecipeListWidget extends AbstractWidget {
     private static final ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_gui_widgets.png");
     private final DecomponentalizerBlockEntity blockEntity;

@@ -55,7 +55,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
-        return result;
+        return result.copy();
     }
 
     public @Nullable ItemStack getResultItem(){
@@ -96,7 +96,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
     public static class Serializer implements RecipeSerializer<DecomponentalizingRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(Reference.MOD_ID, "decomponentalizing");
+        public static final ResourceLocation ID = new ResourceLocation(Reference.MOD_ID, Type.ID);
 
         @Override
         public @NotNull DecomponentalizingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
