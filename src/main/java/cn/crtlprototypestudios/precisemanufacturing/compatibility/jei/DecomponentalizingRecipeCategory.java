@@ -3,7 +3,6 @@ package cn.crtlprototypestudios.precisemanufacturing.compatibility.jei;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import mezz.jei.api.constants.VanillaTypes;
@@ -25,7 +24,7 @@ import javax.annotation.Nonnull;
 import java.util.Objects;
 
 public class DecomponentalizingRecipeCategory implements IRecipeCategory<DecomponentalizingRecipe> {
-    public static final RecipeType<DecomponentalizingRecipe> DECOMPONENTALIZING_RECIPE_RECIPE_TYPE = RecipeType.create(Reference.MOD_ID, DecomponentalizingRecipeType.ID, DecomponentalizingRecipe.class);
+    public static final RecipeType<DecomponentalizingRecipe> DECOMPONENTALIZING_RECIPE_RECIPE_TYPE = RecipeType.create(Reference.MOD_ID, DecomponentalizingRecipe.Type.ID, DecomponentalizingRecipe.class);
     public final static ResourceLocation UID = ResourceHelper.find("decomponentalizing");
     public final static ResourceLocation TEXTURE = ResourceHelper.find("textures/gui/decomponentalizer_recipe_jei_compat.png");
 

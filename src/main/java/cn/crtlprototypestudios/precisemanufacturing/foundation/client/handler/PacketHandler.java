@@ -1,6 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.client.handler;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +19,7 @@ public class PacketHandler {
     private static final String VERSION = "1.0.0";
 
     private static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder
-            .named(new ResourceLocation(Reference.MOD_ID, Reference.Network.NETWORK_RL))
+            .named(ResourceHelper.find(Reference.Network.NETWORK_CHANNEL))
             .serverAcceptedVersions((status) -> true)
             .clientAcceptedVersions((status) -> true)
             .networkProtocolVersion(() -> Reference.Network.NETWORK_CHANNEL_VERSION)
@@ -29,7 +30,7 @@ public class PacketHandler {
         CHANNEL.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
                 .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
-                .consumerNetworkThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
+                .consumerMainThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
                 .add();
     }
 

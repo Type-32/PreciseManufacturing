@@ -4,7 +4,6 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlockEntities;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.client.gui.decomponentalizer.DecomponentalizerContainerMenu;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipeType;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ServerSide;
 import net.minecraft.core.BlockPos;
@@ -282,7 +281,7 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         }
 
         //        Main.LOGGER.info("Recognized Recipes: {}", recipes);
-        return level.getRecipeManager().getRecipesFor(DecomponentalizingRecipeType.INSTANCE, new SimpleContainer(componentStack), level);
+        return level.getRecipeManager().getRecipesFor(DecomponentalizingRecipe.Type.INSTANCE, new SimpleContainer(componentStack), level);
     }
 
     public void setSelectedRecipeIndex(int availableRecipeIndex) {

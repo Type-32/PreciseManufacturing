@@ -74,7 +74,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public @NotNull RecipeType<?> getType() {
-        return DecomponentalizingRecipeType.INSTANCE;
+        return Type.INSTANCE;
     }
 
     public PartialNBTIngredient getIngredient() {
@@ -87,13 +87,12 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
     public static class Type implements RecipeType<DecomponentalizingRecipe> {
         private Type() {
+            super();
         }
 
         public static final Type INSTANCE = new Type();
         public static final String ID = "decomponentalizing";
     }
-
-
 
     public static class Serializer implements RecipeSerializer<DecomponentalizingRecipe> {
         public static final Serializer INSTANCE = new Serializer();
@@ -102,7 +101,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         @Override
         public @NotNull DecomponentalizingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             PartialNBTIngredient ingredient = PartialNBTIngredient.Serializer.INSTANCE.parse(json.get("ingredient").getAsJsonObject());
-            Main.LOGGER.debug("Ingredient {}, {}", ingredient.toString(), Arrays.toString(ingredient.getItems()));
+//            Main.LOGGER.debug("Ingredient {}, {}", ingredient.toString(), Arrays.toString(ingredient.getItems()));
             ItemStack result = ShapedRecipe.itemStackFromJson(json.getAsJsonObject("result"));
             int processingTime = json.get("processingTime").getAsInt();
 
@@ -113,7 +112,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         @Override
         public DecomponentalizingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             PartialNBTIngredient ingredient = PartialNBTIngredient.Serializer.INSTANCE.parse(buffer);
-            Main.LOGGER.debug("Ingredient {}, {}", ingredient.toString(), Arrays.toString(ingredient.getItems()));
+//            Main.LOGGER.debug("Ingredient {}, {}", ingredient.toString(), Arrays.toString(ingredient.getItems()));
             ItemStack result = buffer.readItem();
             int processingTime = buffer.readInt();
 
@@ -123,7 +122,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         @Override
         public void toNetwork(FriendlyByteBuf buffer, DecomponentalizingRecipe recipe) {
             recipe.getIngredient().toNetwork(buffer);
-            buffer.writeItem(Objects.requireNonNull(recipe.getResultItem()));
+            buffer.writeItemStack(Objects.requireNonNull(recipe.getResultItem()), false);
             buffer.writeInt(recipe.getProcessingTime());
         }
     }
