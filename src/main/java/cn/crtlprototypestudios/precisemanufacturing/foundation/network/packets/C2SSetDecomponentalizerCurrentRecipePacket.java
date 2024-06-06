@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets;
 
+import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlockEntities;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
@@ -25,6 +26,7 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
 
     public C2SSetDecomponentalizerCurrentRecipePacket(FriendlyByteBuf buf) {
         this(buf.readBlockPos(), buf.readByte());
+        Main.LOGGER.debug("C2SSetDecomponentalizerCurrentRecipePacket received, receiving Byte Buffer instead of manual creation");
     }
 
     public void encode(FriendlyByteBuf buf) {
@@ -35,24 +37,20 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
     public static void handle(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
 //            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> C2SSetDecomponentalizerCurrentRecipePacket.handleOnClient(msg, ctx));
-//            DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> C2SSetDecomponentalizerCurrentRecipePacket.handleOnServer(msg, ctx));
-            handleOnServer(msg, ctx);
+            DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> C2SSetDecomponentalizerCurrentRecipePacket.handleOnServer(msg, ctx));
+//            handleOnServer(msg, ctx);
         });
 
         ctx.get().setPacketHandled(true);
     }
 
-    public static void handleOnClient(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx){
-
-    }
-
     public static void handleOnServer(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx){
         ServerPlayer player = ctx.get().getSender();
+        Main.LOGGER.debug("Server Handle Packet: Player exists? {}", player != null);
         assert player != null;
         ServerLevel world = player.serverLevel();
+        Main.LOGGER.debug("Server Handle Packet: Has chunk at world {}? {}", msg.position.toString(), world.hasChunkAt(msg.position));
         assert world.hasChunkAt(msg.position);
         world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).get().startDecomponentalizationProcess(msg.recipeIndex);
     }
-
-
 }

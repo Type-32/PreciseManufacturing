@@ -16,22 +16,23 @@ public class PacketHandler {
     private static int id(){
         return packetId++;
     }
-    private static final String VERSION = "1.0.0";
 
-    private static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder
-            .named(ResourceHelper.find(Reference.Network.NETWORK_CHANNEL))
-            .serverAcceptedVersions((status) -> true)
-            .clientAcceptedVersions((status) -> true)
-            .networkProtocolVersion(() -> Reference.Network.NETWORK_CHANNEL_VERSION)
-            .simpleChannel();
+    private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
+            ResourceHelper.find(Reference.Network.NETWORK_CHANNEL),
+            () -> Reference.Network.NETWORK_CHANNEL_VERSION,
+            Reference.Network.NETWORK_CHANNEL_VERSION::equals,
+            Reference.Network.NETWORK_CHANNEL_VERSION::equals
+    );
 
     public static void register() {
         // NetworkDirection.PLAY_TO_SERVER
-        CHANNEL.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
-                .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
-                .consumerMainThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
-                .add();
+        CHANNEL.registerMessage(
+                id(),
+                C2SSetDecomponentalizerCurrentRecipePacket.class,
+                C2SSetDecomponentalizerCurrentRecipePacket::encode,
+                C2SSetDecomponentalizerCurrentRecipePacket::new,
+                C2SSetDecomponentalizerCurrentRecipePacket::handle
+        );
     }
 
     @ClientSide
