@@ -63,21 +63,14 @@ public class RecipeListWidget extends AbstractWidget {
                     DecomponentalizingRecipe recipe = recipes.get(i);
                     Main.LOGGER.info("Recipe: {}, {}", recipe.toString(), Arrays.stream(recipe.getIngredient().getItems()).toArray()[0].toString());
 
-                    if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
-                        selectedIndex = i;
-
                     renderRecipeEntry(guiGraphics, recipe, getX() + 1, y, listWidth, entryHeight, i == selectedIndex, false);
                 } else if (y >= getY() && y + entryHeight > getY() + listHeight && (y + entryHeight) - (getY() + listHeight) <= entryHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 
-                    if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
-                        selectedIndex = i;
                     renderRecipeEntry(guiGraphics, recipe, getX() + 1, y, listWidth, entryHeight - ((y + entryHeight) - (getY() + listHeight)), i == selectedIndex, false);
                 } else if (y < getY() && y + entryHeight > getY() && (y + entryHeight) - (getY()) <= entryHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 
-                    if(containerMenu.getBlockEntity().getSelectedRecipeIndex() == i)
-                        selectedIndex = i;
                     renderRecipeEntry(guiGraphics, recipe, getX() + 1, y, listWidth, (getY() - y), i == selectedIndex, true);
                 }
                 y += entryHeight + 1;

@@ -141,11 +141,11 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
 
     @ClientSide
     public void startRecipeProcess(int selectedIndex) {
-        Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getSelectedRecipe() == null);
+//        Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getCurrentRecipe() == null);
         if (!isCrafting()) {
             // These Logics are handled on server side; many thanks to @xjqsh for helping me fix this
 
-            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (byte) selectedIndex));
+            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (short) selectedIndex));
 
             Main.LOGGER.debug("Starting Decomponentalizing Process");
         }

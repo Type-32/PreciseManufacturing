@@ -18,21 +18,21 @@ import java.util.function.Supplier;
 
 public class C2SSetDecomponentalizerCurrentRecipePacket {
     private final BlockPos position;
-    private final byte recipeIndex;
+    private final short recipeIndex;
 
-    public C2SSetDecomponentalizerCurrentRecipePacket(BlockPos position, byte recipeIndex) {
+    public C2SSetDecomponentalizerCurrentRecipePacket(BlockPos position, short recipeIndex) {
         this.position = position;
         this.recipeIndex = recipeIndex;
     }
 
     public C2SSetDecomponentalizerCurrentRecipePacket(FriendlyByteBuf buf) {
-        this(buf.readBlockPos(), buf.readByte());
+        this(buf.readBlockPos(), buf.readShort());
         Main.LOGGER.debug("C2SSetDecomponentalizerCurrentRecipePacket received, receiving Byte Buffer instead of manual creation");
     }
 
     public void encode(FriendlyByteBuf buf) {
         buf.writeBlockPos(position);
-        buf.writeByte(recipeIndex);
+        buf.writeShort(recipeIndex);
     }
 
     public static void handle(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx) {
