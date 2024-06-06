@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -44,6 +45,7 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
         ctx.get().setPacketHandled(true);
     }
 
+    @OnlyIn(Dist.DEDICATED_SERVER)
     public static void handleOnServer(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx){
         ServerPlayer player = ctx.get().getSender();
         Main.LOGGER.debug("Server Handle Packet: Player exists? {}", player != null);
