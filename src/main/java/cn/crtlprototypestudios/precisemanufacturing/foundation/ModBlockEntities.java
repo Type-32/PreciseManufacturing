@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,6 +19,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("gem_cutting_station_block_entity", () ->
                     BlockEntityType.Builder.of(DecomponentalizerBlockEntity::new,
                             ModBlocks.DECOMPONENTALIZER.get()).build(null));
+
+
+//    public static final BlockEntityEntry<? extends BlockEntity> DECOMPONENTALIZER =
+//            Main.REGISTRATE.blockEntity("decomponentalizer", DecomponentalizerBlockEntity::new).register();
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

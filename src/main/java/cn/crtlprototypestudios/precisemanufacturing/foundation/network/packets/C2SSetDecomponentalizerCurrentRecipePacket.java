@@ -36,11 +36,11 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
     }
 
     public static void handle(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-//            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> C2SSetDecomponentalizerCurrentRecipePacket.handleOnClient(msg, ctx));
-            DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> C2SSetDecomponentalizerCurrentRecipePacket.handleOnServer(msg, ctx));
-//            handleOnServer(msg, ctx);
-        });
+        NetworkEvent.Context context = ctx.get();
+
+        if(context.getDirection().getReceptionSide().isServer()) {
+            handleOnServer(msg, ctx);
+        }
 
         ctx.get().setPacketHandled(true);
     }

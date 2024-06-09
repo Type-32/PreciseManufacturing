@@ -71,5 +71,5 @@ description='''${mod_description}'''
    modId="tacz"
    mandatory=true
    versionRange="[1.0.0-hotfix2,)"
-   ordering="AFTER"
+   ordering="NONE"
    side="BOTH"

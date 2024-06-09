@@ -20,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -44,7 +45,11 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     private ContainerData data;
 
     public DecomponentalizerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.DECOMPONENTALIZER.get(), pos, state);
+        this(ModBlockEntities.DECOMPONENTALIZER.get(), pos, state);
+    }
+
+    public DecomponentalizerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
         currentRecipeIndex = -1;
         itemHandler = createHandler();
         itemHandlerCap = LazyOptional.of(() -> itemHandler);
