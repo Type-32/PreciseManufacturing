@@ -45,7 +45,6 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
         ctx.get().setPacketHandled(true);
     }
 
-    @OnlyIn(Dist.DEDICATED_SERVER)
     public static void handleOnServer(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx){
         ServerPlayer player = ctx.get().getSender();
         Main.LOGGER.debug("Server Handle Packet: Player exists? {}", player != null);
