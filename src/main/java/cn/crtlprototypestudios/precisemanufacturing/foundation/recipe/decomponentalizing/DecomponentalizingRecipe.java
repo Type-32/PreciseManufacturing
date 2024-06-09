@@ -67,7 +67,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
         return DecomponentalizingRecipeType.INSTANCE;
     }
 
-    public Ingredient getIngredient() {
+    public PartialNBTIngredient getIngredient() {
         return ingredient;
     }
 
@@ -109,7 +109,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, DecomponentalizingRecipe recipe) {
-            recipe.getIngredient().toNetwork(buffer);
+            PartialNBTIngredient.Serializer.INSTANCE.write(buffer, recipe.getIngredient());
             buffer.writeItem(recipe.getResultItem());
             buffer.writeInt(recipe.getProcessingTime());
         }
