@@ -247,8 +247,7 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     @ServerSide
-    public void startDecomponentalizationProcess(int currentRecipeIndex){
-        List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
+    public void startDecomponentalizationProcess(List<DecomponentalizingRecipe> availableRecipes, int currentRecipeIndex){
         setCurrentRecipeIndex(currentRecipeIndex, availableRecipes);
         if(!availableRecipes.isEmpty() && currentRecipeIndex > -1 && this.currentRecipeIndex > -1){
             setTotalProcessingTime(availableRecipes.get(currentRecipeIndex).getProcessingTime());

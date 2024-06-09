@@ -8,6 +8,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.LockableInput
 import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.ModResultSlot;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
 import net.minecraft.network.FriendlyByteBuf;
@@ -19,6 +20,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 @ClientSide
 public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
@@ -140,12 +143,12 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     }
 
     @ClientSide
-    public void startRecipeProcess(int selectedIndex) {
+    public void startRecipeProcess(List<DecomponentalizingRecipe> recipes, int selectedIndex) {
 //        Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getCurrentRecipe() == null);
         if (!isCrafting()) {
             // These Logics are handled on server side; many thanks to @xjqsh for helping me fix this
 
-            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (short) selectedIndex));
+            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), this.getBlockEntity().getItemHandler().getStackInSlot(2), (short) selectedIndex));
 
             Main.LOGGER.debug("Starting Decomponentalizing Process");
         }

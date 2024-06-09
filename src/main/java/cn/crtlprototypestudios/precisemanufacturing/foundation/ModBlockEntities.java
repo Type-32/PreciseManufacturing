@@ -16,7 +16,7 @@ public class ModBlockEntities {
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Reference.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<DecomponentalizerBlockEntity>> DECOMPONENTALIZER =
-            BLOCK_ENTITIES.register("gem_cutting_station_block_entity", () ->
+            BLOCK_ENTITIES.register("decomponentalizer_block_entity", () ->
                     BlockEntityType.Builder.of(DecomponentalizerBlockEntity::new,
                             ModBlocks.DECOMPONENTALIZER.get()).build(null));
 
