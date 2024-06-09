@@ -20,6 +20,7 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class C2SSetDecomponentalizerCurrentRecipePacket {
@@ -47,9 +48,9 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
     public static void handle(C2SSetDecomponentalizerCurrentRecipePacket msg, Supplier<NetworkEvent.Context> ctx) {
         NetworkEvent.Context context = ctx.get();
 
-        if(context.getDirection().getReceptionSide().isServer()) {
+        ctx.get().enqueueWork(() -> {
             handleOnServer(msg, ctx);
-        }
+        });
 
         ctx.get().setPacketHandled(true);
     }
@@ -68,7 +69,7 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
         try {
             availableRecipes = world.getRecipeManager().getRecipesFor(DecomponentalizingRecipe.Type.INSTANCE, new SimpleContainer(msg.decompositionStack), world);
             Main.LOGGER.debug("Server Handle Packet: Fetched recipes: {}", availableRecipes.size());
-            world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).get().startDecomponentalizationProcess(availableRecipes, msg.recipeIndex);
+            Objects.requireNonNull(world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).orElse(null)).startDecomponentalizationProcess(availableRecipes, msg.recipeIndex);
         } catch (Exception e) {
             Main.LOGGER.error("Server Handle Packet: Decomponentalization packet failed to set", e);
         }

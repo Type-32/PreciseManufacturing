@@ -40,14 +40,11 @@ public class PacketHandler {
 
     public static void register() {
         // NetworkDirection.PLAY_TO_SERVER
-        CHANNEL.registerMessage(
-                id(),
-                C2SSetDecomponentalizerCurrentRecipePacket.class,
-                C2SSetDecomponentalizerCurrentRecipePacket::encode,
-                C2SSetDecomponentalizerCurrentRecipePacket::new,
-                C2SSetDecomponentalizerCurrentRecipePacket::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER)
-        );
+        CHANNEL.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id())
+                .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
+                .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
+                .consumerNetworkThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
+                .add();
 
         AcknowledgeHandshake handshake = new AcknowledgeHandshake();
         HANDSHAKE.messageBuilder(AcknowledgeHandshake.class, handshakeId())
