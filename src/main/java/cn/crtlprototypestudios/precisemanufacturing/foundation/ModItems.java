@@ -45,12 +45,6 @@ public class ModItems {
 //    public static final ItemStack TACZ_AMMO_ITEM_TEMPLATE = new ItemStack(ModCompatItems.AMMO);
 //    public static final ItemStack TACZ_GUN_ITEM_TEMPLATE = new ItemStack(ModCompatItems.MODERN_KINETIC_GUN);
 
-    // Placeholders
-    public static final RegistryEntry<Item>
-            // This placeholder, "prma:ammo_placeholder", is used to substitute "tacz:ammo" and then be replaced later
-            AMMO_PLACEHOLDER = Main.REGISTRATE.item("ammo_placeholder", Item::new).register(),
-            MODERN_KINETIC_GUN_PLACEHOLDER = Main.REGISTRATE.item("modern_kinetic_gun_placeholder", Item::new).register();
-
     // Powders
     public static final RegistryEntry<Item>
             RAW_ZINC_POWDER = addToList(Main.REGISTRATE.item("raw_zinc_powder", Item::new).register()),
@@ -285,6 +279,17 @@ public class ModItems {
             .setModuleData(3, d -> d.setCastFillingAmount(120)) // Trigger
             .setModuleData(4, d -> d.setCastFillingAmount(400)) // Stock
             .setModuleData(5, d -> d.setCastFillingAmount(240)), // Magazine
+
+    SKS = new RifleBase("sks_tactical", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.LOWER_RECEIVER_MODULE).remove(RifleModule.UPPER_RECEIVER_MODULE).add(RifleModule.LONG_BODY_MODULE))
+            .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
+            .setModuleData(1, d -> d.setCastFillingAmount(200)) // Handguard
+            .setModuleData(2, d -> d.setCastFillingAmount(200)) // Barrel
+            .setModuleData(3, d -> d.setCastFillingAmount(100)) // Magazine
+            .setModuleData(4, d -> d.setCastFillingAmount(300)) // Fire Control Group
+            .setModuleData(5, d -> d.setCastFillingAmount(110)) // Fire Selector
+            .setModuleData(6, d -> d.setCastFillingAmount(70)) // Trigger
+            .setModuleData(7, d -> d.setCastFillingAmount(180)) // Stock
+            .setModuleData(8, d -> d.setCastFillingAmount(580)), // Long Body
 
     M249 = new RifleBase("m249", RifleBase.STANDARD_RIFLE_MODULES.remove(RifleModule.FIRE_SELECTOR_MODULE).remove(RifleModule.FIRE_CONTROL_GROUP_MODULE))
                 .setModuleData(0, d -> d.setCastFillingAmount(250)) // Grip

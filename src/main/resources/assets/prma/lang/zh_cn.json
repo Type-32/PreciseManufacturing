@@ -397,6 +397,34 @@
   "item.prma.m95_bolt_blueprint": "M95 .50口径反材料射炮机匣蓝图",
   "item.prma.m95_bolt_cast": "M95 .50口径反材料射炮机匣铸件",
 
+  "item.prma.sks_tactical_long_body": "Sks 战术步枪长机身",
+  "item.prma.sks_tactical_long_body_blueprint": "Sks 战术步枪长机身蓝图",
+  "item.prma.sks_tactical_long_body_cast": "Sks 战术步枪长机身铸件",
+  "item.prma.sks_tactical_handguard": "Sks 战术步枪护木",
+  "item.prma.sks_tactical_handguard_blueprint": "Sks 战术步枪护木蓝图",
+  "item.prma.sks_tactical_handguard_cast": "Sks 战术步枪护木铸件",
+  "item.prma.sks_tactical_stock": "Sks 战术步枪枪托",
+  "item.prma.sks_tactical_stock_blueprint": "Sks 战术步枪枪托蓝图",
+  "item.prma.sks_tactical_stock_cast": "Sks 战术步枪枪托铸件",
+  "item.prma.sks_tactical_magazine": "Sks 战术步枪弹匣",
+  "item.prma.sks_tactical_magazine_blueprint": "Sks 战术步枪弹匣蓝图",
+  "item.prma.sks_tactical_magazine_cast": "Sks 战术步枪弹匣铸件",
+  "item.prma.sks_tactical_barrel": "Sks 战术步枪枪管",
+  "item.prma.sks_tactical_barrel_blueprint": "Sks 战术步枪枪管蓝图",
+  "item.prma.sks_tactical_barrel_cast": "Sks 战术步枪枪管铸件",
+  "item.prma.sks_tactical_grip": "Sks 战术步枪握把",
+  "item.prma.sks_tactical_grip_blueprint": "Sks 战术步枪握把蓝图",
+  "item.prma.sks_tactical_grip_cast": "Sks 战术步枪握把铸件",
+  "item.prma.sks_tactical_trigger": "Sks 战术步枪扳机",
+  "item.prma.sks_tactical_trigger_blueprint": "Sks 战术步枪扳机蓝图",
+  "item.prma.sks_tactical_trigger_cast": "Sks 战术步枪扳机铸件",
+  "item.prma.sks_tactical_fire_control_group": "Sks 战术步枪射击控制组件",
+  "item.prma.sks_tactical_fire_control_group_blueprint": "Sks 战术步枪射击控制组件蓝图",
+  "item.prma.sks_tactical_fire_control_group_cast": "Sks 战术步枪射击控制组件铸件",
+  "item.prma.sks_tactical_fire_selector": "Sks 战术步枪射击选择器",
+  "item.prma.sks_tactical_fire_selector_blueprint": "Sks 战术步枪射击选择器蓝图",
+  "item.prma.sks_tactical_fire_selector_cast": "Sks 战术步枪射击选择器铸件",
+
   "item.prma.m249_lower_receiver": "M249下机匣",
   "item.prma.m249_lower_receiver_blueprint": "M249下机匣蓝图",
   "item.prma.m249_lower_receiver_cast": "M249下机匣铸件",
@@ -435,5 +463,10 @@
   "gui.prma.decomponentalizer.time_estimate": "> 预计解析时间: %s秒",
 
   "itemGroup.prma_blueprints_tab": "精制工艺 蓝图",
-  "recipe_category.prma.decomponentalizing": "解析部件"
+  "recipe_category.prma.decomponentalizing": "解析部件",
+
+  "item.prma.ammo_placeholder": "Ammo Placeholder",
+  "item.prma.modern_kinetic_gun_placeholder": "Modern Kinetic Gun Placeholder",
+  "item.prma.blank_blueprint": "Blank Blueprint",
+  "item.prma.blank_cast": "Blank Cast"
 }

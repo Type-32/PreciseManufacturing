@@ -192,7 +192,7 @@ public class RifleBase extends WeaponBase {
     }
 
     public void registerRecipes(){
-        ItemStack gunItem = new ItemStack(ModItems.MODERN_KINETIC_GUN_PLACEHOLDER.get());
+        ItemStack gunItem = new ItemStack(com.tacz.guns.init.ModItems.MODERN_KINETIC_GUN.get());
         CompoundTag itemTag = new CompoundTag();
         itemTag.putString("GunId", "tacz:" + getCoreId());
         gunItem.setTag(itemTag);

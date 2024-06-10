@@ -1,7 +1,7 @@
-// 1.20.1	2024-06-02T20:13:59.5866655	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-06-10T18:11:04.8638718	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 73a5900c9e85fb6168ad8dacfd8196e1ab94a8d1 assets/prma/blockstates/decomponentalizer.json
-ceb727a8cf8935f26dc7c4427522d3894a10ec12 assets/prma/lang/en_ud.json
-16bc7060546a5e2a65380331eb7cf464afed718e assets/prma/lang/en_us.json
+8cdd45f8e542d313c6698cf7e02084fbce0669e3 assets/prma/lang/en_ud.json
+26ab99fdfb1ebbf602aebb74e6f9ce6d7a8b3bde assets/prma/lang/en_us.json
 a643575ae10061b471b4f96e4c7bc1132ac6282a assets/prma/models/block/decomponentalizer.json
 b3f6d8d2214c3c5db598031d0f828f6aa943cacd assets/prma/models/item/12g_casing.json
 9694135e7bb40b466f0c2dacff49514668aefde7 assets/prma/models/item/12g_casing_blueprint.json
@@ -349,6 +349,33 @@ ce67b337fc26ca3e2f4f066c7b47e2a662f89453 assets/prma/models/item/rpg_rocket_casi
 992d7c2ea6efda734b38bc60c2da8ba3b92400c8 assets/prma/models/item/rpg_rocket_head_blueprint.json
 b8b56a8eab0e0e34e5103eeafb85992a58eec3c9 assets/prma/models/item/rpg_rocket_head_cast.json
 9694b7f98362303e04572257cef189fa056030f4 assets/prma/models/item/rpg_rocket_unfinished.json
+afe355709cbb926292e64aad90a63c537ddc7d74 assets/prma/models/item/sks_tactical_barrel.json
+713c805390ed5b0c8af1527d63e874bf0643ed3d assets/prma/models/item/sks_tactical_barrel_blueprint.json
+509f2099031f99942b1371bd0193c089cb3b16eb assets/prma/models/item/sks_tactical_barrel_cast.json
+414e7c2e9c43984145618fca720aa3cc99a8a8e1 assets/prma/models/item/sks_tactical_fire_control_group.json
+095ba5ddad728934a7bf739f6e669e0bf1fe506e assets/prma/models/item/sks_tactical_fire_control_group_blueprint.json
+6e5d4c63f465d26b130c2709ccbf258332c2f04b assets/prma/models/item/sks_tactical_fire_control_group_cast.json
+77b78f4aa842eee1c71d760f8ec6abcee67b19a0 assets/prma/models/item/sks_tactical_fire_selector.json
+1ec79581bb9741680ad01719bfee26cb9b9b8abd assets/prma/models/item/sks_tactical_fire_selector_blueprint.json
+862b072652e16b6dd5fe5c135e281929ff127413 assets/prma/models/item/sks_tactical_fire_selector_cast.json
+796b55f97abb4fd3647ad5cc11bb9aa8e4a75978 assets/prma/models/item/sks_tactical_grip.json
+34098db21e429b2d4e34cdaaff7a7fe1fd3d9d01 assets/prma/models/item/sks_tactical_grip_blueprint.json
+8016ea928bb23e206ac441965cf5d8b7e3b8380a assets/prma/models/item/sks_tactical_grip_cast.json
+49be04c01a0783627bffd03492d12535732e1182 assets/prma/models/item/sks_tactical_handguard.json
+e6539b363cc6473653fdaf6f41a73c99abce21c3 assets/prma/models/item/sks_tactical_handguard_blueprint.json
+1c1c95c6c5d63155d14ef73c6ea309ddede396f0 assets/prma/models/item/sks_tactical_handguard_cast.json
+609eace8684cd12ac6ea1938b77d83ee6f426715 assets/prma/models/item/sks_tactical_long_body.json
+7ad1bedd60bdc22a164e69a0ef34aa944cc06c7e assets/prma/models/item/sks_tactical_long_body_blueprint.json
+a0cb902e2d38a0d7564ef04e0b96892b440c9a31 assets/prma/models/item/sks_tactical_long_body_cast.json
+f5b96438d70a855d09821e676b734e4691c49821 assets/prma/models/item/sks_tactical_magazine.json
+d8a5ad9b588ef98ad03e9edf8e176c10019e1a92 assets/prma/models/item/sks_tactical_magazine_blueprint.json
+164bdc7f99c88fc591847b4ca2216c2148dfc9fa assets/prma/models/item/sks_tactical_magazine_cast.json
+34da91bd3282ebff7f6f55b8330da8905e434a28 assets/prma/models/item/sks_tactical_stock.json
+242d2cda28d83c9a1aa90ed8cadca8318c2bc877 assets/prma/models/item/sks_tactical_stock_blueprint.json
+9c8f1eaf8f2c68ca53b5c6f0813930ba49a10a89 assets/prma/models/item/sks_tactical_stock_cast.json
+f720c5759c8c7d43c6ee508c943d40ffcb5935a5 assets/prma/models/item/sks_tactical_trigger.json
+35e5e65a15434d1e534450f00d77dac9da5573db assets/prma/models/item/sks_tactical_trigger_blueprint.json
+9ef872d2fbd1f5b26ba98f524efc3ac316763d08 assets/prma/models/item/sks_tactical_trigger_cast.json
 561d1c84a08d98a7890e7f9cf3daa393ebe43cd3 assets/prma/models/item/straight_flat_coil.json
 79c5fd06275ba99d4835b968efd89e940383afb8 assets/prma/models/item/straight_large_coil.json
 97286623815de08614da5d35cb029f1aa97be302 assets/prma/models/item/straight_small_coil.json

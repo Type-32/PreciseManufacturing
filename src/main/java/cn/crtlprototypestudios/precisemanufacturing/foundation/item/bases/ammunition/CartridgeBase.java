@@ -200,12 +200,12 @@ public class CartridgeBase extends AmmunitionBase {
 
     public void registerRecipes(){
 
-        // TODO Add proper impl. here after TacZ Lib is published or sth
-        ItemStack ammoStack = new ItemStack(ModItems.AMMO_PLACEHOLDER.get());
+        ItemStack ammoStack = new ItemStack(com.tacz.guns.init.ModItems.AMMO.get());
         CompoundTag itemTag = new CompoundTag();
         itemTag.putString("AmmoId", "tacz:" + getCoreId());
         ammoStack.setTag(itemTag);
 
+        // Use API later, haven't tested it yet
 //        TimelessAPI.getCommonAmmoIndex(new ResourceLocation("tacz", getCoreId())).get();
 
 

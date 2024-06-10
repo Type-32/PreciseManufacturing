@@ -2,8 +2,10 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlock;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.BlockStateGen;
+import com.simibubi.create.foundation.data.ModelGen;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
@@ -20,7 +22,7 @@ public class ModBlocks {
             .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
             .transform(TagGen.pickaxeOnly())
             .item()
-            .transform(customItemModel())
+            .transform(ModelGen.customItemModel())
             .register();
 
     public static void register(){

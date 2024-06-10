@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "prma:blueprint_regen",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:ink_sac"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "prma:sks_tactical_fire_selector_blueprint"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "prma:sks_tactical_fire_selector_blueprint"
+  }
+}
