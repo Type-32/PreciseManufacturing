@@ -1,0 +1,36 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BHLS",
+    " MG "
+  ],
+  "key": {
+    "L": {
+      "item": "prma:sks_tactical_long_body"
+    },
+    "G": {
+      "item": "prma:sks_tactical_grip"
+    },
+    "H": {
+      "item": "prma:sks_tactical_handguard"
+    },
+    "M": {
+      "item": "prma:sks_tactical_magazine"
+    },
+    "B": {
+      "item": "prma:sks_tactical_barrel"
+    },
+    "S": {
+      "item": "prma:sks_tactical_stock"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:sks_tactical",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
+    }
+  },
+  "acceptMirrored": true
+}
