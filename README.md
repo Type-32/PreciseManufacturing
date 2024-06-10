@@ -30,10 +30,10 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 
 The currently supported versions are:
 
-| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency                         |
-|----------|----------------------------|---------------------------|------------------------------------|
-| 1.18.2   | N/A. TBD                   | 0.2.0-alpha               | tacz-1.0.0-hotifx6-1.18.2          |
-| 1.20.1   | N/A. TBD                   | 0.2.1-alpha               | tacz-1.0.0-hotifx2-1.20.1, hotfix3 |
+| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency                |
+|----------|----------------------------|---------------------------|---------------------------|
+| 1.18.2   | N/A. TBD                   | 0.2.0-alpha               | tacz-1.0.0-hotifx6-1.18.2 |
+| 1.20.1   | N/A. TBD                   | 0.2.4-alpha               | tacz-1.0.1                |
 
 ## Translations
 
@@ -54,14 +54,6 @@ The currently supported langauge translations are:
 >
 > 来自 Forge 论坛社区 和 机械动力Discord社区 的模组帮助和支持
 
-> ### 对于任何读到这里感到困惑的人
-> Timeless and Classics 永恒枪械工坊模组正在由TaC官方开发团队重制为Timeless and Classics: Zero。
-> 这将彻底改变旧 TaC 模组中先前存在的许多项目和机制。 请去他们的Discord或他们的官方捐赠平台（爱发电或Patreon）了解更多信息。
->
-> **该机械动力附属模组是为当前有 TaC：Zero 的测试用户制作的。请每一位测试用户，在使用 TaC：Zero 模组之前，请遵循内部测试者规则。
-> 这个模组不受测试者规则的限制，但是本模组的依赖模组 TaC：Zero 受限制。 请遵循规则使用。**
-
-
 ## 依赖关系
 - [Timeless and Classics 永恒枪械工坊：Zero](https://modrinth.com/mod/timeless-and-classics-zero)
 - [Forge版本 的 机械动力模组](https://modrinth.com/mod/create)
@@ -75,7 +67,7 @@ The currently supported langauge translations are:
 
 目前支持的版本有：
 
-| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组                               |
-|--------|-----------------|----------------|------------------------------------|
-| 1.18.2 | 暂无，待定           | 0.2.0-alpha    | tacz-1.0.0-hotifx6-1.18.2          |
-| 1.20.1 | 暂无，待定           | 0.2.1-alpha    | tacz-1.0.0-hotifx2-1.20.1, hotfix3 |
+| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组                      |
+|--------|-----------------|----------------|---------------------------|
+| 1.18.2 | 暂无，待定           | 0.2.0-alpha    | tacz-1.0.0-hotifx6-1.18.2 |
+| 1.20.1 | 暂无，待定           | 0.2.4-alpha    | tacz-1.0.1                |
