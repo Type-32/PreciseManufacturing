@@ -1,0 +1,36 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BLOS",
+    " MT "
+  ],
+  "key": {
+    "L": {
+      "item": "prma:m95_long_body"
+    },
+    "B": {
+      "item": "prma:m95_barrel"
+    },
+    "O": {
+      "item": "prma:m95_bolt"
+    },
+    "M": {
+      "item": "prma:m95_magazine"
+    },
+    "T": {
+      "item": "prma:m95_trigger"
+    },
+    "S": {
+      "item": "prma:m95_stock"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:m95",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
+    }
+  },
+  "acceptMirrored": true
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:sks_tactical_barrel_blueprint"
+    ]
+  },
+  "criteria": {
+    "has_sks_tactical_barrel_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:sks_tactical_barrel_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:sks_tactical_barrel_blueprint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sks_tactical_barrel_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}

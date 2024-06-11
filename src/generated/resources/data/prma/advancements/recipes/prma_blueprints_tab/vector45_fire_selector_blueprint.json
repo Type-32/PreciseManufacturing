@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:vector45_fire_selector_blueprint"
+    ]
+  },
+  "criteria": {
+    "has_vector45_fire_selector_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:vector45_fire_selector_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:vector45_fire_selector_blueprint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_vector45_fire_selector_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}

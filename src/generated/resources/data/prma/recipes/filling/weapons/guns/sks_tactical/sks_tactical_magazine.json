@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:sks_tactical_magazine_cast"
+    },
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {},
+      "amount": 400
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:sks_tactical_magazine"
+    }
+  ]
+}
