@@ -308,21 +308,21 @@ public class ModItems {
         Main.LOGGER.info("Registering Mod Items");
     }
 
-//    public static ItemStack buildAmmo(String ammoId){
-//        CompoundTag itemTag = new CompoundTag();
-//        itemTag.putString("AmmoId", ammoId);
-//        ItemStack result = new ItemStack(com.tacz.guns.init.ModItems.AMMO.get());
-//        result.setTag(itemTag);
-//
-//        return result;
-//    }
-//
-//    public static ItemStack buildGun(String gunId){
-//        CompoundTag itemTag = new CompoundTag();
-//        itemTag.putString("GunId", gunId);
-//        ItemStack result = new ItemStack(com.tacz.guns.init.ModItems.MODERN_KINETIC_GUN.get());
-//        result.setTag(itemTag);
-//
-//        return result;
-//    }
+    public static ItemStack buildAmmo(String ammoId){
+        CompoundTag itemTag = new CompoundTag();
+        itemTag.putString("AmmoId", ammoId);
+        ItemStack result = new ItemStack(com.tacz.guns.init.ModItems.AMMO.get());
+        result.setTag(itemTag);
+
+        return result;
+    }
+
+    public static ItemStack buildGun(String gunId){
+        CompoundTag itemTag = new CompoundTag();
+        itemTag.putString("GunId", gunId);
+        ItemStack result = new ItemStack(com.tacz.guns.init.ModItems.MODERN_KINETIC_GUN.get());
+        result.setTag(itemTag);
+
+        return result;
+    }
 }
