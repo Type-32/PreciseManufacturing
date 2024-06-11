@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "prma:block/decomponentalizer",
-		"particle": "prma:block/decomponentalizer"
+		"0": "prma:block/decomponentalizer_item",
+		"particle": "prma:block/decomponentalizer_item"
 	},
 	"elements": [
 		{
