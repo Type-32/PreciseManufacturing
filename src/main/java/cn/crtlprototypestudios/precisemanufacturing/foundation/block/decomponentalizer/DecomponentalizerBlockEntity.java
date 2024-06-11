@@ -152,13 +152,13 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
                 pBlockEntity.craftItem(pBlockEntity);
                 pBlockEntity.setProcessingTime(0);
                 pBlockEntity.setSelectedRecipeIndex(-1);
-                pBlockEntity.startDecomponentalizationProcess(-1);
+                pBlockEntity.setCurrentRecipeIndex(-1);
                 setChanged(pLevel, pPos, pState);
             }
         } else {
             pBlockEntity.setProcessingTime(0);
             pBlockEntity.setSelectedRecipeIndex(-1);
-            pBlockEntity.startDecomponentalizationProcess(-1);
+            pBlockEntity.setCurrentRecipeIndex(-1);
             setChanged(pLevel, pPos, pState);
         }
     }
@@ -188,7 +188,6 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         if (pBlockEntity.getCurrentRecipeIndex() != -1 && canOutput(pBlockEntity.getCurrentRecipe().getResultItem())) {
             itemHandler.extractItem(0, 1, false);
             itemHandler.extractItem(1, 1, false);
-//            itemHandler.extractItem(2, 1, false);
             itemHandler.setStackInSlot(3, new ItemStack(getCurrentRecipe().getResultItem().getItem(), itemHandler.getStackInSlot(3).getCount() + 1));
         }
     }
@@ -241,8 +240,8 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         this.currentRecipeIndex = availableRecipeIndex >= availableRecipes.size() || availableRecipeIndex < 0 ? -1 : availableRecipeIndex;
     }
 
-    public void startDecomponentalizationProcess(int availableRecipeIndex) {
-        List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
+    public void startDecomponentalizationProcess(ItemStack stack, int availableRecipeIndex) {
+        List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes(stack);
         setCurrentRecipeIndex(availableRecipeIndex, availableRecipes);
         if(availableRecipeIndex != -1 && availableRecipeIndex < availableRecipes.size() && getCurrentRecipeIndex() > -1) {
             setTotalProcessingTime(availableRecipes.get(availableRecipeIndex).getProcessingTime());
@@ -275,6 +274,22 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
         return level.getRecipeManager().getRecipesFor(DecomponentalizingRecipeType.INSTANCE, new SimpleContainer(componentStack), level);
     }
 
+    public List<DecomponentalizingRecipe> getAvailableRecipes(ItemStack stack) {
+        Level level = this.level;
+        if (level == null) {
+            Main.LOGGER.info("level is Empty");
+            return Collections.emptyList();
+        }
+
+        ItemStack componentStack = stack;
+        if (componentStack.isEmpty()) {
+            Main.LOGGER.info("componentStack is Empty");
+            return Collections.emptyList();
+        }
+
+        return level.getRecipeManager().getRecipesFor(DecomponentalizingRecipeType.INSTANCE, new SimpleContainer(componentStack), level);
+    }
+
     public void setSelectedRecipeIndex(int availableRecipeIndex) {
         List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
         this.selectedRecipeIndex = availableRecipeIndex >= availableRecipes.size() || availableRecipeIndex < 0 ? -1 : availableRecipeIndex;
@@ -297,39 +312,5 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
 
     public DecomponentalizingRecipe getSelectedRecipe(){
         return getAvailableRecipeFromIndex(selectedRecipeIndex);
-    }
-
-    /**
-     * Sets the current worked-on recipe
-     * @param recipe The recipe in the list of available recipes
-     * @return Returns true if success and that the given recipe is in the list of available recipes, false if otherwise
-     */
-    public boolean setCurrentRecipe(DecomponentalizingRecipe recipe) {
-        List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
-
-        if(availableRecipes.contains(recipe)){
-            currentRecipeIndex = availableRecipes.indexOf(recipe);
-            return true;
-        }else{
-            currentRecipeIndex = -1;
-            return false;
-        }
-    }
-
-    /**
-     * Sets the selected recipe
-     * @param recipe The recipe in the list of available recipes
-     * @return Returns true if success and that the given recipe is in the list of available recipes, false if otherwise
-     */
-    public boolean setSelectedRecipe(DecomponentalizingRecipe recipe) {
-        List<DecomponentalizingRecipe> availableRecipes = getAvailableRecipes();
-
-        if(availableRecipes.contains(recipe)){
-            selectedRecipeIndex = availableRecipes.indexOf(recipe);
-            return true;
-        }else{
-            selectedRecipeIndex = -1;
-            return false;
-        }
     }
 }

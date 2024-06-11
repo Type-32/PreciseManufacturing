@@ -25,7 +25,6 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private final DecomponentalizerBlockEntity blockEntity;
     private final ContainerData data;
     private final Level level;
-    private List<DecomponentalizingRecipe> availableRecipes = new ArrayList<DecomponentalizingRecipe>();
 
     public DecomponentalizerContainerMenu(int id, Inventory inventory, FriendlyByteBuf extraData){
         this(id, inventory, inventory.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
@@ -149,16 +148,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     public void startRecipeProcess() {
         Main.LOGGER.debug("Decomponentalizing Selected Recipe is null? {}", blockEntity.getSelectedRecipe() == null);
         if (!isCrafting() && blockEntity.getSelectedRecipe() != null) {
-//            blockEntity.setProcessing(1);
-//            setCurrentRecipe(blockEntity.getSelectedRecipe());
-//            this.data.set(0, 0);
-//            this.data.set(1, blockEntity.getCurrentRecipe().getProcessingTime());
-//            lockInputSlots();
-//            lockAnalyzeButton();
-//            blockEntity.setChanged();
-
-//            PacketHandler.sendToServer(new C2SSetDecomponentalizerSelectedRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getSelectedRecipeIndex()));
-            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), (byte) blockEntity.getCurrentRecipeIndex()));
+            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), this.getBlockEntity().getItemHandler().getStackInSlot(2), (short) blockEntity.getCurrentRecipeIndex()));
 
             Main.LOGGER.debug("Starting Decomponentalizing Process");
         }
@@ -192,16 +182,6 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private void unlockAnalyzeButton() {
         // Enable the analyze button in the GUI
         // You'll need to implement this based on your GUI setup
-    }
-
-    public void setSelectedRecipe(DecomponentalizingRecipe recipe) {
-        blockEntity.setSelectedRecipe(recipe);
-//        blockEntity.setChanged();
-    }
-
-    public void setCurrentRecipe(DecomponentalizingRecipe recipe) {
-        blockEntity.setCurrentRecipe(recipe);
-        blockEntity.setChanged();
     }
 
     public DecomponentalizerBlockEntity getBlockEntity() {
