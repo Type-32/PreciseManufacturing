@@ -1,0 +1,12 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:partial_nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": "{GunId:\"tacz:cz75\"}"
+  },
+  "processingTime": 1600,
+  "result": {
+    "item": "prma:cz75_fire_selector_blueprint"
+  }
+}

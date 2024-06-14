@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/weapons/general/guns/modules/general_upper_receiver"
+  }
+}

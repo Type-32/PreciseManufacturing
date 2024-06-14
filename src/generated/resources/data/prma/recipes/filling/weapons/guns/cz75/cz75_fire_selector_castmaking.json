@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:cz75_fire_selector"
+    },
+    {
+      "amount": 1000,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:cz75_fire_selector_cast"
+    }
+  ]
+}

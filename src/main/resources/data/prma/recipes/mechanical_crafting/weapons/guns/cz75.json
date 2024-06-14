@@ -1,0 +1,41 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BU",
+    "RS",
+    "TG",
+    " M"
+  ],
+  "key": {
+    "U": {
+      "item": "prma:cz75_upper_receiver"
+    },
+    "G": {
+      "item": "prma:cz75_grip"
+    },
+    "R": {
+      "item": "prma:cz75_receiver"
+    },
+    "M": {
+      "item": "prma:cz75_magazine"
+    },
+    "B": {
+      "item": "prma:cz75_barrel"
+    },
+    "T": {
+      "item": "prma:cz75_trigger"
+    },
+    "S": {
+      "item": "prma:cz75_fire_selector"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:cz75",
+      "GunFireMode": "AUTO",
+      "GunCurrentAmmoCount": 0
+    }
+  },
+  "acceptMirrored": true
+}

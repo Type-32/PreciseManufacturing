@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cz75_barrel_blueprint": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:cz75_barrel_blueprint"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "prma:cz75_barrel_cast"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cz75_barrel_blueprint",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "prma:cz75_barrel_cast"
+    ]
+  },
+  "sends_telemetry_event": false
+}
