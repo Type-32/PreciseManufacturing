@@ -20,7 +20,6 @@ import com.tacz.guns.api.TimelessAPI;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Registry;
-import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -127,14 +126,12 @@ public class CartridgeBase extends AmmunitionBase {
             registry.put(type, registerModule(coreId, type));
         }
 
-        assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
-
         RegistryEntry<Item> unfinishedModule = Main.REGISTRATE.item(coreId + "_unfinished", Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_unfinished"))
                 .register();
         registry.put(CartridgeModule.UNFINISHED_MODULE, unfinishedModule);
 
-        ModItems.addToList(unfinishedModule, ModCreativeModTabs.Tabs.Components);
+//        ModItems.addToList(unfinishedModule, ModCreativeModTabs.Tabs.Components);
 
         ModRecipeProvider.addCartridgeBase(this);
     }
@@ -173,9 +170,6 @@ public class CartridgeBase extends AmmunitionBase {
     private RegistryEntry<Item> registerModule(String id, CartridgeModule module) {
         String name = String.format("%s_%s", id, module.toString());
 
-        assert ModCreativeModTabs.MOD_CASTS_TAB.getKey() != null;
-        assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
-        assert ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey() != null;
         RegistryEntry<Item>
                 blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
@@ -191,9 +185,9 @@ public class CartridgeBase extends AmmunitionBase {
 
         castsRegistry.put(module, castModule);
 
-        ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
-        ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
-        ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
+//        ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
+//        ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
+//        ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
 
         return mainModule;
     }
@@ -218,7 +212,7 @@ public class CartridgeBase extends AmmunitionBase {
                     blueprintModule = blueprintsRegistry.get(m);
 
             ModRecipeProvider.add(ShapedRecipeBuilder
-                    .shaped(RecipeCategory.MISC, castModule.get())
+                    .shaped(castModule.get())
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
                     .pattern("PIP")
                     .pattern("IBI")

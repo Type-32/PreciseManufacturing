@@ -43,7 +43,7 @@ public class Main {
         ModFluids.register();
         ModTags.register();
         ModRecipes.register(eventBus);
-        ModCreativeModTabs.register(eventBus);
+        ModCreativeModTabs.register();
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -85,7 +85,7 @@ public class Main {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(final FMLClientSetupEvent event) {
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
+//            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
             event.enqueueWork(() -> MenuScreens.register(ModContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), DecomponentalizerScreen::new));
         }
     }

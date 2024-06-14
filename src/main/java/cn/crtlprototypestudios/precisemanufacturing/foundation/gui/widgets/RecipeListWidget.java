@@ -6,8 +6,8 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponental
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.renderer.GameRenderer;
@@ -44,34 +44,34 @@ public class RecipeListWidget extends AbstractWidget {
     }
 
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack guiGraphics, int mouseX, int mouseY, float partialTicks) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
 
         // Render the list background
-        guiGraphics.blit(TEXTURE, getX(), getY(), 0, 0, listWidth, listHeight);
+        this.blit(guiGraphics, this.x, this.y, 0, 0, listWidth, listHeight);
 
         // Apply the mask
 //        RenderSystem.enableScissor((int) (x * Minecraft.getInstance().getWindow().getGuiScale()), (int) ((Minecraft.getInstance().getWindow().getHeight() - (y + listHeight)) * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listWidth * Minecraft.getInstance().getWindow().getGuiScale()), (int) (listHeight * Minecraft.getInstance().getWindow().getGuiScale()));
 
         // Render the recipe entries
         if(this.recipes != null && !recipes.isEmpty()) {
-            int y = getY() + 1 - scrollOffset;
+            int y = this.y + 1 - scrollOffset;
             for (int i = 0; i < recipes.size(); i++) {
-                if (y >= getY() && y + entryHeight <= getY() + listHeight) {
+                if (y >= this.y && y + entryHeight <= this.y + listHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 //                    Main.LOGGER.info("Recipe: {}, {}", recipe.toString(), Arrays.stream(recipe.getIngredient().getItems()).toArray()[0].toString());
 
-                    renderRecipeEntry(guiGraphics, recipe, getX() + 1, y, listWidth, entryHeight, i == selectedIndex, false);
-                } else if (y >= getY() && y + entryHeight > getY() + listHeight && (y + entryHeight) - (getY() + listHeight) <= entryHeight) {
+                    renderRecipeEntry(guiGraphics, recipe, this.x + 1, y, listWidth, entryHeight, i == selectedIndex, false);
+                } else if (y >= this.y && y + entryHeight > this.y + listHeight && (y + entryHeight) - (this.y + listHeight) <= entryHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 
-                    renderRecipeEntry(guiGraphics, recipe, getX() + 1, y, listWidth, entryHeight - ((y + entryHeight) - (getY() + listHeight)), i == selectedIndex, false);
-                } else if (y < getY() && y + entryHeight > getY() && (y + entryHeight) - (getY()) <= entryHeight) {
+                    renderRecipeEntry(guiGraphics, recipe, this.x + 1, y, listWidth, entryHeight - ((y + entryHeight) - (this.y + listHeight)), i == selectedIndex, false);
+                } else if (y < this.y && y + entryHeight > this.y && (y + entryHeight) - (this.y) <= entryHeight) {
                     DecomponentalizingRecipe recipe = recipes.get(i);
 
-                    renderRecipeEntry(guiGraphics, recipe, getX() + 1, y, listWidth, (getY() - y), i == selectedIndex, true);
+                    renderRecipeEntry(guiGraphics, recipe, this.x + 1, y, listWidth, (this.y - y), i == selectedIndex, true);
                 }
                 y += entryHeight + 1;
             }
@@ -81,28 +81,28 @@ public class RecipeListWidget extends AbstractWidget {
 //        RenderSystem.disableScissor();
     }
 
-    private void renderRecipeEntry(GuiGraphics guiGraphics, DecomponentalizingRecipe recipe, int x, int y, int width, int height, boolean selected, boolean upperOverflow) {
+    private void renderRecipeEntry(PoseStack guiGraphics, DecomponentalizingRecipe recipe, int x, int y, int width, int height, boolean selected, boolean upperOverflow) {
         // Render the recipe entry background
         RenderSystem.setShaderTexture(0, TEXTURE);
-        guiGraphics.blit(TEXTURE, x , y, 0, upperOverflow ? (selected ? 120 + Math.abs(height) : 100 + Math.abs(height)) : (selected ? 120 : 100), width, upperOverflow ? (entryHeight - Math.abs(height)) : height);
+        this.blit(guiGraphics, x , y, 0, upperOverflow ? (selected ? 120 + Math.abs(height) : 100 + Math.abs(height)) : (selected ? 120 : 100), width, upperOverflow ? (entryHeight - Math.abs(height)) : height);
 
         // Render the recipe item
         ItemStack resultStack = recipe.getResultItem();
         assert resultStack != null;
-        guiGraphics.renderItem(resultStack, x + 2, y + 2);
+        Minecraft.getInstance().getItemRenderer().renderGuiItem(resultStack, x + 2, y + 2);
 
         // Render the recipe duration
         MutableComponent textComponent = Component.literal(resultStack.getDisplayName()
                 .getString()
                 .substring(1, resultStack.getDisplayName().getString().length() - 1));
         String truncatedText = Minecraft.getInstance().font.plainSubstrByWidth(textComponent.getString(), width - 24);
-        guiGraphics.drawString(Minecraft.getInstance().font, truncatedText, x + 22, y + 6, 0xFFFFFF);
+        drawString(guiGraphics, Minecraft.getInstance().font, truncatedText, x + 22, y + 6, 0xFFFFFF);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (isMouseOver(mouseX, mouseY) && !containerMenu.isCrafting()) {
-            int index = (int) ((mouseY - getY() - 4 + scrollOffset) / entryHeight);
+            int index = (int) ((mouseY - this.y - 4 + scrollOffset) / entryHeight);
             if (recipes != null && index >= 0 && index < recipes.size()) {
                 selectedIndex = index;
 //                containerMenu.getBlockEntity().setSelectedRecipeIndex(index);
@@ -136,11 +136,6 @@ public class RecipeListWidget extends AbstractWidget {
         return Math.max(0, (recipes.size() * entryHeight) - listHeight + 8);
     }
 
-    @Override
-    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
-
-    }
-
     public int clamp(int value, int min, int max) {
         return Math.max(min, Math.min(value, max));
     }
@@ -151,5 +146,10 @@ public class RecipeListWidget extends AbstractWidget {
 
     public int getSelectedIndex(){
         return selectedIndex;
+    }
+
+    @Override
+    public void updateNarration(NarrationElementOutput narrationElementOutput) {
+
     }
 }

@@ -44,7 +44,7 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public @NotNull ItemStack assemble(SimpleContainer simpleContainer, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(SimpleContainer simpleContainer) {
         return result.copy();
     }
 
@@ -54,12 +54,8 @@ public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem() {
         return result.copy();
-    }
-
-    public @Nullable ItemStack getResultItem(){
-        return getResultItem(null);
     }
 
     @Override

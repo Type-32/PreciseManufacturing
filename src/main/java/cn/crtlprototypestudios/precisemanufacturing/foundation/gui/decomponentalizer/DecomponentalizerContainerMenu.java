@@ -30,14 +30,14 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     private final Level level;
 
     public DecomponentalizerContainerMenu(int id, Inventory inventory, FriendlyByteBuf extraData){
-        this(id, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(id, inventory, inventory.player.getLevel().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
     }
 
     public DecomponentalizerContainerMenu(int id, Inventory playerInventory, BlockEntity blockEntity, ContainerData data) {
         super(ModContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), id);
         checkContainerSize(playerInventory, 4);
         this.blockEntity = (DecomponentalizerBlockEntity) blockEntity;
-        this.level = playerInventory.player.level();
+        this.level = playerInventory.player.getLevel();
         this.data = data;
 
         for (int i = 0; i < 3; i++) {

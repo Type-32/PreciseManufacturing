@@ -14,7 +14,6 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Holder;
-import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
@@ -163,9 +162,6 @@ public class RifleBase extends WeaponBase {
     private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties) {
         String name = String.format("%s_%s", id, module.toString());
 
-        assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
-        assert ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey() != null;
-        assert ModCreativeModTabs.MOD_CASTS_TAB.getKey() != null;
 
         // Register the module
         RegistryEntry<Item>
@@ -184,9 +180,9 @@ public class RifleBase extends WeaponBase {
         blueprintsRegistry.put(module.getType(), blueprintModule);
         castsRegistry.put(module.getType(), castModule);
 
-        ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
-        ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
-        ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
+//        ModItems.addToList(mainModule, ModCreativeModTabs.MOD_COMPONENTS_TAB);
+//        ModItems.addToList(castModule, ModCreativeModTabs.MOD_CASTS_TAB);
+//        ModItems.addToList(blueprintModule, ModCreativeModTabs.MOD_BLUEPRINTS_TAB);
 
         return mainModule;
     }
@@ -205,7 +201,7 @@ public class RifleBase extends WeaponBase {
             String name = String.format("%s_%s", getCoreId(), m.getType().toString());
 
             ModRecipeProvider.add(ShapedRecipeBuilder
-                    .shaped(RecipeCategory.MISC, castModule.get())
+                    .shaped(castModule.get())
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
                     .pattern("PIP")
                     .pattern("IBI")
@@ -222,7 +218,7 @@ public class RifleBase extends WeaponBase {
                     .require(castModule.get())
                     .require(m.getData().getFillCastFluid().get(), m.getData().getCastFillingAmount()));
             ModRecipeProvider.add(ShapelessRecipeBuilder
-                    .shapeless(RecipeCategory.MISC, blueprintModule.get(), 2)
+                    .shapeless(blueprintModule.get(), 2)
                     .unlockedBy(String.format("has_%s_blueprint", name), inventoryTrigger(ItemPredicate.Builder.item().of(blueprintModule.get()).build()))
                     .requires(Items.PAPER)
                     .requires(Items.INK_SAC)

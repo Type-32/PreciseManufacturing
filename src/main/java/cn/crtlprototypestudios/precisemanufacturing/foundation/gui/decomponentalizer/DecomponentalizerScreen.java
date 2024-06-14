@@ -4,8 +4,9 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.widgets.Recip
 import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -34,18 +35,18 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(PoseStack guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        this.blit(guiGraphics, x, y, 0, 0, imageWidth, imageHeight);
         MutableComponent terminalText = Component.translatable("gui.prma.decomponentalizer.idle");
 //        RenderSystem.setShaderTexture(0, WIDGET_TEXTURE);
         if(menu.isCrafting()) {
-            guiGraphics.blit(WIDGET_TEXTURE, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
+            this.blit(guiGraphics, x + 75, y + 21, 0, 140, menu.getScaledProgress(), 20);
             terminalText = Component.translatable("gui.prma.decomponentalizer.processing", getProcessPercentage(), "%");
         } else {
             List<DecomponentalizingRecipe>
@@ -56,13 +57,13 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
             }
         }
 
-        guiGraphics.drawString(Minecraft.getInstance().font, terminalText, x + 120, y + 54, 0x00FF00);
+        drawString(guiGraphics, Minecraft.getInstance().font, terminalText, x + 120, y + 54, 0x00FF00);
     }
 
 
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(@NotNull PoseStack guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.recipesPanel.render(guiGraphics, mouseX, mouseY, partialTicks);
@@ -85,12 +86,11 @@ public class DecomponentalizerScreen extends AbstractContainerScreen<Decomponent
         this.topPos = (height - imageHeight) / 2;
 
         this.craftButton = addRenderableWidget(
-                Button.builder(
+                new Button(
+                        leftPos + 116, topPos + 130, 102, 20,
                         Component.translatable("gui.prma.decomponentalizer.analyze"),
                         this::onAnalyzeButtonPressed
                 )
-                .bounds(leftPos + 116, topPos + 130, 102, 20)
-                .build()
         );
 
         this.recipesPanel = addRenderableWidget(

@@ -22,7 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     public static List<Item> storedItemLocations = new ArrayList<>();
 
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator.getPackOutput(), Reference.MOD_ID, existingFileHelper);
+        super(generator, Reference.MOD_ID, existingFileHelper);
     }
 
     @Override

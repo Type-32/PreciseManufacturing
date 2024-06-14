@@ -11,7 +11,7 @@ import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.MaterialColor;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
@@ -19,7 +19,7 @@ import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 public class ModBlocks {
     public static final BlockEntry<DecomponentalizerBlock> DECOMPONENTALIZER = Main.REGISTRATE.block("decomponentalizer", DecomponentalizerBlock::new)
             .initialProperties(SharedProperties::softMetal)
-            .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
+            .properties(p -> p.color(MaterialColor.COLOR_BLACK))
             .transform(TagGen.pickaxeOnly())
             .item()
             .transform(ModelGen.customItemModel())

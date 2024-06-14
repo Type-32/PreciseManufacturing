@@ -59,7 +59,7 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
         ServerPlayer player = ctx.get().getSender();
         Main.LOGGER.debug("Server Handle Packet: Player exists? {}", player != null);
         assert player != null;
-        ServerLevel world = player.serverLevel();
+        ServerLevel world = player.getLevel();
         Main.LOGGER.debug("Server Handle Packet: Has chunk at world {}? {}", msg.position.toString(), world.hasChunkAt(msg.position));
         assert world.hasChunkAt(msg.position);
 
