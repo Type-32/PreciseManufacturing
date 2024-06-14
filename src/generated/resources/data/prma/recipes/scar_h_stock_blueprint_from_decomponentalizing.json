@@ -1,0 +1,13 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "tacz:modern_kinetic_gun",
+    "count": 1,
+    "nbt": "{GunId:\"tacz:scar_h\"}"
+  },
+  "result": {
+    "item": "prma:scar_h_stock_blueprint"
+  },
+  "processingTime": 3000
+}

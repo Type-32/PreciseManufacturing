@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:cz75_magazine_blueprint"
+    ]
+  },
+  "criteria": {
+    "has_cz75_magazine_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:cz75_magazine_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:cz75_magazine_blueprint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cz75_magazine_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}

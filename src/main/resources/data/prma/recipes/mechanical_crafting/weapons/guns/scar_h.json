@@ -1,0 +1,39 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "BHULS",
+    " M G "
+  ],
+  "key": {
+    "L": {
+      "item": "prma:scar_h_lower_receiver"
+    },
+    "G": {
+      "item": "prma:scar_h_grip"
+    },
+    "H": {
+      "item": "prma:scar_h_handguard"
+    },
+    "M": {
+      "item": "prma:scar_h_magazine"
+    },
+    "U": {
+      "item": "prma:scar_h_upper_receiver"
+    },
+    "B": {
+      "item": "prma:scar_h_barrel"
+    },
+    "S": {
+      "item": "prma:scar_h_stock"
+    }
+  },
+  "result": {
+    "item": "tacz:modern_kinetic_gun",
+    "nbt": {
+      "GunId": "tacz:scar_h",
+      "GunFireMode": "SEMI",
+      "GunCurrentAmmoCount": 0
+    }
+  },
+  "acceptMirrored": true
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "prma:scar_h_magazine_blueprint"
+    ]
+  },
+  "criteria": {
+    "has_scar_h_magazine_blueprint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "prma:scar_h_magazine_blueprint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "prma:scar_h_magazine_blueprint"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_scar_h_magazine_blueprint",
+      "has_the_recipe"
+    ]
+  ]
+}
