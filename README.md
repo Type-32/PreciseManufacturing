@@ -4,7 +4,7 @@
 
 ![forge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg)
 [![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com/Type-32/PreciseManufacturing)
-[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/create-precise-manufacturing)
+[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/precise-manufacturing)
 [![kofi-singular](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/kofi-singular_vector.svg)](https://ko-fi.com/Type-32)
 
 _Badges from [Devin's Badges](https://intergrav.github.io/devins-badges-docs/badges/)_
@@ -32,8 +32,9 @@ The currently supported versions are:
 
 | Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency        |
 |----------|----------------------------|---------------------------|-------------------|
-| 1.18.2   | N/A. TBD                   | 0.2.4-alpha               | tacz-1.18.2-1.0.0 |
-| 1.20.1   | N/A. TBD                   | 0.2.4-alpha               | tacz-1.20.1-1.0.1 |
+| 1.18.2   | N/A. TBD                   | 0.2.5-alpha               | tacz-1.18.2-1.0.0 |
+| 1.19.2   | N/A. TBD                   | 0.2.5-alpha               | tacz-1.19.2-1.0.0 |
+| 1.20.1   | N/A. TBD                   | 0.2.5-alpha               | tacz-1.20.1-1.0.1 |
 
 ## Translations
 
@@ -69,5 +70,6 @@ The currently supported langauge translations are:
 
 | 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组              |
 |--------|-----------------|----------------|-------------------|
-| 1.18.2 | 暂无，待定           | 0.2.4-alpha    | tacz-1.18.2-1.0.0 |
-| 1.20.1 | 暂无，待定           | 0.2.4-alpha    | tacz-1.20.1-1.0.1 |
+| 1.18.2 | 暂无，待定           | 0.2.5-alpha    | tacz-1.18.2-1.0.0 |
+| 1.19.2 | 暂无，待定           | 0.2.5-alpha    | tacz-1.19.2-1.0.0 |
+| 1.20.1 | 暂无，待定           | 0.2.5-alpha    | tacz-1.20.1-1.0.1 |
