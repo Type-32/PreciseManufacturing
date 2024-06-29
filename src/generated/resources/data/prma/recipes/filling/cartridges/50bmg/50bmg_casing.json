@@ -6,8 +6,7 @@
     },
     {
       "amount": 100,
-      "fluid": "prma:molten_brass",
-      "nbt": {}
+      "fluidTag": "prma:molten_brass_fluids"
     }
   ],
   "results": [

@@ -1,0 +1,21 @@
+{
+  "values": [
+    "prma:9mm_casing",
+    "prma:45acp_casing",
+    "prma:50ae_casing",
+    "prma:magnum_r_casing",
+    "prma:12g_casing",
+    "prma:30_06_casing",
+    "prma:46x30_casing",
+    "prma:50bmg_casing",
+    "prma:58x42_casing",
+    "prma:68x51fury_casing",
+    "prma:rpg_rocket_casing",
+    "prma:308_casing",
+    "prma:338_casing",
+    "prma:556x45_casing",
+    "prma:762x25_casing",
+    "prma:762x39_casing",
+    "prma:762x54_casing"
+  ]
+}

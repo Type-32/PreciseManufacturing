@@ -1,0 +1,21 @@
+{
+  "values": [
+    "prma:9mm_head",
+    "prma:45acp_head",
+    "prma:50ae_head",
+    "prma:magnum_r_head",
+    "prma:12g_pellet",
+    "prma:30_06_head",
+    "prma:46x30_head",
+    "prma:50bmg_head",
+    "prma:58x42_head",
+    "prma:68x51fury_head",
+    "prma:rpg_rocket_head",
+    "prma:308_head",
+    "prma:338_head",
+    "prma:556x45_head",
+    "prma:762x25_head",
+    "prma:762x39_head",
+    "prma:762x54_head"
+  ]
+}

@@ -6,8 +6,7 @@
     },
     {
       "amount": 80,
-      "fluid": "prma:molten_copper",
-      "nbt": {}
+      "fluidTag": "prma:molten_copper_fluids"
     }
   ],
   "results": [

@@ -6,8 +6,7 @@
     },
     {
       "amount": 60,
-      "fluid": "prma:molten_basalt_infused_iron",
-      "nbt": {}
+      "fluidTag": "prma:molten_iron_fluids"
     }
   ],
   "results": [
