@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
@@ -170,12 +171,15 @@ public class RifleBase extends WeaponBase {
         // Register the module
         RegistryEntry<Item>
                 mainModule = Main.REGISTRATE.item(name, Item::new)
+                        .tag(ModTags.weaponComponentTag())
                         .model(ModItemModelProvider.genericItemModel(true, "weapons", "general","guns", "modules", "general_" + module))
                         .register(),
                 castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
+                        .tag(ModTags.weaponCastTag())
                         .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "casts", "general_" + module + "_cast"))
                         .register(),
                 blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
+                        .tag(ModTags.weaponBlueprintTag())
                         .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "blueprints", "general_" + module + "_blueprint"))
                         .register();
 

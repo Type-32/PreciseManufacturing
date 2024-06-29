@@ -47,24 +47,24 @@ public class ModItems {
 
     // Powders
     public static final RegistryEntry<Item>
-            RAW_ZINC_POWDER = addToList(Main.REGISTRATE.item("raw_zinc_powder", Item::new).register()),
-            RAW_COPPER_POWDER = addToList(Main.REGISTRATE.item("raw_copper_powder", Item::new).register()),
-            BASALT_POWDER = addToList(Main.REGISTRATE.item("basalt_powder",Item::new).register()),
-            RAW_SULFUR_POWDER = addToList(Main.REGISTRATE.item("raw_sulfur_powder",Item::new).register()),
-            GUNPOWDER_PELLETS = addToList(Main.REGISTRATE.item("gunpowder_pellets",Item::new).register());
+            RAW_ZINC_POWDER = addToList(Main.REGISTRATE.item("raw_zinc_powder", Item::new).tag(ModTags.materialsTag()).register()),
+            RAW_COPPER_POWDER = addToList(Main.REGISTRATE.item("raw_copper_powder", Item::new).tag(ModTags.materialsTag()).register()),
+            BASALT_POWDER = addToList(Main.REGISTRATE.item("basalt_powder",Item::new).tag(ModTags.materialsTag()).register()),
+            RAW_SULFUR_POWDER = addToList(Main.REGISTRATE.item("raw_sulfur_powder",Item::new).tag(ModTags.materialsTag()).register()),
+            GUNPOWDER_PELLETS = addToList(Main.REGISTRATE.item("gunpowder_pellets",Item::new).tag(ModTags.materialsTag()).register());
 
     // Misc Items
     public static final RegistryEntry<Item>
             CRUSHED_BASALT = addToList(Main.REGISTRATE.item("crushed_basalt", Item::new).register()),
             UNFORMED_BASALT = addToList(Main.REGISTRATE.item("unformed_basalt", Item::new).register()),
-            STRAIGHT_SMALL_COIL = addToList(Main.REGISTRATE.item("straight_small_coil", Item::new).register()),
-            STRAIGHT_LARGE_COIL = addToList(Main.REGISTRATE.item("straight_large_coil", Item::new).register()),
-            STRAIGHT_FLAT_COIL = addToList(Main.REGISTRATE.item("straight_flat_coil", Item::new).register()),
-            LOCKING_RETURN_COIL = addToList(Main.REGISTRATE.item("locking_return_coil", Item::new).register()),
-            FLAT_HEAD_SCREW = addToList(Main.REGISTRATE.item("flat_head_screw", Item::new).register()),
-            M_SCREW = addToList(Main.REGISTRATE.item("m_screw", Item::new).register()),
-            THIN_SMALL_ROD = addToList(Main.REGISTRATE.item("thin_small_rod", Item::new).register()),
-            THICK_SMALL_ROD = addToList(Main.REGISTRATE.item("thick_small_rod", Item::new).register()),
+            STRAIGHT_SMALL_COIL = addToList(Main.REGISTRATE.item("straight_small_coil", Item::new).tag(ModTags.componentsTag()).register()),
+            STRAIGHT_LARGE_COIL = addToList(Main.REGISTRATE.item("straight_large_coil", Item::new).tag(ModTags.componentsTag()).register()),
+            STRAIGHT_FLAT_COIL = addToList(Main.REGISTRATE.item("straight_flat_coil", Item::new).tag(ModTags.componentsTag()).register()),
+            LOCKING_RETURN_COIL = addToList(Main.REGISTRATE.item("locking_return_coil", Item::new).tag(ModTags.componentsTag()).register()),
+            FLAT_HEAD_SCREW = addToList(Main.REGISTRATE.item("flat_head_screw", Item::new).tag(ModTags.componentsTag()).register()),
+            M_SCREW = addToList(Main.REGISTRATE.item("m_screw", Item::new).tag(ModTags.componentsTag()).register()),
+            THIN_SMALL_ROD = addToList(Main.REGISTRATE.item("thin_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
+            THICK_SMALL_ROD = addToList(Main.REGISTRATE.item("thick_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
             BLANK_BLUEPRINT = addToList(Main.REGISTRATE.item("blank_blueprint", Item::new).register()),
             BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register());
 
@@ -125,19 +125,19 @@ public class ModItems {
                     .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
                     .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
                     .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(110).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON))
+                    .setModuleData(0, d -> d.setFillingAmount(110).setFillingFluid(ModTags.moltenIronsTag()))
                     .setModuleData(1, d -> d.setFillingAmount(90)),
 
             FIVE_EIGHT_X_FOUR_TWO = new CartridgeBase("58x42", CartridgeBase.STANDARD_CARTRIDGE
                     .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
                     .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON))
+                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModTags.moltenIronsTag()))
                     .setModuleData(1, d -> d.setFillingAmount(70)),
 
             SIX_EIGHT_X_FIVE_ONE_FURY = new CartridgeBase("68x51fury", CartridgeBase.STANDARD_CARTRIDGE
                     .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
                     .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(90).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON))
+                    .setModuleData(0, d -> d.setFillingAmount(90).setFillingFluid(ModTags.moltenIronsTag()))
                     .setModuleData(1, d -> d.setFillingAmount(80)),
 
             RPG_ROCKET = new CartridgeBase("rpg_rocket", CartridgeBase.ROCKET_CARTRIDGE),
@@ -171,7 +171,7 @@ public class ModItems {
             SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39", CartridgeBase.STANDARD_CARTRIDGE
                     .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
                     .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON))
+                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModTags.moltenIronsTag()))
                     .setModuleData(1, d -> d.setFillingAmount(60)),
 
             SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54", CartridgeBase.STANDARD_CARTRIDGE

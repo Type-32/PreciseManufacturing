@@ -1,9 +1,12 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ModuleBase;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.tterrag.registrate.util.entry.FluidEntry;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.material.Fluid;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -48,9 +51,9 @@ public class CartridgeModule extends ModuleBase<CartridgeModuleType, CartridgeMo
 
     public static class Data {
         private int fillingAmount;
-        private @NotNull FluidEntry<? extends VirtualFluid> fillingFluid;
+        private @NotNull TagKey<Fluid> fillingFluid;
 
-        public Data(int fillingAmount, FluidEntry<? extends VirtualFluid> fillingFluid){
+        public Data(int fillingAmount, TagKey<Fluid> fillingFluid){
             this.fillingAmount = fillingAmount;
             this.fillingFluid = fillingFluid;
         }
@@ -63,18 +66,18 @@ public class CartridgeModule extends ModuleBase<CartridgeModuleType, CartridgeMo
             return new Data(fillingAmount, fillingFluid);
         }
 
-        public FluidEntry<? extends VirtualFluid> getFillingFluid() {
+        public TagKey<Fluid> getFillingFluid() {
             return fillingFluid;
         }
 
-        public Data setFillingFluid(FluidEntry<? extends VirtualFluid> fillingFluid) {
+        public Data setFillingFluid(TagKey<Fluid> fillingFluid) {
             return new Data(fillingAmount, fillingFluid);
         }
     }
 
     public static final CartridgeModule
-        CASING_MODULE = new CartridgeModule(CartridgeModuleType.CASING, new Data(100, ModFluids.MOLTEN_BRASS)),
-        HEAD_MODULE = new CartridgeModule(CartridgeModuleType.HEAD, new Data(80, ModFluids.MOLTEN_COPPER)),
-        PELLET_MODULE = new CartridgeModule(CartridgeModuleType.PELLET, new Data(60, ModFluids.MOLTEN_BASALT_INFUSED_IRON)),
-        UNFINISHED_MODULE = new CartridgeModule(CartridgeModuleType.UNFINISHED, new Data(0, ModFluids.MOLTEN_BRASS));
+        CASING_MODULE = new CartridgeModule(CartridgeModuleType.CASING, new Data(100, ModTags.moltenBrassesTag())),
+        HEAD_MODULE = new CartridgeModule(CartridgeModuleType.HEAD, new Data(80, ModTags.moltenCoppersTag())),
+        PELLET_MODULE = new CartridgeModule(CartridgeModuleType.PELLET, new Data(60, ModTags.moltenIronsTag())),
+        UNFINISHED_MODULE = new CartridgeModule(CartridgeModuleType.UNFINISHED, new Data(0, ModTags.moltenBrassesTag()));
 }

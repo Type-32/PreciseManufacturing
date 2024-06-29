@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
@@ -77,10 +78,10 @@ public class CartridgeBase extends AmmunitionBase {
             ROCKET_CARTRIDGE = new CartridgeModuleBuilder(
                     new CartridgeModule[]{
                             CartridgeModule.CASING_MODULE.setData(d -> d
-                                    .setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)
+                                    .setFillingFluid(ModTags.moltenIronsTag())
                                     .setFillingAmount(150)),
                             CartridgeModule.HEAD_MODULE.setData(d -> d
-                                    .setFillingFluid(ModFluids.MOLTEN_BASALT_INFUSED_IRON)
+                                    .setFillingFluid(ModTags.moltenIronsTag())
                                     .setFillingAmount(100))
                     },
                     new CartridgeAssemblySequence[]{
@@ -178,12 +179,15 @@ public class CartridgeBase extends AmmunitionBase {
         assert ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey() != null;
         RegistryEntry<Item>
                 blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
+                        .tag(ModTags.ammoBlueprintTag())
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_blueprint", module)))
                         .register(),
                 castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
+                        .tag(ModTags.ammoCastTag())
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", String.format("general_%s_cast", module)))
                         .register(),
                 mainModule = Main.REGISTRATE.item(name, Item::new)
+                        .tag(name.contains("casing") ? ModTags.ammoCasingTag() : ModTags.ammoHeadTag())
                         .model(ModItemModelProvider.genericItemModel(true, "cartridges", id, name))
                         .register();
 
@@ -231,7 +235,7 @@ public class CartridgeBase extends AmmunitionBase {
 
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
                     .require(castModule.get())
-                    .require(m.getData().getFillingFluid().get(), m.getData().getFillingAmount())
+                    .require(m.getData().getFillingFluid(), m.getData().getFillingAmount())
                     .output(mainModule.get()));
         }
 
