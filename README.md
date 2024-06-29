@@ -24,16 +24,18 @@ A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's
 ## Features
 - [X] Automatable recipes for Timeless and Classics: Zero's Ammunition (Finished)
 - [X] Automatable recipes for Timeless and Classics: Zero's Weapons (Finished)
-- [ ] Automatable recipes for Timeless and Classics: Zero's Attachments (Under Development)
+- [ ] Quality of Life and Bug fixes (In Progress)
+- [ ] Automatable recipes for Timeless and Classics: Zero's Attachments (Scheduled)
 
 ## Versions
 
 The currently supported versions are:
 
-| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency        |
-|----------|----------------------------|---------------------------|-------------------|
-| 1.18.2   | N/A. TBD                   | 0.2.4-alpha               | tacz-1.18.2-1.0.0 |
-| 1.20.1   | N/A. TBD                   | 0.2.4-alpha               | tacz-1.20.1-1.0.1 |
+| Versions | Compatible Fabric Mod Ver. | Compatible Forge Mod Ver. | Dependency                 |
+|----------|----------------------------|---------------------------|----------------------------|
+| 1.18.2   | N/A. TBD                   | 0.2.5-alpha               | tacz-1.18.2-1.0.0 or above |
+| 1.19.2   | N/A. TBD                   | 0.2.5-alpha               | tacz-1.19.2-1.0.0 or above |
+| 1.20.1   | N/A. TBD                   | 0.2.5-alpha               | tacz-1.20.1-1.0.1 or above |
 
 ## Translations
 
@@ -61,13 +63,15 @@ The currently supported langauge translations are:
 ## 内容
 - [X] TaC: Zero的弹药的自动化配方（已完成）
 - [X] TaC: Zero的武器的自动化配方（已完成）
-- [ ] TaC: Zero的配件的自动化配方（正在开发中）
+- [ ] 兼容性和Bug修复（正在开发中）
+- [ ] TaC: Zero的配件的自动化配方（在计划中）
 
 ## 版本
 
 目前支持的版本有：
 
-| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组              |
-|--------|-----------------|----------------|-------------------|
-| 1.18.2 | 暂无，待定           | 0.2.4-alpha    | tacz-1.18.2-1.0.0 |
-| 1.20.1 | 暂无，待定           | 0.2.4-alpha    | tacz-1.20.1-1.0.1 |
+| 版本     | 兼容 Fabric 的模组版本 | 兼容 Forge 的模组版本 | 前置模组                   |
+|--------|-----------------|----------------|------------------------|
+| 1.18.2 | 暂无，待定           | 0.2.5-alpha    | tacz-1.18.2-1.0.0 或者更高 |
+| 1.19.2 | 暂无，待定           | 0.2.5-alpha    | tacz-1.19.2-1.0.0 或者更高 |
+| 1.20.1 | 暂无，待定           | 0.2.5-alpha    | tacz-1.20.1-1.0.1 或者更高 |
