@@ -7,7 +7,7 @@
     },
     {
       "item": "prma:basalt_powder",
-      "amount": 2
+      "amount": 1
     },
     {
       "item": "minecraft:charcoal",
@@ -17,7 +17,7 @@
   "results": [
     {
       "fluid": "prma:molten_basalt_infused_iron",
-      "amount": 200
+      "amount": 300
     }
   ],
   "heatRequirement": "heated"

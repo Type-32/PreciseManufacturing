@@ -12,9 +12,13 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelp
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
+import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
+import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
+import com.simibubi.create.foundation.data.recipe.PressingRecipeGen;
 import com.simibubi.create.foundation.data.recipe.SequencedAssemblyRecipeGen;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tacz.guns.api.TimelessAPI;
@@ -42,6 +46,7 @@ import static com.tterrag.registrate.providers.RegistrateRecipeProvider.inventor
 public class CartridgeBase extends AmmunitionBase {
     public Hashtable<CartridgeModule, RegistryEntry<Item>> registry = new Hashtable<>();
     public Hashtable<CartridgeModule, RegistryEntry<Item>> blueprintsRegistry = new Hashtable<>();
+    public RegistryEntry<Item> cartridgeBlueprint;
     public Hashtable<CartridgeModule, RegistryEntry<Item>> castsRegistry = new Hashtable<>();
     public CartridgeModuleBuilder givenModuleBuilder;
 
@@ -54,26 +59,26 @@ public class CartridgeBase extends AmmunitionBase {
                     new CartridgeModule[]{
                             CartridgeModule.CASING_MODULE,
                             CartridgeModule.HEAD_MODULE
-                    },
-                    new CartridgeAssemblySequence[]{
-                            CartridgeAssemblySequence.NUGGET,
-                            CartridgeAssemblySequence.GUNPOWDER,
-                            CartridgeAssemblySequence.HEAD,
-                            CartridgeAssemblySequence.PRESSING
                     }
+//                    new CartridgeAssemblySequence[]{
+//                            CartridgeAssemblySequence.NUGGET,
+//                            CartridgeAssemblySequence.GUNPOWDER,
+//                            CartridgeAssemblySequence.HEAD,
+//                            CartridgeAssemblySequence.PRESSING
+//                    }
             ),
             SHOTGUN_CARTRIDGE = new CartridgeModuleBuilder(
                     new CartridgeModule[]{
                             CartridgeModule.CASING_MODULE,
                             CartridgeModule.PELLET_MODULE
-                    },
-                    new CartridgeAssemblySequence[]{
-                            CartridgeAssemblySequence.NUGGET,
-                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
-                            CartridgeAssemblySequence.GUNPOWDER,
-                            CartridgeAssemblySequence.SHOTGUN_PELLETS,
-                            CartridgeAssemblySequence.PRESSING
                     }
+//                    new CartridgeAssemblySequence[]{
+//                            CartridgeAssemblySequence.NUGGET,
+//                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
+//                            CartridgeAssemblySequence.GUNPOWDER,
+//                            CartridgeAssemblySequence.SHOTGUN_PELLETS,
+//                            CartridgeAssemblySequence.PRESSING
+//                    }
             ),
             ROCKET_CARTRIDGE = new CartridgeModuleBuilder(
                     new CartridgeModule[]{
@@ -83,16 +88,16 @@ public class CartridgeBase extends AmmunitionBase {
                             CartridgeModule.HEAD_MODULE.setData(d -> d
                                     .setFillingFluid(ModTags.moltenIronsTag())
                                     .setFillingAmount(100))
-                    },
-                    new CartridgeAssemblySequence[]{
-                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
-                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
-                            CartridgeAssemblySequence.PRESSING,
-                            CartridgeAssemblySequence.HEAD,
-                            CartridgeAssemblySequence.GUNPOWDER,
-                            CartridgeAssemblySequence.GUNPOWDER,
-                            CartridgeAssemblySequence.PRESSING
                     }
+//                    new CartridgeAssemblySequence[]{
+//                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
+//                            CartridgeAssemblySequence.GUNPOWDER_PELLET,
+//                            CartridgeAssemblySequence.PRESSING,
+//                            CartridgeAssemblySequence.HEAD,
+//                            CartridgeAssemblySequence.GUNPOWDER,
+//                            CartridgeAssemblySequence.GUNPOWDER,
+//                            CartridgeAssemblySequence.PRESSING
+//                    }
             );
 
 
@@ -124,15 +129,23 @@ public class CartridgeBase extends AmmunitionBase {
         super(coreId);
         givenModuleBuilder = moduleBuilder;
 
+        cartridgeBlueprint = Main.REGISTRATE.item(coreId + "_blueprint", Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_blueprint"))
+                .tag(ModTags.ammoBlueprintTag())
+                .register();
+
+        RegistryEntry<Item> unfinishedModule = Main.REGISTRATE.item(coreId + "_unfinished", Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_unfinished"))
+                .tag(ModTags.ammoWasteTag())
+                .register();
+
         for (CartridgeModule type : moduleBuilder.get()) {
             registry.put(type, registerModule(coreId, type));
         }
 
         assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
 
-        RegistryEntry<Item> unfinishedModule = Main.REGISTRATE.item(coreId + "_unfinished", Item::new)
-                .model(ModItemModelProvider.genericItemModel(true, "cartridges", coreId, coreId + "_unfinished"))
-                .register();
+
         registry.put(CartridgeModule.UNFINISHED_MODULE, unfinishedModule);
 
         ModItems.addToList(unfinishedModule, ModCreativeModTabs.Tabs.Components);
@@ -212,7 +225,6 @@ public class CartridgeBase extends AmmunitionBase {
         // Use API later, haven't tested it yet
 //        TimelessAPI.getCommonAmmoIndex(new ResourceLocation("tacz", getCoreId())).get();
 
-
         for(CartridgeModule m : givenModuleBuilder.get()){
             String name = String.format("%s_%s", getCoreId(), m.toString());
 
@@ -236,31 +248,45 @@ public class CartridgeBase extends AmmunitionBase {
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("cartridges/%s/%s", getCoreId(), name)))
                     .require(castModule.get())
                     .require(m.getData().getFillingFluid(), m.getData().getFillingAmount())
-                    .output(mainModule.get()));
+                    .output(mainModule.get(), m.getData().getResultCount()));
         }
 
         RegistryEntry<Item> unfinishedModule = registry.get(CartridgeModule.UNFINISHED_MODULE);
-        SequencedAssemblyRecipeBuilder builder = new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("cartridges/%s", getCoreId())))
-                .require(registry.get(getModuleByType(CartridgeModuleType.CASING)).get())
-                .transitionTo(unfinishedModule.get())
-                .loops(1);
+//        SequencedAssemblyRecipeBuilder builder = new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("cartridges/%s", getCoreId())))
+//                .require(registry.get(getModuleByType(CartridgeModuleType.CASING)).get())
+//                .transitionTo(unfinishedModule.get())
+//                .loops(1);
+//
+//        for(CartridgeAssemblySequence seq : givenModuleBuilder.getAssemblySequence()){
+//            if(seq == CartridgeAssemblySequence.NUGGET)
+//                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(Items.IRON_NUGGET));
+//            else if(seq == CartridgeAssemblySequence.HEAD)
+//                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.HEAD)).get()));
+//            else if(seq == CartridgeAssemblySequence.PRESSING)
+//                builder.addStep(PressingRecipe::new, b -> b);
+//            else if(seq == CartridgeAssemblySequence.GUNPOWDER)
+//                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(Items.GUNPOWDER));
+//            else if(seq == CartridgeAssemblySequence.GUNPOWDER_PELLET)
+//                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(ModItems.GUNPOWDER_PELLETS.get()));
+//            else if(seq == CartridgeAssemblySequence.SHOTGUN_PELLETS)
+//                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.PELLET)).get()));
+//        }
+//
+//        ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ammoStack, 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
 
-        for(CartridgeAssemblySequence seq : givenModuleBuilder.getAssemblySequence()){
-            if(seq == CartridgeAssemblySequence.NUGGET)
-                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(Items.IRON_NUGGET));
-            else if(seq == CartridgeAssemblySequence.HEAD)
-                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.HEAD)).get()));
-            else if(seq == CartridgeAssemblySequence.PRESSING)
-                builder.addStep(PressingRecipe::new, b -> b);
-            else if(seq == CartridgeAssemblySequence.GUNPOWDER)
-                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(Items.GUNPOWDER));
-            else if(seq == CartridgeAssemblySequence.GUNPOWDER_PELLET)
-                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(ModItems.GUNPOWDER_PELLETS.get()));
-            else if(seq == CartridgeAssemblySequence.SHOTGUN_PELLETS)
-                builder.addStep(DeployerApplicationRecipe::new, b -> b.require(registry.get(getModuleByType(CartridgeModuleType.PELLET)).get()));
+        // From a more hard-to-setup Assembly Sequence is now converted into simple Compacting recipe
+        ProcessingRecipeBuilder<CompactingRecipe> b = new ProcessingRecipeBuilder<CompactingRecipe>(CompactingRecipe::new, ResourceHelper.find(String.format("cartridges/%s", getCoreId())))
+                .output(96, ammoStack)
+                .output(4, unfinishedModule.get())
+                .require(cartridgeBlueprint.get());
+
+        for(CartridgeModule m : givenModuleBuilder.get()){
+            RegistryEntry<Item> mainModule = registry.get(m);
+            b.require(mainModule.get());
         }
 
-        ModRecipeProvider.addSequencedAssemblyBuilder(builder.addOutput(ammoStack, 94).addOutput(registry.get(getModuleByType(CartridgeModuleType.CASING)).get(), 6));
+        ModRecipeProvider.addCreateRecipeBuilder(b);
+
     }
 
     @Nullable

@@ -8,19 +8,22 @@
   "results": [
     {
       "item": "prma:raw_zinc_powder",
-      "chance": 0.1
+      "amount": 3,
+      "chance": 20
     },
     {
       "item": "prma:raw_copper_powder",
-      "chance": 0.1
+      "amount": 3,
+      "chance": 20
     },
     {
       "item": "prma:basalt_powder",
-      "chance": 0.2
+      "amount": 3,
+      "chance": 40
     },
     {
       "item": "prma:crushed_basalt",
-      "chance": 0.6
+      "chance": 40
     }
   ]
 }

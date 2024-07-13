@@ -1,0 +1,23 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "prma:ammo_waste"
+    }
+  ],
+  "heatRequirement": "heated",
+  "results": [
+    {
+      "fluid": "prma:molten_basalt_infused_iron",
+      "amount": 50
+    },
+    {
+      "fluid": "prma:molten_brass",
+      "amount": 50
+    },
+    {
+      "fluid": "prma:molten_copper",
+      "amount": 50
+    }
+  ]
+}

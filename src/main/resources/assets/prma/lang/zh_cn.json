@@ -518,8 +518,28 @@
   "itemGroup.prma_blueprints_tab": "精制工艺 蓝图",
   "recipe_category.prma.decomponentalizing": "解析部件",
 
-  "item.prma.ammo_placeholder": "Ammo Placeholder",
-  "item.prma.modern_kinetic_gun_placeholder": "Modern Kinetic Gun Placeholder",
-  "item.prma.blank_blueprint": "Blank Blueprint",
-  "item.prma.blank_cast": "Blank Cast"
+  "item.prma.ammo_placeholder": "弹药占位符",
+  "item.prma.modern_kinetic_gun_placeholder": "现代动能枪占位符",
+  "item.prma.blank_blueprint": "空白蓝图",
+  "item.prma.blank_cast": "空白铸件",
+
+  "item.prma.flint_powder": "燧石粉",
+  "item.prma.rock_powder": "岩石粉",
+  "item.prma.9mm_blueprint": "9毫米子弹蓝图",
+  "item.prma.45acp_blueprint": ".45 ACP子弹蓝图",
+  "item.prma.50ae_blueprint": ".50 AE子弹蓝图",
+  "item.prma.magnum_r_blueprint": ".357马格南子弹蓝图",
+  "item.prma.12g_blueprint": "12号霰弹蓝图",
+  "item.prma.30_06_blueprint": ".30-06春田子弹蓝图",
+  "item.prma.46x30_blueprint": "4.6毫米穿甲子弹蓝图",
+  "item.prma.50bmg_blueprint": ".50 BMG子弹蓝图",
+  "item.prma.58x42_blueprint": "5.8毫米DBP87子弹蓝图",
+  "item.prma.68x51fury_blueprint": "6.8x51毫米Fury子弹蓝图",
+  "item.prma.308_blueprint": ".308温彻斯特子弹蓝图",
+  "item.prma.338_blueprint": ".338拉普阿子弹蓝图",
+  "item.prma.556x45_blueprint": "5.56x45毫米子弹蓝图",
+  "item.prma.762x25_blueprint": "7.62x25毫米托卡列夫子弹蓝图",
+  "item.prma.762x39_blueprint": "7.62x39毫米子弹蓝图",
+  "item.prma.762x54_blueprint": "7.62x54毫米子弹蓝图",
+  "item.prma.rpg_rocket_blueprint": "RPG火箭弹蓝图"
 }

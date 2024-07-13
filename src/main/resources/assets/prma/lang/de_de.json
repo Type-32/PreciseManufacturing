@@ -516,8 +516,28 @@
   "gui.prma.decomponentalizer.time_estimate": "> Verarbeitungszeit: %ss",
   "recipe_category.prma.decomponentalizing": "Decomponentalizing",
 
-  "item.prma.ammo_placeholder": "Ammo Placeholder",
-  "item.prma.modern_kinetic_gun_placeholder": "Modern Kinetic Gun Placeholder",
-  "item.prma.blank_blueprint": "Blank Blueprint",
-  "item.prma.blank_cast": "Blank Cast"
+  "item.prma.ammo_placeholder": "Munitions-Platzhalter",
+  "item.prma.modern_kinetic_gun_placeholder": "Moderner Kinetischer Waffen-Platzhalter",
+  "item.prma.blank_blueprint": "Leerer Bauplan",
+  "item.prma.blank_cast": "Leerer Guss",
+
+  "item.prma.flint_powder": "Feuerstein-Pulver",
+  "item.prma.rock_powder": "Gesteinspulver",
+  "item.prma.9mm_blueprint": "9mm Patronen-Bauplan",
+  "item.prma.45acp_blueprint": ".45 ACP Patronen-Bauplan",
+  "item.prma.50ae_blueprint": ".50 AE Patronen-Bauplan",
+  "item.prma.magnum_r_blueprint": ".357 Magnum Patronen-Bauplan",
+  "item.prma.12g_blueprint": "12 Gauge Schrotpatronen-Bauplan",
+  "item.prma.30_06_blueprint": ".30-06 Springfield Patronen-Bauplan",
+  "item.prma.46x30_blueprint": "4,6mm AP Patronen-Bauplan",
+  "item.prma.50bmg_blueprint": ".50 BMG Patronen-Bauplan",
+  "item.prma.58x42_blueprint": "5,8mm DBP87 Patronen-Bauplan",
+  "item.prma.68x51fury_blueprint": "6,8x51mm Fury Patronen-Bauplan",
+  "item.prma.308_blueprint": ".308 Winchester Patronen-Bauplan",
+  "item.prma.338_blueprint": ".338 Lapua Patronen-Bauplan",
+  "item.prma.556x45_blueprint": "5,56x45mm Patronen-Bauplan",
+  "item.prma.762x25_blueprint": "7,62x25mm Tokarev Patronen-Bauplan",
+  "item.prma.762x39_blueprint": "7,62x39mm Patronen-Bauplan",
+  "item.prma.762x54_blueprint": "7,62x54mm Patronen-Bauplan",
+  "item.prma.rpg_rocket_blueprint": "RPG-Raketen-Bauplan"
 }

@@ -8,12 +8,12 @@
   "results": [
     {
       "item": "prma:raw_sulfur_powder",
-      "chance": 0.4,
-      "amount": 2
+      "chance": 50,
+      "amount": 4
     },
     {
       "item": "prma:basalt_powder",
-      "chance": 0.6,
+      "chance": 50,
       "amount": 2
     }
   ]

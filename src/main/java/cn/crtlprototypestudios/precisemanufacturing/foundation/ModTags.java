@@ -58,6 +58,8 @@ public class ModTags {
         return modItemTag("ammo_blueprints");
     }
 
+    public static TagKey<Item> ammoWasteTag() { return modItemTag("ammo_waste"); }
+
     public static TagKey<Item> weaponCastTag(){
         return modItemTag("weapon_casts");
     }

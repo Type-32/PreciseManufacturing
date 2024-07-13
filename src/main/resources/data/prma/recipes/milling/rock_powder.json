@@ -2,14 +2,14 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "item": "prma:crushed_basalt"
+      "tag": "prma:millable_rocks"
     }
   ],
   "results": [
     {
-      "item": "prma:basalt_powder",
+      "item": "prma:rock_powder",
       "count": 3
     }
   ],
-  "processingTime": 300
+  "processingTime": 600
 }

@@ -52,10 +52,12 @@ public class CartridgeModule extends ModuleBase<CartridgeModuleType, CartridgeMo
     public static class Data {
         private int fillingAmount;
         private @NotNull TagKey<Fluid> fillingFluid;
+        private int resultCount = 4;
 
-        public Data(int fillingAmount, TagKey<Fluid> fillingFluid){
+        public Data(int fillingAmount, TagKey<Fluid> fillingFluid, int resultCount){
             this.fillingAmount = fillingAmount;
             this.fillingFluid = fillingFluid;
+            this.resultCount = resultCount;
         }
 
         public int getFillingAmount() {
@@ -63,7 +65,7 @@ public class CartridgeModule extends ModuleBase<CartridgeModuleType, CartridgeMo
         }
 
         public Data setFillingAmount(int fillingAmount) {
-            return new Data(fillingAmount, fillingFluid);
+            return new Data(fillingAmount, fillingFluid, resultCount);
         }
 
         public TagKey<Fluid> getFillingFluid() {
@@ -71,13 +73,17 @@ public class CartridgeModule extends ModuleBase<CartridgeModuleType, CartridgeMo
         }
 
         public Data setFillingFluid(TagKey<Fluid> fillingFluid) {
-            return new Data(fillingAmount, fillingFluid);
+            return new Data(fillingAmount, fillingFluid, resultCount);
         }
+
+        public int getResultCount() { return resultCount; }
+
+        public Data setResultCount(int resultCount) { return new Data(fillingAmount, fillingFluid, resultCount); }
     }
 
     public static final CartridgeModule
-        CASING_MODULE = new CartridgeModule(CartridgeModuleType.CASING, new Data(100, ModTags.moltenBrassesTag())),
-        HEAD_MODULE = new CartridgeModule(CartridgeModuleType.HEAD, new Data(80, ModTags.moltenCoppersTag())),
-        PELLET_MODULE = new CartridgeModule(CartridgeModuleType.PELLET, new Data(60, ModTags.moltenIronsTag())),
-        UNFINISHED_MODULE = new CartridgeModule(CartridgeModuleType.UNFINISHED, new Data(0, ModTags.moltenBrassesTag()));
+        CASING_MODULE = new CartridgeModule(CartridgeModuleType.CASING, new Data(100, ModTags.moltenBrassesTag(), 4)),
+        HEAD_MODULE = new CartridgeModule(CartridgeModuleType.HEAD, new Data(80, ModTags.moltenCoppersTag(), 6)),
+        PELLET_MODULE = new CartridgeModule(CartridgeModuleType.PELLET, new Data(60, ModTags.moltenIronsTag(), 6)),
+        UNFINISHED_MODULE = new CartridgeModule(CartridgeModuleType.UNFINISHED, new Data(0, ModTags.moltenBrassesTag(), 1));
 }

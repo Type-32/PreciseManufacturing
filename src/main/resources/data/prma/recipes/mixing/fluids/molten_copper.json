@@ -6,17 +6,14 @@
       "count": 1
     },
     {
-      "item": "minecraft:iron_ingot"
-    },
-    {
       "item": "prma:basalt_powder",
-      "count": 3
+      "count": 2
     }
   ],
   "results": [
     {
       "fluid": "prma:molten_copper",
-      "amount": 250
+      "amount": 300
     }
   ],
   "heatRequirement": "heated"
