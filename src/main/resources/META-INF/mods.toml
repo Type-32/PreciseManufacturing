@@ -64,12 +64,12 @@ description='''${mod_description}'''
 [[dependencies."${mod_id}"]]
    modId="create"
    mandatory=true
-   versionRange="[0.5.1.f,)"
+   versionRange="[0.5.1.a,)"
    ordering="NONE"
    side="BOTH"
 [[dependencies."${mod_id}"]]
    modId="tacz"
    mandatory=true
-   versionRange="[1.0.1,)"
+   versionRange="[1.0.2,)"
    ordering="NONE"
    side="BOTH"
