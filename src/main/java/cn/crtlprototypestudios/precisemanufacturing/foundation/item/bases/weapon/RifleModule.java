@@ -2,7 +2,6 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapo
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ModuleBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModule;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.tterrag.registrate.util.entry.FluidEntry;
 

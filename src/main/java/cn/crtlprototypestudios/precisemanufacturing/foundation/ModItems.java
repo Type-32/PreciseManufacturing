@@ -2,18 +2,17 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeAssemblySequence;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionRegistryManager;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionSize;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeModuleBuilder;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleBase;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleModule;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,9 +50,21 @@ public class ModItems {
             RAW_COPPER_POWDER = addToList(Main.REGISTRATE.item("raw_copper_powder", Item::new).tag(ModTags.materialsTag()).register()),
             BASALT_POWDER = addToList(Main.REGISTRATE.item("basalt_powder",Item::new).tag(ModTags.materialsTag()).register()),
             RAW_SULFUR_POWDER = addToList(Main.REGISTRATE.item("raw_sulfur_powder",Item::new).tag(ModTags.materialsTag()).register()),
+            SULFUR_POWDER = addToList(Main.REGISTRATE.item("sulfur_powder",Item::new).tag(ModTags.materialsTag()).register()),
             FLINT_POWDER = addToList(Main.REGISTRATE.item("flint_powder",Item::new).tag(ModTags.materialsTag()).register()),
             ROCK_POWDER = addToList(Main.REGISTRATE.item("rock_powder",Item::new).tag(ModTags.materialsTag()).register()),
-            GUNPOWDER_PELLETS = addToList(Main.REGISTRATE.item("gunpowder_pellets",Item::new).tag(ModTags.materialsTag()).register());
+            SMALL_AMMUNITION_GUNPOWDER = addToList(Main.REGISTRATE.item("small_ammunition_gunpowder",Item::new)
+                    .tag(ModTags.materialsTag())
+                    .tag(ModTags.smallAmmunitionGunpowdersTag())
+                    .register()),
+            MEDIUM_AMMUNITION_GUNPOWDER = addToList(Main.REGISTRATE.item("medium_ammunition_gunpowder",Item::new)
+                    .tag(ModTags.materialsTag())
+                    .tag(ModTags.mediumAmmunitionGunpowdersTag())
+                    .register()),
+            LONG_AMMUNITION_GUNPOWDER = addToList(Main.REGISTRATE.item("long_ammunition_gunpowder",Item::new)
+                    .tag(ModTags.materialsTag())
+                    .tag(ModTags.longAmmunitionGunpowdersTag())
+                    .register());
 
     // Misc Items
     public static final RegistryEntry<Item>
@@ -89,98 +100,37 @@ public class ModItems {
 
     // Cartrige Casts and Components
     public static final CartridgeBase
-            NINE_MIL = new CartridgeBase("9mm", CartridgeBase.STANDARD_CARTRIDGE)
-                    .setModuleData(0, d -> d.setFillingAmount(50))
-                    .setModuleData(1, d -> d.setFillingAmount(25)),
+            NINE_MIL = CartridgeBase.register("9mm", AmmunitionSize.SMALL, AmmunitionBase.getSmallCartridgeModules()),
 
-            FOUR_FIVE_ACP = new CartridgeBase("45acp", CartridgeBase.STANDARD_CARTRIDGE)
-                    .setModuleData(0, d -> d.setFillingAmount(50))
-                    .setModuleData(1, d -> d.setFillingAmount(30)),
+            FOUR_FIVE_ACP = CartridgeBase.register("45acp", AmmunitionSize.SMALL, AmmunitionBase.getSmallCartridgeModules()),
 
-            FIFTY_AE = new CartridgeBase("50ae", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
-                    .setModuleData(0, d -> d.setFillingAmount(80))
-                    .setModuleData(1, d -> d.setFillingAmount(40)),
+            FIFTY_AE = CartridgeBase.register("50ae", AmmunitionSize.SMALL, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
 
-            MAGNUM_R = new CartridgeBase("magnum_r", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(75)),
+            MAGNUM_R = CartridgeBase.register("magnum_r", AmmunitionSize.SMALL, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
 
-            TWELVE_G = new CartridgeBase("12g", CartridgeBase.SHOTGUN_CARTRIDGE)
-                    .setModuleData(0, d -> d.setFillingAmount(75))
-                    .setModuleData(1, d -> d.setFillingAmount(40)),
+            TWELVE_G = CartridgeBase.register("12g", AmmunitionSize.SHELL, AmmunitionBase.getShellCartridgeModules()),
 
-            THIRTY_ZERO_SIX = new CartridgeBase("30_06", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
-                    .setModuleData(0, d -> d.setFillingAmount(100))
-                    .setModuleData(1, d -> d.setFillingAmount(80)),
+            THIRTY_ZERO_SIX = CartridgeBase.register("30_06", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            FOUR_SIX_X_THIRTY = new CartridgeBase("46x30", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(90))
-                    .setModuleData(1, d -> d.setFillingAmount(50)),
+            FOUR_SIX_X_THIRTY = CartridgeBase.register("46x30", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            FIFTY_BMG = new CartridgeBase("50bmg", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(110).setFillingFluid(ModTags.moltenIronsTag()))
-                    .setModuleData(1, d -> d.setFillingAmount(90)),
+            FIFTY_BMG = CartridgeBase.register("50bmg", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules(ModTags.moltenIronsTag())),
 
-            FIVE_EIGHT_X_FOUR_TWO = new CartridgeBase("58x42", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModTags.moltenIronsTag()))
-                    .setModuleData(1, d -> d.setFillingAmount(70)),
+            FIVE_EIGHT_X_FOUR_TWO = CartridgeBase.register("58x42", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
 
-            SIX_EIGHT_X_FIVE_ONE_FURY = new CartridgeBase("68x51fury", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(90).setFillingFluid(ModTags.moltenIronsTag()))
-                    .setModuleData(1, d -> d.setFillingAmount(80)),
+            SIX_EIGHT_X_FIVE_ONE_FURY = CartridgeBase.register("68x51fury", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
 
-            RPG_ROCKET = new CartridgeBase("rpg_rocket", CartridgeBase.ROCKET_CARTRIDGE),
+            THREE_ZERO_EIGHT = CartridgeBase.register("308", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules()),
 
-            THREE_ZERO_EIGHT = new CartridgeBase("308", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
-                    .setModuleData(0, d -> d.setFillingAmount(100))
-                    .setModuleData(1, d -> d.setFillingAmount(80)),
+            THREE_THREE_EIGHT = CartridgeBase.register("338", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules()),
 
-            THREE_THREE_EIGHT = new CartridgeBase("338", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER))
-                    .setModuleData(0, d -> d.setFillingAmount(100))
-                    .setModuleData(1, d -> d.setFillingAmount(80)),
+            FIVE_FIVE_SIX_X_FOUR_FIVE = CartridgeBase.register("556x45", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            FIVE_FIVE_SIX_X_FOUR_FIVE = new CartridgeBase("556x45", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(90))
-                    .setModuleData(1, d -> d.setFillingAmount(60)),
+            SEVEN_SIX_TWO_X_TWO_FIVE = CartridgeBase.register("762x25", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            SEVEN_SIX_TWO_X_TWO_FIVE = new CartridgeBase("762x25", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(90))
-                    .setModuleData(1, d -> d.setFillingAmount(60)),
+            SEVEN_SIX_TWO_X_THREE_NINE = CartridgeBase.register("762x39", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
 
-            SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(100).setFillingFluid(ModTags.moltenIronsTag()))
-                    .setModuleData(1, d -> d.setFillingAmount(60)),
-
-            SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54", CartridgeBase.STANDARD_CARTRIDGE)
-//                    .replaceAssemblySequence(CartridgeAssemblySequence.GUNPOWDER, CartridgeAssemblySequence.GUNPOWDER_PELLET)
-//                    .insertAssemblySequence(1, CartridgeAssemblySequence.GUNPOWDER_PELLET))
-                    .setModuleData(0, d -> d.setFillingAmount(100))
-                    .setModuleData(1, d -> d.setFillingAmount(80));
+            SEVEN_SIX_TWO_X_FIVE_FOUR = CartridgeBase.register("762x54", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules());
 
     // Weapons
     // Guns

@@ -9,6 +9,16 @@
     {
       "item": "prma:rock_powder",
       "count": 3
+    },
+    {
+      "item": "prma:raw_sulfur_powder",
+      "count": 3,
+      "chance": 50
+    },
+    {
+      "item": "prma:flint_powder",
+      "count": 1,
+      "chance": 5
     }
   ],
   "processingTime": 600

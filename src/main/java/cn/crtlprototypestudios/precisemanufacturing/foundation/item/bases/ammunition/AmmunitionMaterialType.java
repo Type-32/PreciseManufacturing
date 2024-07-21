@@ -1,17 +1,14 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
-import com.simibubi.create.content.fluids.VirtualFluid;
-
-public enum CartridgeModuleType {
+public enum AmmunitionMaterialType {
     CASING("casing"),
     HEAD("head"),
-    PELLET("pellet"),
+    PELLETS("pellets"),
     UNFINISHED("unfinished");
 
     private final String moduleId;
 
-    CartridgeModuleType(String moduleId) {
+    AmmunitionMaterialType(String moduleId) {
         this.moduleId = moduleId;
     }
 
