@@ -1,15 +1,18 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe;
 
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe.DecomponentalizingRecipeBuilder;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
+import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
@@ -98,8 +101,10 @@ public class ModRecipesGen {
                 .output(ModItems.ROCK_POWDER.get(), 3)
                 .output(50, ModItems.RAW_SULFUR_POWDER.get(), 3)
                 .output(5, ModItems.FLINT_POWDER.get(), 1)
+                .output(20, ModItems.RAW_COPPER_POWDER.get(), 2)
+                .output(20, ModItems.RAW_ZINC_POWDER.get(), 2)
                 .require(ModTags.millableRocksTag())
-                .duration(100)
+                .duration(200)
         );
 
         // Iron ingot to Blank Cast
@@ -108,6 +113,68 @@ public class ModRecipesGen {
                 .require(Items.IRON_INGOT)
                 .duration(100)
         );
+
+        // Melting Copper Nuggets
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/melting/copper_nugget_to_molten_copper"))
+                .output(ModFluids.MOLTEN_COPPER.get(), 80)
+                .require(ModItems.BASALT_POWDER.get())
+                .require(AllItems.COPPER_NUGGET.get())
+                .requiresHeat(HeatCondition.HEATED));
+
+        // Melting Copper Ingots
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/melting/copper_ingot_to_molten_copper"))
+                .output(ModFluids.MOLTEN_COPPER.get(), 720)
+                .require(ModItems.CRUSHED_BASALT.get())
+                .require(Items.COPPER_INGOT)
+                .requiresHeat(HeatCondition.HEATED));
+
+        // Melting Brass Nuggets
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/melting/brass_nugget_to_molten_brass"))
+                .output(ModFluids.MOLTEN_BRASS.get(), 80)
+                .require(ModItems.BASALT_POWDER.get())
+                .require(AllItems.BRASS_NUGGET.get())
+                .requiresHeat(HeatCondition.HEATED));
+
+        // Melting Brass Ingots
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/melting/brass_ingot_to_molten_brass"))
+                .output(ModFluids.MOLTEN_BRASS.get(), 720)
+                .require(ModItems.CRUSHED_BASALT.get())
+                .require(AllItems.BRASS_INGOT.get())
+                .requiresHeat(HeatCondition.HEATED));
+
+        // Melting Iron Nuggets
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/melting/iron_nugget_to_molten_iron"))
+                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 80)
+                .require(ModItems.BASALT_POWDER.get())
+                .require(Items.IRON_NUGGET)
+                .requiresHeat(HeatCondition.HEATED));
+
+        // Melting Iron Ingots
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/melting/iron_ingot_to_molten_iron"))
+                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 720)
+                .require(ModItems.CRUSHED_BASALT.get())
+                .require(Items.IRON_INGOT)
+                .requiresHeat(HeatCondition.HEATED));
+
+        // Flint and Rock Powder mix to Basalt Powder
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/solids/flint_and_rock_to_basalt_powder"))
+                .output(ModItems.BASALT_POWDER.get(), 2)
+                .require(ModItems.FLINT_POWDER.get())
+                .require(ModItems.ROCK_POWDER.get()));
+
+        // Misc Mixing to Gunpowder
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/gunpowder"))
+                .output(Items.GUNPOWDER, 3)
+                .require(ModItems.BASALT_POWDER.get())
+                .require(ModItems.RAW_SULFUR_POWDER.get())
+                .require(Items.SUGAR)
+                .require(Items.CHARCOAL));
+
+        // Ammo Waste to Molten Fluids
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/wasted_cartridges_to_fluids"))
+                .output(ModFluids.MOLTEN_COPPER.get(), 50)
+                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 50)
+                .output(ModFluids.MOLTEN_BRASS.get(), 50));
 
         craftingRecipeBuilders.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BLANK_BLUEPRINT.get(), 3)
                 .requires(Items.PAPER)
