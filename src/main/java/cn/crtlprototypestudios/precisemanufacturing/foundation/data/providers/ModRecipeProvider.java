@@ -29,7 +29,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         rifleBases.forEach(RifleBase::registerRecipes);
-        cartridgeBases.forEach(CartridgeBase::registerRecipes);
 
         recipeBuilders.forEach(i -> i.save(pFinishedRecipeConsumer));
         createCompatRecipeBuilders.forEach(i -> i.build(pFinishedRecipeConsumer));

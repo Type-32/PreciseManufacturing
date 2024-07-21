@@ -5,6 +5,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe.DecomponentalizingRecipeBuilder;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
@@ -53,14 +54,34 @@ public class ModRecipesGen {
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("mixing/long_ammunition_gunpowder_mixing"))
                 .output(ModItems.LONG_AMMUNITION_GUNPOWDER.get())
                 .require(Tags.Items.GUNPOWDER)
-                .require(ModItems.ROCK_POWDER.get())
+                .require(ModItems.SULFUR_POWDER.get())
                 .duration(100)
         );
         craftingRecipeBuilders.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 1).requires(ModTags.longAmmunitionGunpowdersTag()));
 
-        // basalt powder milling
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MillingRecipe::new, ResourceHelper.find("milling/basalt_powder"))
-                .output(ModItems.BASALT_POWDER.get(), 3)
+        // basalt crushing
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("crushing/basalt_to_powder"))
+                .output(20, ModItems.RAW_ZINC_POWDER.get(), 4)
+                .output(20, ModItems.RAW_COPPER_POWDER.get(), 4)
+                .output(40, ModItems.BASALT_POWDER.get(), 6)
+                .output(40, ModItems.CRUSHED_BASALT.get())
+                .require(Items.BASALT)
+                .duration(300)
+        );
+
+        // crushed basalt milling
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MillingRecipe::new, ResourceHelper.find("milling/crushed_basalt_to_powder"))
+                .output(50, ModItems.BASALT_POWDER.get(), 2)
+                .output(50, ModItems.RAW_SULFUR_POWDER.get(), 6)
+                .require(ModItems.CRUSHED_BASALT.get())
+                .duration(300)
+        );
+
+        // crushed basalt crushing
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("crushing/crushed_basalt_to_powder"))
+                .output(50, ModItems.BASALT_POWDER.get(), 2)
+                .output(50, ModItems.RAW_SULFUR_POWDER.get(), 6)
+                .output(10, ModItems.FLINT_POWDER.get(), 2)
                 .require(ModItems.CRUSHED_BASALT.get())
                 .duration(300)
         );

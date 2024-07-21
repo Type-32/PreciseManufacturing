@@ -13,7 +13,7 @@
   "results": [
     {
       "fluid": "prma:molten_brass",
-      "amount": 300
+      "amount": 500
     }
   ],
   "heatRequirement": "heated"

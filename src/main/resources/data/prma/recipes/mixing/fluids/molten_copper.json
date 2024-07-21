@@ -13,7 +13,7 @@
   "results": [
     {
       "fluid": "prma:molten_copper",
-      "amount": 300
+      "amount": 400
     }
   ],
   "heatRequirement": "heated"

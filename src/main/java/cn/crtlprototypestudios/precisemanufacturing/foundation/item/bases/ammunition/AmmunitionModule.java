@@ -9,17 +9,23 @@ public class AmmunitionModule {
     private AmmunitionSize size;
     private AmmunitionMaterialType type;
     private TagKey<Fluid> fillingFluid;
-    private int decomponentalizingTime;
+    private int decomponentalizingTime, castFillingAmount, castResultCount; // the castResultCount here refers to how many "main" module items will be resulted from filling in the cast once.
 
     public AmmunitionModule(AmmunitionSize size, AmmunitionMaterialType type, TagKey<Fluid> fillingFluid) {
-        this(size, type, fillingFluid, 400);
+        this(size, type, fillingFluid, 400, 80, 4);
     }
 
     public AmmunitionModule(AmmunitionSize size, AmmunitionMaterialType type, TagKey<Fluid> fillingFluid, int decomponentalizingTime) {
+        this(size, type, fillingFluid, decomponentalizingTime, 80, 4);
+    }
+
+    public AmmunitionModule(AmmunitionSize size, AmmunitionMaterialType type, TagKey<Fluid> fillingFluid, int decomponentalizingTime, int castFillingAmount, int castResultCount) {
         this.size = size;
         this.type = type;
         this.fillingFluid = fillingFluid;
         this.decomponentalizingTime = decomponentalizingTime;
+        this.castFillingAmount = castFillingAmount;
+        this.castResultCount = castResultCount;
     }
 
     public AmmunitionSize getSize() {
@@ -67,5 +73,21 @@ public class AmmunitionModule {
 
     public void setDecomponentalizingTime(int decomponentalizingTime) {
         this.decomponentalizingTime = decomponentalizingTime;
+    }
+
+    public int getCastFillingAmount() {
+        return castFillingAmount;
+    }
+
+    public void setCastFillingAmount(int castFillingAmount) {
+        this.castFillingAmount = castFillingAmount;
+    }
+
+    public int getCastResultCount() {
+        return castResultCount;
+    }
+
+    public void setCastResultCount(int castResultCount) {
+        this.castResultCount = castResultCount;
     }
 }

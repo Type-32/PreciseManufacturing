@@ -17,7 +17,7 @@
   "results": [
     {
       "fluid": "prma:molten_basalt_infused_iron",
-      "amount": 300
+      "amount": 500
     }
   ],
   "heatRequirement": "heated"

@@ -4,9 +4,16 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.simibubi.create.content.fluids.transfer.FillingRecipe;
+import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tacz.guns.init.ModCreativeTabs;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,23 +57,27 @@ public class AmmunitionRegistryManager {
                         )
                 )
                 .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
-                .register());
+                .register(), ModCreativeModTabs.Tabs.Components);
         RegistryEntry<Item> cast = ModItems.addToList(Main.REGISTRATE.item(itemId + "_cast", Item::new)
                 .tag(ModTags.ammunitionComponentCastsTag())
                 .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
-                .register());
+                .register(), ModCreativeModTabs.Tabs.Casts);
         RegistryEntry<Item> blueprint = ModItems.addToList(Main.REGISTRATE.item(itemId + "_blueprint", Item::new)
                 .tag(ModTags.ammunitionComponentBlueprintsTag())
                 .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
-                .register());
+                .register(), ModCreativeModTabs.Tabs.Blueprints);
+
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("filling/ammunition_modules/" + itemId + "_cast_filling"))
+                .output(item.get(), module.getCastResultCount())
+                .require(cast.get())
+                .require(module.getFillingFluid(), module.getCastFillingAmount()));
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/ammunition_modules/" + itemId + "_cast_cutting"))
+                .output(item.get(), 1)
+                .require(ModItems.BLANK_CAST.get()));
 
         items.put(module, item);
         casts.put(module, cast);
         blueprints.put(module, blueprint);
-
-        ModItems.addToList(item, ModCreativeModTabs.Tabs.Components);
-        ModItems.addToList(cast, ModCreativeModTabs.Tabs.Casts);
-        ModItems.addToList(blueprint, ModCreativeModTabs.Tabs.Blueprints);
 
         modules.add(module);
 

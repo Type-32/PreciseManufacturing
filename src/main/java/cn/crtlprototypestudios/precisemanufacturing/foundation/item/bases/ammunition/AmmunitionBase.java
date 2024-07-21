@@ -11,16 +11,16 @@ import java.util.List;
 public class AmmunitionBase {
     private final String coreId;
     private static final List<AmmunitionModule> presetModules = new ArrayList<>(List.of(
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag())), // small_copper_head_component, 0
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag())), // small_brass_casing_component, 1
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag())), // medium_copper_head_component, 2
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag())), // medium_brass_casing_component, 3
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, ModTags.moltenIronsTag())), // medium_iron_casing_component, 4
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag())), // long_copper_head_component, 5
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag())), // long_brass_casing_component, 6
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, ModTags.moltenIronsTag())), // long_iron_casing_component, 7
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.PELLETS, ModTags.moltenIronsTag())), // shell_iron_pellets_component, 8
-            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag())) // shell_brass_casing_component, 9
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag(), 100, 80, 4)), // small_copper_head_component, 0
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 300, 120, 3)), // small_brass_casing_component, 1
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag(), 200, 200, 5)), // medium_copper_head_component, 2
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 500, 300, 5)), // medium_brass_casing_component, 3
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, ModTags.moltenIronsTag(), 600, 300, 5)), // medium_iron_casing_component, 4
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag(), 300, 180, 3)), // long_copper_head_component, 5
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 500, 350, 5)), // long_brass_casing_component, 6
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, ModTags.moltenIronsTag(), 600, 350, 5)), // long_iron_casing_component, 7
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.PELLETS, ModTags.moltenIronsTag(), 60, 60, 6)), // shell_iron_pellets_component, 8
+            AmmunitionRegistryManager.register(new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 200, 120, 4)) // shell_brass_casing_component, 9
     ));
 
     public AmmunitionBase(String coreId) {
