@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
@@ -57,14 +58,17 @@ public class AmmunitionRegistryManager {
                         )
                 )
                 .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
+                .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "modules", itemId))
                 .register(), ModCreativeModTabs.Tabs.Components);
         RegistryEntry<Item> cast = ModItems.addToList(Main.REGISTRATE.item(itemId + "_cast", Item::new)
                 .tag(ModTags.ammunitionComponentCastsTag())
                 .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
+                .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "casts", itemId))
                 .register(), ModCreativeModTabs.Tabs.Casts);
         RegistryEntry<Item> blueprint = ModItems.addToList(Main.REGISTRATE.item(itemId + "_blueprint", Item::new)
                 .tag(ModTags.ammunitionComponentBlueprintsTag())
                 .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
+                .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "blueprints", itemId))
                 .register(), ModCreativeModTabs.Tabs.Blueprints);
 
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("filling/ammunition_modules/" + itemId + "_cast_filling"))
