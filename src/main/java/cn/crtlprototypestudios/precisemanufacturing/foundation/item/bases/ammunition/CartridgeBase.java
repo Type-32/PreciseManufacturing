@@ -12,6 +12,7 @@ import com.simibubi.create.AllItems;
 import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -38,10 +39,17 @@ public class CartridgeBase extends AmmunitionBase {
     /**
      * Outdated Documentation. TODO Need to update documentation.
      */
-    protected CartridgeBase(String coreId, AmmunitionSize categorizingSize, RegistryEntry<Item> blueprint, AmmunitionModule... ammunitionModules) {
+    public CartridgeBase(String coreId, AmmunitionSize categorizingSize, AmmunitionModule... ammunitionModules) {
         super(coreId);
 
-        this.cartridgeBlueprint = blueprint;
+        RegistryEntry<Item> cartridgeBlueprint = Main.REGISTRATE.item(coreId + "_blueprint", Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "cartridge_blueprint", coreId + "_blueprint"))
+                .tag(ModTags.cartridgeBlueprintTag())
+                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
+                .register();
+        ModItems.addToList(cartridgeBlueprint, ModCreativeModTabs.Tabs.Blueprints);
+
+        this.cartridgeBlueprint = cartridgeBlueprint;
 
         this.ammunitionModules = ammunitionModules;
 
@@ -50,22 +58,11 @@ public class CartridgeBase extends AmmunitionBase {
         ModRecipeProvider.addCartridgeBase(this);
     }
 
-    //TODO Update Documentation
-    /**
-     *
-     */
-    public static CartridgeBase register(String id, AmmunitionSize categorizingSize, AmmunitionModule... ammunitionModules) {
+    public void registerRecipes(){
         ItemStack ammoStack = new ItemStack(com.tacz.guns.init.ModItems.AMMO.get());
         CompoundTag itemTag = new CompoundTag();
-        itemTag.putString("AmmoId", "tacz:" + id);
+        itemTag.putString("AmmoId", "tacz:" + getCoreId());
         ammoStack.setTag(itemTag);
-
-        RegistryEntry<Item> cartridgeBlueprint = Main.REGISTRATE.item(id + "_blueprint", Item::new)
-                .model(ModItemModelProvider.genericItemModel(true, "cartridge_blueprint", id + "_blueprint"))
-                .tag(ModTags.cartridgeBlueprintTag())
-                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
-                .register();
-        ModItems.addToList(cartridgeBlueprint, ModCreativeModTabs.Tabs.Blueprints);
 
         List<RegistryEntry<Item>> mainItems = new ArrayList<>();
         for(AmmunitionModule m : ammunitionModules) {
@@ -74,18 +71,18 @@ public class CartridgeBase extends AmmunitionBase {
             RegistryEntry<Item> main = AmmunitionRegistryManager.items.get(m);
 
             ModDecomponentalizingRecipesGen.add(ammoStack, blueprint.get(), 400);
-            ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cast.get(), 1).requires(Items.IRON_INGOT).requires(blueprint.get()));
+//            ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cast.get(), 1).requires(Items.IRON_INGOT).requires(blueprint.get()).group("cast_").unlockedBy(RegistrateRecipeProvider.getHasName(Items.PAPER), RegistrateRecipeProvider.has(Items.PAPER)));
 
             mainItems.add(main);
         }
 
-        ProcessingRecipeBuilder<PressingRecipe> pressingRecipe = new ProcessingRecipeBuilder<>(PressingRecipe::new, ResourceHelper.find("pressing/cartridges/" + id))
+        ProcessingRecipeBuilder<CompactingRecipe> pressingRecipe = new ProcessingRecipeBuilder<>(CompactingRecipe::new, ResourceHelper.find("cartridges/" + getCoreId()))
                 .output(ammoStack)
                 .require(
-                        categorizingSize == AmmunitionSize.SMALL ? ModItems.SMALL_AMMUNITION_GUNPOWDER.get() :
+                        (categorizingSize == AmmunitionSize.SMALL ? ModItems.SMALL_AMMUNITION_GUNPOWDER.get() :
                         categorizingSize == AmmunitionSize.MEDIUM ? ModItems.MEDIUM_AMMUNITION_GUNPOWDER.get() :
                         categorizingSize == AmmunitionSize.LONG ? ModItems.LONG_AMMUNITION_GUNPOWDER.get() :
-                        Items.GUNPOWDER
+                        Items.GUNPOWDER)
                 );
 
         for(RegistryEntry<Item> m : mainItems) {
@@ -93,7 +90,5 @@ public class CartridgeBase extends AmmunitionBase {
         }
 
         ModRecipeProvider.addCreateRecipeBuilder(pressingRecipe);
-
-        return new CartridgeBase(id, categorizingSize, cartridgeBlueprint, ammunitionModules);
     }
 }

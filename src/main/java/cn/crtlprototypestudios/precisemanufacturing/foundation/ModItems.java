@@ -100,37 +100,37 @@ public class ModItems {
 
     // Cartrige Casts and Components
     public static final CartridgeBase
-            NINE_MIL = CartridgeBase.register("9mm", AmmunitionSize.SMALL, AmmunitionBase.getSmallCartridgeModules()),
+            NINE_MIL = new CartridgeBase("9mm", AmmunitionSize.SMALL, AmmunitionBase.getSmallCartridgeModules()),
 
-            FOUR_FIVE_ACP = CartridgeBase.register("45acp", AmmunitionSize.SMALL, AmmunitionBase.getSmallCartridgeModules()),
+            FOUR_FIVE_ACP = new CartridgeBase("45acp", AmmunitionSize.SMALL, AmmunitionBase.getSmallCartridgeModules()),
 
-            FIFTY_AE = CartridgeBase.register("50ae", AmmunitionSize.SMALL, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
+            FIFTY_AE = new CartridgeBase("50ae", AmmunitionSize.SMALL, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
 
-            MAGNUM_R = CartridgeBase.register("magnum_r", AmmunitionSize.SMALL, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
+            MAGNUM_R = new CartridgeBase("magnum_r", AmmunitionSize.SMALL, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
 
-            TWELVE_G = CartridgeBase.register("12g", AmmunitionSize.SHELL, AmmunitionBase.getShellCartridgeModules()),
+            TWELVE_G = new CartridgeBase("12g", AmmunitionSize.SHELL, AmmunitionBase.getShellCartridgeModules()),
 
-            THIRTY_ZERO_SIX = CartridgeBase.register("30_06", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
+            THIRTY_ZERO_SIX = new CartridgeBase("30_06", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            FOUR_SIX_X_THIRTY = CartridgeBase.register("46x30", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
+            FOUR_SIX_X_THIRTY = new CartridgeBase("46x30", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            FIFTY_BMG = CartridgeBase.register("50bmg", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules(ModTags.moltenIronsTag())),
+            FIFTY_BMG = new CartridgeBase("50bmg", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules(ModTags.moltenIronsTag())),
 
-            FIVE_EIGHT_X_FOUR_TWO = CartridgeBase.register("58x42", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
+            FIVE_EIGHT_X_FOUR_TWO = new CartridgeBase("58x42", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
 
-            SIX_EIGHT_X_FIVE_ONE_FURY = CartridgeBase.register("68x51fury", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
+            SIX_EIGHT_X_FIVE_ONE_FURY = new CartridgeBase("68x51fury", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
 
-            THREE_ZERO_EIGHT = CartridgeBase.register("308", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules()),
+            THREE_ZERO_EIGHT = new CartridgeBase("308", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules()),
 
-            THREE_THREE_EIGHT = CartridgeBase.register("338", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules()),
+            THREE_THREE_EIGHT = new CartridgeBase("338", AmmunitionSize.LONG, AmmunitionBase.getLongCartridgeModules()),
 
-            FIVE_FIVE_SIX_X_FOUR_FIVE = CartridgeBase.register("556x45", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
+            FIVE_FIVE_SIX_X_FOUR_FIVE = new CartridgeBase("556x45", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            SEVEN_SIX_TWO_X_TWO_FIVE = CartridgeBase.register("762x25", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
+            SEVEN_SIX_TWO_X_TWO_FIVE = new CartridgeBase("762x25", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules()),
 
-            SEVEN_SIX_TWO_X_THREE_NINE = CartridgeBase.register("762x39", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
+            SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
 
-            SEVEN_SIX_TWO_X_FIVE_FOUR = CartridgeBase.register("762x54", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules());
+            SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54", AmmunitionSize.MEDIUM, AmmunitionBase.getMediumCartridgeModules());
 
     // Weapons
     // Guns

@@ -28,60 +28,9 @@ public class AmmunitionRegistryManager {
     public static List<AmmunitionModule> modules = new ArrayList<>();
 
     public static AmmunitionModule register(AmmunitionModule module){
-        String fluidTagType = "";
-        String[] splitted = module.getFillingFluid().toString().split("_"); // e.g. ["molten", "iron", "fluids"]
-        for(int i = 1; i < splitted.length - 1; i++){
-            fluidTagType += splitted[i];
-            if(i < splitted.length - 2) fluidTagType += "_";
-        }
-
-        String itemId = String.format("%s_%s_%s_component", module.getSize(), fluidTagType, module.getType());
-        RegistryEntry<Item> item = ModItems.addToList(Main.REGISTRATE.item(itemId, Item::new)
-                .tag(
-                        ModTags.ammunitionComponentsTag(),
-                        (
-                                module.getFillingFluid() == ModTags.moltenIronsTag() ? ModTags.ironAmmunitionComponentsTag() :
-                                module.getFillingFluid() == ModTags.moltenCoppersTag() ? ModTags.copperAmmunitionComponentsTag() :
-                                ModTags.brassAmmunitionComponentsTag()
-                        ),
-                        (
-                                module.getType() == AmmunitionMaterialType.CASING ? ModTags.ammunitionCasingComponentsTag() :
-                                module.getType() == AmmunitionMaterialType.HEAD ? ModTags.ammunitionHeadComponentsTag() :
-                                module.getType() == AmmunitionMaterialType.PELLETS ? ModTags.ammunitionPelletsComponentsTag() :
-                                ModTags.ammunitionWasteComponentsTag()
-                        ),
-                        (
-                                module.getSize() == AmmunitionSize.SMALL ? ModTags.smallAmmunitionComponentsTag() :
-                                module.getSize() == AmmunitionSize.MEDIUM ? ModTags.mediumAmmunitionComponentsTag() :
-                                module.getSize() == AmmunitionSize.LONG ? ModTags.longAmmunitionComponentsTag() :
-                                ModTags.shellAmmunitionComponentsTag()
-                        )
-                )
-                .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
-                .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "modules", itemId))
-                .register(), ModCreativeModTabs.Tabs.Components);
-        RegistryEntry<Item> cast = ModItems.addToList(Main.REGISTRATE.item(itemId + "_cast", Item::new)
-                .tag(ModTags.ammunitionComponentCastsTag())
-                .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
-                .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "casts", itemId))
-                .register(), ModCreativeModTabs.Tabs.Casts);
-        RegistryEntry<Item> blueprint = ModItems.addToList(Main.REGISTRATE.item(itemId + "_blueprint", Item::new)
-                .tag(ModTags.ammunitionComponentBlueprintsTag())
-                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
-                .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "blueprints", itemId))
-                .register(), ModCreativeModTabs.Tabs.Blueprints);
-
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("filling/ammunition_modules/" + itemId + "_cast_filling"))
-                .output(item.get(), module.getCastResultCount())
-                .require(cast.get())
-                .require(module.getFillingFluid(), module.getCastFillingAmount()));
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/ammunition_modules/" + itemId + "_cast_cutting"))
-                .output(item.get(), 1)
-                .require(ModItems.BLANK_CAST.get()));
-
-        items.put(module, item);
-        casts.put(module, cast);
-        blueprints.put(module, blueprint);
+        items.put(module, module.item);
+        casts.put(module, module.cast);
+        blueprints.put(module, module.blueprint);
 
         modules.add(module);
 

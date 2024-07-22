@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "prma:long_copper_head_component_blueprint"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:long_copper_head_component_cast"
+    }
+  ]
+}

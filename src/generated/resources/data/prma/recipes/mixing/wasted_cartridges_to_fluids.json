@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "ingredients": [],
+  "results": [
+    {
+      "amount": 50,
+      "fluid": "prma:molten_copper"
+    },
+    {
+      "amount": 50,
+      "fluid": "prma:molten_basalt_infused_iron"
+    },
+    {
+      "amount": 50,
+      "fluid": "prma:molten_brass"
+    }
+  ]
+}

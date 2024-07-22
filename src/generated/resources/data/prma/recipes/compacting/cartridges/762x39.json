@@ -1,0 +1,22 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "item": "prma:medium_ammunition_gunpowder"
+    },
+    {
+      "item": "prma:medium_copper_head_component"
+    },
+    {
+      "item": "prma:medium_iron_casing_component"
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:762x39"
+      }
+    }
+  ]
+}

@@ -32,7 +32,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.RAW_COPPER_POWDER.get());
         simpleItem(ModItems.BASALT_POWDER.get());
         simpleItem(ModItems.RAW_SULFUR_POWDER.get());
-        simpleItem(ModItems.GUNPOWDER_PELLETS.get());
         simpleItem(ModItems.CRUSHED_BASALT.get());
         simpleItem(ModItems.UNFORMED_BASALT.get());
         simpleItem(ModItems.STRAIGHT_SMALL_COIL.get());

@@ -1,0 +1,12 @@
+{
+  "type": "prma:decomponentalizing",
+  "ingredient": {
+    "type": "forge:partial_nbt",
+    "item": "tacz:ammo",
+    "nbt": "{AmmoId:\"tacz:45acp\"}"
+  },
+  "processingTime": 400,
+  "result": {
+    "item": "prma:small_brass_casing_component_blueprint"
+  }
+}

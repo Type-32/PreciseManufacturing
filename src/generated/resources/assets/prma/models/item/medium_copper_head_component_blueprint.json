@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/ammunition_components/blueprints/medium_copper_head_component_blueprint"
+  }
+}

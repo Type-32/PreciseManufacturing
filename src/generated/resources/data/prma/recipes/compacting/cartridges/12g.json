@@ -1,0 +1,22 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "prma:shell_iron_pellets_component"
+    },
+    {
+      "item": "prma:shell_brass_casing_component"
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:12g"
+      }
+    }
+  ]
+}

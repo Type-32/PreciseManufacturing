@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:small_brass_casing_component_cast"
+    },
+    {
+      "amount": 120,
+      "fluidTag": "prma:molten_brass_fluids"
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "prma:small_brass_casing_component"
+    }
+  ]
+}

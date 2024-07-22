@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:long_copper_head_component_cast"
+    },
+    {
+      "amount": 180,
+      "fluidTag": "prma:molten_copper_fluids"
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "prma:long_copper_head_component"
+    }
+  ]
+}

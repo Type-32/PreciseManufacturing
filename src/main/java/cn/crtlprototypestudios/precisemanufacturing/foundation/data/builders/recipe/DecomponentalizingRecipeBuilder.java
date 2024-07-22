@@ -84,6 +84,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
         private final int processingTime;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
+        private static int uniqueid = 1;
 
         public Result(ResourceLocation pId, Ingredient pIngredient, Item pResult, int pProcessingTime, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
             this.id = pId;
@@ -108,7 +109,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
          * Gets the ID for the recipe.
          */
         public ResourceLocation getId() {
-            return ResourceHelper.find(this.result.toString() + "_from_decomponentalizing");
+            return ResourceHelper.find(this.result.toString() + "_from_decomp_with" + String.format("_%s", getUniqueIngredientId()));
         }
 
         public RecipeSerializer<?> getType() {
@@ -130,6 +131,14 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
         @javax.annotation.Nullable
         public ResourceLocation getAdvancementId() {
             return this.advancementId;
+        }
+
+        public String getUniqueIngredientId(){
+            try {
+                return ingredient.getItems()[0].getTag().get("AmmoId").getAsString().substring(6);
+            } catch (Exception e) {
+                return ingredient.getItems()[0].getItem().toString();
+            }
         }
     }
 }
