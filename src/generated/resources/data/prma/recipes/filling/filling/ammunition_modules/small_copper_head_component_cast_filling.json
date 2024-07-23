@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:small_copper_head_component_cast"
+    },
+    {
+      "amount": 80,
+      "fluidTag": "prma:molten_copper_fluids"
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "prma:small_copper_head_component"
+    }
+  ]
+}

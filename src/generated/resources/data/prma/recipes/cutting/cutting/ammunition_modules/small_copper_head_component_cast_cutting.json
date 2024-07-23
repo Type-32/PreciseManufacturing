@@ -1,0 +1,13 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "prma:blank_cast"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:small_copper_head_component_cast"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "amount": 250,
+      "fluid": "prma:molten_basalt_infused_iron",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:molten_basalt_infused_iron_bucket"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "prma:raw_sulfur_powder"
+    }
+  ],
+  "processingTime": 80,
+  "results": [
+    {
+      "item": "prma:sulfur_powder"
+    }
+  ]
+}

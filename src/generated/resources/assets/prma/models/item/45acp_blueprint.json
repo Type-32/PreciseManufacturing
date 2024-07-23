@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/cartridge_blueprint/45acp_blueprint"
+  }
+}

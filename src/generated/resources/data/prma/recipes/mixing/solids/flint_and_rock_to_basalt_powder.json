@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "prma:flint_powder"
+    },
+    {
+      "item": "prma:rock_powder"
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "prma:basalt_powder"
+    }
+  ]
+}

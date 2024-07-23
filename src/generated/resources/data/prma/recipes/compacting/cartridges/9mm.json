@@ -1,0 +1,22 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "item": "prma:small_ammunition_gunpowder"
+    },
+    {
+      "item": "prma:small_copper_head_component"
+    },
+    {
+      "item": "prma:small_brass_casing_component"
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:9mm"
+      }
+    }
+  ]
+}

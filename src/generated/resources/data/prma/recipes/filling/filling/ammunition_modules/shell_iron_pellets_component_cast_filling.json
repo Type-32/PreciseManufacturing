@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "prma:shell_iron_pellets_component_cast"
+    },
+    {
+      "amount": 60,
+      "fluidTag": "prma:molten_iron_fluids"
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "prma:shell_iron_pellets_component"
+    }
+  ]
+}

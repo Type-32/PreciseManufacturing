@@ -1,0 +1,14 @@
+{
+  "values": [
+    "prma:small_copper_head_component",
+    "prma:small_brass_casing_component",
+    "prma:medium_copper_head_component",
+    "prma:medium_brass_casing_component",
+    "prma:medium_iron_casing_component",
+    "prma:long_copper_head_component",
+    "prma:long_brass_casing_component",
+    "prma:long_iron_casing_component",
+    "prma:shell_iron_pellets_component",
+    "prma:shell_brass_casing_component"
+  ]
+}

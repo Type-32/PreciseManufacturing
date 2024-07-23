@@ -1,0 +1,36 @@
+{
+  "type": "create:mechanical_crafting",
+  "acceptMirrored": true,
+  "key": {
+    "E": {
+      "item": "create:electron_tube"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "H": {
+      "item": "create:brass_hand"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "M": {
+      "item": "create:precision_mechanism"
+    },
+    "P": {
+      "item": "create:iron_sheet"
+    },
+    "S": {
+      "item": "create:andesite_casing"
+    }
+  },
+  "pattern": [
+    "PPPP",
+    "PHEP",
+    "PMGP",
+    "SIIS"
+  ],
+  "result": {
+    "item": "prma:decomponentalizer"
+  }
+}

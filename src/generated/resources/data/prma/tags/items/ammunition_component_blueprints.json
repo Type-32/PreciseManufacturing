@@ -1,0 +1,14 @@
+{
+  "values": [
+    "prma:small_copper_head_component_blueprint",
+    "prma:small_brass_casing_component_blueprint",
+    "prma:medium_copper_head_component_blueprint",
+    "prma:medium_brass_casing_component_blueprint",
+    "prma:medium_iron_casing_component_blueprint",
+    "prma:long_copper_head_component_blueprint",
+    "prma:long_brass_casing_component_blueprint",
+    "prma:long_iron_casing_component_blueprint",
+    "prma:shell_iron_pellets_component_blueprint",
+    "prma:shell_brass_casing_component_blueprint"
+  ]
+}
