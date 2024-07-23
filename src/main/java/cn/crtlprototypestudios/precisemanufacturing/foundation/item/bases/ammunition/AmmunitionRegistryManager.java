@@ -34,7 +34,7 @@ public class AmmunitionRegistryManager {
 
         modules.add(module);
 
-        return module;
+        return ModRecipeProvider.addAmmunitionModule(module);
     }
 
     public static AmmunitionItems getAmmunitionItems(AmmunitionModule module){

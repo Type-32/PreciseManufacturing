@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "prma:item/weapons/general/guns/casts/general_bolt_cast"
-  }
-}

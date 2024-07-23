@@ -35,11 +35,12 @@ public class CartridgeBase extends AmmunitionBase {
     public final RegistryEntry<Item> cartridgeBlueprint;
     public final AmmunitionModule[] ammunitionModules;
     public final AmmunitionSize categorizingSize;
+    public final int requiredGunpowderCount;
 
     /**
      * Outdated Documentation. TODO Need to update documentation.
      */
-    public CartridgeBase(String coreId, AmmunitionSize categorizingSize, AmmunitionModule... ammunitionModules) {
+    public CartridgeBase(String coreId, AmmunitionSize categorizingSize, int requiredGunpowderCount, AmmunitionModule... ammunitionModules) {
         super(coreId);
 
         RegistryEntry<Item> cartridgeBlueprint = Main.REGISTRATE.item(coreId + "_blueprint", Item::new)
@@ -47,6 +48,7 @@ public class CartridgeBase extends AmmunitionBase {
                 .tag(ModTags.cartridgeBlueprintTag())
                 .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
                 .register();
+
         ModItems.addToList(cartridgeBlueprint, ModCreativeModTabs.Tabs.Blueprints);
 
         this.cartridgeBlueprint = cartridgeBlueprint;
@@ -54,6 +56,8 @@ public class CartridgeBase extends AmmunitionBase {
         this.ammunitionModules = ammunitionModules;
 
         this.categorizingSize = categorizingSize;
+
+        this.requiredGunpowderCount = requiredGunpowderCount;
 
         ModRecipeProvider.addCartridgeBase(this);
     }
@@ -71,19 +75,20 @@ public class CartridgeBase extends AmmunitionBase {
             RegistryEntry<Item> main = AmmunitionRegistryManager.items.get(m);
 
             ModDecomponentalizingRecipesGen.add(ammoStack, blueprint.get(), 400);
-//            ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, cast.get(), 1).requires(Items.IRON_INGOT).requires(blueprint.get()).group("cast_").unlockedBy(RegistrateRecipeProvider.getHasName(Items.PAPER), RegistrateRecipeProvider.has(Items.PAPER)));
 
             mainItems.add(main);
         }
 
+        Item temoGunpowder = (categorizingSize == AmmunitionSize.SMALL ? ModItems.SMALL_AMMUNITION_GUNPOWDER.get() :
+                                categorizingSize == AmmunitionSize.MEDIUM ? ModItems.MEDIUM_AMMUNITION_GUNPOWDER.get() :
+                                categorizingSize == AmmunitionSize.LONG ? ModItems.LONG_AMMUNITION_GUNPOWDER.get() :
+                                Items.GUNPOWDER);
         ProcessingRecipeBuilder<CompactingRecipe> pressingRecipe = new ProcessingRecipeBuilder<>(CompactingRecipe::new, ResourceHelper.find("cartridges/" + getCoreId()))
-                .output(ammoStack)
-                .require(
-                        (categorizingSize == AmmunitionSize.SMALL ? ModItems.SMALL_AMMUNITION_GUNPOWDER.get() :
-                        categorizingSize == AmmunitionSize.MEDIUM ? ModItems.MEDIUM_AMMUNITION_GUNPOWDER.get() :
-                        categorizingSize == AmmunitionSize.LONG ? ModItems.LONG_AMMUNITION_GUNPOWDER.get() :
-                        Items.GUNPOWDER)
-                );
+                .output(ammoStack);
+
+        for(int i = 0; i < requiredGunpowderCount; i++) {
+            pressingRecipe.require(temoGunpowder);
+        }
 
         for(RegistryEntry<Item> m : mainItems) {
             pressingRecipe.require(m.get());

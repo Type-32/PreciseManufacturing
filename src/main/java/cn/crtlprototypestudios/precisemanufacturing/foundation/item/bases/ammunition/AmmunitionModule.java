@@ -7,6 +7,7 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.simibubi.create.AllTags;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
@@ -142,7 +143,8 @@ public class AmmunitionModule {
                                 getSize() == AmmunitionSize.MEDIUM ? ModTags.mediumAmmunitionComponentsTag() :
                                 getSize() == AmmunitionSize.LONG ? ModTags.longAmmunitionComponentsTag() :
                                 ModTags.shellAmmunitionComponentsTag()
-                        )
+                        ),
+                        AllTags.AllItemTags.UPRIGHT_ON_BELT.tag
                 )
                 .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "modules", itemId))
@@ -162,7 +164,7 @@ public class AmmunitionModule {
         ModItems.addToList(this.cast, ModCreativeModTabs.Tabs.Casts);
         ModItems.addToList(this.blueprint, ModCreativeModTabs.Tabs.Blueprints);
 
-        return ModRecipeProvider.addAmmunitionModule(this);
+        return this;
     }
 
     public void registerRecipes(){

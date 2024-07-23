@@ -7,6 +7,8 @@ import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.rec
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.content.fluids.transfer.EmptyingRecipe;
+import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
@@ -22,6 +24,7 @@ import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
@@ -43,6 +46,7 @@ public class ModRecipesGen {
                 .output(ModItems.SMALL_AMMUNITION_GUNPOWDER.get())
                 .require(Items.GUNPOWDER)
                 .require(ModItems.FLINT_POWDER.get())
+                .require(ModItems.FLINT_POWDER.get())
                 .duration(100)
         );
 //        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.smallAmmunitionGunpowdersTag()).group("small_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "small", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
@@ -52,6 +56,7 @@ public class ModRecipesGen {
                 .output(ModItems.MEDIUM_AMMUNITION_GUNPOWDER.get())
                 .require(Items.GUNPOWDER)
                 .require(ModItems.RAW_SULFUR_POWDER.get())
+                .require(ModItems.RAW_SULFUR_POWDER.get())
                 .duration(100)
         );
 //        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.mediumAmmunitionGunpowdersTag()).group("medium_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "_medium", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
@@ -59,6 +64,7 @@ public class ModRecipesGen {
         // Long Ammunition Gunpowder Crafting and Uncrafting
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("long_ammunition_gunpowder_mixing"))
                 .output(ModItems.LONG_AMMUNITION_GUNPOWDER.get())
+                .require(Items.GUNPOWDER)
                 .require(Items.GUNPOWDER)
                 .require(ModItems.SULFUR_POWDER.get())
                 .duration(100)
@@ -167,9 +173,9 @@ public class ModRecipesGen {
 
         // Misc Mixing to Gunpowder
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("powders_to_gunpowder"))
-                .output(Items.GUNPOWDER, 3)
+                .output(Items.GUNPOWDER, 2)
                 .require(ModItems.BASALT_POWDER.get())
-                .require(ModItems.RAW_SULFUR_POWDER.get())
+                .require(ModItems.FLINT_POWDER.get())
                 .require(Items.SUGAR)
                 .require(Items.CHARCOAL));
 
@@ -179,10 +185,47 @@ public class ModRecipesGen {
                 .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 50)
                 .output(ModFluids.MOLTEN_BRASS.get(), 50));
 
+        // Craft Blank Blueprint from Paper and Dye
         ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BLANK_BLUEPRINT.get(), 3)
                 .requires(Items.PAPER)
                 .requires(Items.WHITE_DYE)
                 .requires(Items.BLUE_DYE)
                 .unlockedBy(RegistrateRecipeProvider.getHasName(Items.PAPER), RegistrateRecipeProvider.has(Items.PAPER)));
+
+        // Fill Molten Basalt Infused Iron Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_basalt_infused_iron_bucket"))
+                .output(ModItems.MOLTEN_BASALT_INFUSED_IRON_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 250));
+
+        // Fill Molten Brass Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_brass_bucket"))
+                .output(ModItems.MOLTEN_BRASS_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(ModFluids.MOLTEN_BRASS.get(), 250));
+
+        // Fill Molten Copper Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_copper_bucket"))
+                .output(ModItems.MOLTEN_COPPER_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(ModFluids.MOLTEN_COPPER.get(), 250));
+
+        // Empty Molten Basalt Infused Iron Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_basalt_infused_iron_bucket"))
+                .output(Items.BUCKET)
+                .require(ModItems.MOLTEN_BASALT_INFUSED_IRON_BUCKET.get())
+                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 250));
+
+        // Empty Molten Brass Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_brass_bucket"))
+                .output(Items.BUCKET)
+                .require(ModItems.MOLTEN_BRASS_BUCKET.get())
+                .output(ModFluids.MOLTEN_BRASS.get(), 250));
+
+        // Empty Molten Copper Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_copper_bucket"))
+                .output(Items.BUCKET)
+                .require(ModItems.MOLTEN_COPPER_BUCKET.get())
+                .output(ModFluids.MOLTEN_COPPER.get(), 250));
     }
 }
