@@ -78,8 +78,8 @@ public class ModItems {
             M_SCREW = addToList(Main.REGISTRATE.item("m_screw", Item::new).tag(ModTags.componentsTag()).register()),
             THIN_SMALL_ROD = addToList(Main.REGISTRATE.item("thin_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
             THICK_SMALL_ROD = addToList(Main.REGISTRATE.item("thick_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
-            BLANK_BLUEPRINT = addToList(Main.REGISTRATE.item("blank_blueprint", Item::new).register()),
-            BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register());
+            BLANK_BLUEPRINT = addToList(Main.REGISTRATE.item("blank_blueprint", Item::new).register(), ModCreativeModTabs.Tabs.Blueprints),
+            BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register(), ModCreativeModTabs.Tabs.Casts);
 
 
     // Buckets
@@ -130,7 +130,9 @@ public class ModItems {
 
             SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronsTag())),
 
-            SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules());
+            SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules()),
+
+            THREE_FIVE_SEVEN = new CartridgeBase("357", AmmunitionSize.SMALL, 2, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3));
 
     // Weapons
     // Guns

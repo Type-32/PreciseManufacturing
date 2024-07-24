@@ -11,6 +11,21 @@
       "item": "prma:shell_iron_pellets_component"
     },
     {
+      "item": "prma:shell_iron_pellets_component"
+    },
+    {
+      "item": "prma:shell_iron_pellets_component"
+    },
+    {
+      "item": "prma:shell_iron_pellets_component"
+    },
+    {
+      "item": "prma:shell_iron_pellets_component"
+    },
+    {
+      "item": "prma:shell_iron_pellets_component"
+    },
+    {
       "item": "prma:shell_brass_casing_component"
     }
   ],
@@ -20,6 +35,9 @@
       "nbt": {
         "AmmoId": "tacz:12g"
       }
+    },
+    {
+      "item": "prma:12g_blueprint"
     }
   ]
 }

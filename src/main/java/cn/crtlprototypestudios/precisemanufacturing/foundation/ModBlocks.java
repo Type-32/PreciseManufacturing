@@ -22,6 +22,7 @@ public class ModBlocks {
             .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
             .transform(TagGen.pickaxeOnly())
             .item()
+            .tab(ModCreativeModTabs.MOD_TAB.getKey())
             .transform(ModelGen.customItemModel())
             .register();
 

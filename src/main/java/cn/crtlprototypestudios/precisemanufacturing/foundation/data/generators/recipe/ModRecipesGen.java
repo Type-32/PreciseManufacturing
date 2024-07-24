@@ -1,11 +1,13 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe;
 
+import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe.DecomponentalizingRecipeBuilder;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.transfer.EmptyingRecipe;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
@@ -18,6 +20,7 @@ import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
+import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
 import com.simibubi.create.foundation.data.recipe.WashingRecipeGen;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -27,6 +30,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
 import java.util.ArrayList;
@@ -227,5 +231,19 @@ public class ModRecipesGen {
                 .output(Items.BUCKET)
                 .require(ModItems.MOLTEN_COPPER_BUCKET.get())
                 .output(ModFluids.MOLTEN_COPPER.get(), 250));
+
+        // Decomponentalizer Crafting Recipe
+        MechanicalCraftingRecipeBuilder.shapedRecipe(ModBlocks.DECOMPONENTALIZER.get())
+                .key('E', AllItems.ELECTRON_TUBE.get())
+                .key('P', AllItems.IRON_SHEET.get())
+                .key('H', AllItems.BRASS_HAND.get())
+                .key('S', AllBlocks.ANDESITE_CASING.get())
+                .key('I', Blocks.IRON_BLOCK)
+                .key('M', AllItems.PRECISION_MECHANISM.get())
+                .key('G', Blocks.GLASS_PANE)
+                .patternLine("PPPP")
+                .patternLine("PHEP")
+                .patternLine("PMGP")
+                .patternLine("SIIS").build(pFinishedRecipeConsumer);
     }
 }

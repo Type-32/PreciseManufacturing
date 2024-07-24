@@ -1,12 +1,13 @@
-// 1.20.1	2024-07-22T23:02:54.069193	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-07-23T21:27:01.430886	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 73a5900c9e85fb6168ad8dacfd8196e1ab94a8d1 assets/prma/blockstates/decomponentalizer.json
-167cff0ee449c8ddb9399381123c7f2a77d4d60e assets/prma/lang/en_ud.json
-03dc766ed7e99332d9ec92327e450ea7fc56f736 assets/prma/lang/en_us.json
+c6501ba0fbb3d2fbb2b12f01a5da5cc4be5d232f assets/prma/lang/en_ud.json
+82aec96b655e832c25979e723243101519d2888a assets/prma/lang/en_us.json
 a643575ae10061b471b4f96e4c7bc1132ac6282a assets/prma/models/block/decomponentalizer.json
 549e0aa77abe655ce179df8e735861238d413b78 assets/prma/models/item/12g_blueprint.json
 83bea14d3f17971492b4e3195aa637f799df2273 assets/prma/models/item/308_blueprint.json
 0bc2c37d14a50644328cd9069147db1eadcf079e assets/prma/models/item/30_06_blueprint.json
 6e08f7cfdab7f4881fab174a4cc4ddb237489b39 assets/prma/models/item/338_blueprint.json
+184fecca1cca7c208fd2b867c1685fa78cccb89e assets/prma/models/item/357_blueprint.json
 4f640f423539407d7f22119da583309b81ef245f assets/prma/models/item/45acp_blueprint.json
 8020ee25cf8518132b436181868898fd688bdbb6 assets/prma/models/item/46x30_blueprint.json
 a6caf9a0e7b3552eb0ed70fa198116f15d8d7541 assets/prma/models/item/50ae_blueprint.json
@@ -89,7 +90,7 @@ c7d32053c13baa89aae88d964464ec3058db10fa data/prma/tags/items/ammunition_compone
 6bdbdc7b49aea9610c8ccbbe5294bdc0751aa7d3 data/prma/tags/items/ammunition_head_components.json
 007dd417091188f2796cabcef116fac73b03be5c data/prma/tags/items/ammunition_pellets_components.json
 45063d7057c64e8534f9d406b16128f354289ddc data/prma/tags/items/brass_ammunition_components.json
-454ddc588df64d694cf3afd73ca5ef2d0056a9e8 data/prma/tags/items/cartridge_blueprints.json
+4930b382c45955ab5f35c68b9c38ef23f2805391 data/prma/tags/items/cartridge_blueprints.json
 13ccefb012cbfa89d8ef27a3abe72e3d4bbfe578 data/prma/tags/items/components.json
 6bdbdc7b49aea9610c8ccbbe5294bdc0751aa7d3 data/prma/tags/items/copper_ammunition_components.json
 6b4ecac70eae826f5bcac85e6df878c5c6517df8 data/prma/tags/items/iron_ammunition_components.json

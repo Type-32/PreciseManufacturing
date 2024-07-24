@@ -17,6 +17,9 @@
       "nbt": {
         "AmmoId": "tacz:45acp"
       }
+    },
+    {
+      "item": "prma:45acp_blueprint"
     }
   ]
 }

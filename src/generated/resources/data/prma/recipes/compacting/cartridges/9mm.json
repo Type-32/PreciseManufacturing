@@ -17,6 +17,9 @@
       "nbt": {
         "AmmoId": "tacz:9mm"
       }
+    },
+    {
+      "item": "prma:9mm_blueprint"
     }
   ]
 }

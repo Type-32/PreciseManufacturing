@@ -2,7 +2,6 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModRecipesGen;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.create_compat.ModMechanicalCraftingRecipeGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionModule;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleBase;
@@ -34,7 +33,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ammunitionModules.forEach(AmmunitionModule::registerRecipes);
         cartridgeBases.forEach(CartridgeBase::registerRecipes);
 
-        ModMechanicalCraftingRecipeGen.register(pFinishedRecipeConsumer);
         ModDecomponentalizingRecipesGen.register(pFinishedRecipeConsumer);
         ModRecipesGen.register(pFinishedRecipeConsumer);
 

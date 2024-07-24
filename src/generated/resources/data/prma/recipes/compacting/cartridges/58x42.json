@@ -17,6 +17,9 @@
       "nbt": {
         "AmmoId": "tacz:58x42"
       }
+    },
+    {
+      "item": "prma:58x42_blueprint"
     }
   ]
 }

@@ -20,6 +20,9 @@
       "nbt": {
         "AmmoId": "tacz:68x51fury"
       }
+    },
+    {
+      "item": "prma:68x51fury_blueprint"
     }
   ]
 }

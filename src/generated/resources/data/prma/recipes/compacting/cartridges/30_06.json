@@ -17,6 +17,9 @@
       "nbt": {
         "AmmoId": "tacz:30_06"
       }
+    },
+    {
+      "item": "prma:30_06_blueprint"
     }
   ]
 }

@@ -84,10 +84,21 @@ public class CartridgeBase extends AmmunitionBase {
                                 categorizingSize == AmmunitionSize.LONG ? ModItems.LONG_AMMUNITION_GUNPOWDER.get() :
                                 Items.GUNPOWDER);
         ProcessingRecipeBuilder<CompactingRecipe> pressingRecipe = new ProcessingRecipeBuilder<>(CompactingRecipe::new, ResourceHelper.find("cartridges/" + getCoreId()))
-                .output(ammoStack);
+                .output(ammoStack).output(cartridgeBlueprint.get(), 1);
 
         for(int i = 0; i < requiredGunpowderCount; i++) {
             pressingRecipe.require(temoGunpowder);
+        }
+
+        if(categorizingSize == AmmunitionSize.SHELL){
+            for(AmmunitionModule m : ammunitionModules) {
+                if(m.getType() == AmmunitionMaterialType.PELLETS){
+                    for(int i = 0; i < 5; i++) {
+                        pressingRecipe.require(m.item.get());
+                    }
+                    break;
+                }
+            }
         }
 
         for(RegistryEntry<Item> m : mainItems) {

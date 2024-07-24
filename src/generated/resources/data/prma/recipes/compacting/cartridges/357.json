@@ -2,10 +2,13 @@
   "type": "create:compacting",
   "ingredients": [
     {
-      "item": "prma:medium_ammunition_gunpowder"
+      "item": "prma:small_ammunition_gunpowder"
     },
     {
-      "item": "prma:medium_copper_head_component"
+      "item": "prma:small_ammunition_gunpowder"
+    },
+    {
+      "item": "prma:small_copper_head_component"
     },
     {
       "item": "prma:medium_brass_casing_component"
@@ -15,11 +18,11 @@
     {
       "item": "tacz:ammo",
       "nbt": {
-        "AmmoId": "tacz:556x45"
+        "AmmoId": "tacz:357"
       }
     },
     {
-      "item": "prma:556x45_blueprint"
+      "item": "prma:357_blueprint"
     }
   ]
 }

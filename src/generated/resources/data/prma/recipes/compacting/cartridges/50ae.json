@@ -20,6 +20,9 @@
       "nbt": {
         "AmmoId": "tacz:50ae"
       }
+    },
+    {
+      "item": "prma:50ae_blueprint"
     }
   ]
 }

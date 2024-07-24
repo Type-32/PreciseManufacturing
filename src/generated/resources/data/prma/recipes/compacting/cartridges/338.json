@@ -20,6 +20,9 @@
       "nbt": {
         "AmmoId": "tacz:338"
       }
+    },
+    {
+      "item": "prma:338_blueprint"
     }
   ]
 }

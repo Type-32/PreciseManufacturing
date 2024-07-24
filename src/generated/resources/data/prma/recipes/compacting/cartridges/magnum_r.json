@@ -20,6 +20,9 @@
       "nbt": {
         "AmmoId": "tacz:magnum_r"
       }
+    },
+    {
+      "item": "prma:magnum_r_blueprint"
     }
   ]
 }

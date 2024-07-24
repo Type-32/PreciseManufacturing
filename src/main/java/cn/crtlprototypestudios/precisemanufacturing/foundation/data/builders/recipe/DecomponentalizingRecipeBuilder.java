@@ -135,7 +135,7 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
 
         public String getUniqueIngredientId(){
             try {
-                return ingredient.getItems()[0].getTag().get("AmmoId").getAsString().substring(6);
+                return ingredient.getItems()[0].getTag().get("AmmoId").getAsString().substring(5);
             } catch (Exception e) {
                 return ingredient.getItems()[0].getItem().toString();
             }
