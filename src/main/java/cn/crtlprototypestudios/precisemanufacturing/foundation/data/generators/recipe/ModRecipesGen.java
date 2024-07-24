@@ -132,48 +132,55 @@ public class ModRecipesGen {
                 .output(ModFluids.MOLTEN_COPPER.get(), 80)
                 .require(ModItems.BASALT_POWDER.get())
                 .require(AllItems.COPPER_NUGGET.get())
-                .requiresHeat(HeatCondition.HEATED));
+                .requiresHeat(HeatCondition.HEATED)
+                .duration(160));
 
         // Melting Copper Ingots
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/copper_ingot_to_molten_copper"))
                 .output(ModFluids.MOLTEN_COPPER.get(), 720)
                 .require(ModItems.CRUSHED_BASALT.get())
                 .require(Items.COPPER_INGOT)
-                .requiresHeat(HeatCondition.HEATED));
+                .requiresHeat(HeatCondition.HEATED)
+                .duration(360));
 
         // Melting Brass Nuggets
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/brass_nugget_to_molten_brass"))
                 .output(ModFluids.MOLTEN_BRASS.get(), 80)
                 .require(ModItems.BASALT_POWDER.get())
                 .require(AllItems.BRASS_NUGGET.get())
-                .requiresHeat(HeatCondition.HEATED));
+                .requiresHeat(HeatCondition.HEATED)
+                .duration(160));
 
         // Melting Brass Ingots
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/brass_ingot_to_molten_brass"))
                 .output(ModFluids.MOLTEN_BRASS.get(), 720)
                 .require(ModItems.CRUSHED_BASALT.get())
                 .require(AllItems.BRASS_INGOT.get())
-                .requiresHeat(HeatCondition.HEATED));
+                .requiresHeat(HeatCondition.HEATED)
+                .duration(360));
 
         // Melting Iron Nuggets
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/iron_nugget_to_molten_iron"))
                 .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 80)
                 .require(ModItems.BASALT_POWDER.get())
                 .require(Items.IRON_NUGGET)
-                .requiresHeat(HeatCondition.HEATED));
+                .requiresHeat(HeatCondition.HEATED)
+                .duration(160));
 
         // Melting Iron Ingots
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/iron_ingot_to_molten_iron"))
                 .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 720)
                 .require(ModItems.CRUSHED_BASALT.get())
                 .require(Items.IRON_INGOT)
-                .requiresHeat(HeatCondition.HEATED));
+                .requiresHeat(HeatCondition.HEATED)
+                .duration(360));
 
         // Flint and Rock Powder mix to Basalt Powder
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("solids/flint_and_rock_to_basalt_powder"))
                 .output(ModItems.BASALT_POWDER.get(), 2)
                 .require(ModItems.FLINT_POWDER.get())
-                .require(ModItems.ROCK_POWDER.get()));
+                .require(ModItems.ROCK_POWDER.get())
+                .duration(300));
 
         // Misc Mixing to Gunpowder
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("powders_to_gunpowder"))
@@ -181,12 +188,14 @@ public class ModRecipesGen {
                 .require(ModItems.BASALT_POWDER.get())
                 .require(ModItems.FLINT_POWDER.get())
                 .require(Items.SUGAR)
-                .require(Items.CHARCOAL));
+                .require(Items.CHARCOAL)
+                .duration(100));
 
         // Ammo Waste to Molten Fluids
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("wasted_cartridges_to_fluids"))
                 .output(ModFluids.MOLTEN_COPPER.get(), 50)
                 .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 50)
+                .duration(200)
                 .output(ModFluids.MOLTEN_BRASS.get(), 50));
 
         // Craft Blank Blueprint from Paper and Dye
@@ -245,5 +254,21 @@ public class ModRecipesGen {
                 .patternLine("PHEP")
                 .patternLine("PMGP")
                 .patternLine("SIIS").build(pFinishedRecipeConsumer);
+
+        // Copper Dust Mixing into Nugget
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/copper_dust_to_nugget"))
+                .output(AllItems.COPPER_NUGGET.get(), 2)
+                .require(ModItems.RAW_COPPER_POWDER.get())
+                .require(ModItems.RAW_COPPER_POWDER.get())
+                .duration(200)
+                .require(Items.IRON_NUGGET));
+
+        // Zinc Dust Mixing into Nugget
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/zinc_dust_to_nugget"))
+                .output(AllItems.ZINC_NUGGET.get(), 2)
+                .require(ModItems.RAW_ZINC_POWDER.get())
+                .require(ModItems.RAW_ZINC_POWDER.get())
+                .duration(200)
+                .require(Items.IRON_NUGGET));
     }
 }

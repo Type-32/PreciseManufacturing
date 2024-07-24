@@ -1,0 +1,21 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "prma:raw_copper_powder"
+    },
+    {
+      "item": "prma:raw_copper_powder"
+    },
+    {
+      "item": "minecraft:iron_nugget"
+    }
+  ],
+  "processingTime": 200,
+  "results": [
+    {
+      "count": 2,
+      "item": "create:copper_nugget"
+    }
+  ]
+}
