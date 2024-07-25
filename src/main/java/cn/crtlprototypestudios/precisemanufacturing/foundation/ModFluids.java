@@ -8,6 +8,11 @@ import com.simibubi.create.content.fluids.VirtualFluid;
 import com.tterrag.registrate.util.entry.FluidEntry;
 
 public class ModFluids {
+    static {
+        // Set that all registered Items and Blocks defaults under this Mod's creative tabs
+        Main.REGISTRATE.defaultCreativeTab(ModCreativeModTabs.MOD_TAB.getKey());
+    }
+
     public static final FluidEntry<? extends VirtualFluid>
             MOLTEN_COPPER = Main.REGISTRATE.extendedVirtualFluid("molten_copper", MoltenCopperFluid::new)
                 .lang("Molten Copper")
