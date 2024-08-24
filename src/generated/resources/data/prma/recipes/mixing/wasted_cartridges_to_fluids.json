@@ -1,6 +1,10 @@
 {
   "type": "create:mixing",
-  "ingredients": [],
+  "ingredients": [
+    {
+      "tag": "prma:ammunition_waste_components"
+    }
+  ],
   "processingTime": 200,
   "results": [
     {

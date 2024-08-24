@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-24T17:57:12.455363	Recipes
+// 1.20.1	2024-08-25T02:29:17.0107748	Recipes
 325ccdbee3cfbf4fe1d7b498d197144ecfbcbc0f data/prma/advancements/recipes/decomponentalizing/decomponentalizing.json
 ec5c1934bad20eabfab0a5cd66ac9a3422cb0db4 data/prma/advancements/recipes/misc/blank_blueprint.json
 959f9b32fcf69f7553e26ba4e3a415b3115a8c9e data/prma/recipes/blank_blueprint.json
@@ -19,6 +19,7 @@ b6eca318317d29cfb79dc24d9de6ce9c7b739371 data/prma/recipes/compacting/cartridges
 a1f5663bbbb1fcc637db13e8f2f187bcd8b2885e data/prma/recipes/compacting/cartridges/762x54.json
 e3f39a359af0b80ae6cf62d986b4d0644e2f3b45 data/prma/recipes/compacting/cartridges/9mm.json
 abd6d51ceb29074ba0e92e10f89511a43f7f8b6b data/prma/recipes/compacting/cartridges/magnum_r.json
+394c3daa7d795f4d9fa179cd969318a7e262b58d data/prma/recipes/compacting/compacting_to_iron_pellet_cluster.json
 390c0ae521381b8308d6f97e20886f903e5a5a5e data/prma/recipes/crushing/basalt_to_powder.json
 646e727842fa6939e9608a1dc40d1c02efa5ea58 data/prma/recipes/crushing/crushed_basalt_to_powder.json
 9411138767e117acf3bc9cf8b86385bb3fe77069 data/prma/recipes/cutting/cutting/ammunition_modules/long_brass_casing_component_cast_cutting.json
@@ -100,7 +101,7 @@ f13513c7b29387b74fb8a6aa414785b4b26b0a4c data/prma/recipes/mixing/melting/iron_n
 f34ff6674c9b03583c92a89aeabe60f6ad144c76 data/prma/recipes/mixing/powders_to_gunpowder.json
 9de17f57eecbbf777a85f19ff54c3799739e8dd9 data/prma/recipes/mixing/small_ammunition_gunpowder_mixing.json
 fb1fe99754542c2baf363faba8a561ee2f50bb22 data/prma/recipes/mixing/solids/flint_and_rock_to_basalt_powder.json
-3f01b69fe643e7f8a0f3c52e123e3f7afbfd42f5 data/prma/recipes/mixing/wasted_cartridges_to_fluids.json
+5cc5073743a81cf936249ff7e2754e7fff67245b data/prma/recipes/mixing/wasted_cartridges_to_fluids.json
 7e31c0ae95e41d7768b77cad101fe3ebbb8da797 data/prma/recipes/shell_brass_casing_component_blueprint_from_decomp_with_12g.json
 ee5088aebe4c2fc420c66cbb98cd7fecac01a20e data/prma/recipes/shell_iron_pellets_component_blueprint_from_decomp_with_12g.json
 e41fb4c7c73a946c31677b07ae0322eef6e99f0f data/prma/recipes/small_brass_casing_component_blueprint_from_decomp_with_45acp.json

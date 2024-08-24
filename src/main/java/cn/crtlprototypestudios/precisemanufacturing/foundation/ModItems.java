@@ -79,7 +79,8 @@ public class ModItems {
             THIN_SMALL_ROD = addToList(Main.REGISTRATE.item("thin_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
             THICK_SMALL_ROD = addToList(Main.REGISTRATE.item("thick_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
             BLANK_BLUEPRINT = addToList(Main.REGISTRATE.item("blank_blueprint", Item::new).register(), ModCreativeModTabs.Tabs.Blueprints),
-            BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register(), ModCreativeModTabs.Tabs.Casts);
+            BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register(), ModCreativeModTabs.Tabs.Casts),
+            IRON_PELLET_CLUSTER = addToList(Main.REGISTRATE.item("iron_pellet_cluster", Item::new).tag(ModTags.materialsTag()).register());
 
 
     // Buckets

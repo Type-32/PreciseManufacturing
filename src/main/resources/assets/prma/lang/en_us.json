@@ -36,6 +36,7 @@
   "item.prma.straight_small_coil": "Straight Small Coil",
   "item.prma.thick_small_rod": "Thick Small Rod",
   "item.prma.thin_small_rod": "Thin Small Rod",
+  "item.prma.iron_pellet_cluster": "A Cluster of Iron Pellets",
 
 
   "item.prma.9mm_blueprint": "9mm Cartridge Blueprint",
@@ -90,6 +91,9 @@
   "item.prma.small_copper_head_component": "Small Copper Head Component",
   "item.prma.small_copper_head_component_blueprint": "Small Copper Head Component Blueprint",
   "item.prma.small_copper_head_component_cast": "Small Copper Head Component Cast",
+  "item.prma.small_iron_head_component": "Small Iron Head Component",
+  "item.prma.small_iron_head_component_blueprint": "Small Iron Head Component Blueprint",
+  "item.prma.small_iron_head_component_cast": "Small Iron Head Component Cast",
 
 
   "fluid.prma.molten_copper": "Molten Copper",

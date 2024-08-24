@@ -1,7 +1,7 @@
-// 1.20.1	2024-07-24T17:57:12.452118	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-08-25T02:29:17.008767	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 73a5900c9e85fb6168ad8dacfd8196e1ab94a8d1 assets/prma/blockstates/decomponentalizer.json
-c6501ba0fbb3d2fbb2b12f01a5da5cc4be5d232f assets/prma/lang/en_ud.json
-82aec96b655e832c25979e723243101519d2888a assets/prma/lang/en_us.json
+604fc527dc3b08c37903f792ffe2c8a9e32162c2 assets/prma/lang/en_ud.json
+18ff2998374a5604fb8ac252f369115c9421e7db assets/prma/lang/en_us.json
 a643575ae10061b471b4f96e4c7bc1132ac6282a assets/prma/models/block/decomponentalizer.json
 549e0aa77abe655ce179df8e735861238d413b78 assets/prma/models/item/12g_blueprint.json
 83bea14d3f17971492b4e3195aa637f799df2273 assets/prma/models/item/308_blueprint.json
@@ -26,6 +26,7 @@ bdbc941a6a15d2a985e863311ee79aced97ee66b assets/prma/models/item/blank_cast.json
 ff0d3fcb8f3fd80542fa31d98acc84ddec8e220f assets/prma/models/item/decomponentalizer.json
 bb541097b08bf2bb552181c878448bc1c9c57861 assets/prma/models/item/flat_head_screw.json
 04f888166e347444e69a7032d8529ef4d256144a assets/prma/models/item/flint_powder.json
+12a63573c83e2f174313fc3d2fbae2ee22acf269 assets/prma/models/item/iron_pellet_cluster.json
 e7c15926ec1898a8d84f58207f9b120ed2b3238e assets/prma/models/item/locking_return_coil.json
 6d6933f1db070c36f25320270d1da32134a73163 assets/prma/models/item/long_ammunition_gunpowder.json
 720aa95a172bcdf62573e6e7caa1fa5d488c8062 assets/prma/models/item/long_brass_casing_component.json
@@ -37,7 +38,6 @@ a65da1a467a25e1b7d048dd52ffcef27add2f185 assets/prma/models/item/long_copper_hea
 fc7c148dff76bc85a412ade50407ac931e9d5193 assets/prma/models/item/long_iron_casing_component.json
 c9934300b79daa2d90783af872321fcb3e5e0212 assets/prma/models/item/long_iron_casing_component_blueprint.json
 aa1b4ac61ca937b98b9cd4c402a25fd32cec2c49 assets/prma/models/item/long_iron_casing_component_cast.json
-fc6eceed3c3bbbb606647cc5cb6a21a569e53b7a assets/prma/models/item/m_screw.json
 85b94f38131f99880060f11af3237ddcc71206e6 assets/prma/models/item/magnum_r_blueprint.json
 cd91cfbd57b3d28d6b07b19316c48c052c0f0e51 assets/prma/models/item/medium_ammunition_gunpowder.json
 5350cf50e189e7938e40f5d9cdd9a6e35a5901e6 assets/prma/models/item/medium_brass_casing_component.json
@@ -52,6 +52,7 @@ cf243dc1a3f53ac62c29b63b8a4892def41a7505 assets/prma/models/item/medium_iron_cas
 10691d437cf4c11318b625a4bb759a032025ed21 assets/prma/models/item/molten_basalt_infused_iron_bucket.json
 dd1f2581d991b793608fa3b5e60ccef0caa1848d assets/prma/models/item/molten_brass_bucket.json
 f9569df3e16a13bced8e37b0c68401e97e96c194 assets/prma/models/item/molten_copper_bucket.json
+fc6eceed3c3bbbb606647cc5cb6a21a569e53b7a assets/prma/models/item/m_screw.json
 8fd6c6ca2e3d5938aac611f3d52fb3a29007ab48 assets/prma/models/item/raw_copper_powder.json
 301c564aa0bb1c454b716bda05d33d46c2077351 assets/prma/models/item/raw_sulfur_powder.json
 38aecdc8cce08fdd857d9607d677b80410a8adbc assets/prma/models/item/raw_zinc_powder.json
@@ -84,9 +85,9 @@ b6bebd8a1a85ec9bf5c473d665f25403bea28ccb data/prma/loot_tables/blocks/decomponen
 d543cdda12aaa5fbc0ecb924ece8256cd640789f data/prma/tags/fluids/molten_copper_fluids.json
 ef7fb3bc80bdd95243e4e7b7335fa9c22474e6ee data/prma/tags/fluids/molten_iron_fluids.json
 14df200bc103e418be372f5069aab0c15bbad5db data/prma/tags/items/ammunition_casing_components.json
+c7d32053c13baa89aae88d964464ec3058db10fa data/prma/tags/items/ammunition_components.json
 0964761be85d222ffa02694779686a627a640616 data/prma/tags/items/ammunition_component_blueprints.json
 c5285326b6662fea096405b1d17d9734f359e18d data/prma/tags/items/ammunition_component_casts.json
-c7d32053c13baa89aae88d964464ec3058db10fa data/prma/tags/items/ammunition_components.json
 6bdbdc7b49aea9610c8ccbbe5294bdc0751aa7d3 data/prma/tags/items/ammunition_head_components.json
 007dd417091188f2796cabcef116fac73b03be5c data/prma/tags/items/ammunition_pellets_components.json
 45063d7057c64e8534f9d406b16128f354289ddc data/prma/tags/items/brass_ammunition_components.json
@@ -96,7 +97,7 @@ c7d32053c13baa89aae88d964464ec3058db10fa data/prma/tags/items/ammunition_compone
 6b4ecac70eae826f5bcac85e6df878c5c6517df8 data/prma/tags/items/iron_ammunition_components.json
 ef75a14704279402ef9ca23fd44890ff81381b80 data/prma/tags/items/long_ammunition_components.json
 b91927e1694a811dcdf2854e9be9f7d80fa1ea5a data/prma/tags/items/long_ammunition_gunpowders.json
-904a64b394244204197c8582d9edea8085c0f1c1 data/prma/tags/items/materials.json
+897092c41bc4658d98d4dd58cde68a9d1586cacf data/prma/tags/items/materials.json
 a7fbba7c4046950beae619622a9d4ff501de8983 data/prma/tags/items/medium_ammunition_components.json
 af2dec40756d7d7178a6ef6de2765b3276f19781 data/prma/tags/items/medium_ammunition_gunpowders.json
 91f0dc1c5998ca3d51a362409c79fa786b732928 data/prma/tags/items/shell_ammunition_components.json

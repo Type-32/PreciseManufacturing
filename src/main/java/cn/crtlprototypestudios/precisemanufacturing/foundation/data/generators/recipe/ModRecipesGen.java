@@ -14,6 +14,7 @@ import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
+import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
@@ -196,6 +197,7 @@ public class ModRecipesGen {
                 .output(ModFluids.MOLTEN_COPPER.get(), 50)
                 .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 50)
                 .duration(200)
+                .require(ModTags.ammunitionWasteComponentsTag())
                 .output(ModFluids.MOLTEN_BRASS.get(), 50));
 
         // Craft Blank Blueprint from Paper and Dye
@@ -270,5 +272,8 @@ public class ModRecipesGen {
                 .require(ModItems.RAW_ZINC_POWDER.get())
                 .duration(200)
                 .require(Items.IRON_NUGGET));
+
+        // Compacting Pellets
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CompactingRecipe::new, ResourceHelper.find("compacting_to_iron_pellet_cluster")));
     }
 }
