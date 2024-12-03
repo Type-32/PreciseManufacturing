@@ -1,5 +1,8 @@
 # Create: Precise Manufacturing (English)
 
+### Update from December 3, 2024: The development of this mod will be paused into an indefinite hiatus. I'm currently working on other more important projects that left me no time to develop this mod. If there's anyone who would like to fork this mod, you're welcome to do so, with the precondition that you follow the license.
+### 状态更新2024十二月三号：我没有多少能开发这个模组的时间，考虑到个人原因和学业原因等我决定暂停开发这个模组。如果你想参与开发这个模组的话请严格遵守这个项目的开源协议。
+
 > 如果需要看中译，往下翻
 
 ![forge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg)
