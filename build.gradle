@@ -107,12 +107,8 @@ repositories {
         url = "https://modmaven.dev"
     }
     maven {
-        // Add curse maven to repositories
-        name = "Curse Maven"
-        url = "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
+        name = "Modrinth Maven"
+        url = "https://api.modrinth.com/maven"
     }
     mavenLocal()
 }
@@ -125,8 +121,9 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 //    implementation "com.github.MCModderAnchor:TACZ:${tacz_version}"
-    implementation fg.deobf('curse.maven:timeless-and-classics-zero-1028108:5529117-sources-5529578')
-//    implementation files(new String("libs/${tacz_dependency}.jar"))
+//    implementation 'com.github.MCModderAnchor:TACZ:1.0.2'
+    implementation fg.deobf('maven.modrinth:timeless-and-classics-zero:1.1.4-hotfix')
+//    implementation files(new String("libs/tacz-1.20.1-1.1.4-all.jar"))
 
     // [MC<minecraft_version>,MC<next_minecraft_version>)
 //    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
