@@ -1,20 +1,13 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.handler;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.AcknowledgeHandshake;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.packets.AcknowledgeHandshake;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.HandshakeHandler;
-import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 public class PacketHandler {
     private static int packetId = 1;
@@ -40,11 +33,11 @@ public class PacketHandler {
 
     public static void register() {
         // NetworkDirection.PLAY_TO_SERVER
-        CHANNEL.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id())
-                .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
-                .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
-                .consumerNetworkThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
-                .add();
+//        CHANNEL.messageBuilder(C2SSetDecomponentalizerCurrentRecipePacket.class, id())
+//                .decoder(C2SSetDecomponentalizerCurrentRecipePacket::new)
+//                .encoder(C2SSetDecomponentalizerCurrentRecipePacket::encode)
+//                .consumerNetworkThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
+//                .add();
 
         AcknowledgeHandshake handshake = new AcknowledgeHandshake();
         HANDSHAKE.messageBuilder(AcknowledgeHandshake.class, handshakeId())

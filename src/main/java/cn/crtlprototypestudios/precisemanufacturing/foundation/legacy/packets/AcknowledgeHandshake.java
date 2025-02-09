@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.packets;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import com.tacz.guns.network.IMessage;

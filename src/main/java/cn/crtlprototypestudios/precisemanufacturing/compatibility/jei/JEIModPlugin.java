@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing.compatibility.jei;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
-import java.util.Objects;
 
 @JeiPlugin
 public class JEIModPlugin implements IModPlugin {

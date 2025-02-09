@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

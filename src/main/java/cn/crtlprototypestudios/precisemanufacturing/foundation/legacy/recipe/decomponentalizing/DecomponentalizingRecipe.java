@@ -1,11 +1,9 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe.decomponentalizing;
 
-import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
@@ -16,8 +14,6 @@ import net.minecraftforge.common.crafting.PartialNBTIngredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 public class DecomponentalizingRecipe implements Recipe<SimpleContainer> {

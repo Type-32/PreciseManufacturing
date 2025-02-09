@@ -1,7 +1,7 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.decomponentalizer;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.widgets.RecipeListWidget;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.widgets.RecipeListWidget;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;

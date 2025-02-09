@@ -1,16 +1,14 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.google.gson.JsonObject;
-import com.simibubi.create.foundation.utility.RegisteredObjects;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +21,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.PartialNBTIngredient;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class DecomponentalizingRecipeBuilder implements RecipeBuilder {

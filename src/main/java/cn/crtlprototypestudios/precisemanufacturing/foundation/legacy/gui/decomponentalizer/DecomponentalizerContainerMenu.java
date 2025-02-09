@@ -1,14 +1,11 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.decomponentalizer;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModContainers;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.LockableInputSlot;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.ModResultSlot;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.handler.PacketHandler;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.network.packets.C2SSetDecomponentalizerCurrentRecipePacket;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.decomponentalizer.DecomponentalizerBlockEntity;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.LockableInputSlot;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.ModResultSlot;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientSide;
 import net.minecraft.network.FriendlyByteBuf;
@@ -20,8 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 @ClientSide
 public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
@@ -148,7 +143,8 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
         if (!isCrafting()) {
             // These Logics are handled on server side; many thanks to @xjqsh for helping me fix this
 
-            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), this.getBlockEntity().getItemHandler().getStackInSlot(2), (short) selectedIndex));
+            // TODO: Commenting this out to soft delete the Decomponentalizer
+//            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), this.getBlockEntity().getItemHandler().getStackInSlot(2), (short) selectedIndex));
 
             Main.LOGGER.debug("Starting Decomponentalizing Process");
         }

@@ -1,14 +1,12 @@
 package cn.crtlprototypestudios.precisemanufacturing;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.*;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerScreen;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.decomponentalizer.DecomponentalizerScreen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.handler.PacketHandler;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;

@@ -1,8 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing.compatibility.jei;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.precisemanufacturing.util.Reference;
 import mezz.jei.api.constants.VanillaTypes;
@@ -17,7 +16,6 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;

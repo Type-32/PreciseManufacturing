@@ -1,9 +1,9 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.decomponentalizer;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlockEntities;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerContainerMenu;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.decomponentalizer.DecomponentalizerContainerMenu;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ClientServerSide;
 import cn.crtlprototypestudios.precisemanufacturing.util.annotations.ServerSide;
 import net.minecraft.core.BlockPos;

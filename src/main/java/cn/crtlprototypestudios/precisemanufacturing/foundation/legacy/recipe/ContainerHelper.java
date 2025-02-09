@@ -1,10 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.recipe;
-
-import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
-import net.minecraft.world.level.Level;
-
-import java.util.List;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe;
 
 public class ContainerHelper {
 //    public static void updateAvailableRecipes(DecomponentalizerBlockEntity blockEntity, List<DecomponentalizingRecipe> availableRecipes) {

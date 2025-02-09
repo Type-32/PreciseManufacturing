@@ -1,9 +1,8 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.gui.widgets;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.widgets;
 
-import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.block.decomponentalizer.DecomponentalizerBlockEntity;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.gui.decomponentalizer.DecomponentalizerContainerMenu;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.recipe.decomponentalizing.DecomponentalizingRecipe;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.decomponentalizer.DecomponentalizerBlockEntity;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.gui.decomponentalizer.DecomponentalizerContainerMenu;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -15,10 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class RecipeListWidget extends AbstractWidget {
