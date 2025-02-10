@@ -33,7 +33,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ammunitionModules.forEach(AmmunitionModule::registerRecipes);
         cartridgeBases.forEach(CartridgeBase::registerRecipes);
 
-        ModDecomponentalizingRecipesGen.register(pFinishedRecipeConsumer);
+//        ModDecomponentalizingRecipesGen.register(pFinishedRecipeConsumer);
         ModRecipesGen.register(pFinishedRecipeConsumer);
 
         recipeBuilders.forEach(i -> i.save(pFinishedRecipeConsumer));

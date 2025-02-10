@@ -22,7 +22,7 @@
 
   "item.prma.molten_brass_bucket": "Ведро Расплавленной Латуни",
   "item.prma.molten_copper_bucket": "Ведро Расплавленной Меди",
-  "item.prma.molten_basalt_infused_iron_bucket": "Ведро Расплавленного Железа с Базальтом",
+  "item.prma.molten_metal_alloy_bucket": "Ведро Расплавленного Железа с Базальтом",
 
   "item.prma.crushed_basalt": "Измельченный Базальт",
   "item.prma.unformed_basalt": "Несформированная Влажная Базальтовая Смесь",
@@ -89,7 +89,7 @@
 
   "fluid.prma.molten_copper": "Расплавленная Медь",
   "fluid.prma.molten_brass": "Расплавленная Латунь",
-  "fluid.prma.molten_basalt_infused_iron": "Расплавленное Железо с Базальтом",
+  "fluid.prma.molten_metal_alloy": "Расплавленное Железо с Базальтом",
 
   "block.prma.container.decomponentalizer": "Декомпонентализатор",
   "block.prma.decomponentalizer": "Декомпонентализатор",

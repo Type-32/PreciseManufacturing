@@ -3,16 +3,12 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation;
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionRegistryManager;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionSize;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleModule;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.api.item.builder.GunItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -101,7 +97,7 @@ public class ModItems {
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register()),
-            MOLTEN_BASALT_INFUSED_IRON_BUCKET = addToList(Main.REGISTRATE.item("molten_basalt_infused_iron_bucket", Item::new)
+            MOLTEN_METAL_ALLOY_BUCKET = addToList(Main.REGISTRATE.item("molten_metal_alloy_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register());

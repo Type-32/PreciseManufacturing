@@ -14,7 +14,6 @@ import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.core.Holder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -220,7 +219,7 @@ public class RifleBase extends WeaponBase {
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("weapons/guns/%s/%s", getCoreId(), name + "_castmaking")))
                     .output(castModule.get())
                     .require(mainModule.get())
-                    .require(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 1000));
+                    .require(ModFluids.MOLTEN_METAL_ALLOY.get(), 1000));
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("weapons/guns/%s/%s", getCoreId(), name)))
                     .output(mainModule.get())
                     .require(castModule.get())

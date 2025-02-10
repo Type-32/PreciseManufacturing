@@ -22,7 +22,7 @@
 
   "item.prma.molten_brass_bucket": "Eimer mit geschmolzenem Messing",
   "item.prma.molten_copper_bucket": "Eimer mit geschmolzenem Kupfer",
-  "item.prma.molten_basalt_infused_iron_bucket": "Eimer mit basaltinfundiertem geschmolzenem Eisen",
+  "item.prma.molten_metal_alloy_bucket": "Eimer mit basaltinfundiertem geschmolzenem Eisen",
 
   "item.prma.crushed_basalt": "Zermahlener Basalt",
   "item.prma.unformed_basalt": "Ungeformte feuchte Basaltmischung",
@@ -89,7 +89,7 @@
 
   "fluid.prma.molten_copper": "Geschmolzenes Kupfer",
   "fluid.prma.molten_brass": "Geschmolzenes Messing",
-  "fluid.prma.molten_basalt_infused_iron": "Basaltinfundiertes geschmolzenes Eisen",
+  "fluid.prma.molten_metal_alloy": "Basaltinfundiertes geschmolzenes Eisen",
 
   "block.prma.container.decomponentalizer": "Dekomponentalisierer",
   "block.prma.decomponentalizer": "Dekomponentalisierer",

@@ -34,7 +34,7 @@ public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
             this.decompTime = decompTime;
             this.castFillingAmount = castFillingAmount;
             this.castCuttingTime = castCuttingTime;
-            this.fillCastFluid = ModFluids.MOLTEN_BASALT_INFUSED_IRON;
+            this.fillCastFluid = ModFluids.MOLTEN_METAL_ALLOY;
         }
 
         public int getDecompTime() {

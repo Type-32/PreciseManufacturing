@@ -1,13 +1,10 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModBlocks;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.builders.recipe.DecomponentalizingRecipeBuilder;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.transfer.EmptyingRecipe;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
@@ -18,27 +15,12 @@ import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
-import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
-import com.simibubi.create.foundation.data.recipe.WashingRecipeGen;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
-
-import static com.tterrag.registrate.providers.RegistrateRecipeProvider.inventoryTrigger;
 
 public class ModRecipesGen {
 
@@ -162,7 +144,7 @@ public class ModRecipesGen {
 
         // Melting Iron Nuggets
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/iron_nugget_to_molten_iron"))
-                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 80)
+                .output(ModFluids.MOLTEN_METAL_ALLOY.get(), 80)
                 .require(ModItems.BASALT_POWDER.get())
                 .require(Items.IRON_NUGGET)
                 .requiresHeat(HeatCondition.HEATED)
@@ -170,7 +152,7 @@ public class ModRecipesGen {
 
         // Melting Iron Ingots
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/iron_ingot_to_molten_iron"))
-                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 720)
+                .output(ModFluids.MOLTEN_METAL_ALLOY.get(), 720)
                 .require(ModItems.CRUSHED_BASALT.get())
                 .require(Items.IRON_INGOT)
                 .requiresHeat(HeatCondition.HEATED)
@@ -195,7 +177,7 @@ public class ModRecipesGen {
         // Ammo Waste to Molten Fluids
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("wasted_cartridges_to_fluids"))
                 .output(ModFluids.MOLTEN_COPPER.get(), 50)
-                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 50)
+                .output(ModFluids.MOLTEN_METAL_ALLOY.get(), 50)
                 .duration(200)
                 .require(ModTags.ammunitionWasteComponentsTag())
                 .output(ModFluids.MOLTEN_BRASS.get(), 50));
@@ -208,10 +190,10 @@ public class ModRecipesGen {
                 .unlockedBy(RegistrateRecipeProvider.getHasName(Items.PAPER), RegistrateRecipeProvider.has(Items.PAPER)));
 
         // Fill Molten Basalt Infused Iron Bucket
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_basalt_infused_iron_bucket"))
-                .output(ModItems.MOLTEN_BASALT_INFUSED_IRON_BUCKET.get())
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_metal_alloy_bucket"))
+                .output(ModItems.MOLTEN_METAL_ALLOY_BUCKET.get())
                 .require(Items.BUCKET)
-                .require(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 250));
+                .require(ModFluids.MOLTEN_METAL_ALLOY.get(), 250));
 
         // Fill Molten Brass Bucket
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_brass_bucket"))
@@ -226,10 +208,10 @@ public class ModRecipesGen {
                 .require(ModFluids.MOLTEN_COPPER.get(), 250));
 
         // Empty Molten Basalt Infused Iron Bucket
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_basalt_infused_iron_bucket"))
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_metal_alloy_bucket"))
                 .output(Items.BUCKET)
-                .require(ModItems.MOLTEN_BASALT_INFUSED_IRON_BUCKET.get())
-                .output(ModFluids.MOLTEN_BASALT_INFUSED_IRON.get(), 250));
+                .require(ModItems.MOLTEN_METAL_ALLOY_BUCKET.get())
+                .output(ModFluids.MOLTEN_METAL_ALLOY.get(), 250));
 
         // Empty Molten Brass Bucket
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_brass_bucket"))
@@ -244,18 +226,18 @@ public class ModRecipesGen {
                 .output(ModFluids.MOLTEN_COPPER.get(), 250));
 
         // Decomponentalizer Crafting Recipe
-        MechanicalCraftingRecipeBuilder.shapedRecipe(ModBlocks.DECOMPONENTALIZER.get())
-                .key('E', AllItems.ELECTRON_TUBE.get())
-                .key('P', AllItems.IRON_SHEET.get())
-                .key('H', AllItems.BRASS_HAND.get())
-                .key('S', AllBlocks.ANDESITE_CASING.get())
-                .key('I', Blocks.IRON_BLOCK)
-                .key('M', AllItems.PRECISION_MECHANISM.get())
-                .key('G', Blocks.GLASS_PANE)
-                .patternLine("PPPP")
-                .patternLine("PHEP")
-                .patternLine("PMGP")
-                .patternLine("SIIS").build(pFinishedRecipeConsumer);
+//        MechanicalCraftingRecipeBuilder.shapedRecipe(ModBlocks.DECOMPONENTALIZER.get())
+//                .key('E', AllItems.ELECTRON_TUBE.get())
+//                .key('P', AllItems.IRON_SHEET.get())
+//                .key('H', AllItems.BRASS_HAND.get())
+//                .key('S', AllBlocks.ANDESITE_CASING.get())
+//                .key('I', Blocks.IRON_BLOCK)
+//                .key('M', AllItems.PRECISION_MECHANISM.get())
+//                .key('G', Blocks.GLASS_PANE)
+//                .patternLine("PPPP")
+//                .patternLine("PHEP")
+//                .patternLine("PMGP")
+//                .patternLine("SIIS").build(pFinishedRecipeConsumer);
 
         // Copper Dust Mixing into Nugget
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/copper_dust_to_nugget"))

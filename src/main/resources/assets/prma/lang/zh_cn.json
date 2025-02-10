@@ -22,7 +22,7 @@
 
   "item.prma.molten_brass_bucket": "熔融黄铜桶",
   "item.prma.molten_copper_bucket": "熔融铜桶",
-  "item.prma.molten_basalt_infused_iron_bucket": "熔融玄武岩注入铁桶",
+  "item.prma.molten_metal_alloy_bucket": "熔融合金桶",
 
   "item.prma.crushed_basalt": "粉碎的玄武岩",
   "item.prma.unformed_basalt": "未成形的湿玄武岩混合物",
@@ -89,7 +89,7 @@
 
   "fluid.prma.molten_copper": "熔融铜",
   "fluid.prma.molten_brass": "熔融黄铜",
-  "fluid.prma.molten_basalt_infused_iron": "玄武岩注熔融铁",
+  "fluid.prma.molten_metal_alloy": "熔融合金",
 
   "block.prma.container.decomponentalizer": "解析器",
   "block.prma.decomponentalizer": "解析器",

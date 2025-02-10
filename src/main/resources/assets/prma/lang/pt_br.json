@@ -22,7 +22,7 @@
 
   "item.prma.molten_brass_bucket": "Balde de Latão Derretido",
   "item.prma.molten_copper_bucket": "Balde de Cobre Derretido",
-  "item.prma.molten_basalt_infused_iron_bucket": "Balde de Ferro Derretido Infundido com Basalto",
+  "item.prma.molten_metal_alloy_bucket": "Balde de Ferro Derretido Infundido com Basalto",
 
   "item.prma.crushed_basalt": "Basalto Triturado",
   "item.prma.unformed_basalt": "Mistura de Basalto Úmido Não Formado",
@@ -89,7 +89,7 @@
 
   "fluid.prma.molten_copper": "Cobre Derretido",
   "fluid.prma.molten_brass": "Latão Derretido",
-  "fluid.prma.molten_basalt_infused_iron": "Ferro Derretido Infundido com Basalto",
+  "fluid.prma.molten_metal_alloy": "Ferro Derretido Infundido com Basalto",
 
   "block.prma.container.decomponentalizer": "Descomponentalizador",
   "block.prma.decomponentalizer": "Descomponentalizador",

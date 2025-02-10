@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenBasaltInfusedIronFluid;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenMetalAlloyFluid;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenBrassFluid;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.fluid.MoltenCopperFluid;
 import com.simibubi.create.content.fluids.VirtualFluid;
@@ -22,7 +22,7 @@ public class ModFluids {
                 .lang("Molten Brass")
                 .tag(ModTags.forgeFluidTag("molten_metals"), ModTags.moltenBrassesTag())
                 .register(),
-            MOLTEN_BASALT_INFUSED_IRON = Main.REGISTRATE.extendedVirtualFluid("molten_basalt_infused_iron", MoltenBasaltInfusedIronFluid::new)
+            MOLTEN_METAL_ALLOY = Main.REGISTRATE.extendedVirtualFluid("molten_basalt_infused_iron", MoltenMetalAlloyFluid::new)
                 .lang("Molten Basalt-Infused Iron")
                 .tag(ModTags.forgeFluidTag("molten_metals"), ModTags.moltenIronsTag())
                 .register();

@@ -22,7 +22,7 @@
 
   "item.prma.molten_brass_bucket": "Cubo de Latón Fundido",
   "item.prma.molten_copper_bucket": "Cubo de Cobre Fundido",
-  "item.prma.molten_basalt_infused_iron_bucket": "Cubo de Hierro Fundido Infundido con Basalto",
+  "item.prma.molten_metal_alloy_bucket": "Cubo de Hierro Fundido Infundido con Basalto",
 
   "item.prma.crushed_basalt": "Basalto Triturado",
   "item.prma.unformed_basalt": "Mezcla de Basalto Húmedo sin Formar",
@@ -89,7 +89,7 @@
 
   "fluid.prma.molten_copper": "Cobre Fundido",
   "fluid.prma.molten_brass": "Latón Fundido",
-  "fluid.prma.molten_basalt_infused_iron": "Hierro Fundido Infundido con Basalto",
+  "fluid.prma.molten_metal_alloy": "Hierro Fundido Infundido con Basalto",
 
   "block.prma.container.decomponentalizer": "Descomponentalizador",
   "block.prma.decomponentalizer": "Descomponentalizador",

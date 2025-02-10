@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "prma:item/ammunition_components/casts/shell_iron_pellets_component_cast"
-  }
-}
