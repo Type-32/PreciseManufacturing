@@ -22,7 +22,7 @@ public class ModFluids {
                 .lang("Molten Brass")
                 .tag(ModTags.forgeFluidTag("molten_metals"), ModTags.moltenBrassesTag())
                 .register(),
-            MOLTEN_METAL_ALLOY = Main.REGISTRATE.extendedVirtualFluid("molten_basalt_infused_iron", MoltenMetalAlloyFluid::new)
+            MOLTEN_METAL_ALLOY = Main.REGISTRATE.extendedVirtualFluid("molten_metal_alloy", MoltenMetalAlloyFluid::new)
                 .lang("Molten Basalt-Infused Iron")
                 .tag(ModTags.forgeFluidTag("molten_metals"), ModTags.moltenIronsTag())
                 .register();
