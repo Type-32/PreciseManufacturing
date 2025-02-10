@@ -1,7 +1,7 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.weapon;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModFluids;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ModuleBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ModuleBase;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.tterrag.registrate.util.entry.FluidEntry;
 

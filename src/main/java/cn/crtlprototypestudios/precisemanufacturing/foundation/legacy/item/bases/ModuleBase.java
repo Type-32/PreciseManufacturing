@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases;
 
 import java.util.function.Consumer;
 

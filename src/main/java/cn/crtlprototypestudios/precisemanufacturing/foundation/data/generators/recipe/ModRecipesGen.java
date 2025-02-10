@@ -15,6 +15,7 @@ import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import net.minecraft.data.recipes.*;
@@ -206,6 +207,8 @@ public class ModRecipesGen {
                 .output(ModItems.MOLTEN_COPPER_BUCKET.get())
                 .require(Items.BUCKET)
                 .require(ModFluids.MOLTEN_COPPER.get(), 250));
+
+//        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(ProcessingRecipe::new, ));
 
         // Empty Molten Basalt Infused Iron Bucket
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_metal_alloy_bucket"))

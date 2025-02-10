@@ -2,9 +2,9 @@ package cn.crtlprototypestudios.precisemanufacturing.foundation;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionSize;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition.AmmunitionBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition.AmmunitionSize;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition.CartridgeBase;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.api.item.builder.GunItemBuilder;
@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,22 +29,21 @@ public class ModItems {
     public static final Set<ItemStack> taczAmmo = getTaczAmmo();
 
     public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry, ModCreativeModTabs.Tabs tabs) {
-        switch (tabs) {
-            case Main -> ALL_ITEMS.add(entry);
-            case Casts -> ALL_CASTS.add(entry);
-            case Blueprints -> ALL_BLUEPRINTS.add(entry);
-            case Components -> ALL_MODULES.add(entry);
-            default -> ALL_ITEMS.add(entry);
+        ALL_ITEMS.add(entry);
+        if (Objects.requireNonNull(tabs) == ModCreativeModTabs.Tabs.Materials) {
+            ALL_MATERIALS.add(entry);
         }
         return entry;
+    }
+
+    public static RegistryEntry<Item> addToMaterials(RegistryEntry<Item> entry) {
+        return addToList(entry, ModCreativeModTabs.Tabs.Materials);
     }
     public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry) {return addToList(entry, ModCreativeModTabs.Tabs.Main);}
 
     public static List<RegistryEntry<Item>>
             ALL_ITEMS = new ArrayList<RegistryEntry<Item>>(),
-            ALL_CASTS = new ArrayList<RegistryEntry<Item>>(),
-            ALL_MODULES = new ArrayList<RegistryEntry<Item>>(),
-            ALL_BLUEPRINTS = new ArrayList<RegistryEntry<Item>>();
+            ALL_MATERIALS = new ArrayList<RegistryEntry<Item>>();
 
 //    public static final ItemStack TACZ_AMMO_ITEM_TEMPLATE = new ItemStack(ModCompatItems.AMMO);
 //    public static final ItemStack TACZ_GUN_ITEM_TEMPLATE = new ItemStack(ModCompatItems.MODERN_KINETIC_GUN);
@@ -82,8 +82,8 @@ public class ModItems {
             M_SCREW = addToList(Main.REGISTRATE.item("m_screw", Item::new).tag(ModTags.componentsTag()).register()),
             THIN_SMALL_ROD = addToList(Main.REGISTRATE.item("thin_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
             THICK_SMALL_ROD = addToList(Main.REGISTRATE.item("thick_small_rod", Item::new).tag(ModTags.componentsTag()).register()),
-            BLANK_BLUEPRINT = addToList(Main.REGISTRATE.item("blank_blueprint", Item::new).register(), ModCreativeModTabs.Tabs.Blueprints),
-            BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register(), ModCreativeModTabs.Tabs.Casts),
+            BLANK_BLUEPRINT = addToList(Main.REGISTRATE.item("blank_blueprint", Item::new).register(), ModCreativeModTabs.Tabs.Materials),
+            BLANK_CAST = addToList(Main.REGISTRATE.item("blank_cast", Item::new).register(), ModCreativeModTabs.Tabs.Materials),
             IRON_PELLET_CLUSTER = addToList(Main.REGISTRATE.item("iron_pellet_cluster", Item::new).tag(ModTags.materialsTag()).register());
 
 

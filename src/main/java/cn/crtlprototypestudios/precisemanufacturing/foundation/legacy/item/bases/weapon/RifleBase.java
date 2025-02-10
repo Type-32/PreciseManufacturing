@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.weapon;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
@@ -163,9 +163,7 @@ public class RifleBase extends WeaponBase {
     private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties) {
         String name = String.format("%s_%s", id, module.toString());
 
-        assert ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey() != null;
-        assert ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey() != null;
-        assert ModCreativeModTabs.MOD_CASTS_TAB.getKey() != null;
+        assert ModCreativeModTabs.MOD_MATERIALS_TAB.getKey() != null;
 
         // Register the module
         RegistryEntry<Item>
@@ -187,9 +185,9 @@ public class RifleBase extends WeaponBase {
         blueprintsRegistry.put(module.getType(), blueprintModule);
         castsRegistry.put(module.getType(), castModule);
 
-        ModItems.addToList(mainModule, ModCreativeModTabs.Tabs.Components);
-        ModItems.addToList(castModule, ModCreativeModTabs.Tabs.Casts);
-        ModItems.addToList(blueprintModule, ModCreativeModTabs.Tabs.Blueprints);
+        ModItems.addToMaterials(mainModule);
+        ModItems.addToMaterials(castModule);
+        ModItems.addToMaterials(blueprintModule);
 
         return mainModule;
     }

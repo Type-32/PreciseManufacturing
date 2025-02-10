@@ -1,20 +1,8 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition;
 
-import cn.crtlprototypestudios.precisemanufacturing.Main;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
-import com.simibubi.create.content.fluids.transfer.FillingRecipe;
-import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.tacz.guns.init.ModCreativeTabs;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.HashMap;

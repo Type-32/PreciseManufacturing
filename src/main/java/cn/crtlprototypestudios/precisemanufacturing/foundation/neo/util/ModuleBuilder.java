@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.util;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.neo.util;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

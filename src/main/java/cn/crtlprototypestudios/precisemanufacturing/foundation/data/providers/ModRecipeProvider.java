@@ -1,10 +1,9 @@
 package cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModRecipesGen;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.AmmunitionModule;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition.CartridgeBase;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon.RifleBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition.AmmunitionModule;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition.CartridgeBase;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.weapon.RifleBase;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import net.minecraft.data.DataGenerator;

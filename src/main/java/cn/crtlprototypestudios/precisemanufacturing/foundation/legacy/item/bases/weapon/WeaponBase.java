@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.weapon;
 
 import net.minecraft.world.item.Item;
 

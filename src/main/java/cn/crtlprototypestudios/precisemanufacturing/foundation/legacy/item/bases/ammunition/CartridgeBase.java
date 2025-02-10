@@ -1,35 +1,22 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModItems;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
-import cn.crtlprototypestudios.precisemanufacturing.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.util.ResourceHelper;
-import com.simibubi.create.AllItems;
 import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
-import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
-
-import static com.tterrag.registrate.providers.RegistrateRecipeProvider.inventoryTrigger;
 
 public class CartridgeBase extends AmmunitionBase {
     public final RegistryEntry<Item> cartridgeBlueprint;
@@ -46,10 +33,10 @@ public class CartridgeBase extends AmmunitionBase {
         RegistryEntry<Item> cartridgeBlueprint = Main.REGISTRATE.item(coreId + "_blueprint", Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "cartridge_blueprint", coreId + "_blueprint"))
                 .tag(ModTags.cartridgeBlueprintTag())
-                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
+//                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
                 .register();
 
-        ModItems.addToList(cartridgeBlueprint, ModCreativeModTabs.Tabs.Blueprints);
+//        ModItems.addToList(cartridgeBlueprint, ModCreativeModTabs.Tabs.Blueprints);
 
         this.cartridgeBlueprint = cartridgeBlueprint;
 
@@ -71,10 +58,10 @@ public class CartridgeBase extends AmmunitionBase {
         List<RegistryEntry<Item>> mainItems = new ArrayList<>();
         for(AmmunitionModule m : ammunitionModules) {
             RegistryEntry<Item> blueprint = AmmunitionRegistryManager.blueprints.get(m);
-            RegistryEntry<Item> cast = AmmunitionRegistryManager.casts.get(m);
+//            RegistryEntry<Item> cast = AmmunitionRegistryManager.casts.get(m);
             RegistryEntry<Item> main = AmmunitionRegistryManager.items.get(m);
 
-            ModDecomponentalizingRecipesGen.add(ammoStack, blueprint.get(), 400);
+//            ModDecomponentalizingRecipesGen.add(ammoStack, blueprint.get(), 400);
 
             mainItems.add(main);
         }

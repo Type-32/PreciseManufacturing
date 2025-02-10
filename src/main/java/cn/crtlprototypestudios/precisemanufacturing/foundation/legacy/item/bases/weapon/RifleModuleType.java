@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.weapon;
 
 public enum RifleModuleType {
     LOWER_RECEIVER("lower_receiver"),

@@ -1,6 +1,6 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.weapon;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.weapon;
 
-import cn.crtlprototypestudios.precisemanufacturing.foundation.item.util.ModuleBuilder;
+import cn.crtlprototypestudios.precisemanufacturing.foundation.neo.util.ModuleBuilder;
 
 import java.util.ArrayList;
 

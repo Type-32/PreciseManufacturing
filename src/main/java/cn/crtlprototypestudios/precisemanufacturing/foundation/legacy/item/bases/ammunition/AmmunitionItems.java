@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;

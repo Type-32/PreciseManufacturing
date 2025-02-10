@@ -29,28 +29,12 @@ public class ModCreativeModTabs {
                     .title(Component.translatable("itemGroup.prma_tab"))
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> MOD_CASTS_TAB = CREATIVE_MODE_TABS.register("prma_casts_tab",
+    public static final RegistryObject<CreativeModeTab> MOD_MATERIALS_TAB = CREATIVE_MODE_TABS.register("prma_materials_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BLANK_CAST.get()))
                     .displayItems(((itemDisplayParameters, output) -> {
-                        ModItems.ALL_CASTS.forEach(i -> output.accept(i.get()));
+                        ModItems.ALL_MATERIALS.forEach(i -> output.accept(i.get()));
                     }))
-                    .title(Component.translatable("itemGroup.prma_casts_tab"))
-                    .build());
-
-    public static final RegistryObject<CreativeModeTab> MOD_COMPONENTS_TAB = CREATIVE_MODE_TABS.register("prma_components_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.M_SCREW.get()))
-                    .displayItems(((itemDisplayParameters, output) -> {
-                        ModItems.ALL_MODULES.forEach(i -> output.accept(i.get()));
-                    }))
-                    .title(Component.translatable("itemGroup.prma_components_tab"))
-                    .build());
-
-    public static final RegistryObject<CreativeModeTab> MOD_BLUEPRINTS_TAB = CREATIVE_MODE_TABS.register("prma_blueprints_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BLANK_BLUEPRINT.get()))
-                    .displayItems(((itemDisplayParameters, output) -> {
-                        ModItems.ALL_BLUEPRINTS.forEach(i -> output.accept(i.get()));
-                    }))
-                    .title(Component.translatable("itemGroup.prma_blueprints_tab"))
+                    .title(Component.translatable("itemGroup.prma_materials_tab"))
                     .build());
 
     public static final RegistryObject<CreativeModeTab> MOD_HIDDEN_TAB = CREATIVE_MODE_TABS.register("prma_hidden_tab",
@@ -64,8 +48,6 @@ public class ModCreativeModTabs {
 
     public static enum Tabs {
         Main,
-        Casts,
-        Components,
-        Blueprints
+        Materials
     }
 }

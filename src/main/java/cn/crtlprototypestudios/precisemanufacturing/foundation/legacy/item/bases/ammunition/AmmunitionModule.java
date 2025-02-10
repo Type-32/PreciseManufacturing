@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition;
 
 import cn.crtlprototypestudios.precisemanufacturing.Main;
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModCreativeModTabs;
@@ -11,11 +11,8 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -160,9 +157,9 @@ public class AmmunitionModule {
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "blueprints", itemId + "_blueprint"))
                 .register();
 
-        ModItems.addToList(this.item, ModCreativeModTabs.Tabs.Components);
-        ModItems.addToList(this.cast, ModCreativeModTabs.Tabs.Casts);
-        ModItems.addToList(this.blueprint, ModCreativeModTabs.Tabs.Blueprints);
+        ModItems.addToMaterials(this.item);
+        ModItems.addToMaterials(this.cast);
+        ModItems.addToMaterials(this.blueprint);
 
         return this;
     }

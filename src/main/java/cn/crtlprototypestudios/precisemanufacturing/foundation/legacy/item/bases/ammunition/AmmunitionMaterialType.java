@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition;
 
 public enum AmmunitionMaterialType {
     CASING("casing"),

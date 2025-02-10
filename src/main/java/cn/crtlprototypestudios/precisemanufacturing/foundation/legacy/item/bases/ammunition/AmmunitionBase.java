@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.precisemanufacturing.foundation.item.bases.ammunition;
+package cn.crtlprototypestudios.precisemanufacturing.foundation.legacy.item.bases.ammunition;
 
 import cn.crtlprototypestudios.precisemanufacturing.foundation.ModTags;
 import net.minecraft.tags.TagKey;
