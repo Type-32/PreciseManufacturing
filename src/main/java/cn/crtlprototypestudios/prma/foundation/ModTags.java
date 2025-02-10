@@ -150,8 +150,12 @@ public class ModTags {
         return modItemTag("millable_rocks");
     }
 
-    public static TagKey<Fluid> moltenIronsTag(){
-        return modFluidTag("molten_iron_fluids");
+    public static TagKey<Fluid> moltenIronTag(){
+        return modFluidTag("molten_iron");
+    }
+
+    public static TagKey<Fluid> moltenAluminumTag(){
+        return modFluidTag("molten_aluminum");
     }
 
     public static TagKey<Fluid> moltenCoppersTag(){
@@ -168,5 +172,9 @@ public class ModTags {
 
     public static TagKey<Item> crushedOresTag(){
         return modItemTag("crushed_ores_tag");
+    }
+
+    public static TagKey<Fluid> moltenFluidsTag() {
+        return modFluidTag("molten_fluids");
     }
 }

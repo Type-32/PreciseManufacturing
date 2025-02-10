@@ -121,11 +121,12 @@ public class AmmunitionModule {
 
         String itemId = String.format("%s_%s_%s_component", getSize(), fluidTagType, getType());
         this.coreId = itemId;
+        assert ModCreativeModTabs.MOD_MATERIALS_TAB.getKey() != null;
         this.item = Main.REGISTRATE.item(itemId, Item::new)
                 .tag(
                         ModTags.ammunitionComponentsTag(),
                         (
-                                getFillingFluid() == ModTags.moltenIronsTag() ? ModTags.ironAmmunitionComponentsTag() :
+                                getFillingFluid() == ModTags.moltenIronTag() ? ModTags.ironAmmunitionComponentsTag() :
                                 getFillingFluid() == ModTags.moltenCoppersTag() ? ModTags.copperAmmunitionComponentsTag() :
                                 ModTags.brassAmmunitionComponentsTag()
                         ),
@@ -143,17 +144,17 @@ public class AmmunitionModule {
                         ),
                         AllTags.AllItemTags.UPRIGHT_ON_BELT.tag
                 )
-                .tab(ModCreativeModTabs.MOD_COMPONENTS_TAB.getKey())
+                .tab(ModCreativeModTabs.MOD_MATERIALS_TAB.getKey())
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "modules", itemId))
                 .register();
         this.cast = Main.REGISTRATE.item(itemId + "_cast", Item::new)
                 .tag(ModTags.ammunitionComponentCastsTag())
-                .tab(ModCreativeModTabs.MOD_CASTS_TAB.getKey())
+                .tab(ModCreativeModTabs.MOD_MATERIALS_TAB.getKey())
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "casts", itemId + "_cast"))
                 .register();
         this.blueprint = Main.REGISTRATE.item(itemId + "_blueprint", Item::new)
                 .tag(ModTags.ammunitionComponentBlueprintsTag())
-                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
+                .tab(ModCreativeModTabs.MOD_MATERIALS_TAB.getKey())
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "blueprints", itemId + "_blueprint"))
                 .register();
 

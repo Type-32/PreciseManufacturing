@@ -26,7 +26,7 @@ public class ModRecipesGen {
 
     public static void register(Consumer<FinishedRecipe> pFinishedRecipeConsumer){
         // Sulfur Powder Washing
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(SplashingRecipe::new, ResourceHelper.find("raw_sulfur_powder_splashing")).output(ModItems.SULFUR_POWDER.get()).require(ModItems.RAW_SULFUR_POWDER.get()).duration(80));
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(SplashingRecipe::new, ResourceHelper.find("raw_sulfur_powder_splashing")).output(ModItems.SULFUR_POWDER.get()).require(ModItems.SULFUR_POWDER.get()).duration(80));
 
         // Small Ammunition Gunpowder Crafting and Uncrafting
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("small_ammunition_gunpowder_mixing"))
@@ -61,13 +61,14 @@ public class ModRecipesGen {
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("basalt_to_powder"))
                 .output(40, AllItems.CRUSHED_ZINC.get(), 3)
                 .output(40, AllItems.CRUSHED_COPPER.get(), 3)
+                .output(40, AllItems.CRUSHED_IRON.get(), 3)
                 .output(60, ModItems.BASALT_POWDER.get(), 6) // Basalt Powder added here as a useless junk to occupy the chances of crafting
                 .output(ModItems.CRUSHED_BASALT.get())
                 .require(Items.BASALT)
                 .duration(200)
         );
 
-        // crushed basalt crushing
+        // crushing for rock, sulfur, and flint powder from crushed basalt
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("crushed_basalt_to_powder"))
                 .output(50, ModItems.ROCK_POWDER.get(), 2) // Rock Powder added here as a useless junk to occupy the chances of crafting
                 .output(30, ModItems.SULFUR_POWDER.get(), 3)
@@ -76,10 +77,11 @@ public class ModRecipesGen {
                 .duration(200)
         );
 
-        // flint powder milling
+        // milling for sulfur and flint powder from flint
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MillingRecipe::new, ResourceHelper.find("flint_powder"))
                 .output(ModItems.FLINT_POWDER.get(), 3)
-                .output(0.8F, ModItems.SULFUR_POWDER.get(), 3)
+                .output(70, ModItems.SULFUR_POWDER.get(), 2)
+                .output(30, ModItems.SULFUR_POWDER.get(), 1)
                 .require(Items.FLINT)
                 .duration(100)
         );
