@@ -1,9 +1,9 @@
 package cn.crtlprototypestudios.prma.foundation.neo.builder.recipe;
 
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
-import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoCasingType;
-import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoMaterialType;
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoCasingType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoMaterialType;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;

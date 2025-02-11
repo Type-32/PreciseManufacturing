@@ -1,20 +1,19 @@
-package cn.crtlprototypestudios.prma.foundation.util;
+package cn.crtlprototypestudios.prma.foundation.utility;
 
+import cn.crtlprototypestudios.prma.lib.ExtendedRegistrate;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.VirtualFluidBuilder;
-import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.FluidBuilder;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.function.Consumer;
 
-public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseManufacturingRegistrate> {
+public class PreciseManufacturingRegistrate extends ExtendedRegistrate {
     /**
      * Construct a new Registrate for the given mod ID.
      *
@@ -26,16 +25,16 @@ public class PreciseManufacturingRegistrate extends AbstractRegistrate<PreciseMa
     }
 
     public static PreciseManufacturingRegistrate create(String modid) {
-        return new PreciseManufacturingRegistrate(modid).registerEventListeners(FMLJavaModLoadingContext.get().getModEventBus());
+        return new PreciseManufacturingRegistrate(modid);
     }
 
-    public FluidBuilder<VirtualFluid, PreciseManufacturingRegistrate> virtualFluid(String name) {
+    public FluidBuilder<VirtualFluid, CreateRegistrate> virtualFluid(String name) {
         return entry(name,
-                c -> new VirtualFluidBuilder<VirtualFluid, PreciseManufacturingRegistrate>(self(), self(), name, c, ResourceHelper.find("fluid/" + name + "_still"),
+                c -> new VirtualFluidBuilder<>(self(), self(), name, c, ResourceHelper.find("fluid/" + name + "_still"),
                         ResourceHelper.find("fluid/" + name + "_flow"), CreateRegistrate::defaultFluidType, VirtualFluid::new));
     }
 
-    public <T extends VirtualFluid> FluidBuilder<T, PreciseManufacturingRegistrate> extendedVirtualFluid(
+    public <T extends VirtualFluid> FluidBuilder<T, CreateRegistrate> extendedVirtualFluid(
             String name,
             NonNullFunction<ForgeFlowingFluid.Properties, T> fluidFactory
     ) {

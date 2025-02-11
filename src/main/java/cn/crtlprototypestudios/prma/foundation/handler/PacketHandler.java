@@ -1,8 +1,8 @@
 package cn.crtlprototypestudios.prma.foundation.handler;
 
 import cn.crtlprototypestudios.prma.foundation.legacy.packets.AcknowledgeHandshake;
-import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import cn.crtlprototypestudios.prma.util.annotations.ClientSide;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkRegistry;

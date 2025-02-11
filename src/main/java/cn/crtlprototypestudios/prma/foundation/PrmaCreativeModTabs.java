@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation;
 
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;

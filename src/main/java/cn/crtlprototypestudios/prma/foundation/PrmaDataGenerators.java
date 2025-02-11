@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModRecipeProvider;
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;

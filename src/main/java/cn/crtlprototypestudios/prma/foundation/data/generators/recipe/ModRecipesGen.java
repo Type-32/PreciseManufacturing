@@ -4,8 +4,9 @@ import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModRecipeProvider;
-import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
+import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.content.fluids.transfer.EmptyingRecipe;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
@@ -57,15 +58,36 @@ public class ModRecipesGen {
         );
 //        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.longAmmunitionGunpowdersTag()).group("long_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "_long", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
 
-        // basalt crushing
+        // Crushing for Crushed zinc, crushed copper, crushed iron, crushed aluminum, and basalt powder from basalt
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("basalt_to_powder"))
                 .output(40, AllItems.CRUSHED_ZINC.get(), 3)
                 .output(40, AllItems.CRUSHED_COPPER.get(), 3)
-                .output(40, AllItems.CRUSHED_IRON.get(), 3)
-                .output(60, PrmaItems.BASALT_POWDER.get(), 6) // Basalt Powder added here as a useless junk to occupy the chances of crafting
-                .output(PrmaItems.CRUSHED_BASALT.get())
+                .output(40, AllItems.CRUSHED_IRON.get(), 1)
+                .output(60, PrmaItems.CRUSHED_ALUMINUM.get(), 3)
+                .output(60, PrmaItems.BASALT_POWDER.get(), 4) // Basalt Powder added here as a useless junk to occupy the chances of crafting
                 .require(Items.BASALT)
                 .duration(200)
+        );
+
+        // The same as above but faster because its smooth basalt lol
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("basalt_to_powder"))
+                .output(40, AllItems.CRUSHED_ZINC.get(), 3)
+                .output(40, AllItems.CRUSHED_COPPER.get(), 3)
+                .output(40, AllItems.CRUSHED_IRON.get(), 1)
+                .output(60, PrmaItems.CRUSHED_ALUMINUM.get(), 3)
+                .output(60, PrmaItems.BASALT_POWDER.get(), 4) // Basalt Powder added here as a useless junk to occupy the chances of crafting
+                .require(Items.SMOOTH_BASALT)
+                .duration(140)
+        );
+
+        // Crushing for Rock powder, crushed copper, crushed zinc, and crushed aluminum from limestone
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("limestone_to_powder"))
+                .output(60, PrmaItems.ROCK_POWDER.get(), 2) // Rock Powder added here as a useless junk to occupy the chances of crafting
+                .output(30, AllItems.CRUSHED_COPPER.get(), 2)
+                .output(30, AllItems.CRUSHED_ZINC.get(), 2)
+                .output(30, PrmaItems.CRUSHED_ALUMINUM.get(), 2)
+                .require(AllPaletteStoneTypes.LIMESTONE.baseBlock.get())
+                .duration(140)
         );
 
         // crushing for rock, sulfur, and flint powder from crushed basalt
@@ -107,20 +129,6 @@ public class ModRecipesGen {
                 .requiresHeat(HeatCondition.HEATED)
                 .duration(200));
 
-        // Melting Brass Nuggets
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/brass_nugget_to_molten_brass"))
-                .output(PrmaFluids.MOLTEN_BRASS.get(), 60)
-                .require(AllItems.BRASS_NUGGET.get())
-                .requiresHeat(HeatCondition.HEATED)
-                .duration(100));
-
-        // Melting Brass Ingots
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/brass_ingot_to_molten_brass"))
-                .output(PrmaFluids.MOLTEN_BRASS.get(), 540)
-                .require(AllItems.BRASS_INGOT.get())
-                .requiresHeat(HeatCondition.HEATED)
-                .duration(200));
-
         // Melting Iron Nuggets
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/iron_nugget_to_molten_iron"))
                 .output(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 40)
@@ -146,11 +154,9 @@ public class ModRecipesGen {
 
         // Ammo Waste to Molten Fluids
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("wasted_cartridges_to_fluids"))
-                .output(PrmaFluids.MOLTEN_COPPER.get(), 50)
                 .output(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 50)
                 .duration(200)
-                .require(PrmaTags.ammunitionWasteComponentsTag())
-                .output(PrmaFluids.MOLTEN_BRASS.get(), 50));
+                .require(PrmaTags.ItemTag.AMMO_WASTE.tag));
 
         // Craft Blank Blueprint from Paper and Dye
         ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PrmaItems.BLANK_BLUEPRINT.get(), 3)
@@ -159,17 +165,11 @@ public class ModRecipesGen {
                 .requires(Items.BLUE_DYE)
                 .unlockedBy(RegistrateRecipeProvider.getHasName(Items.PAPER), RegistrateRecipeProvider.has(Items.PAPER)));
 
-        // Fill Molten Basalt Infused Iron Bucket
+        // Fill Molten Metal Alloy Bucket
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_metal_alloy_bucket"))
                 .output(PrmaItems.MOLTEN_METAL_ALLOY_BUCKET.get())
                 .require(Items.BUCKET)
                 .require(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 250));
-
-        // Fill Molten Brass Bucket
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_brass_bucket"))
-                .output(PrmaItems.MOLTEN_BRASS_BUCKET.get())
-                .require(Items.BUCKET)
-                .require(PrmaFluids.MOLTEN_BRASS.get(), 250));
 
         // Fill Molten Copper Bucket
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_copper_bucket"))
@@ -179,23 +179,35 @@ public class ModRecipesGen {
 
 //        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(ProcessingRecipe::new, ));
 
-        // Empty Molten Basalt Infused Iron Bucket
+        // Empty Molten Metal Alloy Bucket
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_metal_alloy_bucket"))
                 .output(Items.BUCKET)
                 .require(PrmaItems.MOLTEN_METAL_ALLOY_BUCKET.get())
                 .output(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 250));
-
-        // Empty Molten Brass Bucket
-        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_brass_bucket"))
-                .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_BRASS_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_BRASS.get(), 250));
 
         // Empty Molten Copper Bucket
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_copper_bucket"))
                 .output(Items.BUCKET)
                 .require(PrmaItems.MOLTEN_COPPER_BUCKET.get())
                 .output(PrmaFluids.MOLTEN_COPPER.get(), 250));
+
+        // Empty Molten Iron Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_iron_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_IRON_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_IRON.get(), 250));
+
+        // Empty Molten Aluminum Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_aluminum_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_ALUMINUM_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_ALUMINUM.get(), 250));
+
+        // Empty Molten Strong Aluminum Bucket
+        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_aluminum_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_STRONG_ALUMINUM_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 250));
 
         // Decomponentalizer Crafting Recipe
 //        MechanicalCraftingRecipeBuilder.shapedRecipe(ModBlocks.DECOMPONENTALIZER.get())

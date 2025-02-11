@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.recipe.decomponentalizing;
 
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import cn.crtlprototypestudios.prma.util.annotations.ClientServerSide;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;

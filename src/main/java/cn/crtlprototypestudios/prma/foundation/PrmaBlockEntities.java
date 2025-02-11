@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation;
 
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

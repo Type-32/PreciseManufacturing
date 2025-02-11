@@ -5,7 +5,7 @@ import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModRecipeProvider;
-import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
+import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;

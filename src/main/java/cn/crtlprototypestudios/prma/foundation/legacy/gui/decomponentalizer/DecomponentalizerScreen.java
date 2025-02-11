@@ -2,7 +2,7 @@ package cn.crtlprototypestudios.prma.foundation.legacy.gui.decomponentalizer;
 
 import cn.crtlprototypestudios.prma.foundation.legacy.gui.widgets.RecipeListWidget;
 import cn.crtlprototypestudios.prma.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
-import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
+import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

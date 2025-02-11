@@ -1,11 +1,19 @@
 package cn.crtlprototypestudios.prma.foundation;
 
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.lib.Reference;
+import com.simibubi.create.Create;
+import com.simibubi.create.foundation.utility.Lang;
+import com.tacz.guns.GunMod;
+import com.tacz.guns.api.TimelessAPI;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -48,106 +56,160 @@ public class PrmaTags {
 
     public static void register(){
         // Do not delete; for loading the class
+        ItemTag.init();
     }
 
-    public static TagKey<Item> weaponBlueprintTag(){
-        return modItemTag("weapon_blueprints");
+    public enum NameSpace {
+        MOD(Reference.MOD_ID, false, true),
+        CREATE(Create.ID, false, true),
+        TACZ(GunMod.MOD_ID),
+        FORGE("forge");
+
+        public final String id;
+        public final boolean optionalDefault;
+        public final boolean alwaysDatagenDefault;
+
+        NameSpace(String id) {
+            this(id, true, false);
+        }
+        NameSpace(String id, boolean optionalDefault, boolean alwaysDatagenDefault) {
+            this.id = id;
+            this.optionalDefault = optionalDefault;
+            this.alwaysDatagenDefault = alwaysDatagenDefault;
+        }
     }
 
-    public static TagKey<Item> weaponCastTag(){
-        return modItemTag("weapon_casts");
+    public enum ItemTag {
+        MATERIALS,
+
+        AMMO_CASINGS,
+        AMMO_HEADS,
+        AMMO_PELLETS,
+        AMMO_WASTE,
+
+        SMALL_AMMO_COMPONENTS,
+        MEDIUM_AMMO_COMPONENTS,
+        LONG_AMMO_COMPONENTS,
+
+        BRASS_AMMO_COMPONENTS(true),
+        COPPER_AMMO_COMPONENTS(true),
+        IRON_AMMO_COMPONENTS(true),
+
+        SMALL_BRASS_AMMO_COMPONENTS(true),
+        SMALL_COPPER_AMMO_COMPONENTS(true),
+        SMALL_IRON_AMMO_COMPONENTS(true),
+        MEDIUM_BRASS_AMMO_COMPONENTS(true),
+        MEDIUM_COPPER_AMMO_COMPONENTS(true),
+        MEDIUM_IRON_AMMO_COMPONENTS(true),
+        LONG_BRASS_AMMO_COMPONENTS(true),
+        LONG_COPPER_AMMO_COMPONENTS(true),
+        LONG_IRON_AMMO_COMPONENTS(true),
+
+        SMALL_AMMO_PROPELLANTS(true),
+        MEDIUM_AMMO_PROPELLANTS(true),
+        LONG_AMMO_PROPELLANTS(true),
+
+        WEAPON_COMPONENTS,
+        WEAPON_BLUEPRINTS,
+        WEAPON_COMPONENT_CASTS;
+
+        ItemTag() {
+            this(NameSpace.MOD);
+        }
+
+        ItemTag(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        ItemTag(boolean alwaysDatagen) {
+            this(NameSpace.MOD, NameSpace.MOD.optionalDefault, alwaysDatagen);
+        }
+
+        ItemTag(NameSpace namespace, boolean alwaysDatagen) {
+            this(namespace, namespace.optionalDefault, alwaysDatagen);
+        }
+
+        ItemTag(NameSpace namespace, String path) {
+            this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
+
+        ItemTag(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+            this(namespace, null, optional, alwaysDatagen);
+        }
+
+        ItemTag(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+            ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
+            if (optional) {
+                tag = optionalTag(ForgeRegistries.ITEMS, id);
+            } else {
+                tag = ItemTags.create(id);
+            }
+            this.alwaysDatagen = alwaysDatagen;
+        }
+
+        public final TagKey<Item> tag;
+        public final boolean alwaysDatagen;
+        public boolean matches(ItemStack stack) {
+            return stack.is(tag);
+        }
+
+        private static void init() {
+
+        }
     }
 
-    public static TagKey<Item> weaponComponentTag(){
-        return modItemTag("weapon_components");
-    }
+    public enum FluidTag {
+        MOLTEN_IRON_FLUIDS,
+        MOLTEN_BRASS_FLUIDS,
+        MOLTEN_COPPER_FLUIDS,
+        MOLTEN_ALUMINUM_FLUIDS,
+        MOLTEN_METAL_ALLOY_FLUIDS,
+        MOLTEN_STRONG_ALUMINUM_FLUIDS,
+        MOLTEN_METALS(true),;
 
-    public static TagKey<Item> componentsTag(){
-        return modItemTag("components");
-    }
+        FluidTag() {
+            this(NameSpace.MOD);
+        }
 
-    public static TagKey<Item> materialsTag(){
-        return modItemTag("materials");
-    }
+        FluidTag(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
 
-    public static TagKey<Item> cartridgeBlueprintTag() {
-        return modItemTag("cartridge_blueprints");
-    }
+        FluidTag(boolean alwaysDatagen) {
+            this(NameSpace.MOD, NameSpace.MOD.optionalDefault, alwaysDatagen);
+        }
 
-    public static TagKey<Item> smallAmmunitionComponentsTag(){
-        return modItemTag("small_ammunition_components");
-    }
+        FluidTag(NameSpace namespace, boolean alwaysDatagen) {
+            this(namespace, namespace.optionalDefault, alwaysDatagen);
+        }
 
-    public static TagKey<Item> mediumAmmunitionComponentsTag(){
-        return modItemTag("medium_ammunition_components");
-    }
+        FluidTag(NameSpace namespace, String path) {
+            this(namespace, path, namespace.optionalDefault, namespace.alwaysDatagenDefault);
+        }
 
-    public static TagKey<Item> longAmmunitionComponentsTag(){
-        return modItemTag("long_ammunition_components");
-    }
+        FluidTag(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+            this(namespace, null, optional, alwaysDatagen);
+        }
 
-    public static TagKey<Item> shellAmmunitionComponentsTag(){
-        return modItemTag("shell_ammunition_components");
-    }
+        FluidTag(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+            ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
+            if (optional) {
+                tag = optionalTag(ForgeRegistries.FLUIDS, id);
+            } else {
+                tag = FluidTags.create(id);
+            }
+            this.alwaysDatagen = alwaysDatagen;
+        }
 
-    public static TagKey<Item> copperAmmunitionComponentsTag(){
-        return modItemTag("copper_ammunition_components");
-    }
+        public final TagKey<Fluid> tag;
+        public final boolean alwaysDatagen;
+        public boolean matches(FluidState stack) {
+            return stack.is(tag);
+        }
 
-    public static TagKey<Item> brassAmmunitionComponentsTag(){
-        return modItemTag("brass_ammunition_components");
-    }
+        private static void init() {
 
-    public static TagKey<Item> ironAmmunitionComponentsTag(){
-        return modItemTag("iron_ammunition_components");
-    }
-
-    public static TagKey<Item> ammunitionComponentsTag(){
-        return modItemTag("ammunition_components");
-    }
-
-    public static TagKey<Item> ammunitionComponentBlueprintsTag(){
-        return modItemTag("ammunition_component_blueprints");
-    }
-
-    public static TagKey<Item> ammunitionComponentCastsTag(){
-        return modItemTag("ammunition_component_casts");
-    }
-
-    public static TagKey<Item> smallAmmunitionGunpowdersTag(){
-        return modItemTag("small_ammunition_gunpowders");
-    }
-
-    public static TagKey<Item> mediumAmmunitionGunpowdersTag(){
-        return modItemTag("medium_ammunition_gunpowders");
-    }
-
-    public static TagKey<Item> longAmmunitionGunpowdersTag(){
-        return modItemTag("long_ammunition_gunpowders");
-    }
-
-    public static TagKey<Item> shellAmmunitionGunpowdersTag(){
-        return modItemTag("shell_ammunition_gunpowders");
-    }
-
-    public static TagKey<Item> ammunitionCasingComponentsTag(){
-        return modItemTag("ammunition_casing_components");
-    }
-
-    public static TagKey<Item> ammunitionHeadComponentsTag(){
-        return modItemTag("ammunition_head_components");
-    }
-
-    public static TagKey<Item> ammunitionPelletsComponentsTag(){
-        return modItemTag("ammunition_pellets_components");
-    }
-
-    public static TagKey<Item> ammunitionWasteComponentsTag(){
-        return modItemTag("ammunition_waste_components");
-    }
-
-    public static TagKey<Item> millableRocksTag(){
-        return modItemTag("millable_rocks");
+        }
     }
 
     public static TagKey<Fluid> moltenIronTag(){
@@ -166,6 +228,14 @@ public class PrmaTags {
         return modFluidTag("molten_brass_fluids");
     }
 
+    public static TagKey<Fluid> moltenMetalAlloysTag(){
+        return modFluidTag("molten_metal_alloy_fluids");
+    }
+
+    public static TagKey<Fluid> moltenStrongAluminumTag(){
+        return modFluidTag("molten_strong_aluminum_fluids");
+    }
+
     public static TagKey<Item> ingotsTag() {
         return modItemTag("ingots");
     }
@@ -174,7 +244,7 @@ public class PrmaTags {
         return modItemTag("crushed_ores_tag");
     }
 
-    public static TagKey<Fluid> moltenFluidsTag() {
-        return modFluidTag("molten_fluids");
+    public static TagKey<Fluid> moltenMetalsTag() {
+        return modFluidTag("molten_metals");
     }
 }

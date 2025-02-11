@@ -1,17 +1,17 @@
-package cn.crtlprototypestudios.prma.foundation.fluid;
+package cn.crtlprototypestudios.prma.foundation.neo.fluid;
 
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import net.minecraft.world.item.Item;
 
-public class MoltenBrassFluid extends VirtualFluid {
+public class MoltenIronFluid extends VirtualFluid {
 
-    public MoltenBrassFluid(Properties properties) {
+    public MoltenIronFluid(Properties properties) {
         super(properties);
     }
 
     @Override
     public Item getBucket() {
-        return PrmaItems.MOLTEN_BRASS_BUCKET.get();
+        return PrmaItems.MOLTEN_IRON_BUCKET.get();
     }
 }

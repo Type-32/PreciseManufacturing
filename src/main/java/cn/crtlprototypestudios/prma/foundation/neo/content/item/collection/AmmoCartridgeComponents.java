@@ -1,10 +1,10 @@
-package cn.crtlprototypestudios.prma.foundation.neo.item.collection;
+package cn.crtlprototypestudios.prma.foundation.neo.content.item.collection;
 
 import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
-import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoMaterialType;
-import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoSizeType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoMaterialType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoSizeType;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
 

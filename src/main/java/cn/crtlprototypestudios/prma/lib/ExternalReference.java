@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.prma.util;
+package cn.crtlprototypestudios.prma.lib;
 
 import java.util.Dictionary;
 import java.util.Hashtable;

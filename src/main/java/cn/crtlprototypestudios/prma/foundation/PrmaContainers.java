@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.foundation.legacy.gui.decomponentalizer.DecomponentalizerContainerMenu;
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

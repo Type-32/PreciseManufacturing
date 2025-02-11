@@ -1,6 +1,6 @@
-package cn.crtlprototypestudios.prma.foundation.util;
+package cn.crtlprototypestudios.prma.foundation.utility;
 
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.concurrent.ConcurrentHashMap;

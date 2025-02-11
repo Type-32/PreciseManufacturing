@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.prma.foundation.neo.util;
+package cn.crtlprototypestudios.prma.foundation.legacy.util;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

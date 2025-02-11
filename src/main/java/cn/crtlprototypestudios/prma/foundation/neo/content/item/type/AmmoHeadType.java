@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.prma.foundation.neo.item.type;
+package cn.crtlprototypestudios.prma.foundation.neo.content.item.type;
 
 public enum AmmoHeadType {
     Small,

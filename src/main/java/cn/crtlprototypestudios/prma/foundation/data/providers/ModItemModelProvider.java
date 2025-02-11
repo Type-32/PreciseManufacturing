@@ -1,8 +1,8 @@
 package cn.crtlprototypestudios.prma.foundation.data.providers;
 
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
-import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;

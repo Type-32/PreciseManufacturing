@@ -3,8 +3,8 @@ package cn.crtlprototypestudios.prma;
 import cn.crtlprototypestudios.prma.foundation.*;
 import cn.crtlprototypestudios.prma.foundation.legacy.gui.decomponentalizer.DecomponentalizerScreen;
 import cn.crtlprototypestudios.prma.foundation.handler.PacketHandler;
-import cn.crtlprototypestudios.prma.foundation.util.PreciseManufacturingRegistrate;
-import cn.crtlprototypestudios.prma.util.Reference;
+import cn.crtlprototypestudios.prma.foundation.utility.PreciseManufacturingRegistrate;
+import cn.crtlprototypestudios.prma.lib.Reference;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,14 +34,7 @@ public class PreciseManufacturing {
     public PreciseManufacturing() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        PrmaBlocks.register();
-        PrmaBlockEntities.register(eventBus);
-        PrmaContainers.register(eventBus);
-        PrmaItems.register();
-        PrmaFluids.register();
-        PrmaTags.register();
-        PrmaRecipes.register(eventBus);
-        PrmaCreativeModTabs.register(eventBus);
+        registerEntries(eventBus);
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -52,6 +45,17 @@ public class PreciseManufacturing {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void registerEntries(final IEventBus eventBus) {
+        PrmaBlocks.register();
+        PrmaBlockEntities.register(eventBus);
+        PrmaContainers.register(eventBus);
+        PrmaItems.register();
+        PrmaFluids.register();
+        PrmaTags.register();
+        PrmaRecipes.register(eventBus);
+        PrmaCreativeModTabs.register(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.prma.util;
+package cn.crtlprototypestudios.prma.lib;
 
 import java.util.logging.LogManager;
 import java.util.logging.Logger;

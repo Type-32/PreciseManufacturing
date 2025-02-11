@@ -6,7 +6,7 @@ import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModRecipeProvider;
-import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
+import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;

@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.item.bases.weapon;
 
-import cn.crtlprototypestudios.prma.foundation.neo.util.ModuleBuilder;
+import cn.crtlprototypestudios.prma.foundation.legacy.util.ModuleBuilder;
 
 import java.util.ArrayList;
 

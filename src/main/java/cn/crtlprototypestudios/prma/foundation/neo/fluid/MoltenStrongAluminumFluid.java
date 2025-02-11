@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.prma.foundation.fluid;
+package cn.crtlprototypestudios.prma.foundation.neo.fluid;
 
 import com.simibubi.create.content.fluids.VirtualFluid;
 
