@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "create:copper_nugget"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "amount": 40,
+      "fluid": "prma:molten_copper"
+    }
+  ]
+}

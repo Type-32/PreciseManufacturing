@@ -62,7 +62,7 @@ public class C2SSetDecomponentalizerCurrentRecipePacket {
         try {
             availableRecipes = world.getRecipeManager().getRecipesFor(DecomponentalizingRecipe.Type.INSTANCE, new SimpleContainer(msg.decompositionStack), world);
             Main.LOGGER.debug("Server Handle Packet: Fetched recipes: {}", availableRecipes.size());
-            Objects.requireNonNull(world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).orElse(null)).startDecomponentalizationProcess(availableRecipes, msg.recipeIndex);
+//            Objects.requireNonNull(world.getBlockEntity(msg.position, ModBlockEntities.DECOMPONENTALIZER.get()).orElse(null)).startDecomponentalizationProcess(availableRecipes, msg.recipeIndex);
         } catch (Exception e) {
             Main.LOGGER.error("Server Handle Packet: Decomponentalization packet failed to set", e);
         }

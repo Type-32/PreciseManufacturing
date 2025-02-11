@@ -1,0 +1,20 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "prma:flint_powder"
+    },
+    {
+      "item": "prma:flint_powder"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "item": "prma:small_ammunition_gunpowder"
+    }
+  ]
+}

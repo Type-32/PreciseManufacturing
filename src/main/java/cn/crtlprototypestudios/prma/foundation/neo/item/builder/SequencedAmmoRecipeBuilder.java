@@ -1,8 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.neo.item.builder;
 
 import cn.crtlprototypestudios.prma.foundation.ModItems;
-import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoCasingType;
-import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoMaterialType;
 import cn.crtlprototypestudios.prma.util.Reference;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
@@ -59,14 +57,14 @@ public class SequencedAmmoRecipeBuilder {
     }
 
     public SequencedAmmoRecipeBuilder applyPrimer() {
-        return deployerApply(ModItems.PRIMER.get());
+        return deployerApply(ModItems.CARTRIDGE_PRIMER.get());
     }
 
     public SequencedAmmoRecipeBuilder applyGunpowder(int times) {
         return deployerApply(Items.GUNPOWDER, times);
     }
 
-    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoCasingType casingType, AmmoMaterialType materialType, int times) {
-        return deployerApply();
-    }
+//    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoCasingType casingType, AmmoMaterialType materialType, int times) {
+//        return deployerApply();
+//    }
 }

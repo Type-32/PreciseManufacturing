@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.prma.foundation.legacy.recipe.decomponentalizing.
 import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.prma.util.Reference;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;

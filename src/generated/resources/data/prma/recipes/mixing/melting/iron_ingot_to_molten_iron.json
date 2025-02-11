@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "prma:crushed_basalt"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "processingTime": 200,
+  "results": [
+    {
+      "amount": 360,
+      "fluid": "prma:molten_metal_alloy"
+    }
+  ]
+}

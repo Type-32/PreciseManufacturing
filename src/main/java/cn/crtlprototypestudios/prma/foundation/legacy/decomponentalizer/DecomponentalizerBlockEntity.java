@@ -46,7 +46,8 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     private ContainerData data;
 
     public DecomponentalizerBlockEntity(BlockPos pos, BlockState state) {
-        this(ModBlockEntities.DECOMPONENTALIZER.get(), pos, state);
+//        this(ModBlockEntities.DECOMPONENTALIZER.get(), pos, state);
+        this(null, pos, state);
     }
 
     public DecomponentalizerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {

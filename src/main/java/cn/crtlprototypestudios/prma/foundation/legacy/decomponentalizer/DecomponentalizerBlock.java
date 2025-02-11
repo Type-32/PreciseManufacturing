@@ -85,10 +85,17 @@ public class DecomponentalizerBlock extends BaseEntityBlock {
         return new DecomponentalizerBlockEntity(pPos, pState);
     }
 
+//    @Nullable
+//    @Override
+//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+//        return createTickerHelper(pBlockEntityType, ModBlockEntities.DECOMPONENTALIZER.get(),
+//                DecomponentalizerBlockEntity::tick);
+//    }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.DECOMPONENTALIZER.get(),
+        return createTickerHelper(pBlockEntityType, null,
                 DecomponentalizerBlockEntity::tick);
     }
 }

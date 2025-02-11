@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_nugget"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "amount": 40,
+      "fluid": "prma:molten_metal_alloy"
+    }
+  ]
+}
