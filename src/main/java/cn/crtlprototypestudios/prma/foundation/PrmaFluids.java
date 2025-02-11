@@ -35,7 +35,7 @@ public class PrmaFluids {
             MOLTEN_STRONG_ALUMINUM_ALLOY = PreciseManufacturing.REGISTRATE.extendedVirtualFluid("molten_strong_aluminum_alloy", MoltenStrongAluminumFluid::new)
                     .lang("Molten Strong Aluminum Alloy")
                     .tag(PrmaTags.forgeFluidTag("molten_metals"))
-                    .register();
+                    .register(); //灵感来源: LDT的LDX 7075波壳, 就是7075铝合金
 
     public static void register() {
         // Do not delete; for loading the class
