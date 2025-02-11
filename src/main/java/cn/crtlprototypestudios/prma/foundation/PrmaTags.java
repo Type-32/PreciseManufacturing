@@ -80,6 +80,7 @@ public class PrmaTags {
     }
 
     public enum ItemTag {
+        CASTING_BASIN_PLACEABLE(true),
         MATERIALS,
 
         AMMO_CASINGS,
