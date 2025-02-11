@@ -1,9 +1,9 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.item.bases.ammunition;
 
-import cn.crtlprototypestudios.prma.Main;
-import cn.crtlprototypestudios.prma.foundation.ModCreativeModTabs;
-import cn.crtlprototypestudios.prma.foundation.ModItems;
-import cn.crtlprototypestudios.prma.foundation.ModTags;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
+import cn.crtlprototypestudios.prma.foundation.PrmaCreativeModTabs;
+import cn.crtlprototypestudios.prma.foundation.PrmaItems;
+import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
@@ -121,46 +121,46 @@ public class AmmunitionModule {
 
         String itemId = String.format("%s_%s_%s_component", getSize(), fluidTagType, getType());
         this.coreId = itemId;
-        assert ModCreativeModTabs.MOD_MATERIALS_TAB.getKey() != null;
-        this.item = Main.REGISTRATE.item(itemId, Item::new)
+        assert PrmaCreativeModTabs.MOD_MATERIALS_TAB.getKey() != null;
+        this.item = PreciseManufacturing.REGISTRATE.item(itemId, Item::new)
                 .tag(
-                        ModTags.ammunitionComponentsTag(),
+                        PrmaTags.ammunitionComponentsTag(),
                         (
-                                getFillingFluid() == ModTags.moltenIronTag() ? ModTags.ironAmmunitionComponentsTag() :
-                                getFillingFluid() == ModTags.moltenCoppersTag() ? ModTags.copperAmmunitionComponentsTag() :
-                                ModTags.brassAmmunitionComponentsTag()
+                                getFillingFluid() == PrmaTags.moltenIronTag() ? PrmaTags.ironAmmunitionComponentsTag() :
+                                getFillingFluid() == PrmaTags.moltenCoppersTag() ? PrmaTags.copperAmmunitionComponentsTag() :
+                                PrmaTags.brassAmmunitionComponentsTag()
                         ),
                         (
-                                getType() == AmmunitionMaterialType.CASING ? ModTags.ammunitionCasingComponentsTag() :
-                                getType() == AmmunitionMaterialType.HEAD ? ModTags.ammunitionHeadComponentsTag() :
-                                getType() == AmmunitionMaterialType.PELLETS ? ModTags.ammunitionPelletsComponentsTag() :
-                                ModTags.ammunitionWasteComponentsTag()
+                                getType() == AmmunitionMaterialType.CASING ? PrmaTags.ammunitionCasingComponentsTag() :
+                                getType() == AmmunitionMaterialType.HEAD ? PrmaTags.ammunitionHeadComponentsTag() :
+                                getType() == AmmunitionMaterialType.PELLETS ? PrmaTags.ammunitionPelletsComponentsTag() :
+                                PrmaTags.ammunitionWasteComponentsTag()
                         ),
                         (
-                                getSize() == AmmunitionSize.SMALL ? ModTags.smallAmmunitionComponentsTag() :
-                                getSize() == AmmunitionSize.MEDIUM ? ModTags.mediumAmmunitionComponentsTag() :
-                                getSize() == AmmunitionSize.LONG ? ModTags.longAmmunitionComponentsTag() :
-                                ModTags.shellAmmunitionComponentsTag()
+                                getSize() == AmmunitionSize.SMALL ? PrmaTags.smallAmmunitionComponentsTag() :
+                                getSize() == AmmunitionSize.MEDIUM ? PrmaTags.mediumAmmunitionComponentsTag() :
+                                getSize() == AmmunitionSize.LONG ? PrmaTags.longAmmunitionComponentsTag() :
+                                PrmaTags.shellAmmunitionComponentsTag()
                         ),
                         AllTags.AllItemTags.UPRIGHT_ON_BELT.tag
                 )
-                .tab(ModCreativeModTabs.MOD_MATERIALS_TAB.getKey())
+                .tab(PrmaCreativeModTabs.MOD_MATERIALS_TAB.getKey())
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "modules", itemId))
                 .register();
-        this.cast = Main.REGISTRATE.item(itemId + "_cast", Item::new)
-                .tag(ModTags.ammunitionComponentCastsTag())
-                .tab(ModCreativeModTabs.MOD_MATERIALS_TAB.getKey())
+        this.cast = PreciseManufacturing.REGISTRATE.item(itemId + "_cast", Item::new)
+                .tag(PrmaTags.ammunitionComponentCastsTag())
+                .tab(PrmaCreativeModTabs.MOD_MATERIALS_TAB.getKey())
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "casts", itemId + "_cast"))
                 .register();
-        this.blueprint = Main.REGISTRATE.item(itemId + "_blueprint", Item::new)
-                .tag(ModTags.ammunitionComponentBlueprintsTag())
-                .tab(ModCreativeModTabs.MOD_MATERIALS_TAB.getKey())
+        this.blueprint = PreciseManufacturing.REGISTRATE.item(itemId + "_blueprint", Item::new)
+                .tag(PrmaTags.ammunitionComponentBlueprintsTag())
+                .tab(PrmaCreativeModTabs.MOD_MATERIALS_TAB.getKey())
                 .model(ModItemModelProvider.genericItemModel(true, "ammunition_components", "blueprints", itemId + "_blueprint"))
                 .register();
 
-        ModItems.addToMaterials(this.item);
-        ModItems.addToMaterials(this.cast);
-        ModItems.addToMaterials(this.blueprint);
+        PrmaItems.addToMaterials(this.item);
+        PrmaItems.addToMaterials(this.cast);
+        PrmaItems.addToMaterials(this.blueprint);
 
         return this;
     }
@@ -172,7 +172,7 @@ public class AmmunitionModule {
                 .require(getFillingFluid(), getCastFillingAmount()));
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/ammunition_modules/" + coreId + "_cast_cutting"))
                 .output(cast.get(), 1)
-                .require(ModItems.BLANK_CAST.get()));
+                .require(PrmaItems.BLANK_CAST.get()));
         ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(DeployerApplicationRecipe::new, ResourceHelper.find("application/ammunition_modules/" + coreId + "_apply_to_cast"))
                 .output(cast.get(), 1)
                 .require(Items.IRON_INGOT)

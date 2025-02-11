@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.neo.builder.recipe;
 
-import cn.crtlprototypestudios.prma.foundation.ModItems;
+import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoCasingType;
 import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoMaterialType;
 import cn.crtlprototypestudios.prma.util.Reference;
@@ -59,7 +59,7 @@ public class SequencedAmmoRecipeBuilder {
     }
 
     public SequencedAmmoRecipeBuilder applyPrimer() {
-        return deployerApply(ModItems.CARTRIDGE_PRIMER.get());
+        return deployerApply(PrmaItems.CARTRIDGE_PRIMER.get());
     }
 
     public SequencedAmmoRecipeBuilder applyGunpowder(int times) {

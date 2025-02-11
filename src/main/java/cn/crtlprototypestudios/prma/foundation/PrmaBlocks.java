@@ -3,7 +3,7 @@ package cn.crtlprototypestudios.prma.foundation;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
 
-public class ModBlocks {
+public class PrmaBlocks {
 
     static {
         // Set that all registered Items and Blocks defaults under this Mod's creative tabs

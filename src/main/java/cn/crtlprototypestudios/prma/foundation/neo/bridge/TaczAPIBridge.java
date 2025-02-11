@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.neo.bridge;
 
-import cn.crtlprototypestudios.prma.Main;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.api.item.builder.GunItemBuilder;
@@ -21,7 +21,7 @@ public class TaczAPIBridge {
 
     public static Set<ItemStack> getTaczAmmo() {
         return TimelessAPI.getAllCommonAmmoIndex().stream().map(i -> {
-                    Main.LOGGER.debug(i.toString());
+                    PreciseManufacturing.LOGGER.debug(i.toString());
                     return AmmoItemBuilder.create()
                             .setCount(1)
                             .setId(i.getKey()).build();

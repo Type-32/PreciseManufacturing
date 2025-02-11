@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.data.providers;
 
-import cn.crtlprototypestudios.prma.foundation.ModItems;
+import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
 import cn.crtlprototypestudios.prma.util.Reference;
 import com.tterrag.registrate.providers.DataGenContext;
@@ -27,18 +27,18 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        simpleItem(ModItems.BASALT_POWDER.get());
-        simpleItem(ModItems.CRUSHED_BASALT.get());
-        simpleItem(ModItems.STRAIGHT_SMALL_COIL.get());
-        simpleItem(ModItems.STRAIGHT_LARGE_COIL.get());
-        simpleItem(ModItems.STRAIGHT_FLAT_COIL.get());
-        simpleItem(ModItems.LOCKING_RETURN_COIL.get());
-        simpleItem(ModItems.FLAT_HEAD_SCREW.get());
-        simpleItem(ModItems.M_SCREW.get());
-        simpleItem(ModItems.THIN_SMALL_ROD.get());
-        simpleItem(ModItems.THICK_SMALL_ROD.get());
-        simpleItem(ModItems.CRUSHED_LEAD.get());
-        simpleItem(ModItems.CRUSHED_ALUMINUM.get());
+        simpleItem(PrmaItems.BASALT_POWDER.get());
+        simpleItem(PrmaItems.CRUSHED_BASALT.get());
+        simpleItem(PrmaItems.STRAIGHT_SMALL_COIL.get());
+        simpleItem(PrmaItems.STRAIGHT_LARGE_COIL.get());
+        simpleItem(PrmaItems.STRAIGHT_FLAT_COIL.get());
+        simpleItem(PrmaItems.LOCKING_RETURN_COIL.get());
+        simpleItem(PrmaItems.FLAT_HEAD_SCREW.get());
+        simpleItem(PrmaItems.M_SCREW.get());
+        simpleItem(PrmaItems.THIN_SMALL_ROD.get());
+        simpleItem(PrmaItems.THICK_SMALL_ROD.get());
+        simpleItem(PrmaItems.CRUSHED_LEAD.get());
+        simpleItem(PrmaItems.CRUSHED_ALUMINUM.get());
 
         for(int i = 0; i < storedItemResourceLocations.size(); i++) {
             customSimpleItem(storedItemLocations.get(i), storedItemResourceLocations.get(i));

@@ -1,8 +1,7 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.gui.decomponentalizer;
 
-import cn.crtlprototypestudios.prma.Main;
-import cn.crtlprototypestudios.prma.foundation.ModBlocks;
-import cn.crtlprototypestudios.prma.foundation.ModContainers;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
+import cn.crtlprototypestudios.prma.foundation.PrmaContainers;
 import cn.crtlprototypestudios.prma.foundation.legacy.decomponentalizer.DecomponentalizerBlockEntity;
 import cn.crtlprototypestudios.prma.foundation.legacy.gui.LockableInputSlot;
 import cn.crtlprototypestudios.prma.foundation.legacy.gui.ModResultSlot;
@@ -29,7 +28,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
     }
 
     public DecomponentalizerContainerMenu(int id, Inventory playerInventory, BlockEntity blockEntity, ContainerData data) {
-        super(ModContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), id);
+        super(PrmaContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), id);
         checkContainerSize(playerInventory, 4);
         this.blockEntity = (DecomponentalizerBlockEntity) blockEntity;
         this.level = playerInventory.player.level();
@@ -147,7 +146,7 @@ public class DecomponentalizerContainerMenu extends AbstractContainerMenu {
             // TODO: Commenting this out to soft delete the Decomponentalizer
 //            PacketHandler.sendToServer(new C2SSetDecomponentalizerCurrentRecipePacket(blockEntity.getBlockPos(), this.getBlockEntity().getItemHandler().getStackInSlot(2), (short) selectedIndex));
 
-            Main.LOGGER.debug("Starting Decomponentalizing Process");
+            PreciseManufacturing.LOGGER.debug("Starting Decomponentalizing Process");
         }
     }
 

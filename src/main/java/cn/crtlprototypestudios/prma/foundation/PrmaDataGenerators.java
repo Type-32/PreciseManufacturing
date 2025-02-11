@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModDataGenerators {
+public class PrmaDataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();

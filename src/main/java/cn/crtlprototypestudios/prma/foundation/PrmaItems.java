@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation;
 
-import cn.crtlprototypestudios.prma.Main;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.prma.foundation.neo.item.collection.AmmoCartridgeComponents;
 import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoCasingType;
@@ -17,31 +17,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ModItems {
+public class PrmaItems {
 
     static {
         // Set that all registered Items and Blocks defaults under this Mod's creative tabs
-        assert ModCreativeModTabs.MOD_TAB.getKey() != null;
-        Main.REGISTRATE.defaultCreativeTab(ModCreativeModTabs.MOD_TAB.getKey());
+        assert PrmaCreativeModTabs.MOD_TAB.getKey() != null;
+        PreciseManufacturing.REGISTRATE.defaultCreativeTab(PrmaCreativeModTabs.MOD_TAB.getKey());
     }
 
 //    public static final Set<ItemStack> taczGuns = TaczAPIBridge.getTaczGuns();
 //    public static final Set<ItemStack> taczAmmo = TaczAPIBridge.getTaczAmmo();
 
-    public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry, ModCreativeModTabs.Tabs tabs) {
+    public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry, PrmaCreativeModTabs.Tabs tabs) {
         ALL_ITEMS.add(entry);
-        if (Objects.requireNonNull(tabs) == ModCreativeModTabs.Tabs.Materials) {
+        if (Objects.requireNonNull(tabs) == PrmaCreativeModTabs.Tabs.Materials) {
             ALL_MATERIALS.add(entry);
         }
         return entry;
     }
 
     public static RegistryEntry<Item> addToMaterials(RegistryEntry<Item> entry) {
-        return addToList(entry, ModCreativeModTabs.Tabs.Materials);
+        return addToList(entry, PrmaCreativeModTabs.Tabs.Materials);
     }
 
     public static RegistryEntry<Item> addToList(RegistryEntry<Item> entry) {
-        return addToList(entry, ModCreativeModTabs.Tabs.Main);
+        return addToList(entry, PrmaCreativeModTabs.Tabs.Main);
     }
 
     public static List<RegistryEntry<Item>>
@@ -53,9 +53,9 @@ public class ModItems {
 
     public static class Ammo {
         public static ItemBuilder<Item, PreciseManufacturingRegistrate> ammoComponent(String name) {
-            return Main.REGISTRATE.item(name, Item::new)
+            return PreciseManufacturing.REGISTRATE.item(name, Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "ammo", "components", "_"))
-                    .tag(ModTags.ammunitionComponentsTag());
+                    .tag(PrmaTags.ammunitionComponentsTag());
         }
 
         public static final AmmoCartridgeComponents
@@ -66,10 +66,10 @@ public class ModItems {
         public static final RegistryEntry<Item>
                 CARTRIDGE_PRIMER = addToMaterials(ammoComponent("cartridge_primer").register()),
                 IRON_PELLETS = addToMaterials(ammoComponent("iron_pellets").register()),
-                ASSEMBLING_SMALL_CARTRIDGE = Main.REGISTRATE.item("assembling_small_cartridge", Item::new).register(),
-                ASSEMBLING_MEDIUM_CARTRIDGE = Main.REGISTRATE.item("assembling_medium_cartridge", Item::new).register(),
-                ASSEMBLING_LONG_CARTRIDGE = Main.REGISTRATE.item("assembling_long_cartridge", Item::new).register(),
-                ASSEMBLING_SHOTGUN_CARTRIDGE = Main.REGISTRATE.item("assembling_shotgun_cartridge", Item::new).register();
+                ASSEMBLING_SMALL_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_small_cartridge", Item::new).register(),
+                ASSEMBLING_MEDIUM_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_medium_cartridge", Item::new).register(),
+                ASSEMBLING_LONG_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_long_cartridge", Item::new).register(),
+                ASSEMBLING_SHOTGUN_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_shotgun_cartridge", Item::new).register();
 
         public static RegistryEntry<Item> getCasingByTypes(AmmoCasingType casingType, AmmoMaterialType materialType){
             return switch (casingType) {
@@ -96,98 +96,98 @@ public class ModItems {
 
     // Powders
     public static final RegistryEntry<Item>
-            BASALT_POWDER = addToMaterials(Main.REGISTRATE.item("basalt_powder", Item::new)
+            BASALT_POWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("basalt_powder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(ModTags.materialsTag()).register()), // Basalt Powder is practically useless, a way to add complexity to automation lines
-            SULFUR_POWDER = addToMaterials(Main.REGISTRATE.item("sulfur_powder", Item::new)
+                    .tag(PrmaTags.materialsTag()).register()), // Basalt Powder is practically useless, a way to add complexity to automation lines
+            SULFUR_POWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("sulfur_powder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(ModTags.materialsTag()).register()),
-            FLINT_POWDER = addToMaterials(Main.REGISTRATE.item("flint_powder", Item::new)
+                    .tag(PrmaTags.materialsTag()).register()),
+            FLINT_POWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("flint_powder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(ModTags.materialsTag()).register()),
-            ROCK_POWDER = addToMaterials(Main.REGISTRATE.item("rock_powder", Item::new)
+                    .tag(PrmaTags.materialsTag()).register()),
+            ROCK_POWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("rock_powder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(ModTags.materialsTag()).register()), // Rock Powder is also practically useless, a way to add complexity to automation lines
-            SMALL_AMMUNITION_GUNPOWDER = addToMaterials(Main.REGISTRATE.item("small_ammunition_gunpowder", Item::new)
+                    .tag(PrmaTags.materialsTag()).register()), // Rock Powder is also practically useless, a way to add complexity to automation lines
+            SMALL_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("small_ammunition_gunpowder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(ModTags.materialsTag())
-                    .tag(ModTags.smallAmmunitionGunpowdersTag())
+                    .tag(PrmaTags.materialsTag())
+                    .tag(PrmaTags.smallAmmunitionGunpowdersTag())
                     .register()),
-            MEDIUM_AMMUNITION_GUNPOWDER = addToMaterials(Main.REGISTRATE.item("medium_ammunition_gunpowder", Item::new)
+            MEDIUM_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("medium_ammunition_gunpowder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(ModTags.materialsTag())
-                    .tag(ModTags.mediumAmmunitionGunpowdersTag())
+                    .tag(PrmaTags.materialsTag())
+                    .tag(PrmaTags.mediumAmmunitionGunpowdersTag())
                     .register()),
-            LONG_AMMUNITION_GUNPOWDER = addToMaterials(Main.REGISTRATE.item("long_ammunition_gunpowder", Item::new)
+            LONG_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("long_ammunition_gunpowder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(ModTags.materialsTag())
-                    .tag(ModTags.longAmmunitionGunpowdersTag())
+                    .tag(PrmaTags.materialsTag())
+                    .tag(PrmaTags.longAmmunitionGunpowdersTag())
                     .register());
 
     // Misc Items
     public static final RegistryEntry<Item>
-            STRAIGHT_SMALL_COIL = addToMaterials(Main.REGISTRATE.item("straight_small_coil", Item::new)
+            STRAIGHT_SMALL_COIL = addToMaterials(PreciseManufacturing.REGISTRATE.item("straight_small_coil", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            STRAIGHT_LARGE_COIL = addToMaterials(Main.REGISTRATE.item("straight_large_coil", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            STRAIGHT_LARGE_COIL = addToMaterials(PreciseManufacturing.REGISTRATE.item("straight_large_coil", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            STRAIGHT_FLAT_COIL = addToMaterials(Main.REGISTRATE.item("straight_flat_coil", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            STRAIGHT_FLAT_COIL = addToMaterials(PreciseManufacturing.REGISTRATE.item("straight_flat_coil", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            LOCKING_RETURN_COIL = addToMaterials(Main.REGISTRATE.item("locking_return_coil", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            LOCKING_RETURN_COIL = addToMaterials(PreciseManufacturing.REGISTRATE.item("locking_return_coil", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            FLAT_HEAD_SCREW = addToMaterials(Main.REGISTRATE.item("flat_head_screw", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            FLAT_HEAD_SCREW = addToMaterials(PreciseManufacturing.REGISTRATE.item("flat_head_screw", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            M_SCREW = addToMaterials(Main.REGISTRATE.item("m_screw", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            M_SCREW = addToMaterials(PreciseManufacturing.REGISTRATE.item("m_screw", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            THIN_SMALL_ROD = addToMaterials(Main.REGISTRATE.item("thin_small_rod", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            THIN_SMALL_ROD = addToMaterials(PreciseManufacturing.REGISTRATE.item("thin_small_rod", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            THICK_SMALL_ROD = addToMaterials(Main.REGISTRATE.item("thick_small_rod", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            THICK_SMALL_ROD = addToMaterials(PreciseManufacturing.REGISTRATE.item("thick_small_rod", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
-            CRUSHED_BASALT = addToMaterials(Main.REGISTRATE.item("crushed_basalt", Item::new)
+                    .tag(PrmaTags.componentsTag()).register()),
+            CRUSHED_BASALT = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_basalt", Item::new)
                     .register()),
-            BLANK_BLUEPRINT = addToMaterials(Main.REGISTRATE.item("blank_blueprint", Item::new)
+            BLANK_BLUEPRINT = addToMaterials(PreciseManufacturing.REGISTRATE.item("blank_blueprint", Item::new)
                     .register()),
-            BLANK_CAST = addToMaterials(Main.REGISTRATE.item("blank_cast", Item::new)
+            BLANK_CAST = addToMaterials(PreciseManufacturing.REGISTRATE.item("blank_cast", Item::new)
                     .register());
 
     // Metals
     public static final RegistryEntry<Item>
-            ALUMINUM_INGOT = addToMaterials(Main.REGISTRATE.item("aluminum_ingot", Item::new)
+            ALUMINUM_INGOT = addToMaterials(PreciseManufacturing.REGISTRATE.item("aluminum_ingot", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
-                    .tag(ModTags.ingotsTag()).register()),
-            CRUSHED_ALUMINUM = addToMaterials(Main.REGISTRATE.item("crushed_aluminum", Item::new)
+                    .tag(PrmaTags.ingotsTag()).register()),
+            CRUSHED_ALUMINUM = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_aluminum", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
-                    .tag(ModTags.crushedOresTag()).tag(AllTags.AllItemTags.CRUSHED_RAW_MATERIALS.tag).register()),
-            CRUSHED_LEAD = addToMaterials(Main.REGISTRATE.item("crushed_lead", Item::new)
+                    .tag(PrmaTags.crushedOresTag()).tag(AllTags.AllItemTags.CRUSHED_RAW_MATERIALS.tag).register()),
+            CRUSHED_LEAD = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_lead", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
                     .register());
 
     // Buckets
     public static final RegistryEntry<Item>
-            MOLTEN_BRASS_BUCKET = addToList(Main.REGISTRATE.item("molten_brass_bucket", Item::new)
+            MOLTEN_BRASS_BUCKET = addToList(PreciseManufacturing.REGISTRATE.item("molten_brass_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register()),
-            MOLTEN_COPPER_BUCKET = addToList(Main.REGISTRATE.item("molten_copper_bucket", Item::new)
+            MOLTEN_COPPER_BUCKET = addToList(PreciseManufacturing.REGISTRATE.item("molten_copper_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register()),
-            MOLTEN_IRON_BUCKET = addToList(Main.REGISTRATE.item("molten_iron_bucket", Item::new)
+            MOLTEN_IRON_BUCKET = addToList(PreciseManufacturing.REGISTRATE.item("molten_iron_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register()),
-            MOLTEN_ALUMINUM_BUCKET = addToList(Main.REGISTRATE.item("molten_aluminum_bucket", Item::new)
+            MOLTEN_ALUMINUM_BUCKET = addToList(PreciseManufacturing.REGISTRATE.item("molten_aluminum_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register()),
-            MOLTEN_METAL_ALLOY_BUCKET = addToList(Main.REGISTRATE.item("molten_metal_alloy_bucket", Item::new)
+            MOLTEN_METAL_ALLOY_BUCKET = addToList(PreciseManufacturing.REGISTRATE.item("molten_metal_alloy_bucket", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "buckets", "_"))
                     .properties(p -> p.stacksTo(1))
                     .register());
@@ -248,7 +248,7 @@ public class ModItems {
     public static void register() {
         // Do no delete this function; This is for loading this class.
         Ammo.register();
-        Main.LOGGER.info("Registering Mod Items");
+        PreciseManufacturing.LOGGER.info("Registering Mod Items");
     }
 
 }

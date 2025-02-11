@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.prma.foundation.neo.item.collection;
 
-import cn.crtlprototypestudios.prma.Main;
-import cn.crtlprototypestudios.prma.foundation.ModTags;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
+import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoMaterialType;
 import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoSizeType;
@@ -23,41 +23,41 @@ public class AmmoCartridgeComponents {
     public AmmoCartridgeComponents build(){
 
         for (var mat : materialTypes) {
-            var casing = Main.REGISTRATE.item(String.format("%s_%s_%s", sizeType, mat, "casing"), Item::new)
+            var casing = PreciseManufacturing.REGISTRATE.item(String.format("%s_%s_%s", sizeType, mat, "casing"), Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "ammo", "casing", mat.toString(), "_"))
-                    .tag(ModTags.materialsTag(), ModTags.ammunitionComponentsTag());
+                    .tag(PrmaTags.materialsTag(), PrmaTags.ammunitionComponentsTag());
 
-            var head = Main.REGISTRATE.item(String.format("%s_%s_%s", sizeType, mat, "head"), Item::new)
+            var head = PreciseManufacturing.REGISTRATE.item(String.format("%s_%s_%s", sizeType, mat, "head"), Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "ammo", "head", mat.toString(), "_"))
-                    .tag(ModTags.materialsTag(), ModTags.ammunitionComponentsTag());
+                    .tag(PrmaTags.materialsTag(), PrmaTags.ammunitionComponentsTag());
 
             switch (sizeType) {
                 case Small -> {
-                    casing.tag(ModTags.smallAmmunitionComponentsTag());
-                    head.tag(ModTags.smallAmmunitionComponentsTag());
+                    casing.tag(PrmaTags.smallAmmunitionComponentsTag());
+                    head.tag(PrmaTags.smallAmmunitionComponentsTag());
                 }
                 case Medium -> {
-                    casing.tag(ModTags.mediumAmmunitionComponentsTag());
-                    head.tag(ModTags.mediumAmmunitionComponentsTag());
+                    casing.tag(PrmaTags.mediumAmmunitionComponentsTag());
+                    head.tag(PrmaTags.mediumAmmunitionComponentsTag());
                 }
                 case Long -> {
-                    casing.tag(ModTags.longAmmunitionComponentsTag());
-                    head.tag(ModTags.longAmmunitionComponentsTag());
+                    casing.tag(PrmaTags.longAmmunitionComponentsTag());
+                    head.tag(PrmaTags.longAmmunitionComponentsTag());
                 }
             }
 
             switch (mat) {
                 case Brass -> {
-                    casing.tag(ModTags.brassAmmunitionComponentsTag());
-                    head.tag(ModTags.brassAmmunitionComponentsTag());
+                    casing.tag(PrmaTags.brassAmmunitionComponentsTag());
+                    head.tag(PrmaTags.brassAmmunitionComponentsTag());
                 }
                 case Copper -> {
-                    casing.tag(ModTags.copperAmmunitionComponentsTag());
-                    head.tag(ModTags.copperAmmunitionComponentsTag());
+                    casing.tag(PrmaTags.copperAmmunitionComponentsTag());
+                    head.tag(PrmaTags.copperAmmunitionComponentsTag());
                 }
                 case Iron -> {
-                    casing.tag(ModTags.ironAmmunitionComponentsTag());
-                    head.tag(ModTags.ironAmmunitionComponentsTag());
+                    casing.tag(PrmaTags.ironAmmunitionComponentsTag());
+                    head.tag(PrmaTags.ironAmmunitionComponentsTag());
                 }
             }
 

@@ -1,8 +1,8 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.item.bases.ammunition;
 
-import cn.crtlprototypestudios.prma.Main;
-import cn.crtlprototypestudios.prma.foundation.ModItems;
-import cn.crtlprototypestudios.prma.foundation.ModTags;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
+import cn.crtlprototypestudios.prma.foundation.PrmaItems;
+import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModRecipeProvider;
 import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
@@ -29,9 +29,9 @@ public class CartridgeBase extends AmmunitionBase {
     public CartridgeBase(String coreId, AmmunitionSize categorizingSize, int requiredGunpowderCount, AmmunitionModule... ammunitionModules) {
         super(coreId);
 
-        RegistryEntry<Item> cartridgeBlueprint = Main.REGISTRATE.item(coreId + "_blueprint", Item::new)
+        RegistryEntry<Item> cartridgeBlueprint = PreciseManufacturing.REGISTRATE.item(coreId + "_blueprint", Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "cartridge_blueprint", coreId + "_blueprint"))
-                .tag(ModTags.cartridgeBlueprintTag())
+                .tag(PrmaTags.cartridgeBlueprintTag())
 //                .tab(ModCreativeModTabs.MOD_BLUEPRINTS_TAB.getKey())
                 .register();
 
@@ -65,9 +65,9 @@ public class CartridgeBase extends AmmunitionBase {
             mainItems.add(main);
         }
 
-        Item temoGunpowder = (categorizingSize == AmmunitionSize.SMALL ? ModItems.SMALL_AMMUNITION_GUNPOWDER.get() :
-                                categorizingSize == AmmunitionSize.MEDIUM ? ModItems.MEDIUM_AMMUNITION_GUNPOWDER.get() :
-                                categorizingSize == AmmunitionSize.LONG ? ModItems.LONG_AMMUNITION_GUNPOWDER.get() :
+        Item temoGunpowder = (categorizingSize == AmmunitionSize.SMALL ? PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get() :
+                                categorizingSize == AmmunitionSize.MEDIUM ? PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get() :
+                                categorizingSize == AmmunitionSize.LONG ? PrmaItems.LONG_AMMUNITION_GUNPOWDER.get() :
                                 Items.GUNPOWDER);
         ProcessingRecipeBuilder<CompactingRecipe> pressingRecipe = new ProcessingRecipeBuilder<>(CompactingRecipe::new, ResourceHelper.find("cartridges/" + getCoreId()))
                 .output(ammoStack).output(cartridgeBlueprint.get(), 1);

@@ -1,6 +1,5 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.decomponentalizer;
 
-import cn.crtlprototypestudios.prma.foundation.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;

@@ -11,7 +11,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.Collections;
 
-public class ModTags {
+public class PrmaTags {
     public static <T> TagKey<T> optionalTag(IForgeRegistry<T> registry,
                                                                            ResourceLocation id) {
         return registry.tags()

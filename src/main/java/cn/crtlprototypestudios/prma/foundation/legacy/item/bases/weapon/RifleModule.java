@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.item.bases.weapon;
 
-import cn.crtlprototypestudios.prma.foundation.ModFluids;
+import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
 import cn.crtlprototypestudios.prma.foundation.legacy.item.bases.ModuleBase;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.tterrag.registrate.util.entry.FluidEntry;
@@ -34,7 +34,7 @@ public class RifleModule extends ModuleBase<RifleModuleType, RifleModule.Data> {
             this.decompTime = decompTime;
             this.castFillingAmount = castFillingAmount;
             this.castCuttingTime = castCuttingTime;
-            this.fillCastFluid = ModFluids.MOLTEN_METAL_ALLOY;
+            this.fillCastFluid = PrmaFluids.MOLTEN_METAL_ALLOY;
         }
 
         public int getDecompTime() {

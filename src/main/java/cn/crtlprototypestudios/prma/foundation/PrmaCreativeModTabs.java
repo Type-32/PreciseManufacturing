@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModCreativeModTabs {
+public class PrmaCreativeModTabs {
 
     // A Note to future me:
     // The time that when this class is initialized, the RifleBase and CartridgeBases are not yet generated, thus no
@@ -22,17 +22,17 @@ public class ModCreativeModTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Reference.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> MOD_TAB = CREATIVE_MODE_TABS.register("prma_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CRUSHED_BASALT.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(PrmaItems.CRUSHED_BASALT.get()))
                     .displayItems(((itemDisplayParameters, output) -> {
-                        ModItems.ALL_ITEMS.forEach(i -> output.accept(i.get()));
+                        PrmaItems.ALL_ITEMS.forEach(i -> output.accept(i.get()));
                     }))
                     .title(Component.translatable("itemGroup.prma_tab"))
                     .build());
 
     public static final RegistryObject<CreativeModeTab> MOD_MATERIALS_TAB = CREATIVE_MODE_TABS.register("prma_materials_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BLANK_CAST.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(PrmaItems.BLANK_CAST.get()))
                     .displayItems(((itemDisplayParameters, output) -> {
-                        ModItems.ALL_MATERIALS.forEach(i -> output.accept(i.get()));
+                        PrmaItems.ALL_MATERIALS.forEach(i -> output.accept(i.get()));
                     }))
                     .title(Component.translatable("itemGroup.prma_materials_tab"))
                     .build());

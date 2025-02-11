@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.item.bases.ammunition;
 
-import cn.crtlprototypestudios.prma.foundation.ModTags;
+import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 
@@ -11,16 +11,16 @@ import java.util.List;
 public class AmmunitionBase {
     private final String coreId;
     private static final AmmunitionModule[] presetModules = new AmmunitionModule[]{
-            new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag(), 100, 80, 4), // small_copper_head_component, 0
-            new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 300, 120, 3), // small_brass_casing_component, 1
-            new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag(), 200, 200, 5), // medium_copper_head_component, 2
-            new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 500, 300, 5), // medium_brass_casing_component, 3
-            new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, ModTags.moltenIronTag(), 600, 300, 5), // medium_iron_casing_component, 4
-            new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.HEAD, ModTags.moltenCoppersTag(), 300, 180, 3), // long_copper_head_component, 5
-            new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 500, 350, 5), // long_brass_casing_component, 6
-            new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, ModTags.moltenIronTag(), 600, 350, 5), // long_iron_casing_component, 7
-            new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.PELLETS, ModTags.moltenIronTag(), 60, 60, 6), // shell_iron_pellets_component, 8
-            new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.CASING, ModTags.moltenBrassesTag(), 200, 120, 4) // shell_brass_casing_component, 9
+            new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.HEAD, PrmaTags.moltenCoppersTag(), 100, 80, 4), // small_copper_head_component, 0
+            new AmmunitionModule(AmmunitionSize.SMALL, AmmunitionMaterialType.CASING, PrmaTags.moltenBrassesTag(), 300, 120, 3), // small_brass_casing_component, 1
+            new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.HEAD, PrmaTags.moltenCoppersTag(), 200, 200, 5), // medium_copper_head_component, 2
+            new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, PrmaTags.moltenBrassesTag(), 500, 300, 5), // medium_brass_casing_component, 3
+            new AmmunitionModule(AmmunitionSize.MEDIUM, AmmunitionMaterialType.CASING, PrmaTags.moltenIronTag(), 600, 300, 5), // medium_iron_casing_component, 4
+            new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.HEAD, PrmaTags.moltenCoppersTag(), 300, 180, 3), // long_copper_head_component, 5
+            new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, PrmaTags.moltenBrassesTag(), 500, 350, 5), // long_brass_casing_component, 6
+            new AmmunitionModule(AmmunitionSize.LONG, AmmunitionMaterialType.CASING, PrmaTags.moltenIronTag(), 600, 350, 5), // long_iron_casing_component, 7
+            new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.PELLETS, PrmaTags.moltenIronTag(), 60, 60, 6), // shell_iron_pellets_component, 8
+            new AmmunitionModule(AmmunitionSize.SHELL, AmmunitionMaterialType.CASING, PrmaTags.moltenBrassesTag(), 200, 120, 4) // shell_brass_casing_component, 9
     };
 
     public AmmunitionBase(String coreId) {
@@ -98,23 +98,23 @@ public class AmmunitionBase {
     public static AmmunitionModule[] getMediumCartridgeModules(TagKey<Fluid> casingFluidTag){
         return new AmmunitionModule[]{
                 presetModules[2],
-                presetModules[casingFluidTag.equals(ModTags.moltenIronTag()) ? 4 : 3]
+                presetModules[casingFluidTag.equals(PrmaTags.moltenIronTag()) ? 4 : 3]
         };
     }
 
     public static AmmunitionModule[] getMediumCartridgeModules(){
-        return getMediumCartridgeModules(ModTags.moltenBrassesTag());
+        return getMediumCartridgeModules(PrmaTags.moltenBrassesTag());
     }
 
     public static AmmunitionModule[] getLongCartridgeModules(TagKey<Fluid> casingFluidTag){
         return new AmmunitionModule[]{
                 presetModules[5],
-                presetModules[casingFluidTag.equals(ModTags.moltenIronTag()) ? 7 : 6]
+                presetModules[casingFluidTag.equals(PrmaTags.moltenIronTag()) ? 7 : 6]
         };
     }
 
     public static AmmunitionModule[] getLongCartridgeModules(){
-        return getMediumCartridgeModules(ModTags.moltenBrassesTag());
+        return getMediumCartridgeModules(PrmaTags.moltenBrassesTag());
     }
 
     public static AmmunitionModule[] getShellCartridgeModules(){

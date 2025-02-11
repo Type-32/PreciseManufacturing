@@ -1,6 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.packets;
 
-import cn.crtlprototypestudios.prma.Main;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import com.tacz.guns.network.IMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -20,7 +20,7 @@ public class AcknowledgeHandshake implements IMessage<AcknowledgeHandshake> {
 
     @Override
     public void handle(AcknowledgeHandshake acknowledgeHandshake, Supplier<NetworkEvent.Context> supplier) {
-        Main.LOGGER.debug("Received acknowledge handshake");
+        PreciseManufacturing.LOGGER.debug("Received acknowledge handshake");
         supplier.get().setPacketHandled(true);
     }
 }

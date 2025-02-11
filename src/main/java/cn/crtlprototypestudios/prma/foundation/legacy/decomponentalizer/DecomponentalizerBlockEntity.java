@@ -1,7 +1,6 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.decomponentalizer;
 
-import cn.crtlprototypestudios.prma.foundation.ModBlockEntities;
-import cn.crtlprototypestudios.prma.foundation.ModItems;
+import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.legacy.gui.decomponentalizer.DecomponentalizerContainerMenu;
 import cn.crtlprototypestudios.prma.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.prma.util.annotations.ClientServerSide;
@@ -181,7 +180,7 @@ public class DecomponentalizerBlockEntity extends BlockEntity implements MenuPro
     }
 
     private boolean canOutput() {
-        boolean paperInSlot = !itemHandler.getStackInSlot(0).isEmpty() && itemHandler.getStackInSlot(0).getItem().equals(ModItems.BLANK_BLUEPRINT.get()),
+        boolean paperInSlot = !itemHandler.getStackInSlot(0).isEmpty() && itemHandler.getStackInSlot(0).getItem().equals(PrmaItems.BLANK_BLUEPRINT.get()),
         inkInSlot = !itemHandler.getStackInSlot(1).isEmpty() && itemHandler.getStackInSlot(1).getItem().equals(Items.INK_SAC),
         outputSlotEmpty = itemHandler.getStackInSlot(3).isEmpty();
 

@@ -25,23 +25,23 @@ import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Reference.MOD_ID)
-public class Main {
+public class PreciseManufacturing {
 
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final PreciseManufacturingRegistrate REGISTRATE = PreciseManufacturingRegistrate.create(Reference.MOD_ID);
 
-    public Main() {
+    public PreciseManufacturing() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModBlocks.register();
-        ModBlockEntities.register(eventBus);
-        ModContainers.register(eventBus);
-        ModItems.register();
-        ModFluids.register();
-        ModTags.register();
-        ModRecipes.register(eventBus);
-        ModCreativeModTabs.register(eventBus);
+        PrmaBlocks.register();
+        PrmaBlockEntities.register(eventBus);
+        PrmaContainers.register(eventBus);
+        PrmaItems.register();
+        PrmaFluids.register();
+        PrmaTags.register();
+        PrmaRecipes.register(eventBus);
+        PrmaCreativeModTabs.register(eventBus);
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -84,7 +84,7 @@ public class Main {
         @SubscribeEvent
         public static void onClientSetup(final FMLClientSetupEvent event) {
 //            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
-            event.enqueueWork(() -> MenuScreens.register(ModContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), DecomponentalizerScreen::new));
+            event.enqueueWork(() -> MenuScreens.register(PrmaContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), DecomponentalizerScreen::new));
         }
     }
 }

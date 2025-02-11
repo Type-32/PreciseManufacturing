@@ -1,10 +1,10 @@
 package cn.crtlprototypestudios.prma.foundation.legacy.item.bases.weapon;
 
-import cn.crtlprototypestudios.prma.Main;
-import cn.crtlprototypestudios.prma.foundation.ModCreativeModTabs;
-import cn.crtlprototypestudios.prma.foundation.ModFluids;
-import cn.crtlprototypestudios.prma.foundation.ModItems;
-import cn.crtlprototypestudios.prma.foundation.ModTags;
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
+import cn.crtlprototypestudios.prma.foundation.PrmaCreativeModTabs;
+import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
+import cn.crtlprototypestudios.prma.foundation.PrmaItems;
+import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.data.generators.recipe.ModDecomponentalizingRecipesGen;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModRecipeProvider;
@@ -163,20 +163,20 @@ public class RifleBase extends WeaponBase {
     private RegistryEntry<Item> registerModule(String id, RifleModule module, Item.Properties properties) {
         String name = String.format("%s_%s", id, module.toString());
 
-        assert ModCreativeModTabs.MOD_MATERIALS_TAB.getKey() != null;
+        assert PrmaCreativeModTabs.MOD_MATERIALS_TAB.getKey() != null;
 
         // Register the module
         RegistryEntry<Item>
-                mainModule = Main.REGISTRATE.item(name, Item::new)
-                        .tag(ModTags.weaponComponentTag())
+                mainModule = PreciseManufacturing.REGISTRATE.item(name, Item::new)
+                        .tag(PrmaTags.weaponComponentTag())
                         .model(ModItemModelProvider.genericItemModel(true, "weapons", "general","guns", "modules", "general_" + module))
                         .register(),
-                castModule = Main.REGISTRATE.item(name + "_cast", Item::new)
-                        .tag(ModTags.weaponCastTag())
+                castModule = PreciseManufacturing.REGISTRATE.item(name + "_cast", Item::new)
+                        .tag(PrmaTags.weaponCastTag())
                         .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "casts", "general_" + module + "_cast"))
                         .register(),
-                blueprintModule = Main.REGISTRATE.item(name + "_blueprint", Item::new)
-                        .tag(ModTags.weaponBlueprintTag())
+                blueprintModule = PreciseManufacturing.REGISTRATE.item(name + "_blueprint", Item::new)
+                        .tag(PrmaTags.weaponBlueprintTag())
                         .model(ModItemModelProvider.genericItemModel(true, "weapons", "general", "guns", "blueprints", "general_" + module + "_blueprint"))
                         .register();
 
@@ -185,9 +185,9 @@ public class RifleBase extends WeaponBase {
         blueprintsRegistry.put(module.getType(), blueprintModule);
         castsRegistry.put(module.getType(), castModule);
 
-        ModItems.addToMaterials(mainModule);
-        ModItems.addToMaterials(castModule);
-        ModItems.addToMaterials(blueprintModule);
+        PrmaItems.addToMaterials(mainModule);
+        PrmaItems.addToMaterials(castModule);
+        PrmaItems.addToMaterials(blueprintModule);
 
         return mainModule;
     }
@@ -198,7 +198,7 @@ public class RifleBase extends WeaponBase {
         itemTag.putString("GunId", "tacz:" + getCoreId());
         gunItem.setTag(itemTag);
 
-        Main.LOGGER.debug("givenModuleBuilder: {}", givenModuleBuilder.get().length);
+        PreciseManufacturing.LOGGER.debug("givenModuleBuilder: {}", givenModuleBuilder.get().length);
         for(RifleModule m : givenModuleBuilder.get()){
             RegistryEntry<Item> mainModule = registry.get(m.getType());
             RegistryEntry<Item> castModule = castsRegistry.get(m.getType());
@@ -217,7 +217,7 @@ public class RifleBase extends WeaponBase {
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("weapons/guns/%s/%s", getCoreId(), name + "_castmaking")))
                     .output(castModule.get())
                     .require(mainModule.get())
-                    .require(ModFluids.MOLTEN_METAL_ALLOY.get(), 1000));
+                    .require(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 1000));
             ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<FillingRecipe>(FillingRecipe::new, ResourceHelper.find(String.format("weapons/guns/%s/%s", getCoreId(), name)))
                     .output(mainModule.get())
                     .require(castModule.get())
