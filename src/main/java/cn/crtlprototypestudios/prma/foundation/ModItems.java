@@ -2,17 +2,20 @@ package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.Main;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
-import cn.crtlprototypestudios.prma.foundation.util.ResourceHelper;
+import cn.crtlprototypestudios.prma.foundation.neo.item.collection.AmmoCartridgeComponents;
+import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoCasingType;
+import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoHeadType;
+import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoMaterialType;
+import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoSizeType;
+import cn.crtlprototypestudios.prma.foundation.util.PreciseManufacturingRegistrate;
 import com.simibubi.create.AllTags;
+import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class ModItems {
 
@@ -49,32 +52,46 @@ public class ModItems {
 //    public static final ItemStack TACZ_GUN_ITEM_TEMPLATE = new ItemStack(ModCompatItems.MODERN_KINETIC_GUN);
 
     public static class Ammo {
+        public static ItemBuilder<Item, PreciseManufacturingRegistrate> ammoComponent(String name) {
+            return Main.REGISTRATE.item(name, Item::new)
+                    .model(ModItemModelProvider.genericItemModel(true, "ammo", "components", "_"))
+                    .tag(ModTags.ammunitionComponentsTag());
+        }
+
+        public static final AmmoCartridgeComponents
+                SMALL_COMPONENTS = new AmmoCartridgeComponents(AmmoSizeType.Small, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
+                MEDIUM_COMPONENTS = new AmmoCartridgeComponents(AmmoSizeType.Medium, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
+                LONG_COMPONENTS = new AmmoCartridgeComponents(AmmoSizeType.Long, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build();
+
         public static final RegistryEntry<Item>
-                SMALL_COPPER_HEAD = addToMaterials(Main.REGISTRATE.item("small_copper_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.smallAmmunitionComponentsTag()).tag(ModTags.copperAmmunitionComponentsTag()).register()),
-                SMALL_COPPER_CASING = addToMaterials(Main.REGISTRATE.item("small_copper_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.smallAmmunitionComponentsTag()).tag(ModTags.copperAmmunitionComponentsTag()).register()),
-                SMALL_BRASS_HEAD = addToMaterials(Main.REGISTRATE.item("small_brass_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.smallAmmunitionComponentsTag()).tag(ModTags.brassAmmunitionComponentsTag()).register()),
-                SMALL_BRASS_CASING = addToMaterials(Main.REGISTRATE.item("small_brass_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.smallAmmunitionComponentsTag()).tag(ModTags.brassAmmunitionComponentsTag()).register()),
-                SMALL_IRON_HEAD = addToMaterials(Main.REGISTRATE.item("small_iron_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.smallAmmunitionComponentsTag()).tag(ModTags.ironAmmunitionComponentsTag()).register()),
-                SMALL_IRON_CASING = addToMaterials(Main.REGISTRATE.item("small_iron_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.smallAmmunitionComponentsTag()).tag(ModTags.ironAmmunitionComponentsTag()).register()),
-
-        MEDIUM_COPPER_HEAD = addToMaterials(Main.REGISTRATE.item("medium_copper_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.mediumAmmunitionComponentsTag()).tag(ModTags.copperAmmunitionComponentsTag()).register()),
-                MEDIUM_COPPER_CASING = addToMaterials(Main.REGISTRATE.item("medium_copper_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.mediumAmmunitionComponentsTag()).tag(ModTags.copperAmmunitionComponentsTag()).register()),
-                MEDIUM_BRASS_HEAD = addToMaterials(Main.REGISTRATE.item("medium_brass_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.mediumAmmunitionComponentsTag()).tag(ModTags.brassAmmunitionComponentsTag()).register()),
-                MEDIUM_BRASS_CASING = addToMaterials(Main.REGISTRATE.item("medium_brass_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.mediumAmmunitionComponentsTag()).tag(ModTags.brassAmmunitionComponentsTag()).register()),
-                MEDIUM_IRON_HEAD = addToMaterials(Main.REGISTRATE.item("medium_iron_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.mediumAmmunitionComponentsTag()).tag(ModTags.ironAmmunitionComponentsTag()).register()),
-                MEDIUM_IRON_CASING = addToMaterials(Main.REGISTRATE.item("medium_iron_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.mediumAmmunitionComponentsTag()).tag(ModTags.ironAmmunitionComponentsTag()).register()),
-
-        LONG_COPPER_HEAD = addToMaterials(Main.REGISTRATE.item("long_copper_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.longAmmunitionComponentsTag()).tag(ModTags.copperAmmunitionComponentsTag()).register()),
-                LONG_COPPER_CASING = addToMaterials(Main.REGISTRATE.item("long_copper_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.longAmmunitionComponentsTag()).tag(ModTags.copperAmmunitionComponentsTag()).register()),
-                LONG_BRASS_HEAD = addToMaterials(Main.REGISTRATE.item("long_brass_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.longAmmunitionComponentsTag()).tag(ModTags.brassAmmunitionComponentsTag()).register()),
-                LONG_BRASS_CASING = addToMaterials(Main.REGISTRATE.item("long_brass_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.longAmmunitionComponentsTag()).tag(ModTags.brassAmmunitionComponentsTag()).register()),
-                LONG_IRON_HEAD = addToMaterials(Main.REGISTRATE.item("long_iron_head", Item::new).tag(ModTags.materialsTag()).tag(ModTags.longAmmunitionComponentsTag()).tag(ModTags.ironAmmunitionComponentsTag()).register()),
-                LONG_IRON_CASING = addToMaterials(Main.REGISTRATE.item("long_iron_casing", Item::new).tag(ModTags.materialsTag()).tag(ModTags.longAmmunitionComponentsTag()).tag(ModTags.ironAmmunitionComponentsTag()).register()),
-
-        ASSEMBLING_SMALL_CARTRIDGE = Main.REGISTRATE.item("assembling_small_cartridge", Item::new).register(),
+                CARTRIDGE_PRIMER = addToMaterials(ammoComponent("cartridge_primer").register()),
+                IRON_PELLETS = addToMaterials(ammoComponent("iron_pellets").register()),
+                ASSEMBLING_SMALL_CARTRIDGE = Main.REGISTRATE.item("assembling_small_cartridge", Item::new).register(),
                 ASSEMBLING_MEDIUM_CARTRIDGE = Main.REGISTRATE.item("assembling_medium_cartridge", Item::new).register(),
                 ASSEMBLING_LONG_CARTRIDGE = Main.REGISTRATE.item("assembling_long_cartridge", Item::new).register(),
                 ASSEMBLING_SHOTGUN_CARTRIDGE = Main.REGISTRATE.item("assembling_shotgun_cartridge", Item::new).register();
+
+        public static RegistryEntry<Item> getCasingByTypes(AmmoCasingType casingType, AmmoMaterialType materialType){
+            return switch (casingType) {
+                case Small -> SMALL_COMPONENTS.getCasing(materialType);
+                case Medium -> MEDIUM_COMPONENTS.getCasing(materialType);
+                case Long -> LONG_COMPONENTS.getCasing(materialType);
+                default -> null;
+            };
+        }
+
+        public static RegistryEntry<Item> getHeadByTypes(AmmoHeadType headType, AmmoMaterialType materialType){
+            return switch (headType) {
+                case Small -> SMALL_COMPONENTS.getHead(materialType);
+                case Medium -> MEDIUM_COMPONENTS.getHead(materialType);
+                case Long -> LONG_COMPONENTS.getHead(materialType);
+                default -> null;
+            };
+        }
+
+        public static void register() {
+
+        }
     }
 
     // Powders
@@ -133,17 +150,12 @@ public class ModItems {
             THICK_SMALL_ROD = addToMaterials(Main.REGISTRATE.item("thick_small_rod", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
                     .tag(ModTags.componentsTag()).register()),
-            CARTRIDGE_PRIMER = addToMaterials(Main.REGISTRATE.item("cartridge_primer", Item::new)
-                    .model(ModItemModelProvider.genericItemModel(true, "components", "_"))
-                    .tag(ModTags.componentsTag()).register()),
             CRUSHED_BASALT = addToMaterials(Main.REGISTRATE.item("crushed_basalt", Item::new)
                     .register()),
             BLANK_BLUEPRINT = addToMaterials(Main.REGISTRATE.item("blank_blueprint", Item::new)
                     .register()),
             BLANK_CAST = addToMaterials(Main.REGISTRATE.item("blank_cast", Item::new)
-                    .register()),
-            IRON_PELLET_CLUSTER = addToMaterials(Main.REGISTRATE.item("iron_pellet_cluster", Item::new)
-                    .tag(ModTags.materialsTag()).register());
+                    .register());
 
     // Metals
     public static final RegistryEntry<Item>
@@ -235,6 +247,7 @@ public class ModItems {
 
     public static void register() {
         // Do no delete this function; This is for loading this class.
+        Ammo.register();
         Main.LOGGER.info("Registering Mod Items");
     }
 

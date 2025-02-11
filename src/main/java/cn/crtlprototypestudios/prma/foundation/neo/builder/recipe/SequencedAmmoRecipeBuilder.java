@@ -1,6 +1,8 @@
-package cn.crtlprototypestudios.prma.foundation.neo.item.builder;
+package cn.crtlprototypestudios.prma.foundation.neo.builder.recipe;
 
 import cn.crtlprototypestudios.prma.foundation.ModItems;
+import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoCasingType;
+import cn.crtlprototypestudios.prma.foundation.neo.item.type.AmmoMaterialType;
 import cn.crtlprototypestudios.prma.util.Reference;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
@@ -16,7 +18,7 @@ public class SequencedAmmoRecipeBuilder {
     protected final SequencedAssemblyRecipeBuilder builder;
     protected SequencedAmmoRecipeBuilder(RegistryEntry<? extends Item> baseCartridgePiece, RegistryEntry<Item> transitionItem, String namespaceId, String ammoId) {
         this.baseCartridgePiece = baseCartridgePiece;
-        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, ammoId + "_sequenced_assembly"))
+        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("sequenced_assembly/ammo/%s", ammoId)))
                 .require(baseCartridgePiece.get())
                 .transitionTo(transitionItem.get())
                 .loops(1);
@@ -64,7 +66,7 @@ public class SequencedAmmoRecipeBuilder {
         return deployerApply(Items.GUNPOWDER, times);
     }
 
-//    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoCasingType casingType, AmmoMaterialType materialType, int times) {
-//        return deployerApply();
-//    }
+    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoCasingType casingType, AmmoMaterialType materialType, int times) {
+        return deployerApply();
+    }
 }

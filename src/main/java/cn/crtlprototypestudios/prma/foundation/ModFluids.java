@@ -29,7 +29,11 @@ public class ModFluids {
                     .tag(ModTags.moltenFluidsTag(), ModTags.moltenAluminumTag())
                     .register(),
             MOLTEN_METAL_ALLOY = Main.REGISTRATE.extendedVirtualFluid("molten_metal_alloy", MoltenMetalAlloyFluid::new)
-                    .lang("Molten Basalt-Infused Iron")
+                    .lang("Molten Metal Alloy")
+                    .tag(ModTags.forgeFluidTag("molten_metals"))
+                    .register(),
+            MOLTEN_STRONG_ALUMINUM_ALLOY = Main.REGISTRATE.extendedVirtualFluid("molten_strong_aluminum_alloy", MoltenStrongAluminumFluid::new)
+                    .lang("Molten Strong Aluminum Alloy")
                     .tag(ModTags.forgeFluidTag("molten_metals"))
                     .register();
 

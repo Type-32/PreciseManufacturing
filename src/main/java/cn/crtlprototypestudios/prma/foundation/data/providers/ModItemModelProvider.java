@@ -78,6 +78,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 path);
     }
 
+    /**
+     * Changes the texture reference in the generated resource item model file.
+     * @implNote e.g. <code>genericItemModel("ammo", "_") puts the reference as "prma:item/ammo/<item name>"</code>
+     * @param generateModel Should generate item model or not
+     * @param folders The folder routes
+     * @return Data Gen context for the model() method in Registrate's Item Model Builder
+     */
     public static <I extends Item> NonNullBiConsumer<DataGenContext<Item, I>, RegistrateItemModelProvider> genericItemModel(boolean generateModel, String... folders) {
         return (c, p) -> {
             String path = "item";

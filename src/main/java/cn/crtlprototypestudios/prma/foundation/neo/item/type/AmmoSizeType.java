@@ -1,14 +1,15 @@
 package cn.crtlprototypestudios.prma.foundation.neo.item.type;
 
-public enum AmmoMaterialType {
-    Brass("brass"),
-    Copper("copper"),
-    Iron("iron"),
-    Plastic("plastic");
+public enum AmmoSizeType {
+    Small("small"),
+    Medium("medium"),
+    Long("long");
+
     private final String name;
-    AmmoMaterialType(String name) {
+    AmmoSizeType(String name){
         this.name = name;
     }
+
     @Override
     public String toString(){
         return name;
