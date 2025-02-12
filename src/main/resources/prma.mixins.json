@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "prma.refmap.json",
   "mixins": [
-    "PlaceholderMixin"
+    "PlaceholderMixin",
+    "SpoutBlockEntityAccessor",
+    "TankSegmentAccessor"
   ],
   "client": [],
   "injectors": {

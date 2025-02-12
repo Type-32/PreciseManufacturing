@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_b
 import cn.crtlprototypestudios.prma.foundation.PrmaRecipeTypes;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.recipe.CastingRecipe;
+import cn.crtlprototypestudios.prma.mixin.SpoutBlockEntityAccessor;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.equipment.goggles.IHaveHoveringInformation;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
@@ -23,6 +24,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -69,7 +71,7 @@ public class CastingBasinBlockEntity extends SmartBlockEntity {
             for (int i = 0; i < inventory.getSlots(); i++) {
                 ItemStack stack = inventory.extractItem(i, 64, false);
                 if (!stack.isEmpty()) {
-                    net.minecraft.world.entity.item.ItemEntity itementity = new net.minecraft.world.entity.item.ItemEntity(
+                    net.minecraft.world.entity.item.ItemEntity itementity = new ItemEntity(
                             level,
                             worldPosition.getX() + 0.5D,
                             worldPosition.getY() + 0.5D,
@@ -87,7 +89,27 @@ public class CastingBasinBlockEntity extends SmartBlockEntity {
         }
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (level == null || level.isClientSide)
+            return;
+
+        // Check for spout above and valid input
+        if (!inventory.getStackInSlot(0).isEmpty() && inventory.getStackInSlot(1).isEmpty()) {
+            BlockPos above = worldPosition.above();
+            if (level.getBlockEntity(above) instanceof SpoutBlockEntity spout) {
+                FluidStack availableFluid = ((SpoutBlockEntityAccessor) spout).getTank().getPrimaryHandler().getFluid();
+                if (!availableFluid.isEmpty()) {
+                    handleRecipe(availableFluid);
+                }
+            }
+        }
+    }
+
     public void onInteract(Player player, InteractionHand hand) {
+        assert level != null;
         if (level.isClientSide)
             return;
 
