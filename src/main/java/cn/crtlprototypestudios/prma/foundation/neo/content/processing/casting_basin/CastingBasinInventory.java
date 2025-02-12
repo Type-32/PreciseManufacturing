@@ -3,7 +3,9 @@ package cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_b
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import com.simibubi.create.foundation.blockEntity.SyncedBlockEntity;
 import com.simibubi.create.foundation.item.SmartInventory;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class CastingBasinInventory extends SmartInventory {
@@ -53,5 +55,9 @@ public class CastingBasinInventory extends SmartInventory {
             blockEntity.notifyChangeOfContents();
         }
         return extractItem;
+    }
+
+    public void dropContents(Level level, BlockPos worldPosition) {
+
     }
 }

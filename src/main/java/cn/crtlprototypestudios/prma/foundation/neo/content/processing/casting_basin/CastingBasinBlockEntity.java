@@ -20,6 +20,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -29,169 +31,98 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
-public class CastingBasinBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
-
-    private boolean areFluidsMoving;
-
-    public CastingBasinInventory inputInventory;
-    protected SmartInventory outputInventory;
-    private FilteringBehaviour filtering;
-    private boolean contentsChanged;
-    protected List<ItemStack> spoutputBuffer;
-
-    private Couple<SmartInventory> invs;
-
-    protected LazyOptional<IItemHandlerModifiable> itemCapability;
-    int recipeBackupCheck;
-
-    public static final int OUTPUT_ANIMATION_TIME = 10;
-    List<IntAttached<ItemStack>> visualizedOutputItems;
+public class CastingBasinBlockEntity extends SmartBlockEntity {
+    protected CastingBasinInventory inventory;
+    protected LazyOptional<IItemHandler> itemCapability;
 
     public CastingBasinBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        inputInventory = new CastingBasinInventory(this);
-        inputInventory.whenContentsChanged($ -> contentsChanged = true);
-        outputInventory = new CastingBasinInventory(this).forbidInsertion().withMaxStackSize(64);
-        areFluidsMoving = false;
-        itemCapability = LazyOptional.of(() -> new CombinedInvWrapper(inputInventory, outputInventory));
-        contentsChanged = true;
+        inventory = new CastingBasinInventory(this);
+        itemCapability = LazyOptional.of(() -> inventory);
     }
 
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-        // Add filtering for the input slot
-        filtering = new FilteringBehaviour(this, new CastingBasinValueBox())
-                .withCallback(newFilter -> contentsChanged = true)
-                .forRecipes();
-        behaviours.add(filtering);
-
-        // Direct belt input handling
-        behaviours.add(new DirectBeltInputBehaviour(this)
-                .allowingBeltFunnels()
-                .setInsertionHandler(this::tryInsertingFromSide)
-                .considerOccupiedWhen(this::isOccupied));
     }
 
-    private boolean isOccupied(Direction side) {
-        return !inputInventory.getStackInSlot(0).isEmpty() && !inputInventory.getStackInSlot(1).isEmpty();
-    }
-
-    private ItemStack tryInsertingFromSide(TransportedItemStack transportedStack, Direction side, boolean simulate) {
-        if (isOccupied(side))
-            return transportedStack.stack;
-
-        if (!transportedStack.stack.is(PrmaTags.ItemTag.CASTING_BASIN_PLACEABLE.tag))
-            return transportedStack.stack;
-
-        ItemStack remainder = inputInventory.insertItem(0, transportedStack.stack.copy(), simulate);
-        if (!remainder.equals(transportedStack.stack))
-            notifyUpdate();
-
-        return remainder;
-    }
-
+    // Instead of overriding setRemoved(), we'll override invalidate()
     @Override
-    public void tick() {
-        super.tick();
-        if (!level.isClientSide && contentsChanged) {
-            contentsChanged = false;
-            // Check for recipes when input changes
-            if (!inputInventory.getStackInSlot(0).isEmpty()) {
-                checkForProcessingRecipes();
+    public void invalidate() {
+        super.invalidate();
+        itemCapability.invalidate();
+    }
+
+    public void dropInventory() {
+        if (level != null && !level.isClientSide) {
+            for (int i = 0; i < inventory.getSlots(); i++) {
+                ItemStack stack = inventory.extractItem(i, 64, false);
+                if (!stack.isEmpty()) {
+                    net.minecraft.world.entity.item.ItemEntity itementity = new net.minecraft.world.entity.item.ItemEntity(
+                            level,
+                            worldPosition.getX() + 0.5D,
+                            worldPosition.getY() + 0.5D,
+                            worldPosition.getZ() + 0.5D,
+                            stack
+                    );
+                    itementity.setDeltaMovement(
+                            level.random.nextDouble() * 0.2D - 0.1D,
+                            0.2D,
+                            level.random.nextDouble() * 0.2D - 0.1D
+                    );
+                    level.addFreshEntity(itementity);
+                }
             }
         }
     }
 
-    protected void checkForProcessingRecipes() {
+    public void onInteract(Player player, InteractionHand hand) {
         if (level.isClientSide)
             return;
 
-        // Get the block above
-        BlockPos abovePos = worldPosition.above();
-        BlockEntity be = level.getBlockEntity(abovePos);
-        if (!(be instanceof SpoutBlockEntity))
-            return;
+        ItemStack heldItem = player.getItemInHand(hand);
+        boolean wasEmpty = heldItem.isEmpty();
 
-        // Check for valid recipe with current cast and incoming fluid
-        // Implementation depends on your recipe system
+        // Try to extract from output first
+        if (wasEmpty) {
+            ItemStack output = inventory.extractItem(1, 64, false);
+            if (!output.isEmpty()) {
+                player.setItemInHand(hand, output);
+                notifyUpdate();
+                return;
+            }
+        }
+
+        // Then try to extract from input if output is empty
+        if (wasEmpty && inventory.getStackInSlot(1).isEmpty()) {
+            ItemStack input = inventory.extractItem(0, 64, false);
+            if (!input.isEmpty()) {
+                player.setItemInHand(hand, input);
+                notifyUpdate();
+                return;
+            }
+        }
+
+        // Finally try to insert into input slot
+        if (!wasEmpty) {
+            ItemStack remainder = inventory.insertItem(0, heldItem, false);
+            player.setItemInHand(hand, remainder);
+            notifyUpdate();
+        }
     }
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side) {
-//        if (cap == ForgeCapabilities.ITEM_HANDLER)
-//            return itemHandler.cast();
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER)
+            return itemCapability.cast();
         return super.getCapability(cap, side);
-    }
-
-    @Override
-    public void invalidate() {
-        super.invalidate();
-//        itemHandler.invalidate();
-    }
-
-    @Override
-    public void write(CompoundTag compound, boolean clientPacket) {
-        super.write(compound, clientPacket);
-        compound.put("Inventory", inputInventory.serializeNBT());
-    }
-
-    @Override
-    public void read(CompoundTag compound, boolean clientPacket) {
-        super.read(compound, clientPacket);
-        inputInventory.deserializeNBT(compound.getCompound("Inventory"));
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();
-        ItemHelper.dropContents(level, worldPosition, inputInventory);
-    }
-
-    @Override
-    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-        Lang.translate("gui.goggles.casting_basin_contents").forGoggles(tooltip);
-
-        // Show input slot
-        ItemStack input = inputInventory.getStackInSlot(0);
-        if (!input.isEmpty()) {
-            Lang.text("")
-                    .add(Components.translatable(input.getDescriptionId())
-                            .withStyle(ChatFormatting.GRAY))
-                    .forGoggles(tooltip, 1);
-        }
-
-        // Show output slot
-        ItemStack output = outputInventory.getStackInSlot(1);
-        if (!output.isEmpty()) {
-            Lang.text("")
-                    .add(Components.translatable(output.getDescriptionId())
-                            .withStyle(ChatFormatting.GREEN))
-                    .forGoggles(tooltip, 1);
-        }
-
-        return true;
-    }
-
-    static class CastingBasinValueBox extends ValueBoxTransform.Sided {
-        @Override
-        protected Vec3 getSouthLocation() {
-            return VecHelper.voxelSpace(8, 12, 16.05);
-        }
-
-        @Override
-        protected boolean isSideActive(BlockState state, Direction direction) {
-            return direction.getAxis().isHorizontal();
-        }
-    }
-
-    public void notifyChangeOfContents() {
-        contentsChanged = true;
     }
 }

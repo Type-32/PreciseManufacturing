@@ -1,6 +1,10 @@
 package cn.crtlprototypestudios.prma.foundation;
 
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
+import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.CastingBasinBlockEntity;
+import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.CastingBasinRenderer;
 import cn.crtlprototypestudios.prma.lib.Reference;
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,6 +22,12 @@ public class PrmaBlockEntities {
 
 //    public static final BlockEntityEntry<? extends BlockEntity> DECOMPONENTALIZER =
 //            Main.REGISTRATE.blockEntity("decomponentalizer", DecomponentalizerBlockEntity::new).register();
+
+    public static final BlockEntityEntry<CastingBasinBlockEntity> CASTING_BASIN = PreciseManufacturing.REGISTRATE
+            .blockEntity("casting_basin", CastingBasinBlockEntity::new)
+            .validBlocks()
+            .renderer(() -> CastingBasinRenderer::new)
+            .register();
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
