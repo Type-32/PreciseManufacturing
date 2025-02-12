@@ -1,6 +1,8 @@
 package cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin;
 
+import cn.crtlprototypestudios.prma.foundation.PrmaRecipeTypes;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
+import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.recipe.CastingRecipe;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.equipment.goggles.IHaveHoveringInformation;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
@@ -23,6 +25,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,6 +37,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -124,5 +128,43 @@ public class CastingBasinBlockEntity extends SmartBlockEntity {
         if (cap == ForgeCapabilities.ITEM_HANDLER)
             return itemCapability.cast();
         return super.getCapability(cap, side);
+    }
+
+    private CastingRecipe findMatchingRecipe() {
+        if (level == null || inventory.getStackInSlot(0).isEmpty())
+            return null;
+
+        for (Recipe<?> recipe : level.getRecipeManager().getAllRecipesFor(PrmaRecipeTypes.CASTING.getType())) {
+            if (recipe instanceof CastingRecipe castingRecipe) {
+                if (castingRecipe.matches(new RecipeWrapper(inventory), level)) {
+                    return castingRecipe;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void handleRecipe(FluidStack incomingFluid) {
+        if (level == null || level.isClientSide)
+            return;
+
+        CastingRecipe recipe = findMatchingRecipe();
+        if (recipe == null)
+            return;
+
+        // Check if fluid matches recipe
+        if (!recipe.getFluidIngredients().get(0).test(incomingFluid))
+            return;
+
+        // Process recipe
+        ItemStack result = recipe.getResultItem(level.registryAccess()).copy();
+        if (!inventory.getStackInSlot(1).isEmpty())
+            return;
+
+        // Set the output
+        inventory.setStackInSlot(1, result);
+        // Don't consume the cast - it stays in slot 0
+
+        notifyUpdate();
     }
 }

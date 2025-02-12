@@ -56,6 +56,7 @@ public class PreciseManufacturing {
         PrmaTags.register();
         PrmaRecipes.register(eventBus);
         PrmaCreativeModTabs.register(eventBus);
+        PrmaRecipeTypes.register(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
