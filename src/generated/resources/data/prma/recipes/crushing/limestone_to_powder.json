@@ -1,0 +1,31 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "create:limestone"
+    }
+  ],
+  "processingTime": 140,
+  "results": [
+    {
+      "chance": 60.0,
+      "count": 2,
+      "item": "prma:rock_powder"
+    },
+    {
+      "chance": 30.0,
+      "count": 2,
+      "item": "create:crushed_raw_copper"
+    },
+    {
+      "chance": 30.0,
+      "count": 2,
+      "item": "create:crushed_raw_zinc"
+    },
+    {
+      "chance": 30.0,
+      "count": 2,
+      "item": "prma:crushed_raw_aluminum"
+    }
+  ]
+}

@@ -2,11 +2,11 @@ package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.collection.AmmoCartridgeComponents;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoCasingType;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoHeadType;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoMaterialType;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoSizeType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.collection.StandardCartridgeComponents;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoCasingType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoHeadType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoMaterialType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoSizeType;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.builders.ItemBuilder;
@@ -54,28 +54,41 @@ public class PrmaItems {
             ALL_ITEMS = new ArrayList<RegistryEntry<Item>>(),
             ALL_MATERIALS = new ArrayList<RegistryEntry<Item>>();
 
-//    public static final ItemStack TACZ_AMMO_ITEM_TEMPLATE = new ItemStack(ModCompatItems.AMMO);
-//    public static final ItemStack TACZ_GUN_ITEM_TEMPLATE = new ItemStack(ModCompatItems.MODERN_KINETIC_GUN);
+    public static List<StandardCartridgeComponents> ALL_CARTRIDGE_COMPONENTS = new ArrayList<>();
 
     public static class Ammo {
+
+        public static final StandardCartridgeComponents
+                SMALL_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Small, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
+                MEDIUM_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Medium, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
+                LONG_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Long, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build();
+
+        public static final RegistryEntry<Item>
+                CARTRIDGE_PRIMER = addToMaterials(ammoComponent("cartridge_primer").register());
+
+        public static final RegistryEntry<Item>
+                SHOTGUN_SHELL_TRANSITION = addToMaterials(PreciseManufacturing.REGISTRATE.item("shotgun_shell_transition", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "ammo", "transition", "shotgun", "_"))
+                        .tag(PrmaTags.ItemTag.AMMO_WASTE.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+                        .register()),
+                SHOTGUN_SHELL_BASE = addToMaterials(PreciseManufacturing.REGISTRATE.item("shotgun_shell_base", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "ammo", "casing", "shotgun", "_"))
+                        .tag(PrmaTags.ItemTag.AMMO_CASINGS.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+                        .register()),
+                SHOTGUN_SHELL = addToMaterials(PreciseManufacturing.REGISTRATE.item("shotgun_shell", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "ammo", "casing", "shotgun", "_"))
+                        .tag(PrmaTags.ItemTag.AMMO_CASINGS.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+                        .register()),
+                SHOTGUN_BEARING = addToMaterials(PreciseManufacturing.REGISTRATE.item("shotgun_bearing", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "ammo", "head", "shotgun", "_"))
+                        .tag(PrmaTags.ItemTag.AMMO_HEADS.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+                        .register());
+
         public static ItemBuilder<Item, CreateRegistrate> ammoComponent(String name) {
             return PreciseManufacturing.REGISTRATE.item(name, Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "ammo", "components", "_"))
-                    .tag(PrmaTags.ammunitionComponentsTag());
+                    .tag(PrmaTags.ItemTag.AMMO_COMPONENTS.tag);
         }
-
-        public static final AmmoCartridgeComponents
-                SMALL_COMPONENTS = new AmmoCartridgeComponents(AmmoSizeType.Small, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
-                MEDIUM_COMPONENTS = new AmmoCartridgeComponents(AmmoSizeType.Medium, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
-                LONG_COMPONENTS = new AmmoCartridgeComponents(AmmoSizeType.Long, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build();
-
-        public static final RegistryEntry<Item>
-                CARTRIDGE_PRIMER = addToMaterials(ammoComponent("cartridge_primer").register()),
-                IRON_PELLETS = addToMaterials(ammoComponent("iron_pellets").register()),
-                ASSEMBLING_SMALL_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_small_cartridge", Item::new).register(),
-                ASSEMBLING_MEDIUM_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_medium_cartridge", Item::new).register(),
-                ASSEMBLING_LONG_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_long_cartridge", Item::new).register(),
-                ASSEMBLING_SHOTGUN_CARTRIDGE = PreciseManufacturing.REGISTRATE.item("assembling_shotgun_cartridge", Item::new).register();
 
         public static RegistryEntry<Item> getCasingByTypes(AmmoCasingType casingType, AmmoMaterialType materialType){
             return switch (casingType) {
@@ -91,12 +104,17 @@ public class PrmaItems {
                 case Small -> SMALL_COMPONENTS.getHead(materialType);
                 case Medium -> MEDIUM_COMPONENTS.getHead(materialType);
                 case Long -> LONG_COMPONENTS.getHead(materialType);
-                default -> null;
+                default -> SMALL_COMPONENTS.getHead(materialType);
             };
         }
 
-        public static void register() {
-
+        public static RegistryEntry<Item> getTransitionByTypes(AmmoHeadType headType, AmmoMaterialType materialType){
+            return switch (headType) {
+                case Small -> SMALL_COMPONENTS.getTransition(materialType);
+                case Medium -> MEDIUM_COMPONENTS.getTransition(materialType);
+                case Long -> LONG_COMPONENTS.getTransition(materialType);
+                default -> SMALL_COMPONENTS.getTransition(materialType);
+            };
         }
     }
 
@@ -116,15 +134,15 @@ public class PrmaItems {
                     .tag(PrmaTags.ItemTag.MATERIALS.tag).register()), // Rock Powder is also practically useless, a way to add complexity to automation lines
             SMALL_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("small_ammunition_gunpowder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(PrmaTags.ItemTag.MATERIALS.tag)
+                    .tag(PrmaTags.ItemTag.MATERIALS.tag, PrmaTags.ItemTag.SMALL_AMMO_PROPELLANTS.tag)
                     .register()),
             MEDIUM_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("medium_ammunition_gunpowder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(PrmaTags.ItemTag.MATERIALS.tag)
+                    .tag(PrmaTags.ItemTag.MATERIALS.tag, PrmaTags.ItemTag.MEDIUM_AMMO_PROPELLANTS.tag)
                     .register()),
             LONG_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("long_ammunition_gunpowder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
-                    .tag(PrmaTags.ItemTag.MATERIALS.tag)
+                    .tag(PrmaTags.ItemTag.MATERIALS.tag, PrmaTags.ItemTag.LONG_AMMO_PROPELLANTS.tag)
                     .register());
 
     // Misc Items
@@ -164,20 +182,26 @@ public class PrmaItems {
     public static final RegistryEntry<Item>
             LEAD_INGOT = addToMaterials(PreciseManufacturing.REGISTRATE.item("lead_ingot", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
-                    .tag(PrmaTags.ingotsTag()).register()),
+                    .tag(PrmaTags.ItemTag.INGOTS.tag).register()),
             ALUMINUM_INGOT = addToMaterials(PreciseManufacturing.REGISTRATE.item("aluminum_ingot", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
-                    .tag(PrmaTags.ingotsTag()).register()),
-            CRUSHED_ALUMINUM = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_aluminum", Item::new)
+                    .tag(PrmaTags.ItemTag.INGOTS.tag).register()),
+            STRONG_ALUMINUM_INGOT = addToMaterials(PreciseManufacturing.REGISTRATE.item("strong_aluminum_ingot", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
-                    .tag(PrmaTags.crushedOresTag()).tag(AllTags.AllItemTags.CRUSHED_RAW_MATERIALS.tag).register()),
-            CRUSHED_LEAD = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_lead", Item::new)
+                    .tag(PrmaTags.ItemTag.INGOTS.tag).register()),
+            CRUSHED_RAW_ALUMINUM = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_raw_aluminum", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
+                    .tag(PrmaTags.ItemTag.CRUSHED_ORES.tag).tag(AllTags.AllItemTags.CRUSHED_RAW_MATERIALS.tag)
+                    .register()),
+            CRUSHED_RAW_LEAD = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_raw_lead", Item::new)
+                    .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
+                    .tag(PrmaTags.ItemTag.CRUSHED_ORES.tag).tag(AllTags.AllItemTags.CRUSHED_RAW_MATERIALS.tag)
                     .register());
 
     // Buckets
     public static final RegistryEntry<Item>
             MOLTEN_COPPER_BUCKET = addToList(bucketItem("molten_copper_bucket").register()),
+            MOLTEN_ZINC_BUCKET = addToList(bucketItem("molten_zinc_bucket").register()),
             MOLTEN_IRON_BUCKET = addToList(bucketItem("molten_iron_bucket").register()),
             MOLTEN_ALUMINUM_BUCKET = addToList(bucketItem("molten_aluminum_bucket").register()),
             MOLTEN_STRONG_ALUMINUM_BUCKET = addToList(bucketItem("molten_strong_aluminum_bucket").register()),
@@ -238,7 +262,7 @@ public class PrmaItems {
 
     public static void register() {
         // Do no delete this function; This is for loading this class.
-        Ammo.register();
+//        PreciseManufacturing.LOGGER.debug("{}", PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get());
         PreciseManufacturing.LOGGER.info("Registering Mod Items");
     }
 

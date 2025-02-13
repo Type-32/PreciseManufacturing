@@ -5,7 +5,7 @@
       "item": "prma:crushed_basalt"
     }
   ],
-  "processingTime": 200,
+  "processingTime": 140,
   "results": [
     {
       "chance": 50.0,
@@ -14,7 +14,7 @@
     },
     {
       "chance": 30.0,
-      "count": 3,
+      "count": 4,
       "item": "prma:sulfur_powder"
     },
     {

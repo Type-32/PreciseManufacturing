@@ -37,8 +37,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(PrmaItems.M_SCREW.get());
         simpleItem(PrmaItems.THIN_SMALL_ROD.get());
         simpleItem(PrmaItems.THICK_SMALL_ROD.get());
-        simpleItem(PrmaItems.CRUSHED_LEAD.get());
-        simpleItem(PrmaItems.CRUSHED_ALUMINUM.get());
+        simpleItem(PrmaItems.CRUSHED_RAW_LEAD.get());
+        simpleItem(PrmaItems.CRUSHED_RAW_ALUMINUM.get());
 
         for(int i = 0; i < storedItemResourceLocations.size(); i++) {
             customSimpleItem(storedItemLocations.get(i), storedItemResourceLocations.get(i));

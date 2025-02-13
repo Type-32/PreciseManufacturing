@@ -4,13 +4,16 @@
   "ingredients": [
     {
       "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "prma:basalt_powder"
     }
   ],
   "processingTime": 100,
   "results": [
     {
       "amount": 40,
-      "fluid": "prma:molten_metal_alloy"
+      "fluid": "prma:molten_iron"
     }
   ]
 }

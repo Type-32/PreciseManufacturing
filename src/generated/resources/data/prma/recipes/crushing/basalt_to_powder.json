@@ -9,7 +9,7 @@
   "results": [
     {
       "chance": 40.0,
-      "count": 3,
+      "count": 5,
       "item": "create:crushed_raw_zinc"
     },
     {
@@ -18,17 +18,18 @@
       "item": "create:crushed_raw_copper"
     },
     {
-      "chance": 40.0,
-      "count": 3,
+      "chance": 20.0,
       "item": "create:crushed_raw_iron"
     },
     {
       "chance": 60.0,
-      "count": 6,
-      "item": "prma:basalt_powder"
+      "count": 3,
+      "item": "prma:crushed_raw_aluminum"
     },
     {
-      "item": "prma:crushed_basalt"
+      "chance": 60.0,
+      "count": 4,
+      "item": "prma:basalt_powder"
     }
   ]
 }

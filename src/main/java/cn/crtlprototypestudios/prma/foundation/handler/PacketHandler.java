@@ -1,6 +1,5 @@
 package cn.crtlprototypestudios.prma.foundation.handler;
 
-import cn.crtlprototypestudios.prma.foundation.legacy.packets.AcknowledgeHandshake;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import cn.crtlprototypestudios.prma.lib.Reference;
 import cn.crtlprototypestudios.prma.util.annotations.ClientSide;
@@ -39,12 +38,12 @@ public class PacketHandler {
 //                .consumerNetworkThread(C2SSetDecomponentalizerCurrentRecipePacket::handle)
 //                .add();
 
-        AcknowledgeHandshake handshake = new AcknowledgeHandshake();
-        HANDSHAKE.messageBuilder(AcknowledgeHandshake.class, handshakeId())
-                .decoder(handshake::decode)
-                .encoder(handshake::encode)
-                .consumerNetworkThread(handshake::handle)
-                .add();
+//        AcknowledgeHandshake handshake = new AcknowledgeHandshake();
+//        HANDSHAKE.messageBuilder(AcknowledgeHandshake.class, handshakeId())
+//                .decoder(handshake::decode)
+//                .encoder(handshake::encode)
+//                .consumerNetworkThread(handshake::handle)
+//                .add();
     }
 
     @ClientSide

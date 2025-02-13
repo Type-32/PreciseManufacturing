@@ -1,8 +1,10 @@
 package cn.crtlprototypestudios.prma.foundation.neo.builder.recipe;
 
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoCasingType;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.AmmoMaterialType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoCasingType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoHeadType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoMaterialType;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoSizeType;
 import cn.crtlprototypestudios.prma.lib.Reference;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
@@ -32,6 +34,20 @@ public class SequencedAmmoRecipeBuilder {
         return create(baseCartridgePiece, transitionItem, Reference.MOD_ID, ammoId);
     }
 
+    public static SequencedAmmoRecipeBuilder create(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, String namespaceId, String ammoId) {
+        return create(
+                PrmaItems.Ammo.getCasingByTypes(baseCasingType, baseCasingMaterialType),
+                switch(baseCasingType) {
+                    case Small -> PrmaItems.Ammo.SMALL_COMPONENTS.getTransition(baseCasingMaterialType);
+                    case Medium -> PrmaItems.Ammo.MEDIUM_COMPONENTS.getTransition(baseCasingMaterialType);
+                    case Long -> PrmaItems.Ammo.LONG_COMPONENTS.getTransition(baseCasingMaterialType);
+                    case Shell -> PrmaItems.Ammo.SHOTGUN_SHELL_TRANSITION;
+                },
+                namespaceId,
+                ammoId
+        );
+    }
+
     /*
    TODO: Implement the functions
     */
@@ -59,14 +75,45 @@ public class SequencedAmmoRecipeBuilder {
     }
 
     public SequencedAmmoRecipeBuilder applyPrimer() {
-        return deployerApply(PrmaItems.CARTRIDGE_PRIMER.get());
+        return deployerApply(PrmaItems.Ammo.CARTRIDGE_PRIMER.get());
     }
 
     public SequencedAmmoRecipeBuilder applyGunpowder(int times) {
         return deployerApply(Items.GUNPOWDER, times);
     }
 
-    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoCasingType casingType, AmmoMaterialType materialType, int times) {
-        return deployerApply();
+    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoSizeType sizeType, int times) {
+        return deployerApply(
+                switch (sizeType) {
+                    case Small -> PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get();
+                    case Medium -> PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get();
+                    case Long -> PrmaItems.LONG_AMMUNITION_GUNPOWDER.get();
+                },
+                times
+        );
+    }
+
+    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoSizeType sizeType) {
+        return applyGunpowder(sizeType, 1);
+    }
+
+    public SequencedAmmoRecipeBuilder applyHead(AmmoHeadType headType, AmmoMaterialType materialType) {
+        return deployerApply(PrmaItems.Ammo.getHeadByTypes(headType, materialType).get());
+    }
+
+    public SequencedAmmoRecipeBuilder applyCasing(AmmoCasingType casingType, AmmoMaterialType materialType) {
+        return deployerApply(PrmaItems.Ammo.getCasingByTypes(casingType, materialType).get());
+    }
+
+    public SequencedAmmoRecipeBuilder applyShotgunBearings(int times) {
+        return deployerApply(PrmaItems.Ammo.SHOTGUN_BEARING.get(), times);
+    }
+
+    public SequencedAmmoRecipeBuilder applyShotgunShellBase() {
+        return deployerApply(PrmaItems.Ammo.SHOTGUN_SHELL_BASE.get());
+    }
+
+    public SequencedAmmoRecipeBuilder applyShotgunShell() {
+        return deployerApply(PrmaItems.Ammo.SHOTGUN_SHELL.get());
     }
 }

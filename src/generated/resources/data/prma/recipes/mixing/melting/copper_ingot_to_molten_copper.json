@@ -4,6 +4,9 @@
   "ingredients": [
     {
       "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "prma:basalt_powder"
     }
   ],
   "processingTime": 200,

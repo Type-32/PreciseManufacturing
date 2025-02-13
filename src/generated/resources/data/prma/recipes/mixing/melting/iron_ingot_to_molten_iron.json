@@ -3,17 +3,17 @@
   "heatRequirement": "heated",
   "ingredients": [
     {
-      "item": "prma:crushed_basalt"
+      "item": "minecraft:iron_ingot"
     },
     {
-      "item": "minecraft:iron_ingot"
+      "item": "prma:basalt_powder"
     }
   ],
   "processingTime": 200,
   "results": [
     {
       "amount": 360,
-      "fluid": "prma:molten_metal_alloy"
+      "fluid": "prma:molten_iron"
     }
   ]
 }

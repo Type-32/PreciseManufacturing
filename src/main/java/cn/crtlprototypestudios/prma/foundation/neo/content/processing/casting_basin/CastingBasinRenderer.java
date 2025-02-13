@@ -26,8 +26,7 @@ public class CastingBasinRenderer extends SafeBlockEntityRenderer<CastingBasinBl
             ms.pushPose();
             ms.translate(0.5, 0.9375, 0.5);
             ms.scale(0.5f, 0.5f, 0.5f);
-            Minecraft.getInstance().getItemRenderer().render(input, ItemDisplayContext.GROUND, false, ms, buffer,
-                    light, overlay, B);
+            Minecraft.getInstance().getItemRenderer().renderStatic(input, ItemDisplayContext.GROUND, light, overlay, ms, buffer, be.getLevel(), 0);
             ms.popPose();
         }
 
@@ -37,8 +36,7 @@ public class CastingBasinRenderer extends SafeBlockEntityRenderer<CastingBasinBl
             ms.pushPose();
             ms.translate(0.5, 0.9375, 0.5);
             ms.scale(0.5f, 0.5f, 0.5f);
-            Minecraft.getInstance().getItemRenderer().render(output, ItemDisplayContext.GROUND,
-                    light, overlay, ms, buffer, 0);
+            Minecraft.getInstance().getItemRenderer().renderStatic(input, ItemDisplayContext.GROUND, light, overlay, ms, buffer, be.getLevel(), 0);
             ms.popPose();
         }
     }

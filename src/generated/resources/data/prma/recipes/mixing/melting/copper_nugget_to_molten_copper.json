@@ -4,6 +4,9 @@
   "ingredients": [
     {
       "item": "create:copper_nugget"
+    },
+    {
+      "item": "prma:basalt_powder"
     }
   ],
   "processingTime": 100,

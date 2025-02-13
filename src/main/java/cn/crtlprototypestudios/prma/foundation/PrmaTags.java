@@ -81,7 +81,12 @@ public class PrmaTags {
 
     public enum ItemTag {
         CASTING_BASIN_PLACEABLE(true),
+
         MATERIALS,
+        INGOTS,
+        CRUSHED_ORES,
+
+        AMMO_COMPONENTS,
 
         AMMO_CASINGS,
         AMMO_HEADS,
@@ -163,6 +168,7 @@ public class PrmaTags {
         MOLTEN_IRON_FLUIDS,
         MOLTEN_BRASS_FLUIDS,
         MOLTEN_COPPER_FLUIDS,
+        MOLTEN_ZINC_FLUIDS,
         MOLTEN_ALUMINUM_FLUIDS,
         MOLTEN_METAL_ALLOY_FLUIDS,
         MOLTEN_STRONG_ALUMINUM_FLUIDS,
@@ -213,39 +219,11 @@ public class PrmaTags {
         }
     }
 
-    public static TagKey<Fluid> moltenIronTag(){
-        return modFluidTag("molten_iron");
-    }
-
-    public static TagKey<Fluid> moltenAluminumTag(){
-        return modFluidTag("molten_aluminum");
-    }
-
-    public static TagKey<Fluid> moltenCoppersTag(){
-        return modFluidTag("molten_copper_fluids");
-    }
-
-    public static TagKey<Fluid> moltenBrassesTag(){
-        return modFluidTag("molten_brass_fluids");
-    }
-
-    public static TagKey<Fluid> moltenMetalAlloysTag(){
-        return modFluidTag("molten_metal_alloy_fluids");
-    }
-
-    public static TagKey<Fluid> moltenStrongAluminumTag(){
-        return modFluidTag("molten_strong_aluminum_fluids");
-    }
-
     public static TagKey<Item> ingotsTag() {
         return modItemTag("ingots");
     }
 
     public static TagKey<Item> crushedOresTag(){
         return modItemTag("crushed_ores_tag");
-    }
-
-    public static TagKey<Fluid> moltenMetalsTag() {
-        return modFluidTag("molten_metals");
     }
 }

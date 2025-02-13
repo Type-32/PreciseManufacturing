@@ -1,7 +1,6 @@
 package cn.crtlprototypestudios.prma;
 
 import cn.crtlprototypestudios.prma.foundation.*;
-import cn.crtlprototypestudios.prma.foundation.legacy.gui.decomponentalizer.DecomponentalizerScreen;
 import cn.crtlprototypestudios.prma.foundation.handler.PacketHandler;
 import cn.crtlprototypestudios.prma.foundation.utility.PreciseManufacturingRegistrate;
 import cn.crtlprototypestudios.prma.lib.Reference;
@@ -57,6 +56,7 @@ public class PreciseManufacturing {
         PrmaRecipes.register(eventBus);
         PrmaCreativeModTabs.register(eventBus);
         PrmaRecipeTypes.register(eventBus);
+        REGISTRATE.registerEventListeners(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -89,7 +89,7 @@ public class PreciseManufacturing {
         @SubscribeEvent
         public static void onClientSetup(final FMLClientSetupEvent event) {
 //            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECOMPONENTALIZER.get(), RenderType.translucent());
-            event.enqueueWork(() -> MenuScreens.register(PrmaContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), DecomponentalizerScreen::new));
+//            event.enqueueWork(() -> MenuScreens.register(PrmaContainers.DECOMPONENTALIZER_CONTAINER_MENU.get(), DecomponentalizerScreen::new));
         }
     }
 }

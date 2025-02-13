@@ -52,7 +52,7 @@ public class CastingBasinInventory extends SmartInventory {
 
         ItemStack extractItem = super.extractItem(slot, amount, simulate);
         if (!simulate && !extractItem.isEmpty()) {
-            blockEntity.notifyChangeOfContents();
+//            blockEntity.notifyChangeOfContents();
         }
         return extractItem;
     }

@@ -1,6 +1,5 @@
 package cn.crtlprototypestudios.prma.foundation.data.builders.recipe;
 
-import cn.crtlprototypestudios.prma.foundation.legacy.recipe.decomponentalizing.DecomponentalizingRecipe;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import cn.crtlprototypestudios.prma.lib.Reference;
 import com.google.gson.JsonObject;
@@ -110,7 +109,8 @@ public class DecomponentalizingRecipeBuilder implements RecipeBuilder {
         }
 
         public RecipeSerializer<?> getType() {
-            return DecomponentalizingRecipe.Serializer.INSTANCE;
+            return null;
+//            return DecomponentalizingRecipe.Serializer.INSTANCE;
         }
 
         /**

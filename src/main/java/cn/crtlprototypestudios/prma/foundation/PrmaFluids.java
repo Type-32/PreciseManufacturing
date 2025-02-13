@@ -18,6 +18,8 @@ public class PrmaFluids {
             MOLTEN_COPPER_ID_FLOW = ResourceHelper.find("fluid/molten_copper_flow"),
             MOLTEN_BRASS_ID_STILL = ResourceHelper.find("fluid/molten_brass_still"),
             MOLTEN_BRASS_ID_FLOW = ResourceHelper.find("fluid/molten_brass_flow"),
+            MOLTEN_ZINC_ID_STILL = ResourceHelper.find("fluid/molten_zinc_still"),
+            MOLTEN_ZINC_ID_FLOW = ResourceHelper.find("fluid/molten_zinc_flow"),
             MOLTEN_IRON_ID_STILL = ResourceHelper.find("fluid/molten_iron_still"),
             MOLTEN_IRON_ID_FLOW = ResourceHelper.find("fluid/molten_iron_flow"),
             MOLTEN_ALUMINUM_ID_STILL = ResourceHelper.find("fluid/molten_aluminum_still"),
@@ -32,7 +34,15 @@ public class PrmaFluids {
                     CreateRegistrate::defaultFluidType, MoltenCopperFluid::new)
             .lang("Molten Copper")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
-            .tag(PrmaTags.moltenMetalsTag(), PrmaTags.moltenCoppersTag())
+            .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_COPPER_FLUIDS.tag)
+            .register();
+
+    public static final FluidEntry<MoltenZincFluid> MOLTEN_ZINC = PreciseManufacturing.REGISTRATE.virtualFluid("molten_zinc",
+                    MOLTEN_ZINC_ID_STILL, MOLTEN_ZINC_ID_FLOW,
+                    CreateRegistrate::defaultFluidType, MoltenZincFluid::new)
+            .lang("Molten Zinc")
+            .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
+            .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_ZINC_FLUIDS.tag)
             .register();
 
     public static final FluidEntry<MoltenIronFluid> MOLTEN_IRON = PreciseManufacturing.REGISTRATE.virtualFluid("molten_iron",
@@ -40,7 +50,7 @@ public class PrmaFluids {
                     CreateRegistrate::defaultFluidType, MoltenIronFluid::new)
             .lang("Molten Iron")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
-            .tag(PrmaTags.moltenMetalsTag(), PrmaTags.moltenIronTag())
+            .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_IRON_FLUIDS.tag)
             .register();
 
     public static final FluidEntry<MoltenAluminumFluid> MOLTEN_ALUMINUM = PreciseManufacturing.REGISTRATE.virtualFluid("molten_aluminum",
@@ -48,7 +58,7 @@ public class PrmaFluids {
                     CreateRegistrate::defaultFluidType, MoltenAluminumFluid::new)
             .lang("Molten Aluminum")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
-            .tag(PrmaTags.moltenMetalsTag(), PrmaTags.moltenAluminumTag())
+            .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_ALUMINUM_FLUIDS.tag)
             .register();
 
     public static final FluidEntry<MoltenMetalAlloyFluid> MOLTEN_METAL_ALLOY = PreciseManufacturing.REGISTRATE.virtualFluid("molten_metal_alloy",
@@ -56,7 +66,7 @@ public class PrmaFluids {
                     CreateRegistrate::defaultFluidType, MoltenMetalAlloyFluid::new)
             .lang("Molten Metal Alloy")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
-            .tag(PrmaTags.moltenMetalsTag(), PrmaTags.moltenMetalAlloysTag())
+            .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_METAL_ALLOY_FLUIDS.tag)
             .register();
 
     public static final FluidEntry<MoltenStrongAluminumFluid> MOLTEN_STRONG_ALUMINUM = PreciseManufacturing.REGISTRATE.virtualFluid("molten_strong_aluminum_alloy",
@@ -64,7 +74,7 @@ public class PrmaFluids {
                     CreateRegistrate::defaultFluidType, MoltenStrongAluminumFluid::new)
             .lang("Molten Strong Aluminum Alloy")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
-            .tag(PrmaTags.moltenMetalsTag(), PrmaTags.moltenStrongAluminumTag())
+            .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_STRONG_ALUMINUM_FLUIDS.tag)
             .register(); //灵感来源: LDT的LDX 7075波壳, 就是7075铝合金
 
     public static void register() {
