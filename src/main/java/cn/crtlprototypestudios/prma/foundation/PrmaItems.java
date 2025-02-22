@@ -118,6 +118,16 @@ public class PrmaItems {
         }
     }
 
+    public static class Cast {
+        public static ItemBuilder<Item, CreateRegistrate> castItem(String name) {
+            return PreciseManufacturing.REGISTRATE.item(name, Item::new)
+                    .model(ModItemModelProvider.genericItemModel(true, "casts", "_"))
+                    .tag(PrmaTags.ItemTag.CASTS.tag, PrmaTags.ItemTag.CASTING_BASIN_PLACEABLE.tag);
+        }
+
+        public static final RegistryEntry<Item> INGOT_CAST = addToMaterials(castItem("ingot_cast").register());
+    }
+
     // Powders
     public static final RegistryEntry<Item>
             BASALT_POWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("basalt_powder", Item::new)

@@ -85,6 +85,7 @@ public class PrmaTags {
         MATERIALS,
         INGOTS,
         CRUSHED_ORES,
+        CASTS,
 
         AMMO_COMPONENTS,
 

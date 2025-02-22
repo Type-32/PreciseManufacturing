@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.neo.content.item.collection.StandardCartridgeComponents;
+import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.recipe.CastingRecipe;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
@@ -15,6 +16,7 @@ import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -273,6 +275,12 @@ public class ModRecipesGen {
                 .output(Items.BUCKET)
                 .require(PrmaItems.MOLTEN_ZINC_BUCKET.get())
                 .output(PrmaFluids.MOLTEN_ZINC.get(), 250));
+
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_copper_to_ingot"))
+                .output(Items.COPPER_INGOT)
+                .require(PrmaFluids.MOLTEN_COPPER.get(), 100)
+                .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
 
         // Decomponentalizer Crafting Recipe
 //        MechanicalCraftingRecipeBuilder.shapedRecipe(ModBlocks.DECOMPONENTALIZER.get())
