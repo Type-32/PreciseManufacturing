@@ -1,0 +1,30 @@
+{
+  "values": [
+    "prma:small_copper_head",
+    "prma:small_iron_head",
+    "prma:small_brass_head",
+    "prma:medium_copper_head",
+    "prma:medium_iron_head",
+    "prma:medium_brass_head",
+    "prma:long_copper_head",
+    "prma:long_iron_head",
+    "prma:long_brass_head",
+    "prma:shotgun_bearing",
+    "prma:9mm_head",
+    "prma:30_06_head",
+    "prma:45acp_head",
+    "prma:46x30_head",
+    "prma:50ae_head",
+    "prma:50bmg_head",
+    "prma:57x28_head",
+    "prma:58x42_head",
+    "prma:68x51fury_head",
+    "prma:308_head",
+    "prma:338_head",
+    "prma:357mag_head",
+    "prma:556x45_head",
+    "prma:762x25_head",
+    "prma:762x39_head",
+    "prma:762x54_head"
+  ]
+}

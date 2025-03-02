@@ -18,6 +18,7 @@ import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -81,41 +82,41 @@ public class ModRecipesGen {
 
         // Crushing for Crushed zinc, crushed copper, crushed iron, crushed aluminum, and basalt powder from basalt
         addCreateRecipe(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("basalt_to_powder"))
-                .output(40, AllItems.CRUSHED_ZINC.get(), 5)
-                .output(40, AllItems.CRUSHED_COPPER.get(), 3)
-                .output(20, AllItems.CRUSHED_IRON.get(), 1)
-                .output(60, PrmaItems.CRUSHED_RAW_ALUMINUM.get(), 3)
-                .output(60, PrmaItems.BASALT_POWDER.get(), 4) // Basalt Powder added here as a useless junk to occupy the chances of crafting
+                .output(0.4f, AllItems.CRUSHED_ZINC.get(), 5)
+                .output(0.4f, AllItems.CRUSHED_COPPER.get(), 3)
+                .output(0.2f, AllItems.CRUSHED_IRON.get(), 1)
+                .output(0.6f, PrmaItems.CRUSHED_RAW_ALUMINUM.get(), 3)
+                .output(0.6f, PrmaItems.BASALT_POWDER.get(), 4) // Basalt Powder added here as a useless junk to occupy the chances of crafting
                 .require(Items.BASALT)
                 .duration(200)
         );
 
         // The same as above but faster because its smooth basalt lol
         addCreateRecipe(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("smooth_basalt_to_powder"))
-                .output(40, AllItems.CRUSHED_ZINC.get(), 6)
-                .output(40, AllItems.CRUSHED_COPPER.get(), 4)
-                .output(20, AllItems.CRUSHED_IRON.get(), 1)
-                .output(60, PrmaItems.CRUSHED_RAW_ALUMINUM.get(), 4)
-                .output(60, PrmaItems.BASALT_POWDER.get(), 6) // Basalt Powder added here as a useless junk to occupy the chances of crafting
+                .output(0.4f, AllItems.CRUSHED_ZINC.get(), 6)
+                .output(0.4f, AllItems.CRUSHED_COPPER.get(), 4)
+                .output(0.2f, AllItems.CRUSHED_IRON.get(), 1)
+                .output(0.6f, PrmaItems.CRUSHED_RAW_ALUMINUM.get(), 4)
+                .output(0.6f, PrmaItems.BASALT_POWDER.get(), 6) // Basalt Powder added here as a useless junk to occupy the chances of crafting
                 .require(Items.SMOOTH_BASALT)
                 .duration(140)
         );
 
         // Crushing for Rock powder, crushed copper, crushed zinc, and crushed aluminum from limestone
         addCreateRecipe(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("limestone_to_powder"))
-                .output(60, PrmaItems.ROCK_POWDER.get(), 2) // Rock Powder added here as a useless junk to occupy the chances of crafting
-                .output(30, AllItems.CRUSHED_COPPER.get(), 2)
-                .output(30, AllItems.CRUSHED_ZINC.get(), 2)
-                .output(30, PrmaItems.CRUSHED_RAW_ALUMINUM.get(), 2)
+                .output(0.6f, PrmaItems.ROCK_POWDER.get(), 2) // Rock Powder added here as a useless junk to occupy the chances of crafting
+                .output(0.3f, AllItems.CRUSHED_COPPER.get(), 2)
+                .output(0.3f, AllItems.CRUSHED_ZINC.get(), 2)
+                .output(0.3f, PrmaItems.CRUSHED_RAW_ALUMINUM.get(), 2)
                 .require(AllPaletteStoneTypes.LIMESTONE.baseBlock.get())
                 .duration(140)
         );
 
         // crushing for rock, sulfur, and flint powder from crushed basalt
         addCreateRecipe(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("crushed_basalt_to_powder"))
-                .output(50, PrmaItems.ROCK_POWDER.get(), 2) // Rock Powder added here as a useless junk to occupy the chances of crafting
-                .output(30, PrmaItems.SULFUR_POWDER.get(), 4)
-                .output(30, PrmaItems.FLINT_POWDER.get(), 3)
+                .output(0.5f, PrmaItems.ROCK_POWDER.get(), 2) // Rock Powder added here as a useless junk to occupy the chances of crafting
+                .output(0.3f, PrmaItems.SULFUR_POWDER.get(), 4)
+                .output(0.3f, PrmaItems.FLINT_POWDER.get(), 3)
                 .require(PrmaItems.CRUSHED_BASALT.get())
                 .duration(140)
         );
@@ -123,8 +124,8 @@ public class ModRecipesGen {
         // milling for sulfur and flint powder from flint
         addCreateRecipe(new ProcessingRecipeBuilder<>(MillingRecipe::new, ResourceHelper.find("flint_powder"))
                 .output(PrmaItems.FLINT_POWDER.get(), 3)
-                .output(70, PrmaItems.SULFUR_POWDER.get(), 2)
-                .output(30, PrmaItems.SULFUR_POWDER.get(), 1)
+                .output(0.7f, PrmaItems.SULFUR_POWDER.get(), 2)
+                .output(0.3f, PrmaItems.SULFUR_POWDER.get(), 1)
                 .require(Items.FLINT)
                 .duration(100)
         );
@@ -287,6 +288,11 @@ public class ModRecipesGen {
                 .output(Items.COPPER_INGOT)
                 .require(PrmaFluids.MOLTEN_COPPER.get(), 100)
                 .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
+
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/cartridge_primer"))
+                .output(PrmaItems.Ammo.CARTRIDGE_PRIMER.get(), 8)
+                .require(AllItems.IRON_SHEET)
                 .duration(100));
 
         // Decomponentalizer Crafting Recipe

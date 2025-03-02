@@ -1,0 +1,14 @@
+{
+  "values": [
+    "prma:small_copper_transition",
+    "prma:small_iron_transition",
+    "prma:small_brass_transition",
+    "prma:medium_copper_transition",
+    "prma:medium_iron_transition",
+    "prma:medium_brass_transition",
+    "prma:long_copper_transition",
+    "prma:long_iron_transition",
+    "prma:long_brass_transition",
+    "prma:shotgun_shell_transition"
+  ]
+}

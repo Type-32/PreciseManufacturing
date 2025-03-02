@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/ammo/transition/shotgun/shotgun_shell_transition"
+  }
+}

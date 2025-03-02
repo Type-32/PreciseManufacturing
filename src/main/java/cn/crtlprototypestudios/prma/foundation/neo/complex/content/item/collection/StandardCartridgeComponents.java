@@ -94,7 +94,9 @@ public class StandardCartridgeComponents {
                     sizeType.toString(), mat.toString(), sizeType.toString(), mat.toString())))
                     .require(getMaterialSheet(mat))
                     .output(getCasing(mat).get(), getCasingSizeOutputNumber(sizeType))
-                    .output(getHead(mat).get(), getHeadSizeOutputNumber(sizeType)));
+                    // TODO: For Simple Ver. this is not necessary.
+//                    .output(getHead(mat).get(), getHeadSizeOutputNumber(sizeType))
+            );
         }
     }
 

@@ -1,0 +1,26 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "prma:crushed_basalt"
+    }
+  ],
+  "processingTime": 140,
+  "results": [
+    {
+      "chance": 0.5,
+      "count": 2,
+      "item": "prma:rock_powder"
+    },
+    {
+      "chance": 0.3,
+      "count": 4,
+      "item": "prma:sulfur_powder"
+    },
+    {
+      "chance": 0.3,
+      "count": 3,
+      "item": "prma:flint_powder"
+    }
+  ]
+}
