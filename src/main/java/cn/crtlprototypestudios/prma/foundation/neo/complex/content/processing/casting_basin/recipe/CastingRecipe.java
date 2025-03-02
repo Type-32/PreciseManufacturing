@@ -7,11 +7,14 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.IAssemblyRecipe;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
-import com.simibubi.create.foundation.utility.Components;
-import com.simibubi.create.foundation.utility.Lang;
+import net.createmod.catnip.lang.Lang;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
@@ -38,6 +41,36 @@ public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> implements IA
 
         ItemStack castItem = inv.getItem(0);
         return ingredients.get(0).test(castItem);
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(RecipeWrapper recipeWrapper, RegistryAccess registryAccess) {
+        return recipeWrapper.getItem(1); // TODO: CHANGE THIS. THIS IS TEMPORARY PATCH.
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int i, int i1) {
+        return false;
+    }
+
+    @Override
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+        return this.results.get(1).getStack(); // TODO: CHANGE THIS. THIS IS TEMPORARY PATCH.
+    }
+
+    @Override
+    public @NotNull ResourceLocation getId() {
+        return PrmaRecipeTypes.CASTING.getId();
+    }
+
+    @Override
+    public @NotNull RecipeSerializer<?> getSerializer() {
+        return PrmaRecipeTypes.CASTING.getSerializer();
+    }
+
+    @Override
+    public @NotNull RecipeType<?> getType() {
+        return PrmaRecipeTypes.CASTING.getType();
     }
 
     @Override
@@ -76,9 +109,9 @@ public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> implements IA
         List<FluidStack> matchingFluidStacks = fluidIngredients.get(0)
                 .getMatchingFluidStacks();
         if (matchingFluidStacks.isEmpty())
-            return Components.literal("Invalid");
-        return Lang.translateDirect("recipe.assembly.spout_filling_fluid",
-                matchingFluidStacks.get(0).getDisplayName().getString());
+            return Component.literal("Invalid");
+        return Lang.builder("prma").translate("recipe.assembly.spout_filling_fluid",
+                matchingFluidStacks.get(0).getDisplayName().getString()).component();
     }
 
     @Override

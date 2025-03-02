@@ -3,6 +3,7 @@ package cn.crtlprototypestudios.prma.foundation;
 import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.neo.complex.fluid.*;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
+import com.simibubi.create.AllFluids;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.FluidEntry;
 import net.minecraft.resources.ResourceLocation;
@@ -31,7 +32,7 @@ public class PrmaFluids {
 
     public static final FluidEntry<MoltenCopperFluid> MOLTEN_COPPER = PreciseManufacturing.REGISTRATE.virtualFluid("molten_copper",
                     MOLTEN_COPPER_ID_STILL, MOLTEN_COPPER_ID_FLOW,
-                    CreateRegistrate::defaultFluidType, MoltenCopperFluid::new)
+                    CreateRegistrate::defaultFluidType, MoltenCopperFluid::new, MoltenCopperFluid::new)
             .lang("Molten Copper")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
             .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_COPPER_FLUIDS.tag)
@@ -39,7 +40,7 @@ public class PrmaFluids {
 
     public static final FluidEntry<MoltenZincFluid> MOLTEN_ZINC = PreciseManufacturing.REGISTRATE.virtualFluid("molten_zinc",
                     MOLTEN_ZINC_ID_STILL, MOLTEN_ZINC_ID_FLOW,
-                    CreateRegistrate::defaultFluidType, MoltenZincFluid::new)
+                    CreateRegistrate::defaultFluidType, MoltenZincFluid::new, MoltenZincFluid::new)
             .lang("Molten Zinc")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
             .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_ZINC_FLUIDS.tag)
@@ -47,7 +48,7 @@ public class PrmaFluids {
 
     public static final FluidEntry<MoltenIronFluid> MOLTEN_IRON = PreciseManufacturing.REGISTRATE.virtualFluid("molten_iron",
                     MOLTEN_IRON_ID_STILL, MOLTEN_IRON_ID_FLOW,
-                    CreateRegistrate::defaultFluidType, MoltenIronFluid::new)
+                    CreateRegistrate::defaultFluidType, MoltenIronFluid::new, MoltenIronFluid::new)
             .lang("Molten Iron")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
             .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_IRON_FLUIDS.tag)
@@ -55,7 +56,7 @@ public class PrmaFluids {
 
     public static final FluidEntry<MoltenAluminumFluid> MOLTEN_ALUMINUM = PreciseManufacturing.REGISTRATE.virtualFluid("molten_aluminum",
                     MOLTEN_ALUMINUM_ID_STILL, MOLTEN_ALUMINUM_ID_FLOW,
-                    CreateRegistrate::defaultFluidType, MoltenAluminumFluid::new)
+                    CreateRegistrate::defaultFluidType, MoltenAluminumFluid::new, MoltenAluminumFluid::new)
             .lang("Molten Aluminum")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
             .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_ALUMINUM_FLUIDS.tag)
@@ -63,7 +64,7 @@ public class PrmaFluids {
 
     public static final FluidEntry<MoltenMetalAlloyFluid> MOLTEN_METAL_ALLOY = PreciseManufacturing.REGISTRATE.virtualFluid("molten_metal_alloy",
                     MOLTEN_METAL_ALLOY_ID_STILL, MOLTEN_METAL_ALLOY_ID_FLOW,
-                    CreateRegistrate::defaultFluidType, MoltenMetalAlloyFluid::new)
+                    CreateRegistrate::defaultFluidType, MoltenMetalAlloyFluid::new, MoltenMetalAlloyFluid::new)
             .lang("Molten Metal Alloy")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
             .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_METAL_ALLOY_FLUIDS.tag)
@@ -71,7 +72,7 @@ public class PrmaFluids {
 
     public static final FluidEntry<MoltenStrongAluminumFluid> MOLTEN_STRONG_ALUMINUM = PreciseManufacturing.REGISTRATE.virtualFluid("molten_strong_aluminum_alloy",
                     MOLTEN_STRONG_ALUMINUM_ID_STILL, MOLTEN_STRONG_ALUMINUM_ID_FLOW,
-                    CreateRegistrate::defaultFluidType, MoltenStrongAluminumFluid::new)
+                    CreateRegistrate::defaultFluidType, MoltenStrongAluminumFluid::new, MoltenStrongAluminumFluid::new)
             .lang("Molten Strong Aluminum Alloy")
             .properties(b -> b.lightLevel(15).density(3000).viscosity(6000).canPushEntity(true).canDrown(true))
             .tag(PrmaTags.FluidTag.MOLTEN_METALS.tag, PrmaTags.FluidTag.MOLTEN_STRONG_ALUMINUM_FLUIDS.tag)

@@ -5,6 +5,6 @@ import com.simibubi.create.content.fluids.VirtualFluid;
 public class MoltenStrongAluminumFluid extends VirtualFluid {
 
     public MoltenStrongAluminumFluid(Properties properties) {
-        super(properties);
+        super(properties, false);
     }
 }

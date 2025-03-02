@@ -15,6 +15,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -24,8 +26,9 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
-public class CastingBasinBlock extends Block implements IBE<CastingBasinBlockEntity>, IWrenchable, ProperWaterloggedBlock {
+public class CastingBasinBlock extends HorizontalDirectionalBlock implements IBE<CastingBasinBlockEntity>, IWrenchable, ProperWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING_HOPPER;
 
     public CastingBasinBlock(Properties properties) {
@@ -92,5 +95,10 @@ public class CastingBasinBlock extends Block implements IBE<CastingBasinBlockEnt
     @Override
     public BlockEntityType<? extends CastingBasinBlockEntity> getBlockEntityType() {
         return PrmaBlockEntities.CASTING_BASIN.get(); // You'll need to register this
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return PrmaBlockEntities.CASTING_BASIN.get().create(blockPos, blockState);
     }
 }

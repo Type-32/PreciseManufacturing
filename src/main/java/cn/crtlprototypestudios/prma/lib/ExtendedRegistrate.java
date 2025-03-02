@@ -2,16 +2,17 @@ package cn.crtlprototypestudios.prma.lib;
 
 import com.simibubi.create.foundation.data.CreateEntityBuilder;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.utility.Lang;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.createmod.catnip.lang.Lang;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
+import org.jetbrains.annotations.NotNull;
 
 public class ExtendedRegistrate extends CreateRegistrate {
 
@@ -20,7 +21,7 @@ public class ExtendedRegistrate extends CreateRegistrate {
     }
 
     @Override
-    public ExtendedRegistrate registerEventListeners(IEventBus bus) {
+    public @NotNull ExtendedRegistrate registerEventListeners(IEventBus bus) {
         super.registerEventListeners(bus);
         return this;
     }

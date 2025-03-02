@@ -2,15 +2,17 @@ package cn.crtlprototypestudios.prma.foundation.neo.complex.content.processing.c
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer;
+import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-public class CastingBasinRenderer extends SafeBlockEntityRenderer<CastingBasinBlockEntity> {
+public class CastingBasinRenderer extends SmartBlockEntityRenderer<CastingBasinBlockEntity> {
 
     public CastingBasinRenderer(BlockEntityRendererProvider.Context context) {
+        super(context);
     }
 
     @Override

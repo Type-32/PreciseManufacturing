@@ -2,8 +2,8 @@ package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.neo.complex.content.processing.casting_basin.CastingBasinBlock;
+import com.simibubi.create.AllDisplaySources;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
-import com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SharedProperties;
@@ -36,7 +36,7 @@ public class PrmaBlocks {
             .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
             .transform(TagGen.axeOrPickaxe())
             .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
-            .onRegister(AllDisplayBehaviours.assignDataBehaviour(new ItemNameDisplaySource(), "combine_item_names"))
+//            .onRegister(AllDisplaySources.assignDataBehaviour(new ItemNameDisplaySource(), "combine_item_names"))
             .item(AssemblyOperatorBlockItem::new)
             .model(AssetLookup::customItemModel)
             .build()

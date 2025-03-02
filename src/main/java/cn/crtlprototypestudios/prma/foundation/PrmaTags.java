@@ -2,9 +2,9 @@ package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.lib.Reference;
 import com.simibubi.create.Create;
-import com.simibubi.create.foundation.utility.Lang;
 import com.tacz.guns.GunMod;
 import com.tacz.guns.api.TimelessAPI;
+import net.createmod.catnip.lang.Lang;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
