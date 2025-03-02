@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.PreciseManufacturing;
-import cn.crtlprototypestudios.prma.foundation.neo.fluid.*;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.fluid.*;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.FluidEntry;

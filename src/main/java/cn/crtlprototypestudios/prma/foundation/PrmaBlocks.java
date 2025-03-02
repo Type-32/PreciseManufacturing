@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.PreciseManufacturing;
-import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.CastingBasinBlock;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.processing.casting_basin.CastingBasinBlock;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;

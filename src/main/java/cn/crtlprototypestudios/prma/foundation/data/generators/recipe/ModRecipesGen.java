@@ -1,10 +1,13 @@
 package cn.crtlprototypestudios.prma.foundation.data.generators.recipe;
 
+import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.collection.StandardCartridgeComponents;
-import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.recipe.CastingRecipe;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.collection.StandardCartridgeComponents;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.processing.casting_basin.recipe.CastingRecipe;
+import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleAmmo;
+import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleCartridge;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
@@ -12,11 +15,9 @@ import com.simibubi.create.content.fluids.transfer.EmptyingRecipe;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
-import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -31,11 +32,17 @@ public class ModRecipesGen {
     private static List<RecipeBuilder> recipeBuilders = new ArrayList<>();
     private static List<ProcessingRecipeBuilder<?>> createCompatRecipeBuilders = new ArrayList<>();
     private static List<SequencedAssemblyRecipeBuilder> sequencedAssemblyRecipeBuilders = new ArrayList<>();
+    private static List<SimpleCartridge> simpleCartridges = new ArrayList<>();
+    private static List<SimpleAmmo> simpleAmmos = new ArrayList<>();
 
     public static void register(Consumer<FinishedRecipe> pFinishedRecipeConsumer){
         registerCreateRecipes();
         registerVanillaRecipes();
         PrmaItems.ALL_CARTRIDGE_COMPONENTS.forEach(StandardCartridgeComponents::registerRecipes);
+        simpleCartridges.forEach(SimpleCartridge::registerStandardRecipes);
+        simpleAmmos.forEach(SimpleAmmo::registerRecipes);
+
+        PreciseManufacturing.LOGGER.debug("assemblies {}", sequencedAssemblyRecipeBuilders.size());
 
         recipeBuilders.forEach(i -> i.save(pFinishedRecipeConsumer));
         createCompatRecipeBuilders.forEach(i -> i.build(pFinishedRecipeConsumer));
@@ -315,6 +322,14 @@ public class ModRecipesGen {
 
     public static void addSequencedAssemblyRecipe(SequencedAssemblyRecipeBuilder generatedRecipe){
         sequencedAssemblyRecipeBuilders.add(generatedRecipe);
+    }
+
+    public static void addSimpleCartridge(SimpleCartridge simpleCartridge){
+        simpleCartridges.add(simpleCartridge);
+    }
+
+    public static void addSimpleAmmo(SimpleAmmo simpleAmmo){
+        simpleAmmos.add(simpleAmmo);
     }
 
     public static void add(RecipeBuilder builder){

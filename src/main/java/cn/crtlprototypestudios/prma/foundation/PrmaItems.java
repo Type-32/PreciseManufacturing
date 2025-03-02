@@ -2,11 +2,15 @@ package cn.crtlprototypestudios.prma.foundation;
 
 import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.data.providers.ModItemModelProvider;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.collection.StandardCartridgeComponents;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoCasingType;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoHeadType;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoMaterialType;
-import cn.crtlprototypestudios.prma.foundation.neo.content.item.type.standard.AmmoSizeType;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.collection.StandardCartridgeComponents;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.type.standard.AmmoCasingType;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.type.standard.AmmoHeadType;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.type.standard.AmmoMaterialType;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.type.standard.AmmoSizeType;
+import cn.crtlprototypestudios.prma.foundation.neo.simple.content.type.standard.SimpleAmmoGunpowderAmountStandard;
+import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleAmmo;
+import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleCartridge;
+import cn.crtlprototypestudios.prma.foundation.neo.simple.recipe.SimpleCartridgeBuilder;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.builders.ItemBuilder;
@@ -56,12 +60,12 @@ public class PrmaItems {
 
     public static List<StandardCartridgeComponents> ALL_CARTRIDGE_COMPONENTS = new ArrayList<>();
 
-    public static class Ammo {
+    public static final StandardCartridgeComponents
+            SMALL_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Small, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass);
+    public static final StandardCartridgeComponents MEDIUM_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Medium, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass);
+    public static final StandardCartridgeComponents LONG_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Long, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass);
 
-        public static final StandardCartridgeComponents
-                SMALL_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Small, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
-                MEDIUM_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Medium, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build(),
-                LONG_COMPONENTS = new StandardCartridgeComponents(AmmoSizeType.Long, AmmoMaterialType.Copper, AmmoMaterialType.Iron, AmmoMaterialType.Brass).build();
+    public static class Ammo {
 
         public static final RegistryEntry<Item>
                 CARTRIDGE_PRIMER = addToMaterials(ammoComponent("cartridge_primer").register());
@@ -90,12 +94,59 @@ public class PrmaItems {
                     .tag(PrmaTags.ItemTag.AMMO_COMPONENTS.tag);
         }
 
+        public static final SimpleCartridge SMALL_BRASS_LOW_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Small, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.Low);
+        public static final SimpleCartridge SMALL_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Small, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.Medium);
+        public static final SimpleCartridge SMALL_BRASS_HIGH_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Small, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.High);
+
+        public static final SimpleCartridge MEDIUM_BRASS_LOW_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Medium, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.Low);
+        public static final SimpleCartridge MEDIUM_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Medium, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.Medium);
+        public static final SimpleCartridge MEDIUM_BRASS_HIGH_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Medium, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.High);
+
+        public static final SimpleCartridge MEDIUM_IRON_LOW_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Medium, AmmoMaterialType.Iron, SimpleAmmoGunpowderAmountStandard.Low);
+        public static final SimpleCartridge MEDIUM_IRON_MEDIUM_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Medium, AmmoMaterialType.Iron, SimpleAmmoGunpowderAmountStandard.Medium);
+        public static final SimpleCartridge MEDIUM_IRON_HIGH_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Medium, AmmoMaterialType.Iron, SimpleAmmoGunpowderAmountStandard.High);
+
+        public static final SimpleCartridge LONG_BRASS_LOW_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Long, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.Low);
+        public static final SimpleCartridge LONG_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Long, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.Medium);
+        public static final SimpleCartridge LONG_BRASS_HIGH_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Long, AmmoMaterialType.Brass, SimpleAmmoGunpowderAmountStandard.High);
+
+        public static final SimpleCartridge LONG_IRON_LOW_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Long, AmmoMaterialType.Iron, SimpleAmmoGunpowderAmountStandard.Low);
+        public static final SimpleCartridge LONG_IRON_MEDIUM_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Long, AmmoMaterialType.Iron, SimpleAmmoGunpowderAmountStandard.Medium);
+        public static final SimpleCartridge LONG_IRON_HIGH_GUNPOWDER_CARTRIDGE = SimpleCartridgeBuilder.create(AmmoCasingType.Long, AmmoMaterialType.Iron, SimpleAmmoGunpowderAmountStandard.High);
+
+        public static final SimpleAmmo NINE_MIL = SimpleAmmo.create(SMALL_BRASS_LOW_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Brass, "9mm");
+        public static final SimpleAmmo THIRTY_ZEO_SIX = SimpleAmmo.create(LONG_IRON_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Long, AmmoMaterialType.Iron, "30_06");
+        public static final SimpleAmmo FORTY_MIL = SimpleAmmo.create(SMALL_BRASS_LOW_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Brass, "40mm");
+        public static final SimpleAmmo FOUR_FIVE_ACP = SimpleAmmo.create(SMALL_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Brass, "45acp");
+        public static final SimpleAmmo FOUR_SIX_THIRTY = SimpleAmmo.create(MEDIUM_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Brass, "46x30");
+        public static final SimpleAmmo FIFTY_AE = SimpleAmmo.create(SMALL_BRASS_HIGH_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Brass, "50ae");
+        public static final SimpleAmmo FIFTY_BMG = SimpleAmmo.create(LONG_IRON_HIGH_GUNPOWDER_CARTRIDGE, AmmoHeadType.Long, AmmoMaterialType.Iron, "50bmg");
+        public static final SimpleAmmo FIVE_SEVEN_TWO_EIGHT = SimpleAmmo.create(MEDIUM_BRASS_LOW_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Brass, "57x28");
+        public static final SimpleAmmo FIVE_EIGHT_FOUR_TWO = SimpleAmmo.create(MEDIUM_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Brass, "58x42");
+        public static final SimpleAmmo SIX_EIGHT_FIFTY_ONE_FURY = SimpleAmmo.create(MEDIUM_IRON_HIGH_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Iron, "68x51fury");
+        public static final SimpleAmmo THREE_ZERO_EIGHT = SimpleAmmo.create(LONG_IRON_HIGH_GUNPOWDER_CARTRIDGE, AmmoHeadType.Long, AmmoMaterialType.Iron, "308");
+        public static final SimpleAmmo THREE_THIRTY_EIGHT = SimpleAmmo.create(LONG_BRASS_HIGH_GUNPOWDER_CARTRIDGE, AmmoHeadType.Long, AmmoMaterialType.Brass, "338");
+        public static final SimpleAmmo THREE_FIVE_SEVEN_MAGNUM = SimpleAmmo.create(MEDIUM_IRON_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Iron, "357mag");
+        public static final SimpleAmmo FIVE_FIVE_SIX_FOUR_FIVE = SimpleAmmo.create(MEDIUM_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Brass, "556x45");
+        public static final SimpleAmmo SEVEN_SIX_TWO_TWO_FIVE = SimpleAmmo.create(MEDIUM_IRON_LOW_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Iron, "762x25");
+        public static final SimpleAmmo SEVEN_SIX_TWO_THREE_NINE = SimpleAmmo.create(MEDIUM_IRON_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Iron, "762x39");
+        public static final SimpleAmmo SEVEN_SIX_TWO_FIVE_FOUR = SimpleAmmo.create(MEDIUM_IRON_HIGH_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Iron, "762x54");
+
+        public static RegistryEntry<Item> getGunpowderByTypes(AmmoCasingType casingType){
+            return switch (casingType) {
+                case Small -> SMALL_AMMUNITION_GUNPOWDER;
+                case Medium -> MEDIUM_AMMUNITION_GUNPOWDER;
+                case Long -> LONG_AMMUNITION_GUNPOWDER;
+                default -> SMALL_AMMUNITION_GUNPOWDER;
+            };
+        }
+
         public static RegistryEntry<Item> getCasingByTypes(AmmoCasingType casingType, AmmoMaterialType materialType){
             return switch (casingType) {
                 case Small -> SMALL_COMPONENTS.getCasing(materialType);
                 case Medium -> MEDIUM_COMPONENTS.getCasing(materialType);
                 case Long -> LONG_COMPONENTS.getCasing(materialType);
-                default -> null;
+                default -> SMALL_COMPONENTS.getCasing(materialType);
             };
         }
 
@@ -116,6 +167,10 @@ public class PrmaItems {
                 default -> SMALL_COMPONENTS.getTransition(materialType);
             };
         }
+
+        public static void register() {
+
+        }
     }
 
     public static class Cast {
@@ -126,6 +181,10 @@ public class PrmaItems {
         }
 
         public static final RegistryEntry<Item> INGOT_CAST = addToMaterials(castItem("ingot_cast").register());
+
+        public static void register(){
+
+        }
     }
 
     // Powders
@@ -217,7 +276,6 @@ public class PrmaItems {
             MOLTEN_STRONG_ALUMINUM_BUCKET = addToList(bucketItem("molten_strong_aluminum_bucket").register()),
             MOLTEN_METAL_ALLOY_BUCKET = addToList(bucketItem("molten_metal_alloy_bucket").register());
 
-
     // Cartrige Casts and Components
 //    public static final CartridgeBase
 //            NINE_MIL = new CartridgeBase("9mm", AmmunitionSize.SMALL, 1, AmmunitionBase.getSmallCartridgeModules()),
@@ -254,25 +312,12 @@ public class PrmaItems {
 //
 //    THREE_FIVE_SEVEN = new CartridgeBase("357", AmmunitionSize.SMALL, 2, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3));
 
-    // Weapons
-    // Guns
-//    public static final RifleBase
-//        M4A1 = new RifleBase("m4a1", RifleBase.STANDARD_RIFLE_MODULES)
-//                .setModuleData(0, d -> d.setCastFillingAmount(150)) // Grip
-//                .setModuleData(1, d -> d.setCastFillingAmount(500)) // Lower Receiver
-//                .setModuleData(2, d -> d.setCastFillingAmount(550)) // Upper Receiver
-//                .setModuleData(3, d -> d.setCastFillingAmount(300)) // Handguard
-//                .setModuleData(4, d -> d.setCastFillingAmount(250)) // Barrel
-//                .setModuleData(5, d -> d.setCastFillingAmount(200)) // Magazine
-//                .setModuleData(6, d -> d.setCastFillingAmount(250)) // Fire Control Group
-//                .setModuleData(7, d -> d.setCastFillingAmount(80)) // Fire Selector
-//                .setModuleData(8, d -> d.setCastFillingAmount(80)) // Trigger
-//                .setModuleData(9, d -> d.setCastFillingAmount(300)), // Stock
-
 
     public static void register() {
         // Do no delete this function; This is for loading this class.
 //        PreciseManufacturing.LOGGER.debug("{}", PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get());
+        Ammo.register();
+        Cast.register();
         PreciseManufacturing.LOGGER.info("Registering Mod Items");
     }
 
