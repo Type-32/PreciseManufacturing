@@ -26,6 +26,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CastingBasinBlock extends HorizontalDirectionalBlock implements IBE<CastingBasinBlockEntity>, IWrenchable, ProperWaterloggedBlock {
@@ -44,12 +45,12 @@ public class CastingBasinBlock extends HorizontalDirectionalBlock implements IBE
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return AllShapes.CASING_13PX.get(Direction.UP);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (hit.getDirection() != Direction.UP)
             return InteractionResult.PASS;
 
@@ -76,14 +77,14 @@ public class CastingBasinBlock extends HorizontalDirectionalBlock implements IBE
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState,
-                                  LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState,
+                                           LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         updateWater(world, state, pos);
         return state;
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return fluidState(state);
     }
 
@@ -94,11 +95,16 @@ public class CastingBasinBlock extends HorizontalDirectionalBlock implements IBE
 
     @Override
     public BlockEntityType<? extends CastingBasinBlockEntity> getBlockEntityType() {
-        return PrmaBlockEntities.CASTING_BASIN.get(); // You'll need to register this
+        return null;
     }
 
-    @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return PrmaBlockEntities.CASTING_BASIN.get().create(blockPos, blockState);
-    }
+//    @Override
+//    public BlockEntityType<? extends CastingBasinBlockEntity> getBlockEntityType() {
+//        return PrmaBlockEntities.CASTING_BASIN.get(); // You'll need to register this
+//    }
+//
+//    @Override
+//    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+//        return PrmaBlockEntities.CASTING_BASIN.get().create(blockPos, blockState);
+//    }
 }

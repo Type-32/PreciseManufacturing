@@ -47,7 +47,6 @@ public class PreciseManufacturing {
     }
 
     private void registerEntries(final IEventBus eventBus) {
-        REGISTRATE.registerEventListeners(eventBus);
 
         PrmaBlocks.register();
         PrmaBlockEntities.register(eventBus);
@@ -59,6 +58,7 @@ public class PreciseManufacturing {
         PrmaCreativeModTabs.register(eventBus);
         PrmaRecipeTypes.register(eventBus);
 
+        REGISTRATE.registerEventListeners(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
