@@ -1,0 +1,12 @@
+{
+  "values": [
+    "prma:straight_small_coil",
+    "prma:straight_large_coil",
+    "prma:straight_flat_coil",
+    "prma:locking_return_coil",
+    "prma:flat_head_screw",
+    "prma:m_screw",
+    "prma:thin_small_rod",
+    "prma:thick_small_rod"
+  ]
+}

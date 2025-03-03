@@ -15,11 +15,11 @@ public class CastingRecipeSerializer extends ProcessingRecipeSerializer<CastingR
     @Override
     public CastingRecipe fromJson(ResourceLocation recipeId, JsonObject json, ICondition.IContext context) {
         CastingRecipe recipe = super.fromJson(recipeId, json);
-        // Additional validation
-//        if (recipe.getIngredients().size() != 1)
-//            throw new IllegalArgumentException("Casting recipe must have exactly one item ingredient (cast)");
-//        if (recipe.getFluidIngredients().size() != 1)
-//            throw new IllegalArgumentException("Casting recipe must have exactly one fluid ingredient");
+//         Additional validation
+        if (recipe.getIngredients().size() != 1)
+            throw new IllegalArgumentException("Casting recipe must have exactly one item ingredient (cast)");
+        if (recipe.getFluidIngredients().size() != 1)
+            throw new IllegalArgumentException("Casting recipe must have exactly one fluid ingredient");
         return recipe;
     }
 }

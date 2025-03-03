@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "count": 3,
+      "item": "prma:flint_powder"
+    },
+    {
+      "chance": 0.7,
+      "count": 2,
+      "item": "prma:sulfur_powder"
+    },
+    {
+      "chance": 0.3,
+      "item": "prma:sulfur_powder"
+    }
+  ]
+}

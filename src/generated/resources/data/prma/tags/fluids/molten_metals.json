@@ -1,0 +1,16 @@
+{
+  "values": [
+    "prma:flowing_molten_copper",
+    "prma:molten_copper",
+    "prma:flowing_molten_zinc",
+    "prma:molten_zinc",
+    "prma:flowing_molten_iron",
+    "prma:molten_iron",
+    "prma:flowing_molten_aluminum",
+    "prma:molten_aluminum",
+    "prma:flowing_molten_metal_alloy",
+    "prma:molten_metal_alloy",
+    "prma:flowing_molten_strong_aluminum_alloy",
+    "prma:molten_strong_aluminum_alloy"
+  ]
+}

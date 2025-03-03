@@ -5,6 +5,7 @@ import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
 import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.collection.StandardCartridgeComponents;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.content.processing.casting_basin.recipe.CastingRecipe;
 import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleAmmo;
 import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleCartridge;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
@@ -283,11 +284,11 @@ public class ModRecipesGen {
                 .require(PrmaItems.MOLTEN_ZINC_BUCKET.get())
                 .output(PrmaFluids.MOLTEN_ZINC.get(), 250));
 
-//        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_copper_to_ingot"))
-//                .output(Items.COPPER_INGOT)
-//                .require(PrmaFluids.MOLTEN_COPPER.get(), 100)
-//                .require(PrmaItems.Cast.INGOT_CAST.get())
-//                .duration(100));
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_copper_to_ingot"))
+                .output(Items.COPPER_INGOT)
+                .require(PrmaFluids.MOLTEN_COPPER.get(), 100)
+                .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
 
         addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/cartridge_primer"))
                 .output(PrmaItems.Ammo.CARTRIDGE_PRIMER.get(), 8)

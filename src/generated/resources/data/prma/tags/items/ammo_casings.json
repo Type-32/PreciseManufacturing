@@ -1,0 +1,30 @@
+{
+  "values": [
+    "prma:small_copper_casing",
+    "prma:small_iron_casing",
+    "prma:small_brass_casing",
+    "prma:medium_copper_casing",
+    "prma:medium_iron_casing",
+    "prma:medium_brass_casing",
+    "prma:long_copper_casing",
+    "prma:long_iron_casing",
+    "prma:long_brass_casing",
+    "prma:shotgun_shell_base",
+    "prma:shotgun_shell",
+    "prma:small_brass_low_gunpowder_cartridge",
+    "prma:small_brass_medium_gunpowder_cartridge",
+    "prma:small_brass_high_gunpowder_cartridge",
+    "prma:medium_brass_low_gunpowder_cartridge",
+    "prma:medium_brass_medium_gunpowder_cartridge",
+    "prma:medium_brass_high_gunpowder_cartridge",
+    "prma:medium_iron_low_gunpowder_cartridge",
+    "prma:medium_iron_medium_gunpowder_cartridge",
+    "prma:medium_iron_high_gunpowder_cartridge",
+    "prma:long_brass_low_gunpowder_cartridge",
+    "prma:long_brass_medium_gunpowder_cartridge",
+    "prma:long_brass_high_gunpowder_cartridge",
+    "prma:long_iron_low_gunpowder_cartridge",
+    "prma:long_iron_medium_gunpowder_cartridge",
+    "prma:long_iron_high_gunpowder_cartridge"
+  ]
+}

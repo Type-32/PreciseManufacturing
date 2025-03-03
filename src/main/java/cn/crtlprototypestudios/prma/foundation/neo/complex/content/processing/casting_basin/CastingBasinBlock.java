@@ -95,16 +95,11 @@ public class CastingBasinBlock extends HorizontalDirectionalBlock implements IBE
 
     @Override
     public BlockEntityType<? extends CastingBasinBlockEntity> getBlockEntityType() {
-        return null;
+        return PrmaBlockEntities.CASTING_BASIN.get(); // You'll need to register this
     }
 
-//    @Override
-//    public BlockEntityType<? extends CastingBasinBlockEntity> getBlockEntityType() {
-//        return PrmaBlockEntities.CASTING_BASIN.get(); // You'll need to register this
-//    }
-//
-//    @Override
-//    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-//        return PrmaBlockEntities.CASTING_BASIN.get().create(blockPos, blockState);
-//    }
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return PrmaBlockEntities.CASTING_BASIN.get().create(blockPos, blockState);
+    }
 }

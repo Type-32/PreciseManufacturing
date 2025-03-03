@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> {
+public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> implements IAssemblyRecipe {
 
     public CastingRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
         super(PrmaRecipeTypes.CASTING, params);
@@ -43,6 +43,10 @@ public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> {
         return ingredients.get(0).test(castItem);
     }
 
+    @Override
+    public @NotNull ItemStack assemble(RecipeWrapper recipeWrapper, RegistryAccess registryAccess) {
+        return recipeWrapper.getItem(1); // TODO: CHANGE THIS. THIS IS TEMPORARY PATCH.
+    }
 
     @Override
     public boolean canCraftInDimensions(int i, int i1) {
@@ -97,5 +101,35 @@ public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> {
         if (fluidIngredients.isEmpty())
             throw new IllegalStateException("Filling Recipe: " + id.toString() + " has no fluid ingredient!");
         return fluidIngredients.get(0);
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public Component getDescriptionForAssembly() {
+        List<FluidStack> matchingFluidStacks = fluidIngredients.get(0)
+                .getMatchingFluidStacks();
+        if (matchingFluidStacks.isEmpty())
+            return Component.literal("Invalid");
+        return Lang.builder("prma").translate("recipe.assembly.spout_filling_fluid",
+                matchingFluidStacks.get(0).getDisplayName().getString()).component();
+    }
+
+    @Override
+    public void addRequiredMachines(Set<ItemLike> list) {
+        list.add(AllBlocks.SPOUT.get());
+    }
+
+    @Override
+    public void addAssemblyIngredients(List<Ingredient> list) {}
+
+    @Override
+    public void addAssemblyFluidIngredients(List<FluidIngredient> list) {
+        list.add(getRequiredFluid());
+    }
+
+    @Override
+    public Supplier<Supplier<SequencedAssemblySubCategory>> getJEISubCategory() {
+        // TODO Remember to change this later
+        return () -> SequencedAssemblySubCategory.AssemblySpouting::new;
     }
 }
