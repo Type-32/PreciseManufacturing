@@ -10,12 +10,15 @@ import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleAmmo;
 import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleCartridge;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.AllTags;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.content.fluids.transfer.EmptyingRecipe;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
+import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
@@ -51,34 +54,97 @@ public class ModRecipesGen {
     }
 
     public static void registerCreateRecipes() {
-        // Small Ammunition Gunpowder Crafting and Uncrafting
-        addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("small_ammunition_gunpowder_mixing"))
-                .output(PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get())
-                .require(Items.GUNPOWDER)
-                .require(PrmaItems.FLINT_POWDER.get())
-                .require(PrmaItems.FLINT_POWDER.get())
-                .duration(100)
-        );
-//        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.smallAmmunitionGunpowdersTag()).group("small_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "small", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
+        registerMillingRecipes();
+        registerCrushingRecipes();
+        registerCuttingRecipes();
+        registerEmptyingRecipes();
+        registerFillingRecipes();
+        registerMixingRecipes();
+        registerCastingRecipes();
 
-        // Medium Ammunition Gunpowder Crafting and Uncrafting
-        addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("medium_ammunition_gunpowder_mixing"))
-                .output(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get())
-                .require(Items.GUNPOWDER)
-                .require(PrmaItems.SULFUR_POWDER.get())
-                .duration(100)
+        addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find("sequenced_assembly/ammo/12g"))
+                .require(PrmaItems.Ammo.SHOTGUN_SHELL_BASE.get())
+                .transitionTo(PrmaItems.Ammo.SHOTGUN_SHELL_TRANSITION.get())
+                .loops(1)
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.CARTRIDGE_PRIMER.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_SHELL.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
+                .addStep(PressingRecipe::new, p -> p)
         );
-//        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.mediumAmmunitionGunpowdersTag()).group("medium_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "_medium", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
 
-        // Long Ammunition Gunpowder Crafting and Uncrafting
-        addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("long_ammunition_gunpowder_mixing"))
-                .output(PrmaItems.LONG_AMMUNITION_GUNPOWDER.get())
-                .require(Items.GUNPOWDER)
-                .require(Items.GUNPOWDER)
-                .require(PrmaItems.SULFUR_POWDER.get())
+        // Decomponentalizer Crafting Recipe
+//        MechanicalCraftingRecipeBuilder.shapedRecipe(ModBlocks.DECOMPONENTALIZER.get())
+//                .key('E', AllItems.ELECTRON_TUBE.get())
+//                .key('P', AllItems.IRON_SHEET.get())
+//                .key('H', AllItems.BRASS_HAND.get())
+//                .key('S', AllBlocks.ANDESITE_CASING.get())
+//                .key('I', Blocks.IRON_BLOCK)
+//                .key('M', AllItems.PRECISION_MECHANISM.get())
+//                .key('G', Blocks.GLASS_PANE)
+//                .patternLine("PPPP")
+//                .patternLine("PHEP")
+//                .patternLine("PMGP")
+//                .patternLine("SIIS").build(pFinishedRecipeConsumer);
+
+        // Compacting Pellets
+//        addCreateRecipe(new ProcessingRecipeBuilder<>(CompactingRecipe::new, ResourceHelper.find("compacting_to_iron_pellet_cluster")));
+    }
+
+    public static void registerCastingRecipes() {
+        // Casting Molten Copper to Ingot
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_copper_to_ingot"))
+                .output(Items.COPPER_INGOT)
+                .require(PrmaTags.FluidTag.MOLTEN_COPPER_FLUIDS.tag, 100)
+                .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
+
+        // Casting Molten Zinc to Ingot
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_zinc_to_ingot"))
+                .output(AllItems.ZINC_INGOT)
+                .require(PrmaTags.FluidTag.MOLTEN_ZINC_FLUIDS.tag, 100)
+                .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
+
+        // Casting Molten Iron to Ingot
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_iron_to_ingot"))
+                .output(Items.IRON_INGOT)
+                .require(PrmaTags.FluidTag.MOLTEN_IRON_FLUIDS.tag, 100)
+                .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
+
+        // Casting Molten Aluminum to Ingot
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_aluminum_to_ingot"))
+                .output(PrmaItems.ALUMINUM_INGOT.get())
+                .require(PrmaTags.FluidTag.MOLTEN_ALUMINUM_FLUIDS.tag, 100)
+                .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
+
+        // Casting Molten Strong Aluminum to Ingot
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_aluminum_to_ingot"))
+                .output(PrmaItems.STRONG_ALUMINUM_INGOT.get())
+                .require(PrmaTags.FluidTag.MOLTEN_STRONG_ALUMINUM_FLUIDS.tag, 100)
+                .require(PrmaItems.Cast.INGOT_CAST.get())
+                .duration(100));
+    }
+
+    public static void registerCuttingRecipes() {
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/cartridge_primer"))
+                .output(PrmaItems.Ammo.CARTRIDGE_PRIMER.get(), 8)
+                .require(AllItems.IRON_SHEET)
+                .duration(100));
+
+        // Iron ingot to Blank Cast
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/iron_ingot_to_cast"))
+                .output(PrmaItems.BLANK_CAST.get(), 5)
+                .require(Items.IRON_INGOT)
                 .duration(100)
         );
-//        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.longAmmunitionGunpowdersTag()).group("long_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "_long", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
+    }
+
+    public static void registerCrushingRecipes() {
 
         // Crushing for Crushed zinc, crushed copper, crushed iron, crushed aluminum, and basalt powder from basalt
         addCreateRecipe(new ProcessingRecipeBuilder<>(CrushingRecipe::new, ResourceHelper.find("basalt_to_powder"))
@@ -120,7 +186,79 @@ public class ModRecipesGen {
                 .require(PrmaItems.CRUSHED_BASALT.get())
                 .duration(140)
         );
+    }
 
+    public static void registerEmptyingRecipes() {
+        // Empty Molten Metal Alloy Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_metal_alloy_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_METAL_ALLOY_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 250));
+
+        // Empty Molten Copper Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_copper_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_COPPER_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_COPPER.get(), 250));
+
+        // Empty Molten Iron Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_iron_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_IRON_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_IRON.get(), 250));
+
+        // Empty Molten Aluminum Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_aluminum_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_ALUMINUM_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_ALUMINUM.get(), 250));
+
+        // Empty Molten Strong Aluminum Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_strong_aluminum_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_STRONG_ALUMINUM_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 250));
+
+        // Empty Molten Strong Aluminum Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_zinc_bucket"))
+                .output(Items.BUCKET)
+                .require(PrmaItems.MOLTEN_ZINC_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_ZINC.get(), 250));
+    }
+
+    public static void registerFillingRecipes() {
+        // Fill Molten Metal Alloy Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_metal_alloy_bucket"))
+                .output(PrmaItems.MOLTEN_METAL_ALLOY_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 250));
+
+        // Fill Molten Copper Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_copper_bucket"))
+                .output(PrmaItems.MOLTEN_COPPER_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(PrmaFluids.MOLTEN_COPPER.get(), 250));
+
+        // Fill Molten Aluminum Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_aluminum_bucket"))
+                .output(PrmaItems.MOLTEN_ALUMINUM_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(PrmaFluids.MOLTEN_ALUMINUM.get(), 250));
+
+        // Fill Molten Strong Aluminum Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_strong_aluminum_bucket"))
+                .output(PrmaItems.MOLTEN_STRONG_ALUMINUM_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 250));
+
+        // Fill Molten Zinc Bucket
+        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_zinc_bucket"))
+                .output(PrmaItems.MOLTEN_ZINC_BUCKET.get())
+                .require(Items.BUCKET)
+                .require(PrmaFluids.MOLTEN_ZINC.get(), 250));
+    }
+
+    public static void registerMillingRecipes() {
         // milling for sulfur and flint powder from flint
         addCreateRecipe(new ProcessingRecipeBuilder<>(MillingRecipe::new, ResourceHelper.find("flint_powder"))
                 .output(PrmaItems.FLINT_POWDER.get(), 3)
@@ -129,11 +267,34 @@ public class ModRecipesGen {
                 .require(Items.FLINT)
                 .duration(100)
         );
+    }
 
-        // Iron ingot to Blank Cast
-        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/iron_ingot_to_cast"))
-                .output(PrmaItems.BLANK_CAST.get(), 5)
-                .require(Items.IRON_INGOT)
+    public static void registerMixingRecipes() {
+        // Small Ammunition Gunpowder Crafting and Uncrafting
+        addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("small_ammunition_gunpowder_mixing"))
+                .output(PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get())
+                .require(Items.GUNPOWDER)
+                .require(PrmaItems.FLINT_POWDER.get())
+                .require(PrmaItems.FLINT_POWDER.get())
+                .duration(100)
+        );
+//        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.smallAmmunitionGunpowdersTag()).group("small_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "small", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
+
+        // Medium Ammunition Gunpowder Crafting and Uncrafting
+        addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("medium_ammunition_gunpowder_mixing"))
+                .output(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get())
+                .require(Items.GUNPOWDER)
+                .require(PrmaItems.SULFUR_POWDER.get())
+                .duration(100)
+        );
+//        ModRecipeProvider.add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GUNPOWDER, 2).requires(ModTags.mediumAmmunitionGunpowdersTag()).group("medium_downgrade").unlockedBy(RegistrateRecipeProvider.getHasName(Items.GUNPOWDER) + "_medium", RegistrateRecipeProvider.has(Items.GUNPOWDER)));
+
+        // Long Ammunition Gunpowder Crafting and Uncrafting
+        addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("long_ammunition_gunpowder_mixing"))
+                .output(PrmaItems.LONG_AMMUNITION_GUNPOWDER.get())
+                .require(Items.GUNPOWDER)
+                .require(Items.GUNPOWDER)
+                .require(PrmaItems.SULFUR_POWDER.get())
                 .duration(100)
         );
 
@@ -215,102 +376,6 @@ public class ModRecipesGen {
                 .output(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 50)
                 .duration(200)
                 .require(PrmaTags.ItemTag.AMMO_WASTE.tag));
-
-        // Fill Molten Metal Alloy Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_metal_alloy_bucket"))
-                .output(PrmaItems.MOLTEN_METAL_ALLOY_BUCKET.get())
-                .require(Items.BUCKET)
-                .require(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 250));
-
-        // Fill Molten Copper Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_copper_bucket"))
-                .output(PrmaItems.MOLTEN_COPPER_BUCKET.get())
-                .require(Items.BUCKET)
-                .require(PrmaFluids.MOLTEN_COPPER.get(), 250));
-
-        // Fill Molten Aluminum Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_aluminum_bucket"))
-                .output(PrmaItems.MOLTEN_ALUMINUM_BUCKET.get())
-                .require(Items.BUCKET)
-                .require(PrmaFluids.MOLTEN_ALUMINUM.get(), 250));
-
-        // Fill Molten Strong Aluminum Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_strong_aluminum_bucket"))
-                .output(PrmaItems.MOLTEN_STRONG_ALUMINUM_BUCKET.get())
-                .require(Items.BUCKET)
-                .require(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 250));
-
-        // Fill Molten Zinc Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_zinc_bucket"))
-                .output(PrmaItems.MOLTEN_ZINC_BUCKET.get())
-                .require(Items.BUCKET)
-                .require(PrmaFluids.MOLTEN_ZINC.get(), 250));
-
-//        ModRecipeProvider.addCreateRecipeBuilder(new ProcessingRecipeBuilder<>(ProcessingRecipe::new, ));
-
-        // Empty Molten Metal Alloy Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_metal_alloy_bucket"))
-                .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_METAL_ALLOY_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 250));
-
-        // Empty Molten Copper Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_copper_bucket"))
-                .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_COPPER_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_COPPER.get(), 250));
-
-        // Empty Molten Iron Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_iron_bucket"))
-                .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_IRON_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_IRON.get(), 250));
-
-        // Empty Molten Aluminum Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_aluminum_bucket"))
-                .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_ALUMINUM_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_ALUMINUM.get(), 250));
-
-        // Empty Molten Strong Aluminum Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_strong_aluminum_bucket"))
-                .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_STRONG_ALUMINUM_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 250));
-
-        // Empty Molten Strong Aluminum Bucket
-        addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_zinc_bucket"))
-                .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_ZINC_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_ZINC.get(), 250));
-
-        addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_copper_to_ingot"))
-                .output(Items.COPPER_INGOT)
-                .require(PrmaFluids.MOLTEN_COPPER.get(), 100)
-                .require(PrmaItems.Cast.INGOT_CAST.get())
-                .duration(100));
-
-        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/cartridge_primer"))
-                .output(PrmaItems.Ammo.CARTRIDGE_PRIMER.get(), 8)
-                .require(AllItems.IRON_SHEET)
-                .duration(100));
-
-        // Decomponentalizer Crafting Recipe
-//        MechanicalCraftingRecipeBuilder.shapedRecipe(ModBlocks.DECOMPONENTALIZER.get())
-//                .key('E', AllItems.ELECTRON_TUBE.get())
-//                .key('P', AllItems.IRON_SHEET.get())
-//                .key('H', AllItems.BRASS_HAND.get())
-//                .key('S', AllBlocks.ANDESITE_CASING.get())
-//                .key('I', Blocks.IRON_BLOCK)
-//                .key('M', AllItems.PRECISION_MECHANISM.get())
-//                .key('G', Blocks.GLASS_PANE)
-//                .patternLine("PPPP")
-//                .patternLine("PHEP")
-//                .patternLine("PMGP")
-//                .patternLine("SIIS").build(pFinishedRecipeConsumer);
-
-        // Compacting Pellets
-//        addCreateRecipe(new ProcessingRecipeBuilder<>(CompactingRecipe::new, ResourceHelper.find("compacting_to_iron_pellet_cluster")));
     }
 
     public static void registerVanillaRecipes() {
