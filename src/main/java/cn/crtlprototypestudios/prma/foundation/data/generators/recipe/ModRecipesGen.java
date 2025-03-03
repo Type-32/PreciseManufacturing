@@ -4,10 +4,8 @@ import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
-import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.collection.StandardCartridgeComponents;
-import cn.crtlprototypestudios.prma.foundation.neo.complex.content.processing.casting_basin.recipe.CastingRecipe;
-import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleAmmo;
-import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleCartridge;
+import cn.crtlprototypestudios.prma.foundation.neo.content.item.collection.StandardCartridgeComponents;
+import cn.crtlprototypestudios.prma.foundation.neo.content.processing.casting_basin.recipe.CastingRecipe;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
@@ -36,15 +34,11 @@ public class ModRecipesGen {
     private static List<RecipeBuilder> recipeBuilders = new ArrayList<>();
     private static List<ProcessingRecipeBuilder<?>> createCompatRecipeBuilders = new ArrayList<>();
     private static List<SequencedAssemblyRecipeBuilder> sequencedAssemblyRecipeBuilders = new ArrayList<>();
-    private static List<SimpleCartridge> simpleCartridges = new ArrayList<>();
-    private static List<SimpleAmmo> simpleAmmos = new ArrayList<>();
 
     public static void register(Consumer<FinishedRecipe> pFinishedRecipeConsumer){
         registerCreateRecipes();
         registerVanillaRecipes();
         PrmaItems.ALL_CARTRIDGE_COMPONENTS.forEach(StandardCartridgeComponents::registerRecipes);
-        simpleCartridges.forEach(SimpleCartridge::registerStandardRecipes);
-        simpleAmmos.forEach(SimpleAmmo::registerRecipes);
 
         PreciseManufacturing.LOGGER.debug("assemblies {}", sequencedAssemblyRecipeBuilders.size());
 
@@ -393,14 +387,6 @@ public class ModRecipesGen {
 
     public static void addSequencedAssemblyRecipe(SequencedAssemblyRecipeBuilder generatedRecipe){
         sequencedAssemblyRecipeBuilders.add(generatedRecipe);
-    }
-
-    public static void addSimpleCartridge(SimpleCartridge simpleCartridge){
-        simpleCartridges.add(simpleCartridge);
-    }
-
-    public static void addSimpleAmmo(SimpleAmmo simpleAmmo){
-        simpleAmmos.add(simpleAmmo);
     }
 
     public static void add(RecipeBuilder builder){
