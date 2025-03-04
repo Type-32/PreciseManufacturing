@@ -255,7 +255,7 @@ public class PrmaItems {
             ALUMINUM_INGOT = addToMaterials(PreciseManufacturing.REGISTRATE.item("aluminum_ingot", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
                     .tag(PrmaTags.ItemTag.INGOTS.tag).register()),
-            STRONG_ALUMINUM_INGOT = addToMaterials(PreciseManufacturing.REGISTRATE.item("strong_aluminum_ingot", Item::new)
+            STRONG_ALUMINUM_ALLOY_INGOT = addToMaterials(PreciseManufacturing.REGISTRATE.item("strong_aluminum_alloy_ingot", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "metals", "_"))
                     .tag(PrmaTags.ItemTag.INGOTS.tag).register()),
             CRUSHED_RAW_ALUMINUM = addToMaterials(PreciseManufacturing.REGISTRATE.item("crushed_raw_aluminum", Item::new)
@@ -273,7 +273,7 @@ public class PrmaItems {
             MOLTEN_ZINC_BUCKET = addToList(bucketItem("molten_zinc_bucket").register()),
             MOLTEN_IRON_BUCKET = addToList(bucketItem("molten_iron_bucket").register()),
             MOLTEN_ALUMINUM_BUCKET = addToList(bucketItem("molten_aluminum_bucket").register()),
-            MOLTEN_STRONG_ALUMINUM_BUCKET = addToList(bucketItem("molten_strong_aluminum_bucket").register()),
+            MOLTEN_STRONG_ALUMINUM_ALLOY_BUCKET = addToList(bucketItem("molten_strong_aluminum_alloy_bucket").register()),
             MOLTEN_METAL_ALLOY_BUCKET = addToList(bucketItem("molten_metal_alloy_bucket").register());
 
     // Cartrige Casts and Components

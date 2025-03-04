@@ -4,7 +4,6 @@ import cn.crtlprototypestudios.prma.lib.Reference;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.utility.Lang;
 import com.tacz.guns.GunMod;
-import com.tacz.guns.api.TimelessAPI;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
@@ -172,7 +171,7 @@ public class PrmaTags {
         MOLTEN_ZINC_FLUIDS,
         MOLTEN_ALUMINUM_FLUIDS,
         MOLTEN_METAL_ALLOY_FLUIDS,
-        MOLTEN_STRONG_ALUMINUM_FLUIDS,
+        MOLTEN_STRONG_ALUMINUM_ALLOY_FLUIDS,
         MOLTEN_METALS(true),;
 
         FluidTag() {

@@ -64,7 +64,7 @@ public class SimpleAmmo {
         v.setTag(taczTag);
         v.setCount(1);
 
-        ModRecipesGen.addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("sequenced_assembly/simple/ammo/%s_head", ammoId)))
+        ModRecipesGen.addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("simple/ammo/%s_head", ammoId)))
                 .require(cartridge.item.get())
                 .transitionTo(cartridge.item.get())
                 .loops(1)
@@ -77,7 +77,7 @@ public class SimpleAmmo {
                 .addOutput(v, 100) // TODO: Use AmmoItemBuilder later. Right now their builder API Doesn't work for some reason.
         );
 
-        ModRecipesGen.addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find(String.format("cutting/simple/ammo/%s_head", ammoId)))
+        ModRecipesGen.addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find(String.format("simple/ammo/%s_head", ammoId)))
                 .require(switch(headMaterial){
                     case Iron -> AllItems.IRON_SHEET;
                     case Brass -> AllItems.BRASS_SHEET;

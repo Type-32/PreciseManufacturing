@@ -10,7 +10,6 @@ import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleAmmo;
 import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleCartridge;
 import cn.crtlprototypestudios.prma.foundation.utility.ResourceHelper;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.AllTags;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.content.fluids.transfer.EmptyingRecipe;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
@@ -21,7 +20,6 @@ import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -62,7 +60,7 @@ public class ModRecipesGen {
         registerMixingRecipes();
 //        registerCastingRecipes();
 
-        addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find("sequenced_assembly/ammo/12g"))
+        addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find("ammo/12g"))
                 .require(PrmaItems.Ammo.SHOTGUN_SHELL_BASE.get())
                 .transitionTo(PrmaItems.Ammo.SHOTGUN_SHELL_TRANSITION.get())
                 .loops(1)
@@ -124,20 +122,20 @@ public class ModRecipesGen {
 
         // Casting Molten Strong Aluminum to Ingot
         addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_aluminum_to_ingot"))
-                .output(PrmaItems.STRONG_ALUMINUM_INGOT.get())
-                .require(PrmaTags.FluidTag.MOLTEN_STRONG_ALUMINUM_FLUIDS.tag, 100)
+                .output(PrmaItems.STRONG_ALUMINUM_ALLOY_INGOT.get())
+                .require(PrmaTags.FluidTag.MOLTEN_STRONG_ALUMINUM_ALLOY_FLUIDS.tag, 100)
                 .require(PrmaItems.Cast.INGOT_CAST.get())
                 .duration(100));
     }
 
     public static void registerCuttingRecipes() {
-        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/cartridge_primer"))
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cartridge_primer"))
                 .output(PrmaItems.Ammo.CARTRIDGE_PRIMER.get(), 8)
                 .require(AllItems.IRON_SHEET)
                 .duration(100));
 
         // Iron ingot to Blank Cast
-        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cutting/iron_ingot_to_cast"))
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("iron_ingot_to_cast"))
                 .output(PrmaItems.BLANK_CAST.get(), 5)
                 .require(Items.IRON_INGOT)
                 .duration(100)
@@ -216,8 +214,8 @@ public class ModRecipesGen {
         // Empty Molten Strong Aluminum Bucket
         addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_strong_aluminum_bucket"))
                 .output(Items.BUCKET)
-                .require(PrmaItems.MOLTEN_STRONG_ALUMINUM_BUCKET.get())
-                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 250));
+                .require(PrmaItems.MOLTEN_STRONG_ALUMINUM_ALLOY_BUCKET.get())
+                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM_ALLOY.get(), 250));
 
         // Empty Molten Strong Aluminum Bucket
         addCreateRecipe(new ProcessingRecipeBuilder<>(EmptyingRecipe::new, ResourceHelper.find("buckets/empty_molten_zinc_bucket"))
@@ -247,9 +245,9 @@ public class ModRecipesGen {
 
         // Fill Molten Strong Aluminum Bucket
         addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_strong_aluminum_bucket"))
-                .output(PrmaItems.MOLTEN_STRONG_ALUMINUM_BUCKET.get())
+                .output(PrmaItems.MOLTEN_STRONG_ALUMINUM_ALLOY_BUCKET.get())
                 .require(Items.BUCKET)
-                .require(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 250));
+                .require(PrmaFluids.MOLTEN_STRONG_ALUMINUM_ALLOY.get(), 250));
 
         // Fill Molten Zinc Bucket
         addCreateRecipe(new ProcessingRecipeBuilder<>(FillingRecipe::new, ResourceHelper.find("buckets/molten_zinc_bucket"))
@@ -340,8 +338,8 @@ public class ModRecipesGen {
 
         // Heated Mealting from Strong Aluminum Ingots and Crushed Basalt to Molten Strong Aluminum
         addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("melting/strong_aluminum_ingot_to_molten_strong_aluminum"))
-                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 360)
-                .require(PrmaItems.STRONG_ALUMINUM_INGOT.get())
+                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM_ALLOY.get(), 360)
+                .require(PrmaItems.STRONG_ALUMINUM_ALLOY_INGOT.get())
                 .require(PrmaItems.BASALT_POWDER.get())
                 .requiresHeat(HeatCondition.HEATED)
                 .duration(200));
@@ -357,7 +355,7 @@ public class ModRecipesGen {
 
         // Heated Mixing from Molten Aluminum and Molten Metal Alloy to Molten Strong Aluminum
         addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("alloying/molten_aluminum_and_metal_alloy_to_strong_aluminum"))
-                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM.get(), 200)
+                .output(PrmaFluids.MOLTEN_STRONG_ALUMINUM_ALLOY.get(), 200)
                 .require(PrmaFluids.MOLTEN_ALUMINUM.get(), 100)
                 .require(PrmaFluids.MOLTEN_METAL_ALLOY.get(), 100)
                 .requiresHeat(HeatCondition.HEATED)

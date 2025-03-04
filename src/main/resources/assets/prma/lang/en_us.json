@@ -10,6 +10,7 @@
   "item.prma.modern_kinetic_gun_placeholder": "Modern Kinetic Gun Placeholder",
   "item.prma.blank_blueprint": "Blank Blueprint",
   "item.prma.blank_cast": "Blank Cast",
+  "item.prma.ingot_cast": "Ingot Cast",
 
 
   "item.prma.raw_copper_powder": "Raw Crushed Copper Powder",
@@ -28,7 +29,7 @@
   "item.prma.molten_metal_alloy_bucket": "Bucket of Molten Metal Alloy",
   "item.prma.molten_iron_bucket": "Bucket of Molten Iron",
   "item.prma.molten_aluminum_bucket": "Bucket of Molten Aluminum",
-  "item.prma.molten_strong_aluminum_bucket": "Bucket of Molten Strong Aluminum",
+  "item.prma.molten_strong_aluminum_alloy_bucket": "Bucket of Molten Strong Aluminum Alloy",
   "item.prma.molten_zinc_bucket": "Bucket of Molten Zinc",
 
   "item.prma.crushed_basalt": "Crushed Basalt",
@@ -135,12 +136,22 @@
   "item.prma.57x28_head": "5.7x28mm Cartridge Head",
   "item.prma.40mm_head": "40mm Cartridge Head",
 
+  "item.prma.strong_aluminum_alloy_ingot": "Strong Aluminum Alloy Ingot",
+  "item.prma.aluminum_ingot": "Aluminum Ingot",
+  "item.prma.metal_alloy_ingot": "Metal Alloy Ingot",
+  "item.prma.lead_ingot": "Lead Ingot",
+
+  "item.prma.crushed_raw_aluminum": "Crushed Aluminum",
+  "item.prma.crushed_raw_lead": "Crushed Lead",
+
   "fluid.prma.molten_copper": "Molten Copper",
   "fluid.prma.molten_metal_alloy": "Molten Metal Alloy",
   "fluid.prma.molten_iron": "Molten Iron",
-  "fluid.prma.molten_strong_aluminum": "Molten Strong Aluminum",
+  "fluid.prma.molten_strong_aluminum_alloy": "Molten Strong Aluminum Alloy",
   "fluid.prma.molten_aluminum": "Molten Aluminum",
   "fluid.prma.molten_zinc": "Molten Zinc",
+
+  "block.prma.casting_basin": "Casting Basin",
 
   "recipe_category.prma.decomponentalizing": "Decomponentalizing"
 }
