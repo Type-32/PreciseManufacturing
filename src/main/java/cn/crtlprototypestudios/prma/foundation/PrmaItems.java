@@ -71,6 +71,14 @@ public class PrmaItems {
                 CARTRIDGE_PRIMER = addToMaterials(ammoComponent("cartridge_primer").register());
 
         public static final RegistryEntry<Item>
+                FORTY_MIL_CASING = addToMaterials(PreciseManufacturing.REGISTRATE.item("40mm_casing", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "ammo", "casing", "special", "_"))
+                        .tag(PrmaTags.ItemTag.AMMO_CASINGS.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+                        .register()),
+                FORTY_MIL_SLUG = addToMaterials(PreciseManufacturing.REGISTRATE.item("40mm_slug", Item::new)
+                        .model(ModItemModelProvider.genericItemModel(true, "ammo", "head", "special", "_"))
+                        .tag(PrmaTags.ItemTag.AMMO_CASINGS.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+                        .register()),
                 SHOTGUN_SHELL_TRANSITION = addToMaterials(PreciseManufacturing.REGISTRATE.item("shotgun_shell_transition", Item::new)
                         .model(ModItemModelProvider.genericItemModel(true, "ammo", "transition", "shotgun", "_"))
                         .tag(PrmaTags.ItemTag.AMMO_WASTE.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
@@ -212,6 +220,10 @@ public class PrmaItems {
             LONG_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("long_ammunition_gunpowder", Item::new)
                     .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
                     .tag(PrmaTags.ItemTag.MATERIALS.tag, PrmaTags.ItemTag.LONG_AMMO_PROPELLANTS.tag)
+                    .register()),
+            HIGH_POWER_AMMUNITION_GUNPOWDER = addToMaterials(PreciseManufacturing.REGISTRATE.item("high_power_ammunition_gunpowder", Item::new)
+                    .model(ModItemModelProvider.genericItemModel(true, "powders", "_"))
+                    .tag(PrmaTags.ItemTag.MATERIALS.tag, PrmaTags.ItemTag.HIGH_POWER_AMMO_PROPELLANTS.tag)
                     .register());
 
     // Misc Items
