@@ -1,0 +1,23 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "amount": 100,
+      "fluid": "prma:molten_aluminum",
+      "nbt": {}
+    },
+    {
+      "amount": 100,
+      "fluid": "prma:molten_metal_alloy",
+      "nbt": {}
+    }
+  ],
+  "processingTime": 200,
+  "results": [
+    {
+      "amount": 200,
+      "fluid": "prma:molten_strong_aluminum_alloy"
+    }
+  ]
+}

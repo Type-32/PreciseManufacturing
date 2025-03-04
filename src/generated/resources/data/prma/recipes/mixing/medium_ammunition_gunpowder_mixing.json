@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "prma:sulfur_powder"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "item": "prma:medium_ammunition_gunpowder"
+    }
+  ]
+}
