@@ -27,7 +27,7 @@ public class SimpleCartridgeRecipeBuilder {
         this.baseCartridgePiece = PrmaItems.Ammo.getCasingByTypes(baseCasingType, baseCasingMaterialType);
 
         assert baseCartridgePiece != null;
-        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("sequenced_assembly/simple/cartridge/%s", recipeName)))
+        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("simple/cartridge/%s", recipeName)))
                 .require(baseCartridgePiece.get())
                 .transitionTo(transitionItem.get())
                 .loops(1);
