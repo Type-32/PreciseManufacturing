@@ -4,6 +4,8 @@ import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.api.item.builder.GunItemBuilder;
+import com.tacz.guns.init.ModItems;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.Set;
@@ -28,5 +30,14 @@ public class TaczAPIBridge {
                 })
                 .collect(Collectors.toSet());
 //        ServerGamePacketListenerImplMixin
+    }
+
+    public static ItemStack getAmmo(String ammoId) {
+        ItemStack stack = new ItemStack(ModItems.AMMO.get());
+        stack.setCount(1);
+        CompoundTag tag = new CompoundTag();
+        tag.putString("AmmoId", String.format("tacz:%s", ammoId));
+        stack.setTag(tag);
+        return stack;
     }
 }

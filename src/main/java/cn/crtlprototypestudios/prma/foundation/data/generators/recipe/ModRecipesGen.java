@@ -4,6 +4,7 @@ import cn.crtlprototypestudios.prma.PreciseManufacturing;
 import cn.crtlprototypestudios.prma.foundation.PrmaFluids;
 import cn.crtlprototypestudios.prma.foundation.PrmaItems;
 import cn.crtlprototypestudios.prma.foundation.PrmaTags;
+import cn.crtlprototypestudios.prma.foundation.neo.complex.bridge.TaczAPIBridge;
 import cn.crtlprototypestudios.prma.foundation.neo.complex.content.item.collection.StandardCartridgeComponents;
 import cn.crtlprototypestudios.prma.foundation.neo.complex.content.processing.casting_basin.recipe.CastingRecipe;
 import cn.crtlprototypestudios.prma.foundation.neo.simple.item.SimpleAmmo;
@@ -67,7 +68,10 @@ public class ModRecipesGen {
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_SHELL.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
                 .addStep(PressingRecipe::new, p -> p)
+                .addOutput(TaczAPIBridge.getAmmo("12g"), 1)
         );
 
         addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find("ammo/40mm"))
@@ -77,6 +81,7 @@ public class ModRecipesGen {
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.HIGH_POWER_AMMUNITION_GUNPOWDER.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.FORTY_MIL_SLUG.get()))
                 .addStep(PressingRecipe::new, p -> p)
+                .addOutput(TaczAPIBridge.getAmmo("40mm"), 1)
         );
 
         // Decomponentalizer Crafting Recipe
