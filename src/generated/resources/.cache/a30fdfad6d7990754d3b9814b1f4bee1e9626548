@@ -1,11 +1,13 @@
-// 1.20.1	2025-03-04T15:00:42.56483	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-03-04T18:46:00.491197	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 82051687a560b50f992c31648cf1707143d1049e assets/prma/blockstates/casting_basin.json
-84f72e535fe1559f292c8e92a51cbae963f64b8a assets/prma/lang/en_ud.json
-534276630cf8be69f4d5bb6793d1f4fd47fcf55c assets/prma/lang/en_us.json
+506c575166405a62de7b2db382ffddff2825d2e9 assets/prma/lang/en_ud.json
+beb7f68baf109fa3bd07aa2db8a48c468c142afd assets/prma/lang/en_us.json
 baaab890ff65ce09e040114f4883a416a724c2d2 assets/prma/models/item/308_head.json
 37774e3cc059a2651a53aeb8cd53916acc8221c9 assets/prma/models/item/30_06_head.json
 702cd58737b6eaaf18fa668bf635ea92b08ca336 assets/prma/models/item/338_head.json
 701668a72c476be57df7947937a4445491c0eee2 assets/prma/models/item/357mag_head.json
+7dcf14b031623b7ff52ce761d19955036a7a4167 assets/prma/models/item/40mm_casing.json
+a8cde1d4b8ced584792d6d120821e2d211acd58a assets/prma/models/item/40mm_slug.json
 d80678671a7c4c0cf618ee56897a7aec7a3b897d assets/prma/models/item/45acp_head.json
 f99afb328eb09c8c22acb19a818598e3870d8d94 assets/prma/models/item/46x30_head.json
 4f353e252d0c186dd1cee44079dd5326d5524c8b assets/prma/models/item/50ae_head.json
@@ -29,6 +31,7 @@ c21d9b7ccad3ca271ee8204a3afe64552a6b2418 assets/prma/models/item/casting_basin.j
 cb02a2e82f5d85e264cc840e2fbd935ee76b34f1 assets/prma/models/item/crushed_raw_lead.json
 875ddcc6aa5b89473c64f94d8f160abeeac21a16 assets/prma/models/item/flat_head_screw.json
 98da4c3662edb0253e33f17e90e7d180987a0a52 assets/prma/models/item/flint_powder.json
+3f225b0a9103c43129fdd915394bb75efb20ca0d assets/prma/models/item/high_power_ammunition_gunpowder.json
 8b87a161e7a1f2eb3aeee58b6e565e0a58d72986 assets/prma/models/item/ingot_cast.json
 6ccc8c063cad44af63df8c8e6204281bcdc92bd9 assets/prma/models/item/lead_ingot.json
 47cfb111da3ae473d520e61b380afd1c6b9b1694 assets/prma/models/item/locking_return_coil.json
@@ -97,7 +100,7 @@ e0cea5ee29f62d24b72c748fa091fbb59f2f258c assets/prma/models/item/straight_small_
 334df02f1a76210a1ef5989ea27c94f58133367f assets/prma/models/item/thick_small_rod.json
 6886ed60a4435d46f1de93cfb766eed0394e3417 assets/prma/models/item/thin_small_rod.json
 7f36e017cdf05fa823f57188dff013b433005305 data/create/tags/items/crushed_raw_materials.json
-4ae1a9ea6ca75c9fe66ad3fd99d81571bb0df719 data/create/tags/items/upright_on_belt.json
+a55310f66ab4ba9705e5333e535f445272ce7bd0 data/create/tags/items/upright_on_belt.json
 ebc711e2c42374c96342384a22f19383920a6858 data/minecraft/tags/blocks/mineable/axe.json
 ebc711e2c42374c96342384a22f19383920a6858 data/minecraft/tags/blocks/mineable/pickaxe.json
 22c4a9ccf62d90335f61447a087ae636e0553d20 data/prma/loot_tables/blocks/casting_basin.json
@@ -108,7 +111,7 @@ f9cdefa59b9537497063049aa827f90497b9d4c6 data/prma/tags/fluids/molten_metal_allo
 4be172cb08283bcbd0fefe79f87928ddc4ac5bbc data/prma/tags/fluids/molten_metals.json
 3fd1513d1f9d1a1c55845df2f4ad3bab0f823b06 data/prma/tags/fluids/molten_strong_aluminum_alloy_fluids.json
 edd6f5661eac01e7b52e283e94b934d62b54c2d2 data/prma/tags/fluids/molten_zinc_fluids.json
-99f717fb24a5a2c43c4882eb6c250d3d93ced10a data/prma/tags/items/ammo_casings.json
+d6345fd2fcef4e4ce1a425d5ac402109b1c0fbee data/prma/tags/items/ammo_casings.json
 0316d65fe4834bfb4983836ced75ddae8c7d003a data/prma/tags/items/ammo_components.json
 226420c9c868d7180e02a956d56e38d3cf9adf41 data/prma/tags/items/ammo_heads.json
 fe4739ed6f04d41b39e1cb3d8e92683e0ab37aca data/prma/tags/items/ammo_waste.json
@@ -117,11 +120,12 @@ fe4739ed6f04d41b39e1cb3d8e92683e0ab37aca data/prma/tags/items/ammo_waste.json
 0dcd02b05b13a1f14441e3769f8790adf81f73b8 data/prma/tags/items/casts.json
 f87319dc1fd07a9f1eb9bfd603b28fc86cb7cae9 data/prma/tags/items/copper_ammo_components.json
 7f36e017cdf05fa823f57188dff013b433005305 data/prma/tags/items/crushed_ores.json
+a220dad7edd3aeec80bc307f6d0f2a0d2507a6d4 data/prma/tags/items/high_power_ammo_propellants.json
 cc8dc2f9596680b365af19275b9a65ab122f5c42 data/prma/tags/items/ingots.json
 7b926abad8289e69e2c192a1b6c7a135c8632a8d data/prma/tags/items/iron_ammo_components.json
 ddfb5731921d2ed5d8d98ba94f440fd29408fc20 data/prma/tags/items/long_ammo_components.json
 b91927e1694a811dcdf2854e9be9f7d80fa1ea5a data/prma/tags/items/long_ammo_propellants.json
-0bd73d02c6d161eed477804d8192ded082896dde data/prma/tags/items/materials.json
+d6eef06743074fb3da91ac142a269c443afd127e data/prma/tags/items/materials.json
 99b2f4aa12f1cbd9e5fd281835aa77777804edc2 data/prma/tags/items/medium_ammo_components.json
 af2dec40756d7d7178a6ef6de2765b3276f19781 data/prma/tags/items/medium_ammo_propellants.json
 9f4e1bf52633c910716942812a693c5de687e882 data/prma/tags/items/small_ammo_components.json

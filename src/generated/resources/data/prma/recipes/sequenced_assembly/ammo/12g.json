@@ -13,22 +13,6 @@
           "item": "prma:shotgun_shell_transition"
         },
         {
-          "item": "prma:cartridge_primer"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        }
-      ]
-    },
-    {
-      "type": "create:deploying",
-      "ingredients": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        },
-        {
           "item": "prma:shotgun_shell"
         }
       ],
@@ -46,38 +30,6 @@
         },
         {
           "item": "prma:medium_ammunition_gunpowder"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        }
-      ]
-    },
-    {
-      "type": "create:deploying",
-      "ingredients": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        },
-        {
-          "item": "prma:shotgun_bearing"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        }
-      ]
-    },
-    {
-      "type": "create:deploying",
-      "ingredients": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        },
-        {
-          "item": "prma:shotgun_bearing"
         }
       ],
       "results": [
