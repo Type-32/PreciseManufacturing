@@ -44,27 +44,13 @@
   "item.prma.thin_small_rod": "Thin Small Rod",
   "item.prma.iron_pellet_cluster": "A Cluster of Iron Pellets",
 
-  "item.prma.9mm_blueprint": "9mm Cartridge Blueprint",
-  "item.prma.45acp_blueprint": ".45 ACP Cartridge Blueprint",
-  "item.prma.50ae_blueprint": ".50 AE Cartridge Blueprint",
-  "item.prma.magnum_r_blueprint": ".357 Magnum Cartridge Blueprint",
-  "item.prma.12g_blueprint": "12 Gauge Shotgun Cartridge Blueprint",
-  "item.prma.30_06_blueprint": ".30-06 Springfield Cartridge Blueprint",
-  "item.prma.46x30_blueprint": "4.6mm AP Cartridge Blueprint",
-  "item.prma.50bmg_blueprint": ".50 BMG Cartridge Blueprint",
-  "item.prma.58x42_blueprint": "5.8mm DBP87 Cartridge Blueprint",
-  "item.prma.68x51fury_blueprint": "6.8x51mm Fury Cartridge Blueprint",
-  "item.prma.308_blueprint": ".308 Winchester Cartridge Blueprint",
-  "item.prma.338_blueprint": ".338 Lapua Cartridge Blueprint",
-  "item.prma.556x45_blueprint": "5.56x45mm Cartridge Blueprint",
-  "item.prma.762x25_blueprint": "7.62x25mm Torakev Cartridge Blueprint",
-  "item.prma.762x39_blueprint": "7.62x39mm Cartridge Blueprint",
-  "item.prma.762x54_blueprint": "7.62x54mm Cartridge Blueprint",
-
   "item.prma.shotgun_shell": "Shotgun Shell",
   "item.prma.shotgun_shell_base": "Shotgun Shell Base",
   "item.prma.shotgun_shell_transition": "Unfinished Shotgun Shell",
   "item.prma.shotgun_bearing": "Shotgun Bearing",
+
+  "item.prma.40mm_slug": "40mm Slug",
+  "item.prma.40mm_casing": "40mm Casing",
 
   "item.prma.small_brass_casing": "Small Brass Casing",
   "item.prma.small_brass_transition": "Unfinished Small Brass Casing",
@@ -134,7 +120,6 @@
   "item.prma.762x39_head": "7.62x39mm Cartridge Head",
   "item.prma.762x54_head": "7.62x54mm Cartridge Head",
   "item.prma.57x28_head": "5.7x28mm Cartridge Head",
-  "item.prma.40mm_head": "40mm Cartridge Head",
 
   "item.prma.strong_aluminum_alloy_ingot": "Strong Aluminum Alloy Ingot",
   "item.prma.aluminum_ingot": "Aluminum Ingot",
