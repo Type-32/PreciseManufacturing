@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:brass_sheet"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "item": "prma:shotgun_shell_base"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    }
+  ],
+  "processingTime": 80,
+  "results": [
+    {
+      "count": 4,
+      "item": "prma:shotgun_bearing"
+    }
+  ]
+}

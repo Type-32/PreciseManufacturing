@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    }
+  ],
+  "processingTime": 160,
+  "results": [
+    {
+      "item": "prma:40mm_casing"
+    }
+  ]
+}
