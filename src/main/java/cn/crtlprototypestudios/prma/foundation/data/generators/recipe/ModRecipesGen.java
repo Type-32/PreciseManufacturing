@@ -64,12 +64,18 @@ public class ModRecipesGen {
                 .require(PrmaItems.Ammo.SHOTGUN_SHELL_BASE.get())
                 .transitionTo(PrmaItems.Ammo.SHOTGUN_SHELL_TRANSITION.get())
                 .loops(1)
-                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.CARTRIDGE_PRIMER.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_SHELL.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
-                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
-                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
+                .addStep(PressingRecipe::new, p -> p)
+        );
+
+        addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find("ammo/40mm"))
+                .require(PrmaItems.Ammo.FORTY_MIL_CASING.get())
+                .transitionTo(PrmaItems.Ammo.FORTY_MIL_CASING.get())
+                .loops(1)
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.HIGH_POWER_AMMUNITION_GUNPOWDER.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.FORTY_MIL_SLUG.get()))
                 .addStep(PressingRecipe::new, p -> p)
         );
 
@@ -139,6 +145,41 @@ public class ModRecipesGen {
                 .output(PrmaItems.BLANK_CAST.get(), 5)
                 .require(Items.IRON_INGOT)
                 .duration(100)
+        );
+
+        // Paper to Shotgun Shell
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("shotgun_shell"))
+                .output(PrmaItems.Ammo.SHOTGUN_SHELL.get(), 2)
+                .require(Items.PAPER)
+                .duration(100)
+        );
+
+        // Brass Sheet to Shotgun Shell Base
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("shotgun_shell_base"))
+                .output(PrmaItems.Ammo.SHOTGUN_SHELL_BASE.get(), 1)
+                .require(AllItems.BRASS_SHEET)
+                .duration(100)
+        );
+
+        // Iron Sheet to Shotgun bearing
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("shotgun_bearing"))
+                .output(PrmaItems.Ammo.SHOTGUN_BEARING.get(), 4)
+                .require(AllItems.IRON_SHEET)
+                .duration(80)
+        );
+
+        // 40mm Casing
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("40mm_casing"))
+                .output(PrmaItems.Ammo.FORTY_MIL_CASING.get())
+                .require(AllItems.IRON_SHEET)
+                .duration(160)
+        );
+
+        // 40mm Slug
+        addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("40mm_slug"))
+                .output(PrmaItems.Ammo.FORTY_MIL_SLUG.get(), 2)
+                .require(AllItems.BRASS_INGOT)
+                .duration(160)
         );
     }
 
@@ -294,6 +335,15 @@ public class ModRecipesGen {
                 .require(Items.GUNPOWDER)
                 .require(PrmaItems.SULFUR_POWDER.get())
                 .duration(100)
+        );
+
+        // High Power Ammunition Gunpowder Crafting and Uncrafting
+        addCreateRecipe(new ProcessingRecipeBuilder<>(MixingRecipe::new, ResourceHelper.find("high_power_ammunition_gunpowder_mixing"))
+                .output(PrmaItems.HIGH_POWER_AMMUNITION_GUNPOWDER.get())
+                .require(Items.GUNPOWDER)
+                .require(Items.FLINT)
+                .require(PrmaItems.SULFUR_POWDER.get())
+                .duration(160)
         );
 
         // Heated Melting from Copper Nuggets and Basalt Powder to Molten Copper

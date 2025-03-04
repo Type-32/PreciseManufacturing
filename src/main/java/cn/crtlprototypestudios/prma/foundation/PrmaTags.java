@@ -115,6 +115,7 @@ public class PrmaTags {
         SMALL_AMMO_PROPELLANTS(true),
         MEDIUM_AMMO_PROPELLANTS(true),
         LONG_AMMO_PROPELLANTS(true),
+        HIGH_POWER_AMMO_PROPELLANTS(true),
 
         WEAPON_COMPONENTS,
         WEAPON_BLUEPRINTS,
