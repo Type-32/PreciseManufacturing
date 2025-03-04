@@ -60,7 +60,7 @@ public class ModRecipesGen {
         registerEmptyingRecipes();
         registerFillingRecipes();
         registerMixingRecipes();
-        registerCastingRecipes();
+//        registerCastingRecipes();
 
         addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find("sequenced_assembly/ammo/12g"))
                 .require(PrmaItems.Ammo.SHOTGUN_SHELL_BASE.get())
