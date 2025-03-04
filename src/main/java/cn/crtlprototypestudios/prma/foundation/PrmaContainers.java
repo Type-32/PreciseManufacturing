@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class PrmaContainers {
-    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Reference.MOD_ID);
+    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.CONTAINERS, Reference.MOD_ID);
 
 //    public static final RegistryObject<MenuType<DecomponentalizerContainerMenu>> DECOMPONENTALIZER_CONTAINER_MENU = registerMenuType(DecomponentalizerContainerMenu::new, "decomponentalizer_container");
 //

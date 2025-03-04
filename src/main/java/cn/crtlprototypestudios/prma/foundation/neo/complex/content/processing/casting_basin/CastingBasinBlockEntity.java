@@ -16,9 +16,9 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
@@ -128,7 +128,7 @@ public class CastingBasinBlockEntity extends SmartBlockEntity {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER)
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return itemCapability.cast();
         return super.getCapability(cap, side);
     }
@@ -160,7 +160,7 @@ public class CastingBasinBlockEntity extends SmartBlockEntity {
             return;
 
         // Process recipe
-        ItemStack result = recipe.getResultItem(level.registryAccess()).copy();
+        ItemStack result = recipe.getResultItem().copy();
         if (!inventory.getStackInSlot(1).isEmpty())
             return;
 

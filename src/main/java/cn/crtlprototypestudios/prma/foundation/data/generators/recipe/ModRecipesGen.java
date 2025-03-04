@@ -109,7 +109,7 @@ public class ModRecipesGen {
 
         // Casting Molten Zinc to Ingot
         addCreateRecipe(new ProcessingRecipeBuilder<>(CastingRecipe::new, ResourceHelper.find("casting/casting_molten_zinc_to_ingot"))
-                .output(AllItems.ZINC_INGOT)
+                .output(AllItems.ZINC_INGOT.get())
                 .require(PrmaTags.FluidTag.MOLTEN_ZINC_FLUIDS.tag, 100)
                 .require(PrmaItems.Cast.INGOT_CAST.get())
                 .duration(100));
@@ -139,7 +139,7 @@ public class ModRecipesGen {
     public static void registerCuttingRecipes() {
         addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("cartridge_primer"))
                 .output(PrmaItems.Ammo.CARTRIDGE_PRIMER.get(), 8)
-                .require(AllItems.IRON_SHEET)
+                .require(AllItems.IRON_SHEET.get())
                 .duration(100));
 
         // Iron ingot to Blank Cast
@@ -159,28 +159,28 @@ public class ModRecipesGen {
         // Brass Sheet to Shotgun Shell Base
         addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("shotgun_shell_base"))
                 .output(PrmaItems.Ammo.SHOTGUN_SHELL_BASE.get(), 1)
-                .require(AllItems.BRASS_SHEET)
+                .require(AllItems.BRASS_SHEET.get())
                 .duration(100)
         );
 
         // Iron Sheet to Shotgun bearing
         addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("shotgun_bearing"))
                 .output(PrmaItems.Ammo.SHOTGUN_BEARING.get(), 4)
-                .require(AllItems.IRON_SHEET)
+                .require(AllItems.IRON_SHEET.get())
                 .duration(80)
         );
 
         // 40mm Casing
         addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("40mm_casing"))
                 .output(PrmaItems.Ammo.FORTY_MIL_CASING.get())
-                .require(AllItems.IRON_SHEET)
+                .require(AllItems.IRON_SHEET.get())
                 .duration(160)
         );
 
         // 40mm Slug
         addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find("40mm_slug"))
                 .output(PrmaItems.Ammo.FORTY_MIL_SLUG.get(), 2)
-                .require(AllItems.BRASS_INGOT)
+                .require(AllItems.BRASS_INGOT.get())
                 .duration(160)
         );
     }
@@ -430,7 +430,7 @@ public class ModRecipesGen {
 
     public static void registerVanillaRecipes() {
         // Craft Blank Blueprint from Paper and Dye
-        add(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PrmaItems.BLANK_BLUEPRINT.get(), 3)
+        add(ShapelessRecipeBuilder.shapeless(PrmaItems.BLANK_BLUEPRINT.get(), 3)
                 .requires(Items.PAPER)
                 .requires(Items.WHITE_DYE)
                 .requires(Items.BLUE_DYE)

@@ -25,8 +25,8 @@ public class PrmaItems {
 
     static {
         // Set that all registered Items and Blocks defaults under this Mod's creative tabs
-        assert PrmaCreativeModTabs.MOD_TAB.getKey() != null;
-        PreciseManufacturing.REGISTRATE.defaultCreativeTab(PrmaCreativeModTabs.MOD_TAB.getKey());
+//        assert PrmaCreativeModTabs.MOD_TAB.getKey() != null;
+//        PreciseManufacturing.REGISTRATE.defaultCreativeTab(PrmaCreativeModTabs.MOD_TAB.getKey());
     }
 
 //    public static final Set<ItemStack> taczGuns = TaczAPIBridge.getTaczGuns();

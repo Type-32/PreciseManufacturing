@@ -79,9 +79,9 @@ public class SimpleAmmo {
 
         ModRecipesGen.addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find(String.format("simple/ammo/%s_head", ammoId)))
                 .require(switch(headMaterial){
-                    case Iron -> AllItems.IRON_SHEET;
-                    case Brass -> AllItems.BRASS_SHEET;
-                    case Copper -> AllItems.COPPER_SHEET;
+                    case Iron -> AllItems.IRON_SHEET.get();
+                    case Brass -> AllItems.BRASS_SHEET.get();
+                    case Copper -> AllItems.COPPER_SHEET.get();
                     case Plastic -> Items.PAPER;
                 })
                 .duration(100)

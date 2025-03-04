@@ -6,7 +6,7 @@ import cn.crtlprototypestudios.prma.lib.Reference;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -29,7 +29,7 @@ public enum PrmaRecipeTypes implements IRecipeTypeInfo {
         this.serializerObject = Registers.SERIALIZER_REGISTER.register(name,
                 () -> new ProcessingRecipeSerializer<>(factory));
         this.type = Registers.RECIPE_TYPE_REGISTER.register(name,
-                () -> RecipeType.simple(this.id));
+                () -> RecipeType.register(String.valueOf(this.id)));
     }
 
     // New constructor that takes a RecipeSerializer directly
@@ -37,7 +37,7 @@ public enum PrmaRecipeTypes implements IRecipeTypeInfo {
         this.id = new ResourceLocation(Reference.MOD_ID, name);
         this.serializerObject = Registers.SERIALIZER_REGISTER.register(name, () -> serializer);
         this.type = Registers.RECIPE_TYPE_REGISTER.register(name,
-                () -> RecipeType.simple(this.id));
+                () -> RecipeType.register(String.valueOf(this.id)));
     }
 
     @Override
@@ -61,7 +61,7 @@ public enum PrmaRecipeTypes implements IRecipeTypeInfo {
         private static final DeferredRegister<RecipeSerializer<?>> SERIALIZER_REGISTER =
                 DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Reference.MOD_ID);
         private static final DeferredRegister<RecipeType<?>> RECIPE_TYPE_REGISTER =
-                DeferredRegister.create(Registries.RECIPE_TYPE, Reference.MOD_ID);
+                DeferredRegister.create(Registry.RECIPE_TYPE_REGISTRY, Reference.MOD_ID);
 
         public static void register(IEventBus modEventBus) {
             SERIALIZER_REGISTER.register(modEventBus);

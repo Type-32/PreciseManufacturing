@@ -174,7 +174,7 @@ dependencies {
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
     // TODO: Note to future self, please do not switch to modrinth maven. The dependency here is based on the sources jar of tacz, instead of the tacz mod jar, which modrinth does not have.
-    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:6058563-sources-6059152")
+    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:6069332-sources")
 //    implementation fg.deobf("maven.modrinth:timeless-and-classics-zero:1.1.4-hotfix")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
