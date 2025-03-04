@@ -172,7 +172,7 @@ public class PrmaTags {
         MOLTEN_ZINC_FLUIDS,
         MOLTEN_ALUMINUM_FLUIDS,
         MOLTEN_METAL_ALLOY_FLUIDS,
-        MOLTEN_STRONG_ALUMINUM_FLUIDS,
+        MOLTEN_STRONG_ALUMINUM_ALLOY_FLUIDS,
         MOLTEN_METALS(true),;
 
         FluidTag() {

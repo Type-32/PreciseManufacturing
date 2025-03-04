@@ -1,7 +1,7 @@
-// 1.20.1	2025-03-04T08:25:07.268817	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-03-04T15:14:46.882911	Registrate Provider for prma [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 82051687a560b50f992c31648cf1707143d1049e assets/prma/blockstates/casting_basin.json
-6c41a4715555dc7ee283d864dd404c47fd322485 assets/prma/lang/en_ud.json
-6c6d74fe8b28365718dbcb1916da8080f23cdfdd assets/prma/lang/en_us.json
+84f72e535fe1559f292c8e92a51cbae963f64b8a assets/prma/lang/en_ud.json
+534276630cf8be69f4d5bb6793d1f4fd47fcf55c assets/prma/lang/en_us.json
 baaab890ff65ce09e040114f4883a416a724c2d2 assets/prma/models/item/308_head.json
 37774e3cc059a2651a53aeb8cd53916acc8221c9 assets/prma/models/item/30_06_head.json
 702cd58737b6eaaf18fa668bf635ea92b08ca336 assets/prma/models/item/338_head.json
@@ -69,7 +69,7 @@ b96f89e65a850a16022cbe88396f0e4ea55836fc assets/prma/models/item/medium_iron_hig
 f9569df3e16a13bced8e37b0c68401e97e96c194 assets/prma/models/item/molten_copper_bucket.json
 7eb52f59fb3d6dd090021181b0ae1189a2e263f1 assets/prma/models/item/molten_iron_bucket.json
 248ee54d84ad532a8ddd8201237a81f9ec22378f assets/prma/models/item/molten_metal_alloy_bucket.json
-b87c3c731e3012feeec669baa701144f6991b41f assets/prma/models/item/molten_strong_aluminum_bucket.json
+9e06ee4f246e957a7b4b6eb6b6e4ea7dc84c3038 assets/prma/models/item/molten_strong_aluminum_alloy_bucket.json
 19e4274e0941f1e9a466d15271d6aad3fe67f8d4 assets/prma/models/item/molten_zinc_bucket.json
 30dc1681a8cab0a8874d3e006f977d9fc0899548 assets/prma/models/item/rock_powder.json
 b8ec2101838372a5f41e0ffd3f80639179bfc630 assets/prma/models/item/shotgun_bearing.json
@@ -92,7 +92,7 @@ ad03ee86ab1d4993185c6ef6c2119317af483635 assets/prma/models/item/small_iron_casi
 c2cf1ba27e72fbda5ed435d5ff73a51842052255 assets/prma/models/item/straight_flat_coil.json
 2b48a25e2216846351c125e40db54ac2b3c9fde2 assets/prma/models/item/straight_large_coil.json
 e0cea5ee29f62d24b72c748fa091fbb59f2f258c assets/prma/models/item/straight_small_coil.json
-f89166f18d78538384c4803629514042e947df94 assets/prma/models/item/strong_aluminum_ingot.json
+1381fac46bb27e8dcc77ef1791ac46754dacb0af assets/prma/models/item/strong_aluminum_alloy_ingot.json
 8577203e90e5c8b7220ea7d5bc30fc5c14eb4297 assets/prma/models/item/sulfur_powder.json
 334df02f1a76210a1ef5989ea27c94f58133367f assets/prma/models/item/thick_small_rod.json
 6886ed60a4435d46f1de93cfb766eed0394e3417 assets/prma/models/item/thin_small_rod.json
@@ -106,7 +106,7 @@ d543cdda12aaa5fbc0ecb924ece8256cd640789f data/prma/tags/fluids/molten_copper_flu
 e58396dffc119731c637fce55d80e3097294d105 data/prma/tags/fluids/molten_iron_fluids.json
 f9cdefa59b9537497063049aa827f90497b9d4c6 data/prma/tags/fluids/molten_metal_alloy_fluids.json
 4be172cb08283bcbd0fefe79f87928ddc4ac5bbc data/prma/tags/fluids/molten_metals.json
-3fd1513d1f9d1a1c55845df2f4ad3bab0f823b06 data/prma/tags/fluids/molten_strong_aluminum_fluids.json
+3fd1513d1f9d1a1c55845df2f4ad3bab0f823b06 data/prma/tags/fluids/molten_strong_aluminum_alloy_fluids.json
 edd6f5661eac01e7b52e283e94b934d62b54c2d2 data/prma/tags/fluids/molten_zinc_fluids.json
 99f717fb24a5a2c43c4882eb6c250d3d93ced10a data/prma/tags/items/ammo_casings.json
 0316d65fe4834bfb4983836ced75ddae8c7d003a data/prma/tags/items/ammo_components.json
@@ -117,7 +117,7 @@ fe4739ed6f04d41b39e1cb3d8e92683e0ab37aca data/prma/tags/items/ammo_waste.json
 0dcd02b05b13a1f14441e3769f8790adf81f73b8 data/prma/tags/items/casts.json
 f87319dc1fd07a9f1eb9bfd603b28fc86cb7cae9 data/prma/tags/items/copper_ammo_components.json
 7f36e017cdf05fa823f57188dff013b433005305 data/prma/tags/items/crushed_ores.json
-401d133df047fdefdde3572041877eff41942381 data/prma/tags/items/ingots.json
+cc8dc2f9596680b365af19275b9a65ab122f5c42 data/prma/tags/items/ingots.json
 7b926abad8289e69e2c192a1b6c7a135c8632a8d data/prma/tags/items/iron_ammo_components.json
 ddfb5731921d2ed5d8d98ba94f440fd29408fc20 data/prma/tags/items/long_ammo_components.json
 b91927e1694a811dcdf2854e9be9f7d80fa1ea5a data/prma/tags/items/long_ammo_propellants.json

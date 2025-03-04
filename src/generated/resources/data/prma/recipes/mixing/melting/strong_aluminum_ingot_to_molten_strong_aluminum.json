@@ -3,7 +3,7 @@
   "heatRequirement": "heated",
   "ingredients": [
     {
-      "item": "prma:strong_aluminum_ingot"
+      "item": "prma:strong_aluminum_alloy_ingot"
     },
     {
       "item": "prma:basalt_powder"
