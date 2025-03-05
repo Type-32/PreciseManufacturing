@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-04T18:46:00.494136	Recipes
+// 1.20.1	2025-03-05T13:00:09.110794	Recipes
 ec5c1934bad20eabfab0a5cd66ac9a3422cb0db4 data/prma/advancements/recipes/misc/blank_blueprint.json
 959f9b32fcf69f7553e26ba4e3a415b3115a8c9e data/prma/recipes/blank_blueprint.json
 4e6368882ff37b7e3e0b260d31567e22cc15a112 data/prma/recipes/crushing/basalt_to_powder.json
@@ -63,7 +63,7 @@ b0c1fa783a53aeb0b74256695bb44d1f2bb1b54a data/prma/recipes/mixing/melting/strong
 12b6b3320a2910a39c917de7fb93de3ed1bf5c93 data/prma/recipes/mixing/powders_to_gunpowder.json
 9de17f57eecbbf777a85f19ff54c3799739e8dd9 data/prma/recipes/mixing/small_ammunition_gunpowder_mixing.json
 2dfd2f5b570312064c0bc2d29b21d9391358cca3 data/prma/recipes/mixing/wasted_cartridges_to_fluids.json
-2eedfd50543f912cd82d83abdca082a85162d723 data/prma/recipes/sequenced_assembly/ammo/12g.json
+e43030b83139aceb3a14c1544f225c7e8d69770a data/prma/recipes/sequenced_assembly/ammo/12g.json
 9e4cb48ed9887d8ac1d1f82c8231e6750eb50d22 data/prma/recipes/sequenced_assembly/ammo/40mm.json
 521f0b6d4b563979d712474c2bc771e5362ad452 data/prma/recipes/sequenced_assembly/simple/ammo/308_head.json
 ae7fe2045e492403f96fcc4c1569a32cc924c482 data/prma/recipes/sequenced_assembly/simple/ammo/30_06_head.json

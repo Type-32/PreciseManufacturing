@@ -4,7 +4,14 @@
     "item": "prma:shotgun_shell_base"
   },
   "loops": 1,
-  "results": [],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:12g"
+      }
+    }
+  ],
   "sequence": [
     {
       "type": "create:deploying",
@@ -30,6 +37,22 @@
         },
         {
           "item": "prma:medium_ammunition_gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:shotgun_shell_transition"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:shotgun_shell_transition"
+        },
+        {
+          "item": "prma:shotgun_bearing"
         }
       ],
       "results": [
