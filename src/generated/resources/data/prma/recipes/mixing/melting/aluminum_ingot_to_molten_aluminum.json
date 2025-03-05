@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "prma:aluminum_ingot"
+    },
+    {
+      "item": "prma:basalt_powder"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "prma:molten_aluminum",
+      "amount": 360
+    }
+  ],
+  "processingTime": 200,
+  "heatRequirement": "heated"
+}

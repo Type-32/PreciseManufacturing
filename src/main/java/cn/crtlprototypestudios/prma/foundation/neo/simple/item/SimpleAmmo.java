@@ -16,8 +16,6 @@ import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
-import com.tacz.guns.api.item.builder.AmmoItemBuilder;
-import com.tacz.guns.init.ModItems;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -58,11 +56,7 @@ public class SimpleAmmo {
     public void registerRecipes() {
         assert cartridge.item != null;
 
-        ItemStack v = new ItemStack((ItemLike) ModItems.AMMO.get());
-        CompoundTag taczTag = new CompoundTag(); // TODO: Not a great way but it works.
-        taczTag.putString("AmmoId", String.format("tacz:%s", ammoId));
-        v.setTag(taczTag);
-        v.setCount(1);
+        ItemStack v = TaczAPIBridge.getAmmo(ammoId);
 
         ModRecipesGen.addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("simple/ammo/%s_head", ammoId)))
                 .require(cartridge.item.get())

@@ -98,6 +98,7 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
+            arg("-mixin.config=create.mixins.json")
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
@@ -121,25 +122,13 @@ repositories {
         name = "Curse Maven"
         url = "https://www.cursemaven.com"
         content {
-            includeGroup "curse.maven"
+            includeGroup("curse.maven")
         }
     }
     maven {
         name = 'SpongePowered'
         url = 'https://repo.spongepowered.org/repository/maven-public/'
     }
-//    exclusiveContent {
-//        forRepository {
-//            maven {
-//                name = "Modrinth"
-//                url = "https://api.modrinth.com/maven"
-//            }
-//        }
-//        forRepositories(fg.repository) // Only add this if you're using ForgeGradle, otherwise remove this line
-//        filter {
-//            includeGroup "maven.modrinth"
-//        }
-//    }
     maven {
         name = 'tterrag maven'
         url = 'https://maven.tterrag.com/'
@@ -159,22 +148,26 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    mavenLocal()
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    // at runtime, use the full JEI jar for Forge
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
-
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+//    implementation files(new String("libs/${tacz_dependency}.jar"))
 
+    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.18.2,MC1.19)")
+
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+
+//    implementation files(new String("libs/${tacz_dependency}.jar"))
     // TODO: Note to future self, please do not switch to modrinth maven. The dependency here is based on the sources jar of tacz, instead of the tacz mod jar, which modrinth does not have.
-    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:6069332-sources")
+//    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:6069332-sources")
 //    implementation fg.deobf("maven.modrinth:timeless-and-classics-zero:1.1.4-hotfix")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'

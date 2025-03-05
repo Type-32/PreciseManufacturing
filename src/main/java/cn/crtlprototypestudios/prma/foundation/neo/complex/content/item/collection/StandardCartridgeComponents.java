@@ -76,9 +76,9 @@ public class StandardCartridgeComponents {
                 }
             }
 
-            this.heads.put(mat, head.register());
-            this.casings.put(mat, casing.register());
-            this.transitions.put(mat, transition.register());
+            this.heads.put(mat, PrmaItems.addToMaterials(head.register()));
+            this.casings.put(mat, PrmaItems.addToMaterials(casing.register()));
+            this.transitions.put(mat, PrmaItems.addToMaterials(transition.register()));
 
             PreciseManufacturing.LOGGER.debug("head {}", heads.get(mat));
             PreciseManufacturing.LOGGER.debug("casing {}", casings.get(mat));

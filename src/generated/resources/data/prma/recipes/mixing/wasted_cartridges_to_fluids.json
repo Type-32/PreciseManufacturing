@@ -1,0 +1,15 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "prma:ammo_waste"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "prma:molten_metal_alloy",
+      "amount": 50
+    }
+  ],
+  "processingTime": 200
+}

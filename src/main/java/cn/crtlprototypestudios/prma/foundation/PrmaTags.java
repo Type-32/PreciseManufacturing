@@ -3,7 +3,6 @@ package cn.crtlprototypestudios.prma.foundation;
 import cn.crtlprototypestudios.prma.lib.Reference;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.utility.Lang;
-import com.tacz.guns.GunMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
@@ -62,7 +61,7 @@ public class PrmaTags {
     public enum NameSpace {
         MOD(Reference.MOD_ID, false, true),
         CREATE(Create.ID, false, true),
-        TACZ(GunMod.MOD_ID),
+//        TACZ(GunMod.MOD_ID),
         FORGE("forge");
 
         public final String id;

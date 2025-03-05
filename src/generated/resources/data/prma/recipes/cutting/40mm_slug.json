@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:brass_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:40mm_slug",
+      "count": 2
+    }
+  ],
+  "processingTime": 160
+}
