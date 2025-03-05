@@ -78,22 +78,6 @@
       ]
     },
     {
-      "type": "create:deploying",
-      "ingredients": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        },
-        {
-          "item": "prma:shotgun_bearing"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:shotgun_shell_transition"
-        }
-      ]
-    },
-    {
       "type": "create:pressing",
       "ingredients": [
         {
