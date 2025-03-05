@@ -68,7 +68,9 @@ public class ModRecipesGen {
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_SHELL.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get()))
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
+                .addStep(DeployerApplicationRecipe::new, p -> p.require(PrmaItems.Ammo.SHOTGUN_BEARING.get()))
                 .addStep(PressingRecipe::new, p -> p)
+                .addOutput(TaczAPIBridge.getAmmo("12g"), 1)
         );
 
         addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find("ammo/40mm"))
