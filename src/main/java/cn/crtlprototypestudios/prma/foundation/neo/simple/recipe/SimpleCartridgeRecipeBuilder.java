@@ -27,14 +27,15 @@ public class SimpleCartridgeRecipeBuilder {
         this.baseCartridgePiece = PrmaItems.Ammo.getCasingByTypes(baseCasingType, baseCasingMaterialType);
 
         assert baseCartridgePiece != null;
-        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("simple/cartridge/%s", recipeName)))
-                .require(baseCartridgePiece.get())
-                .transitionTo(transitionItem.get())
-                .loops(1);
         this.baseCasingType = baseCasingType;
         this.baseCasingMaterialType = baseCasingMaterialType;
         this.amountStandard = amountStandard;
         this.cartridge = resultingCartridge;
+        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("simple/cartridge/%s", recipeName)))
+                .require(baseCartridgePiece.get())
+                .transitionTo(transitionItem.get())
+                .loops(1)
+                .addOutput(resultingCartridge.getItem().get(), 1);
     }
 
     public static SimpleCartridgeRecipeBuilder create(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, SimpleAmmoGunpowderAmountStandard amountStandard, String namespaceId, SimpleCartridge resultingCartridge) {
@@ -118,7 +119,7 @@ public class SimpleCartridgeRecipeBuilder {
     }
 
     public final SimpleCartridgeRecipeBuilder build(){
-        ModRecipesGen.addSequencedAssemblyRecipe(builder.addOutput(cartridge.getItem().get(), 100));
+        ModRecipesGen.addSequencedAssemblyRecipe(builder);
         return this;
     }
 }

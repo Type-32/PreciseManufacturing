@@ -146,6 +146,17 @@ public class PrmaItems {
                 case Small -> SMALL_AMMUNITION_GUNPOWDER;
                 case Medium -> MEDIUM_AMMUNITION_GUNPOWDER;
                 case Long -> LONG_AMMUNITION_GUNPOWDER;
+                case Shell -> HIGH_POWER_AMMUNITION_GUNPOWDER;
+                default -> SMALL_AMMUNITION_GUNPOWDER;
+            };
+        }
+
+        public static RegistryEntry<Item> getGunpowderByTypes(SimpleAmmoGunpowderAmountStandard simpleAmmoGunpowderAmountStandard){
+            return switch (simpleAmmoGunpowderAmountStandard) {
+                case Low -> SMALL_AMMUNITION_GUNPOWDER;
+                case Medium -> MEDIUM_AMMUNITION_GUNPOWDER;
+                case High -> LONG_AMMUNITION_GUNPOWDER;
+                case HighPower -> HIGH_POWER_AMMUNITION_GUNPOWDER;
                 default -> SMALL_AMMUNITION_GUNPOWDER;
             };
         }
@@ -170,6 +181,15 @@ public class PrmaItems {
 
         public static RegistryEntry<Item> getTransitionByTypes(AmmoHeadType headType, AmmoMaterialType materialType){
             return switch (headType) {
+                case Small -> SMALL_COMPONENTS.getTransition(materialType);
+                case Medium -> MEDIUM_COMPONENTS.getTransition(materialType);
+                case Long -> LONG_COMPONENTS.getTransition(materialType);
+                default -> SMALL_COMPONENTS.getTransition(materialType);
+            };
+        }
+
+        public static RegistryEntry<Item> getTransitionByTypes(AmmoCasingType casingType, AmmoMaterialType materialType){
+            return switch (casingType) {
                 case Small -> SMALL_COMPONENTS.getTransition(materialType);
                 case Medium -> MEDIUM_COMPONENTS.getTransition(materialType);
                 case Long -> LONG_COMPONENTS.getTransition(materialType);

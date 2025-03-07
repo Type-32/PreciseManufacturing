@@ -60,7 +60,7 @@ public class SimpleAmmo {
 
         ModRecipesGen.addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("simple/ammo/%s_head", ammoId)))
                 .require(cartridge.item.get())
-                .transitionTo(cartridge.item.get())
+                .transitionTo(PrmaItems.Ammo.getTransitionByTypes(headType, headMaterial).get()) // TODO: change this to unfinished gunpowder cartridge
                 .loops(1)
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(bulletHead.get()))
                 .addStep(PressingRecipe::new, p -> p)
