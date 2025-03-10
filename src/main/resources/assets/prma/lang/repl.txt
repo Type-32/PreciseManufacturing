@@ -1,34 +1,17 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-
-  
-
-  
-
-  
+"item.prma.9mm_transition": "9mm弹头(未完成)",
+  "item.prma.45acp_transition": ".45 ACP弹头(未完成)",
+  "item.prma.50ae_transition": ".50 AE弹头(未完成)",
+  "item.prma.357mag_transition": ".357马格南弹头(未完成)",
+  "item.prma.12g_transition": "12号霰弹弹头(未完成)",
+  "item.prma.30_06_transition": ".30-06春田弹头(未完成)",
+  "item.prma.46x30_transition": "4.6mm穿甲弹头(未完成)",
+  "item.prma.50bmg_transition": ".50 BMG弹头(未完成)",
+  "item.prma.58x42_transition": "5.8mm DBP87弹头(未完成)",
+  "item.prma.68x51fury_transition": "6.8x51mm Fury弹头(未完成)",
+  "item.prma.308_transition": ".308温彻斯特弹头(未完成)",
+  "item.prma.338_transition": ".338拉普阿弹头(未完成)",
+  "item.prma.556x45_transition": "5.56x45mm弹头(未完成)",
+  "item.prma.762x25_transition": "7.62x25mm托卡列夫弹头(未完成)",
+  "item.prma.762x39_transition": "7.62x39mm弹头(未完成)",
+  "item.prma.762x54_transition": "7.62x54mm弹头(未完成)",
+  "item.prma.57x28_transition": "5.7x28mm弹头(未完成)",

@@ -16,7 +16,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
 
 public class SimpleCartridge {
-    protected final RegistryEntry<? extends Item> item;
+    protected final RegistryEntry<? extends Item> item, transition;
     protected AmmoCasingType casingType;
     protected AmmoMaterialType materialType;
     protected SimpleAmmoGunpowderAmountStandard amountStandard;
@@ -28,11 +28,18 @@ public class SimpleCartridge {
         this.item = PrmaItems.addToMaterials(PreciseManufacturing.REGISTRATE.item(String.format("%s_%s_%s_%s", casingType.toString(), materialType.toString(), amountStandard.toString(), "gunpowder_cartridge"), Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "simple", "ammo", "cartridge", materialType.toString(), "_"))
                 .tag(PrmaTags.ItemTag.MATERIALS.tag, PrmaTags.ItemTag.AMMO_CASINGS.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag).register());
+        this.transition = PreciseManufacturing.REGISTRATE.item(String.format("%s_%s_%s_%s", casingType.toString(), materialType.toString(), amountStandard.toString(), "gunpowder_cartridge_transition"), Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "simple", "ammo", "cartridge", materialType.toString(), "_"))
+                .tag(PrmaTags.ItemTag.AMMO_WASTE.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag).register();
         ModRecipesGen.addSimpleCartridge(this);
     }
 
     public RegistryEntry<? extends Item> getItem(){
         return item;
+    }
+
+    public RegistryEntry<? extends Item> getTransition() {
+        return transition;
     }
 
     public void registerStandardRecipes() {

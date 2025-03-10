@@ -23,29 +23,24 @@ public class SimpleCartridgeRecipeBuilder {
     protected final AmmoMaterialType baseCasingMaterialType;
     protected final SimpleAmmoGunpowderAmountStandard amountStandard;
     protected final SimpleCartridge cartridge;
-    protected SimpleCartridgeRecipeBuilder(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, SimpleAmmoGunpowderAmountStandard amountStandard, RegistryEntry<Item> transitionItem, String namespaceId, String recipeName, SimpleCartridge resultingCartridge) {
+    protected SimpleCartridgeRecipeBuilder(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, SimpleAmmoGunpowderAmountStandard amountStandard, String namespaceId, String recipeName, SimpleCartridge resultingCartridge) {
         this.baseCartridgePiece = PrmaItems.Ammo.getCasingByTypes(baseCasingType, baseCasingMaterialType);
 
         assert baseCartridgePiece != null;
-        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("simple/cartridge/%s", recipeName)))
-                .require(baseCartridgePiece.get())
-                .transitionTo(transitionItem.get())
-                .loops(1);
         this.baseCasingType = baseCasingType;
         this.baseCasingMaterialType = baseCasingMaterialType;
         this.amountStandard = amountStandard;
         this.cartridge = resultingCartridge;
+        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("simple/cartridge/%s", recipeName)))
+                .require(baseCartridgePiece.get())
+                .transitionTo(resultingCartridge.getTransition().get())
+                .loops(1)
+                .addOutput(resultingCartridge.getItem().get(), 1);
     }
 
     public static SimpleCartridgeRecipeBuilder create(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, SimpleAmmoGunpowderAmountStandard amountStandard, String namespaceId, SimpleCartridge resultingCartridge) {
         return new SimpleCartridgeRecipeBuilder(
                 baseCasingType, baseCasingMaterialType, amountStandard,
-                switch(baseCasingType) {
-                    case Small -> PrmaItems.SMALL_COMPONENTS.getTransition(baseCasingMaterialType);
-                    case Medium -> PrmaItems.MEDIUM_COMPONENTS.getTransition(baseCasingMaterialType);
-                    case Long -> PrmaItems.LONG_COMPONENTS.getTransition(baseCasingMaterialType);
-                    case Shell -> PrmaItems.Ammo.SHOTGUN_SHELL_TRANSITION;
-                },
                 namespaceId,
                 String.format("%s_%s_%s_%s", baseCasingType.toString(), baseCasingMaterialType.toString(), amountStandard.toString(), "gunpowder_cartridge"),
                 resultingCartridge
@@ -118,7 +113,7 @@ public class SimpleCartridgeRecipeBuilder {
     }
 
     public final SimpleCartridgeRecipeBuilder build(){
-        ModRecipesGen.addSequencedAssemblyRecipe(builder.addOutput(cartridge.getItem().get(), 100));
+        ModRecipesGen.addSequencedAssemblyRecipe(builder);
         return this;
     }
 }

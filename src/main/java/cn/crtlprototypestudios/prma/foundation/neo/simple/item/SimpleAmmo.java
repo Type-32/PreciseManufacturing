@@ -33,7 +33,7 @@ public class SimpleAmmo {
     protected final String ammoId;
     protected final AmmoHeadType headType;
     protected final AmmoMaterialType headMaterial;
-    protected final RegistryEntry<Item> bulletHead;
+    protected final RegistryEntry<Item> bulletHead, transitionItem;
     protected final int resultAmount;
 
     public SimpleAmmo(SimpleCartridge cartridge, AmmoHeadType headType, AmmoMaterialType headMaterial, String ammoId, int resultAmount) {
@@ -47,6 +47,9 @@ public class SimpleAmmo {
         this.bulletHead = PrmaItems.addToMaterials(PreciseManufacturing.REGISTRATE.item(String.format("%s_%s", ammoId, "head"), Item::new)
                 .model(ModItemModelProvider.genericItemModel(true, "simple", "ammo", "head", "_"))
                 .tag(PrmaTags.ItemTag.MATERIALS.tag, PrmaTags.ItemTag.AMMO_HEADS.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag).register());
+        this.transitionItem = PreciseManufacturing.REGISTRATE.item(String.format("%s_%s", ammoId, "transition"), Item::new)
+                .model(ModItemModelProvider.genericItemModel(true, "simple", "ammo", "ammo_transition", "_"))
+                .tag(PrmaTags.ItemTag.AMMO_WASTE.tag, AllTags.AllItemTags.UPRIGHT_ON_BELT.tag).register();
 
         ModRecipesGen.addSimpleAmmo(this);
     }
@@ -66,15 +69,15 @@ public class SimpleAmmo {
 
         ModRecipesGen.addSequencedAssemblyRecipe(new SequencedAssemblyRecipeBuilder(ResourceHelper.find(String.format("simple/ammo/%s_head", ammoId)))
                 .require(cartridge.item.get())
-                .transitionTo(cartridge.item.get())
+                .transitionTo(transitionItem.get()) // TODO: change this to unfinished gunpowder cartridge
                 .loops(1)
                 .addStep(DeployerApplicationRecipe::new, p -> p.require(bulletHead.get()))
                 .addStep(PressingRecipe::new, p -> p)
 //                .addOutput(AmmoItemBuilder.create()
 //                        .setId(new ResourceLocation("tacz", ammoId))
 //                        .setCount(1)
-//                        .build().getItem(), 100)
-                .addOutput(v, 100) // TODO: Use AmmoItemBuilder later. Right now their builder API Doesn't work for some reason.
+//                        .build().getItem(), 1)
+                .addOutput(v, 1) // TODO: Use AmmoItemBuilder later. Right now their builder API Doesn't work for some reason.
         );
 
         ModRecipesGen.addCreateRecipe(new ProcessingRecipeBuilder<>(CuttingRecipe::new, ResourceHelper.find(String.format("simple/ammo/%s_head", ammoId)))

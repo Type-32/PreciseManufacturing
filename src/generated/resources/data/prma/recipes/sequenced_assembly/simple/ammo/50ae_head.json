@@ -6,7 +6,6 @@
   "loops": 1,
   "results": [
     {
-      "chance": 100.0,
       "item": "tacz:ammo",
       "nbt": {
         "AmmoId": "tacz:50ae"
@@ -18,7 +17,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:small_brass_high_gunpowder_cartridge"
+          "item": "prma:50ae_transition"
         },
         {
           "item": "prma:50ae_head"
@@ -26,7 +25,7 @@
       ],
       "results": [
         {
-          "item": "prma:small_brass_high_gunpowder_cartridge"
+          "item": "prma:50ae_transition"
         }
       ]
     },
@@ -34,17 +33,17 @@
       "type": "create:pressing",
       "ingredients": [
         {
-          "item": "prma:small_brass_high_gunpowder_cartridge"
+          "item": "prma:50ae_transition"
         }
       ],
       "results": [
         {
-          "item": "prma:small_brass_high_gunpowder_cartridge"
+          "item": "prma:50ae_transition"
         }
       ]
     }
   ],
   "transitionalItem": {
-    "item": "prma:small_brass_high_gunpowder_cartridge"
+    "item": "prma:50ae_transition"
   }
 }
