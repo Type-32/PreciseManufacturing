@@ -6,7 +6,6 @@
   "loops": 1,
   "results": [
     {
-      "chance": 100.0,
       "item": "prma:medium_iron_medium_gunpowder_cartridge"
     }
   ],
@@ -15,7 +14,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:medium_iron_transition"
+          "item": "prma:medium_iron_medium_gunpowder_cartridge_transition"
         },
         {
           "item": "prma:cartridge_primer"
@@ -23,7 +22,7 @@
       ],
       "results": [
         {
-          "item": "prma:medium_iron_transition"
+          "item": "prma:medium_iron_medium_gunpowder_cartridge_transition"
         }
       ]
     },
@@ -31,7 +30,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:medium_iron_transition"
+          "item": "prma:medium_iron_medium_gunpowder_cartridge_transition"
         },
         {
           "item": "prma:medium_ammunition_gunpowder"
@@ -39,7 +38,7 @@
       ],
       "results": [
         {
-          "item": "prma:medium_iron_transition"
+          "item": "prma:medium_iron_medium_gunpowder_cartridge_transition"
         }
       ]
     },
@@ -47,7 +46,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:medium_iron_transition"
+          "item": "prma:medium_iron_medium_gunpowder_cartridge_transition"
         },
         {
           "item": "prma:medium_ammunition_gunpowder"
@@ -55,12 +54,12 @@
       ],
       "results": [
         {
-          "item": "prma:medium_iron_transition"
+          "item": "prma:medium_iron_medium_gunpowder_cartridge_transition"
         }
       ]
     }
   ],
   "transitionalItem": {
-    "item": "prma:medium_iron_transition"
+    "item": "prma:medium_iron_medium_gunpowder_cartridge_transition"
   }
 }

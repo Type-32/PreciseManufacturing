@@ -6,7 +6,6 @@
   "loops": 1,
   "results": [
     {
-      "chance": 100.0,
       "item": "prma:long_iron_high_gunpowder_cartridge"
     }
   ],
@@ -15,7 +14,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         },
         {
           "item": "prma:cartridge_primer"
@@ -23,7 +22,7 @@
       ],
       "results": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         }
       ]
     },
@@ -31,7 +30,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         },
         {
           "item": "prma:long_ammunition_gunpowder"
@@ -39,7 +38,7 @@
       ],
       "results": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         }
       ]
     },
@@ -47,7 +46,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         },
         {
           "item": "prma:long_ammunition_gunpowder"
@@ -55,7 +54,7 @@
       ],
       "results": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         }
       ]
     },
@@ -63,7 +62,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         },
         {
           "item": "prma:long_ammunition_gunpowder"
@@ -71,12 +70,12 @@
       ],
       "results": [
         {
-          "item": "prma:long_iron_transition"
+          "item": "prma:long_iron_high_gunpowder_cartridge_transition"
         }
       ]
     }
   ],
   "transitionalItem": {
-    "item": "prma:long_iron_transition"
+    "item": "prma:long_iron_high_gunpowder_cartridge_transition"
   }
 }

@@ -6,7 +6,6 @@
   "loops": 1,
   "results": [
     {
-      "chance": 100.0,
       "item": "tacz:ammo",
       "nbt": {
         "AmmoId": "tacz:308"
@@ -18,7 +17,7 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "prma:long_iron_high_gunpowder_cartridge"
+          "item": "prma:308_transition"
         },
         {
           "item": "prma:308_head"
@@ -26,7 +25,7 @@
       ],
       "results": [
         {
-          "item": "prma:long_iron_high_gunpowder_cartridge"
+          "item": "prma:308_transition"
         }
       ]
     },
@@ -34,17 +33,17 @@
       "type": "create:pressing",
       "ingredients": [
         {
-          "item": "prma:long_iron_high_gunpowder_cartridge"
+          "item": "prma:308_transition"
         }
       ],
       "results": [
         {
-          "item": "prma:long_iron_high_gunpowder_cartridge"
+          "item": "prma:308_transition"
         }
       ]
     }
   ],
   "transitionalItem": {
-    "item": "prma:long_iron_high_gunpowder_cartridge"
+    "item": "prma:308_transition"
   }
 }
