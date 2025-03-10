@@ -125,7 +125,6 @@ public class PrmaItems {
 
         public static final SimpleAmmo NINE_MIL = SimpleAmmo.create(SMALL_BRASS_LOW_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Copper, "9mm", 6);
         public static final SimpleAmmo THIRTY_ZEO_SIX = SimpleAmmo.create(LONG_IRON_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Long, AmmoMaterialType.Iron, "30_06", 4);
-//        public static final SimpleAmmo FORTY_MIL = SimpleAmmo.create(SMALL_BRASS_LOW_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Copper, "40mm", 4);
         public static final SimpleAmmo FOUR_FIVE_ACP = SimpleAmmo.create(SMALL_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Copper, "45acp", 5);
         public static final SimpleAmmo FOUR_SIX_THIRTY = SimpleAmmo.create(MEDIUM_BRASS_MEDIUM_GUNPOWDER_CARTRIDGE, AmmoHeadType.Medium, AmmoMaterialType.Copper, "46x30", 3);
         public static final SimpleAmmo FIFTY_AE = SimpleAmmo.create(SMALL_BRASS_HIGH_GUNPOWDER_CARTRIDGE, AmmoHeadType.Small, AmmoMaterialType.Copper, "50ae", 3);
@@ -308,43 +307,6 @@ public class PrmaItems {
             MOLTEN_ALUMINUM_BUCKET = addToList(bucketItem("molten_aluminum_bucket").register()),
             MOLTEN_STRONG_ALUMINUM_ALLOY_BUCKET = addToList(bucketItem("molten_strong_aluminum_alloy_bucket").register()),
             MOLTEN_METAL_ALLOY_BUCKET = addToList(bucketItem("molten_metal_alloy_bucket").register());
-
-    // Cartrige Casts and Components
-//    public static final CartridgeBase
-//            NINE_MIL = new CartridgeBase("9mm", AmmunitionSize.SMALL, 1, AmmunitionBase.getSmallCartridgeModules()),
-//
-//    FOUR_FIVE_ACP = new CartridgeBase("45acp", AmmunitionSize.SMALL, 1, AmmunitionBase.getSmallCartridgeModules()),
-//
-//    FIFTY_AE = new CartridgeBase("50ae", AmmunitionSize.SMALL, 2, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
-//
-//    MAGNUM_R = new CartridgeBase("magnum_r", AmmunitionSize.SMALL, 2, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3)),
-//
-//    TWELVE_G = new CartridgeBase("12g", AmmunitionSize.SHELL, 2, AmmunitionBase.getShellCartridgeModules()),
-//
-//    THIRTY_ZERO_SIX = new CartridgeBase("30_06", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules()),
-//
-//    FOUR_SIX_X_THIRTY = new CartridgeBase("46x30", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules()),
-//
-//    FIFTY_BMG = new CartridgeBase("50bmg", AmmunitionSize.LONG, 2, AmmunitionBase.getLongCartridgeModules(ModTags.moltenIronTag())),
-//
-//    FIVE_EIGHT_X_FOUR_TWO = new CartridgeBase("58x42", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronTag())),
-//
-//    SIX_EIGHT_X_FIVE_ONE_FURY = new CartridgeBase("68x51fury", AmmunitionSize.MEDIUM, 2, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronTag())),
-//
-//    THREE_ZERO_EIGHT = new CartridgeBase("308", AmmunitionSize.LONG, 2, AmmunitionBase.getLongCartridgeModules()),
-//
-//    THREE_THREE_EIGHT = new CartridgeBase("338", AmmunitionSize.LONG, 2, AmmunitionBase.getLongCartridgeModules()),
-//
-//    FIVE_FIVE_SIX_X_FOUR_FIVE = new CartridgeBase("556x45", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules()),
-//
-//    SEVEN_SIX_TWO_X_TWO_FIVE = new CartridgeBase("762x25", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules()),
-//
-//    SEVEN_SIX_TWO_X_THREE_NINE = new CartridgeBase("762x39", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules(ModTags.moltenIronTag())),
-//
-//    SEVEN_SIX_TWO_X_FIVE_FOUR = new CartridgeBase("762x54", AmmunitionSize.MEDIUM, 1, AmmunitionBase.getMediumCartridgeModules()),
-//
-//    THREE_FIVE_SEVEN = new CartridgeBase("357", AmmunitionSize.SMALL, 2, AmmunitionBase.getPreset(0), AmmunitionBase.getPreset(3));
-
 
     public static void register() {
         // Do no delete this function; This is for loading this class.

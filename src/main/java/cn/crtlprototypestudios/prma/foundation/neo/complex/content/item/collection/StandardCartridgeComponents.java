@@ -13,8 +13,13 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.StonecutterRecipe;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -24,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class StandardCartridgeComponents {
     protected AmmoMaterialType[] materialTypes;
     protected AmmoSizeType sizeType;
-    protected Hashtable<AmmoMaterialType, RegistryEntry<Item>> casings, heads, transitions;
+    protected Hashtable<AmmoMaterialType, RegistryEntry<Item>> casings, heads, transitions; // TODO: To Future me, the transition items here are for complex version in the future, these transition items won't and should not be used in the simple version.
 
     public StandardCartridgeComponents(AmmoSizeType sizeType, AmmoMaterialType... materialTypes) {
         casings = new Hashtable<>();
@@ -78,7 +83,7 @@ public class StandardCartridgeComponents {
 
             this.heads.put(mat, PrmaItems.addToMaterials(head.register()));
             this.casings.put(mat, PrmaItems.addToMaterials(casing.register()));
-            this.transitions.put(mat, PrmaItems.addToMaterials(transition.register()));
+            this.transitions.put(mat, transition.register());
 
             PreciseManufacturing.LOGGER.debug("head {}", heads.get(mat));
             PreciseManufacturing.LOGGER.debug("casing {}", casings.get(mat));
@@ -97,6 +102,7 @@ public class StandardCartridgeComponents {
                     // TODO: For Simple Ver. this is not necessary.
 //                    .output(getHead(mat).get(), getHeadSizeOutputNumber(sizeType))
             );
+//            ModRecipesGen.add(new SingleItemRecipeBuilder(RecipeCategory.MISC, RecipeSerializer.STONECUTTER, Ingredient.of(getMaterialSheet(mat)), getCasing(mat).get(), getCasingSizeOutputNumber(sizeType)));
         }
     }
 
