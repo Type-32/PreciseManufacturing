@@ -1,0 +1,49 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:small_brass_medium_gunpowder_cartridge"
+  },
+  "transitionalItem": {
+    "item": "prma:45acp_transition"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:45acp_transition"
+        },
+        {
+          "item": "prma:45acp_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:45acp_transition"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:45acp_transition"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:45acp_transition"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:45acp"
+      }
+    }
+  ],
+  "loops": 1
+}

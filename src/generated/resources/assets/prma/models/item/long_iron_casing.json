@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/ammo/casing/iron/long_iron_casing"
+  }
+}

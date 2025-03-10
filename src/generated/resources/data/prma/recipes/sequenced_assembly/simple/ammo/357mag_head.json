@@ -1,0 +1,49 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:medium_iron_medium_gunpowder_cartridge"
+  },
+  "transitionalItem": {
+    "item": "prma:357mag_transition"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:357mag_transition"
+        },
+        {
+          "item": "prma:357mag_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:357mag_transition"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:357mag_transition"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:357mag_transition"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:357mag"
+      }
+    }
+  ],
+  "loops": 1
+}

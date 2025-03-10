@@ -1,0 +1,49 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:medium_brass_medium_gunpowder_cartridge"
+  },
+  "transitionalItem": {
+    "item": "prma:58x42_transition"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:58x42_transition"
+        },
+        {
+          "item": "prma:58x42_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:58x42_transition"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:58x42_transition"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:58x42_transition"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:58x42"
+      }
+    }
+  ],
+  "loops": 1
+}

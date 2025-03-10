@@ -1,0 +1,49 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:medium_brass_casing"
+  },
+  "transitionalItem": {
+    "item": "prma:medium_brass_low_gunpowder_cartridge_transition"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:medium_brass_low_gunpowder_cartridge_transition"
+        },
+        {
+          "item": "prma:cartridge_primer"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:medium_brass_low_gunpowder_cartridge_transition"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:medium_brass_low_gunpowder_cartridge_transition"
+        },
+        {
+          "item": "prma:medium_ammunition_gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:medium_brass_low_gunpowder_cartridge_transition"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:medium_brass_low_gunpowder_cartridge"
+    }
+  ],
+  "loops": 1
+}

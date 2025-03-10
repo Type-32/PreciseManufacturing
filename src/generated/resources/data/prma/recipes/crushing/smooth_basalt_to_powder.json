@@ -1,0 +1,35 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "minecraft:smooth_basalt"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:crushed_raw_zinc",
+      "count": 6,
+      "chance": 0.4
+    },
+    {
+      "item": "create:crushed_raw_copper",
+      "count": 4,
+      "chance": 0.4
+    },
+    {
+      "item": "create:crushed_raw_iron",
+      "chance": 0.2
+    },
+    {
+      "item": "prma:crushed_raw_aluminum",
+      "count": 4,
+      "chance": 0.6
+    },
+    {
+      "item": "prma:basalt_powder",
+      "count": 6,
+      "chance": 0.6
+    }
+  ],
+  "processingTime": 140
+}

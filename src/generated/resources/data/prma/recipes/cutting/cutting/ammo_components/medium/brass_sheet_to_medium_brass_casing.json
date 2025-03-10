@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:brass_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:medium_brass_casing",
+      "count": 5
+    }
+  ]
+}

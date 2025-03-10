@@ -1,0 +1,49 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:medium_iron_high_gunpowder_cartridge"
+  },
+  "transitionalItem": {
+    "item": "prma:68x51fury_transition"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:68x51fury_transition"
+        },
+        {
+          "item": "prma:68x51fury_head"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:68x51fury_transition"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "prma:68x51fury_transition"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:68x51fury_transition"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tacz:ammo",
+      "nbt": {
+        "AmmoId": "tacz:68x51fury"
+      }
+    }
+  ],
+  "loops": 1
+}

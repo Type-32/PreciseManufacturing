@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:long_iron_casing",
+      "count": 3
+    }
+  ]
+}

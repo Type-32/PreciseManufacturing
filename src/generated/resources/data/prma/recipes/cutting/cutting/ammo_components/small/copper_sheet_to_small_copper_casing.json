@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:copper_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:small_copper_casing",
+      "count": 7
+    }
+  ]
+}

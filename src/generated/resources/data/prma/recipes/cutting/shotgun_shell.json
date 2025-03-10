@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "results": [
+    {
+      "item": "prma:shotgun_shell",
+      "count": 2
+    }
+  ],
+  "processingTime": 100
+}
