@@ -79,13 +79,8 @@ public class SimpleCartridgeRecipeBuilder {
 
     public SimpleCartridgeRecipeBuilder applyGunpowder(SimpleAmmoGunpowderAmountStandard sizeType) {
         return deployerApply(
-                PrmaItems.Ammo.getGunpowderByTypes(baseCasingType).get(),
-                switch (sizeType) {
-                    case Low -> 1;
-                    case Medium -> 2;
-                    case High -> 3;
-                    case HighPower -> 4;
-                });
+                PrmaItems.Ammo.getGunpowderByTypes(sizeType).get(),
+                1);
     }
 
     public SimpleCartridgeRecipeBuilder applyGunpowder(int amount) {
