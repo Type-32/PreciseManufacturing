@@ -104,7 +104,14 @@ public class SimpleCartridgeRecipeBuilder {
     }
 
     public SimpleCartridgeRecipeBuilder standard() {
-        return this.applyPrimer().applyGunpowder();
+        if(baseCasingType == AmmoCasingType.Small)
+            return this.applyGunpowder(SimpleAmmoGunpowderAmountStandard.Low).applyPrimer();
+        else if(baseCasingType == AmmoCasingType.Medium)
+            return this.applyGunpowder(SimpleAmmoGunpowderAmountStandard.Low).applyGunpowder(SimpleAmmoGunpowderAmountStandard.Medium).applyPrimer();
+        else if(baseCasingType == AmmoCasingType.Long)
+            return this.applyGunpowder(SimpleAmmoGunpowderAmountStandard.Medium).applyGunpowder(SimpleAmmoGunpowderAmountStandard.High).applyPrimer();
+
+        return this.applyGunpowder().pressingApply();
     }
 
     public final SimpleCartridgeRecipeBuilder build(){
