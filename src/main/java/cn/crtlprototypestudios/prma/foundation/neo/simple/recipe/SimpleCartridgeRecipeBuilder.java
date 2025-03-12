@@ -14,41 +14,24 @@ import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeB
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 
+// Simple Cartridge Recipe Builder builds the recipes from casing to gunpowder_cartridges.
 public class SimpleCartridgeRecipeBuilder {
-    protected final RegistryEntry<? extends Item> baseCartridgePiece;
     protected final SequencedAssemblyRecipeBuilder builder;
-    protected final AmmoCasingType baseCasingType;
-    protected final AmmoMaterialType baseCasingMaterialType;
-    protected final SimpleAmmoGunpowderAmountStandard amountStandard;
     protected final SimpleCartridge cartridge;
-    protected SimpleCartridgeRecipeBuilder(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, SimpleAmmoGunpowderAmountStandard amountStandard, String namespaceId, String recipeName, SimpleCartridge resultingCartridge) {
-        this.baseCartridgePiece = PrmaItems.Ammo.getCasingByTypes(baseCasingType, baseCasingMaterialType);
-
-        assert baseCartridgePiece != null;
-        this.baseCasingType = baseCasingType;
-        this.baseCasingMaterialType = baseCasingMaterialType;
-        this.amountStandard = amountStandard;
+    protected SimpleCartridgeRecipeBuilder(String namespaceId, String recipeName, SimpleCartridge resultingCartridge) {
         this.cartridge = resultingCartridge;
         this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("simple/cartridge/%s", recipeName)))
-                .require(baseCartridgePiece.get())
+                .require(cartridge.getBaseCasing().get())
                 .transitionTo(resultingCartridge.getTransition().get())
                 .loops(1)
                 .addOutput(resultingCartridge.getItem().get(), 1);
     }
 
-    public static SimpleCartridgeRecipeBuilder create(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, SimpleAmmoGunpowderAmountStandard amountStandard, String namespaceId, SimpleCartridge resultingCartridge) {
-        return new SimpleCartridgeRecipeBuilder(
-                baseCasingType, baseCasingMaterialType, amountStandard,
-                namespaceId,
-                String.format("%s_%s_%s_%s", baseCasingType.toString(), baseCasingMaterialType.toString(), amountStandard.toString(), "gunpowder_cartridge"),
-                resultingCartridge
-        );
-    }
-
-    public static SimpleCartridgeRecipeBuilder create(AmmoCasingType baseCasingType, AmmoMaterialType baseCasingMaterialType, SimpleAmmoGunpowderAmountStandard amountStandard, SimpleCartridge resultingCartridge) {
-        return create(baseCasingType, baseCasingMaterialType, amountStandard, Reference.MOD_ID, resultingCartridge);
+    public static SimpleCartridgeRecipeBuilder create(SimpleCartridge resultingCartridge) {
+        return new SimpleCartridgeRecipeBuilder(Reference.MOD_ID, resultingCartridge.getCartridgeName(), resultingCartridge);
     }
 
     public SimpleCartridgeRecipeBuilder deployerApply(ItemLike item, int times) {
@@ -77,18 +60,12 @@ public class SimpleCartridgeRecipeBuilder {
         return deployerApply(PrmaItems.Ammo.CARTRIDGE_PRIMER.get());
     }
 
-    public SimpleCartridgeRecipeBuilder applyGunpowder(SimpleAmmoGunpowderAmountStandard sizeType) {
-        return deployerApply(
-                PrmaItems.Ammo.getGunpowderByTypes(sizeType).get(),
-                1);
-    }
-
     public SimpleCartridgeRecipeBuilder applyGunpowder(int amount) {
-        return deployerApply(PrmaItems.Ammo.getGunpowderByTypes(baseCasingType).get(), amount);
+        return deployerApply(Items.GUNPOWDER, amount);
     }
 
     public SimpleCartridgeRecipeBuilder applyGunpowder() {
-        return applyGunpowder(amountStandard);
+        return applyGunpowder(1);
     }
 
     public SimpleCartridgeRecipeBuilder applyShotgunBearings(int times) {
@@ -104,14 +81,7 @@ public class SimpleCartridgeRecipeBuilder {
     }
 
     public SimpleCartridgeRecipeBuilder standard() {
-        if(baseCasingType == AmmoCasingType.Small)
-            return this.applyGunpowder(SimpleAmmoGunpowderAmountStandard.Low).applyPrimer();
-        else if(baseCasingType == AmmoCasingType.Medium)
-            return this.applyGunpowder(SimpleAmmoGunpowderAmountStandard.Low).applyGunpowder(SimpleAmmoGunpowderAmountStandard.Medium).applyPrimer();
-        else if(baseCasingType == AmmoCasingType.Long)
-            return this.applyGunpowder(SimpleAmmoGunpowderAmountStandard.Medium).applyGunpowder(SimpleAmmoGunpowderAmountStandard.High).applyPrimer();
-
-        return this.applyGunpowder().pressingApply();
+        return this.applyPrimer().applyGunpowder();
     }
 
     public final SimpleCartridgeRecipeBuilder build(){

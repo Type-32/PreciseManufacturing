@@ -28,17 +28,17 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
 
         simpleItem(PrmaItems.BASALT_POWDER.get());
-        simpleItem(PrmaItems.CRUSHED_BASALT.get());
-        simpleItem(PrmaItems.STRAIGHT_SMALL_COIL.get());
-        simpleItem(PrmaItems.STRAIGHT_LARGE_COIL.get());
-        simpleItem(PrmaItems.STRAIGHT_FLAT_COIL.get());
-        simpleItem(PrmaItems.LOCKING_RETURN_COIL.get());
-        simpleItem(PrmaItems.FLAT_HEAD_SCREW.get());
-        simpleItem(PrmaItems.M_SCREW.get());
-        simpleItem(PrmaItems.THIN_SMALL_ROD.get());
-        simpleItem(PrmaItems.THICK_SMALL_ROD.get());
-        simpleItem(PrmaItems.CRUSHED_RAW_LEAD.get());
-        simpleItem(PrmaItems.CRUSHED_RAW_ALUMINUM.get());
+//        simpleItem(PrmaItems.CRUSHED_BASALT.get());
+//        simpleItem(PrmaItems.STRAIGHT_SMALL_COIL.get());
+//        simpleItem(PrmaItems.STRAIGHT_LARGE_COIL.get());
+//        simpleItem(PrmaItems.STRAIGHT_FLAT_COIL.get());
+//        simpleItem(PrmaItems.LOCKING_RETURN_COIL.get());
+//        simpleItem(PrmaItems.FLAT_HEAD_SCREW.get());
+//        simpleItem(PrmaItems.M_SCREW.get());
+//        simpleItem(PrmaItems.THIN_SMALL_ROD.get());
+//        simpleItem(PrmaItems.THICK_SMALL_ROD.get());
+//        simpleItem(PrmaItems.CRUSHED_RAW_LEAD.get());
+//        simpleItem(PrmaItems.CRUSHED_RAW_ALUMINUM.get());
 
         for(int i = 0; i < storedItemResourceLocations.size(); i++) {
             customSimpleItem(storedItemLocations.get(i), storedItemResourceLocations.get(i));

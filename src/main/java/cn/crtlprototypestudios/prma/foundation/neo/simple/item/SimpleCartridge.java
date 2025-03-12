@@ -43,6 +43,24 @@ public class SimpleCartridge {
     }
 
     public void registerStandardRecipes() {
-        SimpleCartridgeRecipeBuilder.create(casingType, materialType, amountStandard, this).standard().build();
+        // TODO: Note to future self: Casings as a Small, Medium, and Long Length. Cartridges has a Small, Medium, and Long Length as well, but, for each length, there has to be different gunpowders; small/medium/high gunpowder cartridges is for all lengths, and the small/medium/high refers to not the amount, but the type of ammo gunpowder loaded in said length-ed cartridge.
+        SimpleCartridgeRecipeBuilder builder = SimpleCartridgeRecipeBuilder.create(this);
+        if (amountStandard == SimpleAmmoGunpowderAmountStandard.Low)
+            builder.deployerApply(PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get()).applyPrimer();
+        else if(amountStandard == SimpleAmmoGunpowderAmountStandard.Medium)
+            builder.deployerApply(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get()).applyPrimer();
+        else if(amountStandard == SimpleAmmoGunpowderAmountStandard.High)
+            builder.deployerApply(PrmaItems.HIGH_AMMUNITION_GUNPOWDER.get()).applyPrimer();
+        else
+            builder.deployerApply(PrmaItems.HIGH_POWER_AMMUNITION_GUNPOWDER.get()).applyPrimer();
+        builder.build();
+    }
+
+    public RegistryEntry<? extends Item> getBaseCasing() {
+        return PrmaItems.Ammo.getCasingByTypes(casingType, materialType);
+    }
+
+    public String getCartridgeName() {
+        return String.format("%s_%s_%s_%s", casingType.toString(), materialType.toString(), amountStandard.toString(), "gunpowder_cartridge");
     }
 }
