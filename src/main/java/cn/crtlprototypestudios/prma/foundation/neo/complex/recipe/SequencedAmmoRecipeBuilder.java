@@ -82,21 +82,6 @@ public class SequencedAmmoRecipeBuilder {
         return deployerApply(Items.GUNPOWDER, times);
     }
 
-    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoSizeType sizeType, int times) {
-        return deployerApply(
-                switch (sizeType) {
-                    case Small -> PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get();
-                    case Medium -> PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get();
-                    case Long -> PrmaItems.LONG_AMMUNITION_GUNPOWDER.get();
-                },
-                times
-        );
-    }
-
-    public SequencedAmmoRecipeBuilder applyGunpowder(AmmoSizeType sizeType) {
-        return applyGunpowder(sizeType, 1);
-    }
-
     public SequencedAmmoRecipeBuilder applyHead(AmmoHeadType headType, AmmoMaterialType materialType) {
         return deployerApply(PrmaItems.Ammo.getHeadByTypes(headType, materialType).get());
     }

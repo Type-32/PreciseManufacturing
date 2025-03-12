@@ -28,6 +28,7 @@ import net.minecraft.world.level.ItemLike;
 
 import java.util.Objects;
 
+// SimpleAmmo registers the recipes from the gunpowder_cartridges to the actual bullet ammo.
 public class SimpleAmmo {
     protected final SimpleCartridge cartridge;
     protected final String ammoId;
