@@ -14,6 +14,8 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 
 public class SimpleCartridge {
     protected final RegistryEntry<? extends Item> item, transition;
@@ -44,15 +46,15 @@ public class SimpleCartridge {
 
     public void registerStandardRecipes() {
         // TODO: Note to future self: Casings as a Small, Medium, and Long Length. Cartridges has a Small, Medium, and Long Length as well, but, for each length, there has to be different gunpowders; small/medium/high gunpowder cartridges is for all lengths, and the small/medium/high refers to not the amount, but the type of ammo gunpowder loaded in said length-ed cartridge.
-        SimpleCartridgeRecipeBuilder builder = SimpleCartridgeRecipeBuilder.create(this);
+        ItemLike baseItem = null;
         if (amountStandard == SimpleAmmoGunpowderAmountStandard.Low)
-            builder.deployerApply(PrmaItems.SMALL_AMMUNITION_GUNPOWDER.get()).applyPrimer();
+            baseItem = getBaseCasing().get();
         else if(amountStandard == SimpleAmmoGunpowderAmountStandard.Medium)
-            builder.deployerApply(PrmaItems.MEDIUM_AMMUNITION_GUNPOWDER.get()).applyPrimer();
+            baseItem = PrmaItems.Ammo.getCartridge(this.casingType, this.materialType, SimpleAmmoGunpowderAmountStandard.Low).getItem().get();
         else if(amountStandard == SimpleAmmoGunpowderAmountStandard.High)
-            builder.deployerApply(PrmaItems.HIGH_AMMUNITION_GUNPOWDER.get()).applyPrimer();
-        else
-            builder.deployerApply(PrmaItems.HIGH_POWER_AMMUNITION_GUNPOWDER.get()).applyPrimer();
+            baseItem = PrmaItems.Ammo.getCartridge(this.casingType, this.materialType, SimpleAmmoGunpowderAmountStandard.Medium).getItem().get();
+        SimpleCartridgeRecipeBuilder builder = SimpleCartridgeRecipeBuilder.createWithCustomBase(this, baseItem);
+        builder.deployerApply(Items.GUNPOWDER);
         builder.build();
     }
 

@@ -30,8 +30,21 @@ public class SimpleCartridgeRecipeBuilder {
                 .addOutput(resultingCartridge.getItem().get(), 1);
     }
 
+    protected SimpleCartridgeRecipeBuilder(String namespaceId, String recipeName, SimpleCartridge resultingCartridge, ItemLike baseItem){
+        this.cartridge = resultingCartridge;
+        this.builder = new SequencedAssemblyRecipeBuilder(new ResourceLocation(namespaceId, String.format("simple/cartridge/%s", recipeName)))
+                .require(baseItem)
+                .transitionTo(resultingCartridge.getTransition().get())
+                .loops(1)
+                .addOutput(resultingCartridge.getItem().get(), 1);
+    }
+
     public static SimpleCartridgeRecipeBuilder create(SimpleCartridge resultingCartridge) {
         return new SimpleCartridgeRecipeBuilder(Reference.MOD_ID, resultingCartridge.getCartridgeName(), resultingCartridge);
+    }
+
+    public static SimpleCartridgeRecipeBuilder createWithCustomBase(SimpleCartridge resultingCartridge, ItemLike itemLike) {
+        return new SimpleCartridgeRecipeBuilder(Reference.MOD_ID, resultingCartridge.getCartridgeName(), resultingCartridge, itemLike);
     }
 
     public SimpleCartridgeRecipeBuilder deployerApply(ItemLike item, int times) {
@@ -80,9 +93,7 @@ public class SimpleCartridgeRecipeBuilder {
         return deployerApply(PrmaItems.Ammo.SHOTGUN_SHELL.get());
     }
 
-    public SimpleCartridgeRecipeBuilder standard() {
-        return this.applyPrimer().applyGunpowder();
-    }
+
 
     public final SimpleCartridgeRecipeBuilder build(){
         ModRecipesGen.addSequencedAssemblyRecipe(builder);
