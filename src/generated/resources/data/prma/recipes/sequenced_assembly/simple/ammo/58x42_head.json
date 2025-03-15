@@ -1,7 +1,7 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "item": "prma:medium_brass_medium_gunpowder_cartridge"
+    "item": "prma:medium_iron_medium_gunpowder_cartridge"
   },
   "loops": 1,
   "results": [

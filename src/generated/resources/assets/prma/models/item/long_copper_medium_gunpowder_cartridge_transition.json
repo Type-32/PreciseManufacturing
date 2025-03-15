@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/simple/ammo/cartridge/copper/long_copper_medium_gunpowder_cartridge_transition"
+  }
+}

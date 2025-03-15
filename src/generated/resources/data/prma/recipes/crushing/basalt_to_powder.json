@@ -24,12 +24,7 @@
     {
       "chance": 0.6,
       "count": 3,
-      "item": "prma:crushed_raw_aluminum"
-    },
-    {
-      "chance": 0.6,
-      "count": 4,
-      "item": "prma:basalt_powder"
+      "item": "prma:sulfur_powder"
     }
   ]
 }
