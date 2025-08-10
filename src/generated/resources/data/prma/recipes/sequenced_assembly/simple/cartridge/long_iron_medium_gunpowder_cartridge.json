@@ -1,7 +1,7 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "item": "prma:long_iron_casing"
+    "item": "prma:long_iron_low_gunpowder_cartridge"
   },
   "loops": 1,
   "results": [
@@ -17,39 +17,7 @@
           "item": "prma:long_iron_medium_gunpowder_cartridge_transition"
         },
         {
-          "item": "prma:cartridge_primer"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:long_iron_medium_gunpowder_cartridge_transition"
-        }
-      ]
-    },
-    {
-      "type": "create:deploying",
-      "ingredients": [
-        {
-          "item": "prma:long_iron_medium_gunpowder_cartridge_transition"
-        },
-        {
-          "item": "prma:long_ammunition_gunpowder"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:long_iron_medium_gunpowder_cartridge_transition"
-        }
-      ]
-    },
-    {
-      "type": "create:deploying",
-      "ingredients": [
-        {
-          "item": "prma:long_iron_medium_gunpowder_cartridge_transition"
-        },
-        {
-          "item": "prma:long_ammunition_gunpowder"
+          "item": "minecraft:gunpowder"
         }
       ],
       "results": [

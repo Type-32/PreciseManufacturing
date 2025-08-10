@@ -17,23 +17,7 @@
           "item": "prma:small_brass_low_gunpowder_cartridge_transition"
         },
         {
-          "item": "prma:cartridge_primer"
-        }
-      ],
-      "results": [
-        {
-          "item": "prma:small_brass_low_gunpowder_cartridge_transition"
-        }
-      ]
-    },
-    {
-      "type": "create:deploying",
-      "ingredients": [
-        {
-          "item": "prma:small_brass_low_gunpowder_cartridge_transition"
-        },
-        {
-          "item": "prma:small_ammunition_gunpowder"
+          "item": "minecraft:gunpowder"
         }
       ],
       "results": [

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "prma:item/simple/ammo/cartridge/iron/small_iron_high_gunpowder_cartridge"
+  }
+}

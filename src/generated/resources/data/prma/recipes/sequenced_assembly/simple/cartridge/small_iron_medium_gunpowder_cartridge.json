@@ -1,0 +1,33 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "prma:small_iron_low_gunpowder_cartridge"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "item": "prma:small_iron_medium_gunpowder_cartridge"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "prma:small_iron_medium_gunpowder_cartridge_transition"
+        },
+        {
+          "item": "minecraft:gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "prma:small_iron_medium_gunpowder_cartridge_transition"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "prma:small_iron_medium_gunpowder_cartridge_transition"
+  }
+}
